@@ -35,14 +35,10 @@ public class SearchLight : MonoBehaviour
         
     }
     
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-
-        Debug.Log("Colliding With Ghost");
-        RaycastHit hit;
         if(Physics.Raycast(transform.position,transform.forward,20))
         {
-
             if(other.gameObject.tag=="Ghost" && !blocked){
                 collidingWithGhost = true;
                 Debug.Log("Colliding With Ghost");
