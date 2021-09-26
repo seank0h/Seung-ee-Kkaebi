@@ -16,6 +16,8 @@ public class client : MonoBehaviour{
 	private TcpClient socketConnection; 	
 	private Thread clientReceiveThread; 	
 	#endregion  	
+
+
 	// Use this for initialization 	
 	void Start () {
         if(tcp && tcp != this)
@@ -31,6 +33,9 @@ public class client : MonoBehaviour{
 
 	}
 
+	public void reconnectServer(){
+		ConnectToTcpServer();
+	}
 
     public void sendMsg(String msg){
         SendMessage(msg); 
@@ -70,7 +75,7 @@ public class client : MonoBehaviour{
 	/// </summary>     
 	private void ListenForData() { 		
 		try { 			
-			socketConnection = new TcpClient("192.168.0.35", 9000);  			
+			socketConnection = new TcpClient("143.248.2.25", 9000);  			
 			Byte[] bytes = new Byte[1024];             
 			while (true) { 				
 				// Get a stream object for reading 				
@@ -82,7 +87,12 @@ public class client : MonoBehaviour{
 						Array.Copy(bytes, 0, incommingData, 0, length); 						
 						// Convert byte array to string message. 						
 						string serverMessage = Encoding.ASCII.GetString(incommingData); 
-                        msg = serverMessage;						
+                        msg = serverMessage;
+
+						if(msg.Contains("END GAME")){
+							closeConn();
+						}
+
 						Debug.Log("server message received as: " + serverMessage); 					
 					} 				
 				} 			
@@ -117,4 +127,19 @@ public class client : MonoBehaviour{
 			Debug.Log("Socket exception: " + socketException);         
 		}     
 	} 
+
+	private void closeConn(){
+		if(clientReceiveThread != null){
+			clientReceiveThread.Abort();
+		}
+		socketConnection.Close();
+
+		clientReceiveThread = null;
+		socketConnection = null;
+	}
+
+	void OnApplicationQuit(){
+		SendMessage("END GAME");
+		closeConn();
+	}
 }
