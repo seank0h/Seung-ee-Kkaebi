@@ -242,8 +242,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac866c113c6c0834b84a82269978dc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightSource: {fileID: 0}
   timeToKill: 5
   timer: 0
+  collidingWithGhost: 0
+  ghostEntity: {fileID: 0}
 --- !u!1001 &327450621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -595,7 +598,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1921292567}
   - component: {fileID: 1921292568}
-  - component: {fileID: 1921292569}
   m_Layer: 8
   m_Name: Spot Light
   m_TagString: Untagged
@@ -680,20 +682,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &1921292569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1921292566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac866c113c6c0834b84a82269978dc49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToKill: 3
-  timer: 0
 --- !u!1 &2084703781
 GameObject:
   m_ObjectHideFlags: 0
