@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class SearchLight : MonoBehaviour
 {
+    public Light lightSource;
     public float timeToKill;
     public float timer;
     public bool collidingWithGhost;
@@ -13,13 +14,14 @@ public class SearchLight : MonoBehaviour
 
     void Start()
     {
+        lightSource = gameObject.GetComponentInParent<Light>();
         timer = timeToKill;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(collidingWithGhost)
+        if(collidingWithGhost && lightSource.intensity > 0)
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
@@ -32,8 +34,7 @@ public class SearchLight : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position,transform.forward,20))
+
         Debug.Log("Colliding With Ghost");
         if(other.gameObject.tag=="Ghost")
         {
