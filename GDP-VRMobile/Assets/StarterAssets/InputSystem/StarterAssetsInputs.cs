@@ -12,7 +12,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
-
+		public bool flashlight;
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
@@ -45,6 +45,10 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+		public void OnLight(InputValue value)
+        {
+			LightInput(value.isPressed);
+        }
 #else
 	// old input sys if we do decide to have it (most likely wont)...
 #endif
@@ -69,7 +73,10 @@ namespace StarterAssets
 		{
 			sprint = newSprintState;
 		}
-
+		public void LightInput(bool newLightState)
+        {
+			flashlight = newLightState;
+        }
 #if !UNITY_IOS || !UNITY_ANDROID
 
 		private void OnApplicationFocus(bool hasFocus)

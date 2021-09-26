@@ -54,6 +54,10 @@ namespace StarterAssets
 		[Tooltip("How far in degrees can you move the camera down")]
 		public float BottomClamp = -90.0f;
 
+		[Header("Spotlight")]
+		public GameObject SpotLight;
+		public bool isOn;
+		private Light lightSource;
 		// cinemachine
 		private float _cinemachineTargetPitch;
 
@@ -80,6 +84,8 @@ namespace StarterAssets
 			{
 				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 			}
+			isOn = false;
+			
 		}
 
 		private void Start()
@@ -87,6 +93,8 @@ namespace StarterAssets
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 
+			lightSource = SpotLight.GetComponent<Light>();
+			lightSource.intensity = 0;
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
@@ -97,6 +105,7 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			LightSwitch();
 		}
 
 		private void LateUpdate()
@@ -124,9 +133,10 @@ namespace StarterAssets
 
 				// Update Cinemachine camera target pitch
 				CinemachineCameraTarget.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0.0f, 0.0f);
-
+				SpotLight.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0.0f, 0.0f);
 				// rotate the player left and right
 				transform.Rotate(Vector3.up * _rotationVelocity);
+				SpotLight.transform.Rotate(Vector3.up * _rotationVelocity);
 			}
 		}
 
@@ -224,7 +234,24 @@ namespace StarterAssets
 				_verticalVelocity += Gravity * Time.deltaTime;
 			}
 		}
-
+		private void LightSwitch()
+        {
+			
+			if(_input.flashlight && isOn == false)
+            {
+				isOn = true;
+				lightSource.intensity = 3;
+				Debug.Log("On");
+				_input.flashlight = false;
+			}
+			if(_input.flashlight && isOn)
+            {
+				isOn = false;
+				lightSource.intensity = 0;
+				Debug.Log("Off");
+				_input.flashlight = false;
+			}
+		}
 		private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
 		{
 			if (lfAngle < -360f) lfAngle += 360f;
