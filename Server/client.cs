@@ -9,14 +9,14 @@ using UnityEngine;
 public class client : MonoBehaviour{
 	#region private members 	
 
+    public string clientID;
+
     public static client tcp;
-    
     private String msg = "";
 
 	private TcpClient socketConnection; 	
 	private Thread clientReceiveThread; 	
 	#endregion  	
-
 
 	// Use this for initialization 	
 	void Start () {
@@ -29,50 +29,63 @@ public class client : MonoBehaviour{
 	}
 
 
-	void Update () {
 
-	}
 
 	public void reconnectServer(){
 		ConnectToTcpServer();
 	}
 
-    public void sendMsg(String msg){
-        SendMessage(msg); 
+    public void sendMsg(int code, float x, float y, float z){
+        String coord = x.ToString() + "/" + y.ToString() + "/" + z.ToString();
+        SendMessage(clientID + "/" + code + "/" + coord + "/#");
     }
 
-    public string receiveMsg(){
-        decodeMsg();
-        return msg;
+    public string[][] receiveMsg(){
+        string[] msgQueue = msg.Split('#');
+        RemoveAt(ref msgQueue, msgQueue.Length-1);
+        string[][] res = new string[msgQueue.Length][];
+
+        for(int i=0; i < msgQueue.Length; i++){
+            res[i] = msgQueue[i].Split('/');
+            RemoveAt(ref res[i], res[i].Length-1);
+        }
+
+        return res;
     }
 
 
-    private void decodeMsg(){
 
+
+    private void printMessage(string[][] message){
+        for(int i=0; i<message.Length; i++){
+            for(int j = 0; j < message[i].Length; j++){
+                Debug.Log(message[i][j]);
+            }
+        }
     }
 
 
+    private static void RemoveAt<T>(ref T[] arr, int index){
+        for (int a = index; a < arr.Length - 1; a++){
+            // moving elements downwards, to fill the gap at [index]
+            arr[a] = arr[a + 1];
+        }
+        // finally, let's decrement Array's size by one
+        Array.Resize(ref arr, arr.Length - 1);
+    }
 
 
-	/// <summary> 	
-	/// Setup socket connection. 	
-	/// </summary> 	
 	private void ConnectToTcpServer () { 		
 		try {  			
 			clientReceiveThread = new Thread (new ThreadStart(ListenForData)); 			
 			clientReceiveThread.IsBackground = true; 			
 			clientReceiveThread.Start();  		
-		} 		
-		catch (Exception e) { 			
+		}catch (Exception e) { 			
 			Debug.Log("On client connect exception " + e); 		
-		} 	
+		}
 	} 
 
 
-
-	/// <summary> 	
-	/// Runs in background clientReceiveThread; Listens for incomming data. 	
-	/// </summary>     
 	private void ListenForData() { 		
 		try { 			
 			socketConnection = new TcpClient("143.248.2.25", 9000);  			
@@ -87,27 +100,30 @@ public class client : MonoBehaviour{
 						Array.Copy(bytes, 0, incommingData, 0, length); 						
 						// Convert byte array to string message. 						
 						string serverMessage = Encoding.ASCII.GetString(incommingData); 
-                        msg = serverMessage;
 
-						if(msg.Contains("END GAME")){
+                        if(checkMsg(serverMessage)){
+                            msg = serverMessage;
+                        }else if(serverMessage.Contains("END GAME")){
 							closeConn();
 						}
 
-						Debug.Log("server message received as: " + serverMessage); 					
+						//Debug.Log("server message received as: " + serverMessage); 					
 					} 				
 				} 			
 			}         
-		}         
-		catch (SocketException socketException) {             
+		}catch (SocketException socketException) {             
 			Debug.Log("Socket exception: " + socketException);         
 		}     
 	}
 
+    private bool checkMsg(string serverMessage){
+        string[] message = serverMessage.Split('/');
+        if(String.Equals(message[message.Length-1], "#") && !message[0].Contains(clientID))
+            return true;
+        return false;
+    }
 
 
-	/// <summary> 	
-	/// Send message to server using socket connection. 	
-	/// </summary> 	
 	private void SendMessage(String clientMessage) {         
 		if (socketConnection == null) {             
 			return;         
@@ -126,7 +142,8 @@ public class client : MonoBehaviour{
 		catch (SocketException socketException) {             
 			Debug.Log("Socket exception: " + socketException);         
 		}     
-	} 
+	}
+
 
 	private void closeConn(){
 		if(clientReceiveThread != null){
