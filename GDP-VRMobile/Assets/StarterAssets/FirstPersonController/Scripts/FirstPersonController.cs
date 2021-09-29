@@ -240,7 +240,7 @@ namespace StarterAssets
 			if(_input.flashlight && isOn == false)
             {
 				isOn = true;
-				lightSource.intensity = 3;
+				lightSource.intensity = 2.5f;
 				Debug.Log("On");
 				_input.flashlight = false;
 			}
