@@ -1,24 +1,30 @@
 import socket 
 import threading 
+import sys
 
-
-Host = '192.168.0.35' #통신할 대상의 IP 주소 
+Host = '143.248.2.25' #통신할 대상의 IP 주소 
 Port = 9000 #통신할 대상의 Port 주소 
-
+client_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #TCP Socket 
 
 def Send(client_sock): 
     while True: 
-        send_data = bytes(input().encode()) # 사용자 입력 
+        send_data = bytes(input().encode()) # 사용자 입력
+        if send_data == 'END GAME':
+            client_sock.close()
+            sys.exit(0) # 종료가 안됨 ;;;
         client_sock.send(send_data) # Client -> Server 데이터 송신 
         
 def Recv(client_sock): 
     while True: 
         recv_data = client_sock.recv(1024).decode() # Server -> Client 데이터 수신 
-        print(recv_data) 
+        #print(recv_data) 
+
+        if 'END GAME' in recv_data:
+            print(recv_data)
+            client_sock.close()
+            sys.exit(0)  # 종료가 안됨 ;;;
         
 if __name__ == '__main__': 
-    client_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #TCP Socket 
-
     client_sock.connect((Host, Port)) #서버로 연결시도 
     print('Connecting to ', Host, Port) #Client의 메시지를 보낼 쓰레드 
 
