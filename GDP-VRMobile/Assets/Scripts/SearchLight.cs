@@ -6,15 +6,11 @@ using UnityEngine.InputSystem;
 
 public class SearchLight : MonoBehaviour
 {
+    
+    [Header ("Light Data")]
     public GameObject lightEntity;
     public Light lightSource;
     public bool lightOn;
-    [Header ("Ghost Data")]
-    public float timeToKill;
-    public float timer;
-    public bool collidingWithGhost;
-    public GameObject[] ghostObjects;
-    public BasicGhostBehavior[] ghostEntities;
     [Header("Spotlight Settings")]
     public float radius;
     public float range;
@@ -24,17 +20,12 @@ public class SearchLight : MonoBehaviour
     public LayerMask obstructionMask;
     public bool canSeeGhost = false;
 
-    public GameObject blockedBy;
+    public BasicGhostBehavior currGhostSeen;
+
     // Start is called before the first frame update
     void Start()
     {
         lightSource = lightEntity.GetComponent<Light>();
-        timer = timeToKill;
-        for (int i = 0; i < ghostEntities.Length; i++)
-        {
-            ghostEntities[i] = ghostObjects[i].GetComponent<BasicGhostBehavior>();
-        }
-        
     }
 
     // Update is called once per frame
@@ -48,10 +39,12 @@ public class SearchLight : MonoBehaviour
     {
         if (lightSource.intensity > 0)
         {
+            Debug.Log("Light On");
             lightOn = true;
         }
         else if (lightSource.intensity == 0)
         {
+            Debug.Log("Light Off");
             lightOn = false;
         }
         if (lightOn)
@@ -60,46 +53,18 @@ public class SearchLight : MonoBehaviour
     }
     private void GhostCheck()
     {
-        if (canSeeGhost)
+        if (gameObject.GetComponent<PlayerManager>().mobileManagerEntity.ghostEntities.Count > 0)
         {
-            if (lightSource.intensity > 0)
-                ghostEntities[0].beingSeen = true;
-            else
-                ghostEntities[0].beingSeen = false;
-        }
-       
-    }
-    /*
-    private void OnTriggerStay(Collider other)
-    {
-        if(Physics.Raycast(transform.position,transform.forward,20))
-        {
-            if(other.gameObject.tag=="Ghost")
+            if (canSeeGhost)
             {
-                canSeeGhost = true;
-                collidingWithGhost = true;
-                Debug.Log("Colliding With Ghost");
-                ghostEntity = other.gameObject.GetComponent<BasicGhostBehavior>();          
+                gameObject.GetComponent<PlayerManager>().mobileManagerEntity.ghostEntities[0].beingSeen = true;
             }
-            if(other.gameObject.tag=="Environment"){
-                collidingWithGhost = false;
-                canSeeGhost = false;
-                blockedBy = other.gameObject;
-                Debug.Log("Colliding With Environment");
+            else
+            {
+                gameObject.GetComponent<PlayerManager>().mobileManagerEntity.ghostEntities[0].beingSeen = false;
             }
         }
-        
     }
-    private void OnTriggerExit(Collider other)
-    {
-        timer = timeToKill;
-        collidingWithGhost = false;
-        Debug.Log("No Longer Colliding with Ghost");
-
-        canSeeGhost = false;
-        blockedBy = null;
-    }
-    */
     private void LineOfSightCheck()
     {
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
@@ -107,6 +72,7 @@ public class SearchLight : MonoBehaviour
         if(rangeChecks.Length!=0)
         {
             Transform target = rangeChecks[0].transform;
+            currGhostSeen = target.GetComponent<BasicGhostBehavior>();
             Vector3 directionToTarget = (target.position - transform.position).normalized;
 
             if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
@@ -121,8 +87,6 @@ public class SearchLight : MonoBehaviour
                     
                 else
                     canSeeGhost = false;
-             
-
             }
             else
                 canSeeGhost = false;

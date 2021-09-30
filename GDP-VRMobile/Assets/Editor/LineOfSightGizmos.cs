@@ -22,7 +22,7 @@ public class LineOfSightGizmos : Editor
         if(los.canSeeGhost)
         {
             Handles.color = Color.green;
-            Handles.DrawLine(los.transform.position, los.ghostEntities[0].transform.position);
+            Handles.DrawLine(los.transform.position, los.currGhostSeen.transform.position);
         }
     }
 

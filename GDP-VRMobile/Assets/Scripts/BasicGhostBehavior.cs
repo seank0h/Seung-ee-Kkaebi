@@ -9,6 +9,7 @@ public class BasicGhostBehavior : MonoBehaviour
     public float healthPoints;
     public bool beingSeen;
     public bool dmgTickCalled;
+    public bool shouldDie;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +20,6 @@ public class BasicGhostBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (healthPoints <= 0)
-            Death();
         if(beingSeen & dmgTickCalled==false)
         {
             BeingDamaged();
@@ -30,6 +29,8 @@ public class BasicGhostBehavior : MonoBehaviour
         {
             dmgTickCalled = false;
         }
+        if (shouldDie)
+            Death();
     }
     public void BeingDamaged()
     {
