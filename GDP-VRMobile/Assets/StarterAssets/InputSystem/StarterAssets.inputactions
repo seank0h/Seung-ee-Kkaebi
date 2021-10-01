@@ -44,6 +44,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SwitchCharacterLeft",
+                    "type": "Button",
+                    "id": "33c3e53b-3ddb-469f-b6ef-50fc481ab525",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SwitchCharacterRight",
+                    "type": "Button",
+                    "id": "af4dc31c-cc68-4bee-aaa9-2a1b1022d979",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -231,6 +247,28 @@
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "Light",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ecc1d7e5-ef5f-4381-aa00-eeed86749c2a",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "SwitchCharacterLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3fdbcd2a-ea6a-4013-ba9d-92db48942a4c",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "SwitchCharacterRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

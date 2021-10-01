@@ -13,6 +13,8 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool flashlight;
+		public bool characterSwitchLeft;
+		public bool characterSwitchRight;
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
@@ -49,6 +51,16 @@ namespace StarterAssets
         {
 			LightInput(value.isPressed);
         }
+		public void OnSwitchCharacterLeft(InputValue value)
+        {
+			CharacterSwitchInputLeft(value.isPressed);
+
+		}
+		public void OnSwitchCharacterRight(InputValue value)
+		{
+			CharacterSwitchInputRight(value.isPressed);
+
+		}
 #else
 	// old input sys if we do decide to have it (most likely wont)...
 #endif
@@ -77,6 +89,14 @@ namespace StarterAssets
         {
 			flashlight = newLightState;
         }
+		public void CharacterSwitchInputLeft(bool newCharacterSwitchState)
+        {
+			characterSwitchLeft = newCharacterSwitchState;
+        }
+		public void CharacterSwitchInputRight(bool newCharacterSwitchState)
+		{
+			characterSwitchRight = newCharacterSwitchState;
+		}
 #if !UNITY_IOS || !UNITY_ANDROID
 
 		private void OnApplicationFocus(bool hasFocus)

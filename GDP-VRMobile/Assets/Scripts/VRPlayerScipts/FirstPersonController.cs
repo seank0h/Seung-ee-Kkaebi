@@ -58,6 +58,8 @@ namespace StarterAssets
 		public GameObject SpotLight;
 		public bool isOn;
 		private Light lightSource;
+		[Header("GameState")]
+		public GameObject gameManagerObject;
 		// cinemachine
 		private float _cinemachineTargetPitch;
 
@@ -73,17 +75,12 @@ namespace StarterAssets
 
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
-		private GameObject _mainCamera;
 
 		private const float _threshold = 0.01f;
 
 		private void Awake()
 		{
-			// get a reference to our main camera
-			if (_mainCamera == null)
-			{
-				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-			}
+
 			isOn = false;
 			
 		}
@@ -106,6 +103,7 @@ namespace StarterAssets
 			GroundedCheck();
 			Move();
 			LightSwitch();
+			CharacterSwitch();
 		}
 
 		private void LateUpdate()
@@ -252,6 +250,19 @@ namespace StarterAssets
 				_input.flashlight = false;
 			}
 		}
+		private void CharacterSwitch()
+        {
+			if(_input.characterSwitchLeft)
+            {
+				Debug.Log("Press Q");
+				gameManagerObject.GetComponent<CharacterSwap>().CharacterSwitchLeft();
+            }
+			if(_input.characterSwitchRight)
+            {
+				Debug.Log("Press E");
+				gameManagerObject.GetComponent<CharacterSwap>().CharacterSwitchRight();
+			}
+        }
 		private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
 		{
 			if (lfAngle < -360f) lfAngle += 360f;

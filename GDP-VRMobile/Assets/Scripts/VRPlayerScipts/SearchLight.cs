@@ -53,15 +53,15 @@ public class SearchLight : MonoBehaviour
     }
     private void GhostCheck()
     {
-        if (gameObject.GetComponent<PlayerManager>().mobileManagerEntity.ghostEntities.Count > 0)
+        if (currGhostSeen !=null)
         {
             if (canSeeGhost)
             {
-                gameObject.GetComponent<PlayerManager>().mobileManagerEntity.ghostEntities[0].beingSeen = true;
+                currGhostSeen.beingSeen = true;
             }
             else
             {
-                gameObject.GetComponent<PlayerManager>().mobileManagerEntity.ghostEntities[0].beingSeen = false;
+                currGhostSeen.beingSeen = false;
             }
         }
     }
