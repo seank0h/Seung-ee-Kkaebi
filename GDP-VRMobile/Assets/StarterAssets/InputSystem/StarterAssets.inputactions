@@ -51,7 +51,7 @@
                     "id": "33c3e53b-3ddb-469f-b6ef-50fc481ab525",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "SwitchCharacterRight",
@@ -59,7 +59,7 @@
                     "id": "af4dc31c-cc68-4bee-aaa9-2a1b1022d979",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 }
             ],
             "bindings": [

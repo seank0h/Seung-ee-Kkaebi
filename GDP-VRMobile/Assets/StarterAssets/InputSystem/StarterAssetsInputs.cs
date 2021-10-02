@@ -8,15 +8,22 @@ namespace StarterAssets
 	public class StarterAssetsInputs : MonoBehaviour
 	{
 		[Header("Character Input Values")]
-		public Vector2 move;
-		public Vector2 look;
-		public bool jump;
-		public bool sprint;
+		[SerializeField]
+		private Vector2 move;
+		[SerializeField]
+		private Vector2 look;
+		[SerializeField]
+		private bool jump;
+		[SerializeField]
+		private bool sprint;
+		[SerializeField]
 		public bool flashlight;
+		[SerializeField]
 		public bool characterSwitchLeft;
+		[SerializeField]
 		public bool characterSwitchRight;
 		[Header("Movement Settings")]
-		public bool analogMovement;
+		private bool analogMovement;
 
 #if !UNITY_IOS || !UNITY_ANDROID
 		[Header("Mouse Cursor Settings")]
@@ -25,40 +32,40 @@ namespace StarterAssets
 #endif
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-		public void OnMove(InputValue value)
+		public void OnMove(InputAction.CallbackContext value)
 		{
-			MoveInput(value.Get<Vector2>());
+			MoveInput(value.ReadValue<Vector2>());
 		}
 
-		public void OnLook(InputValue value)
+		public void OnLook(InputAction.CallbackContext value)
 		{
 			if(cursorInputForLook)
 			{
-				LookInput(value.Get<Vector2>());
+				LookInput(value.ReadValue<Vector2>());
 			}
 		}
 
-		public void OnJump(InputValue value)
+		public void OnJump(InputAction.CallbackContext value)
 		{
-			JumpInput(value.isPressed);
+			JumpInput(value.action.triggered);
 		}
 
-		public void OnSprint(InputValue value)
+		public void OnSprint(InputAction.CallbackContext value)
 		{
-			SprintInput(value.isPressed);
+			SprintInput(value.action.ReadValue<float>()==1);
 		}
-		public void OnLight(InputValue value)
+		public void OnLight(InputAction.CallbackContext value)
         {
-			LightInput(value.isPressed);
+			LightInput(value.action.triggered);
         }
-		public void OnSwitchCharacterLeft(InputValue value)
+		public void OnSwitchCharacterLeft(InputAction.CallbackContext value)
         {
-			CharacterSwitchInputLeft(value.isPressed);
+			CharacterSwitchInputLeft(value.action.triggered);
 
 		}
-		public void OnSwitchCharacterRight(InputValue value)
+		public void OnSwitchCharacterRight(InputAction.CallbackContext value)
 		{
-			CharacterSwitchInputRight(value.isPressed);
+			CharacterSwitchInputRight(value.action.triggered);
 
 		}
 #else
@@ -97,6 +104,26 @@ namespace StarterAssets
 		{
 			characterSwitchRight = newCharacterSwitchState;
 		}
+		public Vector2 GetMove()
+        {
+			return move;
+        }
+		public Vector2 GetLook()
+        {
+			return look;
+        }
+		public bool IsJumping()
+        {
+			return jump;
+        }
+		public bool IsSprinting()
+		{
+			return sprint;
+		}
+		public bool IsAnalog()
+        {
+			return analogMovement;
+        }
 #if !UNITY_IOS || !UNITY_ANDROID
 
 		private void OnApplicationFocus(bool hasFocus)

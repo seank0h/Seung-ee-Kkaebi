@@ -46,6 +46,7 @@ public class SearchLight : MonoBehaviour
         {
             Debug.Log("Light Off");
             lightOn = false;
+            canSeeGhost = false;
         }
         if (lightOn)
             LineOfSightCheck();

@@ -8,10 +8,13 @@ using UnityEngine.InputSystem;
 
 namespace StarterAssets
 {
+	/*
 	[RequireComponent(typeof(CharacterController))]
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 	[RequireComponent(typeof(PlayerInput))]
+	
 #endif
+	*/
 	public class FirstPersonController : MonoBehaviour
 	{
 		[Header("Player")]
@@ -60,6 +63,12 @@ namespace StarterAssets
 		private Light lightSource;
 		[Header("GameState")]
 		public GameObject gameManagerObject;
+		public GameObject inputManager;
+
+		[Header("Character Swap")]
+		public bool characterSwappedLeft;
+		public bool characterSwappedRight;
+		public string currCharacter;
 		// cinemachine
 		private float _cinemachineTargetPitch;
 
@@ -88,7 +97,7 @@ namespace StarterAssets
 		private void Start()
 		{
 			_controller = GetComponent<CharacterController>();
-			_input = GetComponent<StarterAssetsInputs>();
+			_input = inputManager.GetComponent<StarterAssetsInputs>();
 
 			lightSource = SpotLight.GetComponent<Light>();
 			lightSource.intensity = 0;
@@ -120,11 +129,12 @@ namespace StarterAssets
 
 		private void CameraRotation()
 		{
+			Vector2 look = _input.GetLook();
 			// if there is an input
-			if (_input.look.sqrMagnitude >= _threshold)
+			if (look.sqrMagnitude >= _threshold)
 			{
-				_cinemachineTargetPitch += _input.look.y * RotationSpeed * Time.deltaTime;
-				_rotationVelocity = _input.look.x * RotationSpeed * Time.deltaTime;
+				_cinemachineTargetPitch += look.y * RotationSpeed * Time.deltaTime;
+				_rotationVelocity = look.x * RotationSpeed * Time.deltaTime;
 
 				// clamp our pitch rotation
 				_cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
@@ -141,19 +151,19 @@ namespace StarterAssets
 		private void Move()
 		{
 			// set target speed based on move speed, sprint speed and if sprint is pressed
-			float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+			float targetSpeed = _input.IsSprinting() ? SprintSpeed : MoveSpeed;
 
 			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
 			// note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
 			// if there is no input, set the target speed to 0
-			if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+			if (_input.GetMove() == Vector2.zero) targetSpeed = 0.0f;
 
 			// a reference to the players current horizontal velocity
 			float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
 
 			float speedOffset = 0.1f;
-			float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
+			float inputMagnitude = _input.IsAnalog() ? _input.GetMove().magnitude : 1f;
 
 			// accelerate or decelerate to target speed
 			if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
@@ -170,15 +180,16 @@ namespace StarterAssets
 				_speed = targetSpeed;
 			}
 
+			Vector2 movement = _input.GetMove();
 			// normalise input direction
-			Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+			Vector3 inputDirection = new Vector3(movement.x, 0.0f, movement.y).normalized;
 
 			// note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
 			// if there is a move input rotate player when the player is moving
-			if (_input.move != Vector2.zero)
+			if (movement != Vector2.zero)
 			{
 				// move
-				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
+				inputDirection = transform.right * movement.x + transform.forward * movement.y;
 			}
 
 			// move the player
@@ -199,7 +210,7 @@ namespace StarterAssets
 				}
 
 				// Jump
-				if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+				if (_input.IsJumping() && _jumpTimeoutDelta <= 0.0f)
 				{
 					// the square root of H * -2 * G = how much velocity needed to reach desired height
 					_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
@@ -223,7 +234,6 @@ namespace StarterAssets
 				}
 
 				// if we are not grounded, do not jump
-				_input.jump = false;
 			}
 
 			// apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
@@ -252,15 +262,21 @@ namespace StarterAssets
 		}
 		private void CharacterSwitch()
         {
-			if(_input.characterSwitchLeft)
+			
+			if (_input.characterSwitchLeft)
             {
+
 				Debug.Log("Press Q");
 				gameManagerObject.GetComponent<CharacterSwap>().CharacterSwitchLeft();
-            }
+				_input.characterSwitchLeft = false;
+
+			}
 			if(_input.characterSwitchRight)
             {
+
 				Debug.Log("Press E");
 				gameManagerObject.GetComponent<CharacterSwap>().CharacterSwitchRight();
+				_input.characterSwitchRight = false;
 			}
         }
 		private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
