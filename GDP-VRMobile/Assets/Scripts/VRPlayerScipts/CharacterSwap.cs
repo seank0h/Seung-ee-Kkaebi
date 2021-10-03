@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Cinemachine;
 public class CharacterSwap : MonoBehaviour
 {
@@ -8,19 +9,35 @@ public class CharacterSwap : MonoBehaviour
     public List<Transform> possibleCharacters;
     public int whichCharacter;
     public CinemachineVirtualCamera cam;
+    //Mobile Camera Test
+    public CinemachineVirtualCamera isoCam;
+    public Transform mobileCharacterTest;
+    [SerializeField]
+    private bool mobileSwapCalled;
+    [SerializeField]
+    private Animator animator;
+    [SerializeField]
+    private InputAction action;
 
-    // Start is called before the first frame update
+    /*
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+    */
     void Start()
     {
-
+        action.performed += _ => MobileCharacterTestSwap();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        action.Enable();
     }
-
+    private void OnDisable()
+    {
+        action.Disable();
+    }
     public void CharacterSwitchLeft()
     {
         if(whichCharacter== 0)
@@ -60,5 +77,22 @@ public class CharacterSwap : MonoBehaviour
         }
         cam.Follow = currCharacter.Find("PlayerCameraRoot");
         //cam.LookAt = currCharacter.Find("PlayerCameraRoot");
+    }
+    public void MobileCharacterTestSwap()
+    {
+        if(mobileSwapCalled)
+        {
+            animator.Play("MobileCharacterTestCameraState");
+            currCharacter.gameObject.SetActive(false);
+            //isoCam.Follow = mobileCharacterTest;
+            
+        }
+        else
+        {
+            animator.Play("VRCameraState");
+            currCharacter.gameObject.SetActive(true);
+            
+        }
+        mobileSwapCalled = !mobileSwapCalled;
     }
 }

@@ -267,7 +267,7 @@ namespace StarterAssets
             {
 
 				Debug.Log("Press Q");
-				gameManagerObject.GetComponent<CharacterSwap>().CharacterSwitchLeft();
+				_input.GetComponent<CharacterSwap>().CharacterSwitchLeft();
 				_input.characterSwitchLeft = false;
 
 			}
@@ -275,10 +275,12 @@ namespace StarterAssets
             {
 
 				Debug.Log("Press E");
-				gameManagerObject.GetComponent<CharacterSwap>().CharacterSwitchRight();
+				_input.GetComponent<CharacterSwap>().CharacterSwitchRight();
 				_input.characterSwitchRight = false;
 			}
+			
         }
+		
 		private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
 		{
 			if (lfAngle < -360f) lfAngle += 360f;

@@ -16,12 +16,10 @@ namespace StarterAssets
 		private bool jump;
 		[SerializeField]
 		private bool sprint;
-		[SerializeField]
 		public bool flashlight;
-		[SerializeField]
 		public bool characterSwitchLeft;
-		[SerializeField]
 		public bool characterSwitchRight;
+
 		[Header("Movement Settings")]
 		private bool analogMovement;
 
@@ -68,6 +66,7 @@ namespace StarterAssets
 			CharacterSwitchInputRight(value.action.triggered);
 
 		}
+
 #else
 	// old input sys if we do decide to have it (most likely wont)...
 #endif
@@ -104,6 +103,7 @@ namespace StarterAssets
 		{
 			characterSwitchRight = newCharacterSwitchState;
 		}
+
 		public Vector2 GetMove()
         {
 			return move;
