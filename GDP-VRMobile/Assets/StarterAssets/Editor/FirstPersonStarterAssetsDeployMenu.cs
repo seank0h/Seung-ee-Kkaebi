@@ -16,11 +16,12 @@ namespace StarterAssets
         [MenuItem(MenuRoot + "/Reset First Person Controller", false)]
         static void ResetFirstPersonControllerCapsule()
         {
-            var firstPersonControllers = FindObjectsOfType<FirstPersonController>();
-            var player = firstPersonControllers.FirstOrDefault(controller => controller.CompareTag(PlayerTag));
+            //var firstPersonControllers = FindObjectsOfType<FirstPersonController>();
+            //var player = firstPersonControllers.FirstOrDefault(controller => controller.CompareTag(PlayerTag));
             GameObject playerGameObject;
-            
+
             // player
+            /*
             if (player == null)
                 HandleInstantiatingPrefab(StarterAssetsPath + FirstPersonPrefabPath,
                     PlayerCapsulePrefabName, out playerGameObject);
@@ -29,7 +30,9 @@ namespace StarterAssets
 
             // cameras
             CheckCameras(FirstPersonPrefabPath, playerGameObject.transform);
+            */
         }
 #endif
     }
+            
 }

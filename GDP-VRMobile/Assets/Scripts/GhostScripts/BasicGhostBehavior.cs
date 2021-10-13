@@ -46,4 +46,8 @@ public class BasicGhostBehavior : MonoBehaviour
         Debug.Log("Ghost Die");
         Destroy(gameObject);
     }
+    public void BeingSeen()
+    {
+
+    }
 }

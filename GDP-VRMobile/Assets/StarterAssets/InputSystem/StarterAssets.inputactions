@@ -36,30 +36,6 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "Light",
-                    "type": "Button",
-                    "id": "3e19f54b-5f09-40ac-bfaa-0f6269428475",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "SwitchCharacterLeft",
-                    "type": "Button",
-                    "id": "33c3e53b-3ddb-469f-b6ef-50fc481ab525",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
-                    "name": "SwitchCharacterRight",
-                    "type": "Button",
-                    "id": "af4dc31c-cc68-4bee-aaa9-2a1b1022d979",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -236,39 +212,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Sprint",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6bc0b194-e1c4-4cba-be0f-55987a9a7ce6",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "Light",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ecc1d7e5-ef5f-4381-aa00-eeed86749c2a",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "SwitchCharacterLeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3fdbcd2a-ea6a-4013-ba9d-92db48942a4c",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "SwitchCharacterRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

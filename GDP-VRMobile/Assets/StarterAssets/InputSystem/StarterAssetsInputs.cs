@@ -8,20 +8,13 @@ namespace StarterAssets
 	public class StarterAssetsInputs : MonoBehaviour
 	{
 		[Header("Character Input Values")]
-		[SerializeField]
-		private Vector2 move;
-		[SerializeField]
-		private Vector2 look;
-		[SerializeField]
-		private bool jump;
-		[SerializeField]
-		private bool sprint;
-		public bool flashlight;
-		public bool characterSwitchLeft;
-		public bool characterSwitchRight;
+		public Vector2 move;
+		public Vector2 look;
+		public bool jump;
+		public bool sprint;
 
 		[Header("Movement Settings")]
-		private bool analogMovement;
+		public bool analogMovement;
 
 #if !UNITY_IOS || !UNITY_ANDROID
 		[Header("Mouse Cursor Settings")]
@@ -30,43 +23,28 @@ namespace StarterAssets
 #endif
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-		public void OnMove(InputAction.CallbackContext value)
+		public void OnMove(InputValue value)
 		{
-			MoveInput(value.ReadValue<Vector2>());
+			MoveInput(value.Get<Vector2>());
 		}
 
-		public void OnLook(InputAction.CallbackContext value)
+		public void OnLook(InputValue value)
 		{
 			if(cursorInputForLook)
 			{
-				LookInput(value.ReadValue<Vector2>());
+				LookInput(value.Get<Vector2>());
 			}
 		}
 
-		public void OnJump(InputAction.CallbackContext value)
+		public void OnJump(InputValue value)
 		{
-			JumpInput(value.action.triggered);
+			JumpInput(value.isPressed);
 		}
 
-		public void OnSprint(InputAction.CallbackContext value)
+		public void OnSprint(InputValue value)
 		{
-			SprintInput(value.action.ReadValue<float>()==1);
+			SprintInput(value.isPressed);
 		}
-		public void OnLight(InputAction.CallbackContext value)
-        {
-			LightInput(value.action.triggered);
-        }
-		public void OnSwitchCharacterLeft(InputAction.CallbackContext value)
-        {
-			CharacterSwitchInputLeft(value.action.triggered);
-
-		}
-		public void OnSwitchCharacterRight(InputAction.CallbackContext value)
-		{
-			CharacterSwitchInputRight(value.action.triggered);
-
-		}
-
 #else
 	// old input sys if we do decide to have it (most likely wont)...
 #endif
@@ -91,39 +69,7 @@ namespace StarterAssets
 		{
 			sprint = newSprintState;
 		}
-		public void LightInput(bool newLightState)
-        {
-			flashlight = newLightState;
-        }
-		public void CharacterSwitchInputLeft(bool newCharacterSwitchState)
-        {
-			characterSwitchLeft = newCharacterSwitchState;
-        }
-		public void CharacterSwitchInputRight(bool newCharacterSwitchState)
-		{
-			characterSwitchRight = newCharacterSwitchState;
-		}
 
-		public Vector2 GetMove()
-        {
-			return move;
-        }
-		public Vector2 GetLook()
-        {
-			return look;
-        }
-		public bool IsJumping()
-        {
-			return jump;
-        }
-		public bool IsSprinting()
-		{
-			return sprint;
-		}
-		public bool IsAnalog()
-        {
-			return analogMovement;
-        }
 #if !UNITY_IOS || !UNITY_ANDROID
 
 		private void OnApplicationFocus(bool hasFocus)

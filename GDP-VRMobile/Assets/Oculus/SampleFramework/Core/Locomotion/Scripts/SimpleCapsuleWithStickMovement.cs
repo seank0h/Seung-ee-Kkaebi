@@ -13,12 +13,22 @@ public class SimpleCapsuleWithStickMovement : MonoBehaviour
 	public float Speed = 0.0f;
 	public OVRCameraRig CameraRig;
 
-	private bool ReadyToSnapTurn;
+	//private bool ReadyToSnapTurn;
 	private Rigidbody _rigidbody;
 
 	public event Action CameraUpdated;
 	public event Action PreCharacterMove;
-
+	public enum AimCapTouchButtons
+	{
+		A,
+		B,
+		LeftTrigger,
+		LeftThumbstick,
+		RightTrigger,
+		RightThumbstick,
+		X,
+		Y
+	}
 	private void Awake()
 	{
 		_rigidbody = GetComponent<Rigidbody>();
@@ -36,8 +46,10 @@ public class SimpleCapsuleWithStickMovement : MonoBehaviour
         if (PreCharacterMove != null) PreCharacterMove();
 
         if (HMDRotatesPlayer) RotatePlayerToHMD();
+		/*
 		if (EnableLinearMovement) StickMovement();
 		if (EnableRotation) SnapTurn();
+		*/
 	}
 
     void RotatePlayerToHMD()
@@ -54,6 +66,8 @@ public class SimpleCapsuleWithStickMovement : MonoBehaviour
 		root.rotation = prevRot;
     }
 
+
+	/*
 	void StickMovement()
 	{
 		Quaternion ort = CameraRig.centerEyeAnchor.rotation;
@@ -94,4 +108,5 @@ public class SimpleCapsuleWithStickMovement : MonoBehaviour
 			ReadyToSnapTurn = true;
 		}
 	}
+	*/
 }

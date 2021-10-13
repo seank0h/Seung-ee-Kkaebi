@@ -1,98 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Cinemachine;
+
 public class CharacterSwap : MonoBehaviour
 {
-    public Transform currCharacter;
-    public List<Transform> possibleCharacters;
-    public int whichCharacter;
-    public CinemachineVirtualCamera cam;
-    //Mobile Camera Test
-    public CinemachineVirtualCamera isoCam;
-    public Transform mobileCharacterTest;
-    [SerializeField]
-    private bool mobileSwapCalled;
-    [SerializeField]
-    private Animator animator;
-    [SerializeField]
-    private InputAction action;
+    public Transform currLocation;
+    public List<Transform> teleportationLocations;
+    public int whichLocation;
 
-    /*
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
-    */
+  
     void Start()
     {
-        action.performed += _ => MobileCharacterTestSwap();
+        currLocation = gameObject.transform;
     }
-
-    private void OnEnable()
+    void CardinalDirectionSelection()
     {
-        action.Enable();
+        if (OVRInput.Get(OVRInput.RawButton.A) || OVRInput.Get(OVRInput.RawButton.B))
+        {
+            if (whichLocation == 0)
+            {
+                whichLocation = teleportationLocations.Count - 1;
+            }
+            else
+            {
+                whichLocation -= 1;
+            }
+            Swap();
+        }
+        if (OVRInput.Get(OVRInput.RawButton.X) || OVRInput.Get(OVRInput.RawButton.Y))
+        {
+            if (whichLocation == teleportationLocations.Count - 1)
+            {
+                whichLocation = 0;
+            }
+            else
+            {
+                whichLocation += 1;
+            }
+            Swap();
+        }
     }
-    private void OnDisable()
+    void CardinalDirectionTeleportation()
     {
-        action.Disable();
-    }
-    public void CharacterSwitchLeft()
-    {
-        if(whichCharacter== 0)
-        {
-            whichCharacter = possibleCharacters.Count - 1;
-        }
-        else
-        {
-            whichCharacter -= 1;
-        }
-        Swap();
-    }
-    public void CharacterSwitchRight()
-    {
-        if (whichCharacter == possibleCharacters.Count - 1)
-        {
-            whichCharacter = 0;
-        }
-        else
-        {
-            whichCharacter += 1;
-        }
-        Swap();
+        currLocation = teleportationLocations[whichLocation];
     }
     void Swap()
     {
        
-        currCharacter = possibleCharacters[whichCharacter];
-        currCharacter.gameObject.SetActive(true);
-        Debug.Log("Swap Called");
-        for (int i = 0; i < possibleCharacters.Count; i++)
-        {
-            if(possibleCharacters[i] !=currCharacter)
-            {
-                possibleCharacters[i].gameObject.SetActive(false);
-            }
-        }
-        cam.Follow = currCharacter.Find("PlayerCameraRoot");
+        
+      
         //cam.LookAt = currCharacter.Find("PlayerCameraRoot");
     }
-    public void MobileCharacterTestSwap()
-    {
-        if(mobileSwapCalled)
-        {
-            animator.Play("MobileCharacterTestCameraState");
-            currCharacter.gameObject.SetActive(false);
-            //isoCam.Follow = mobileCharacterTest;
-            
-        }
-        else
-        {
-            animator.Play("VRCameraState");
-            currCharacter.gameObject.SetActive(true);
-            
-        }
-        mobileSwapCalled = !mobileSwapCalled;
-    }
+   
 }

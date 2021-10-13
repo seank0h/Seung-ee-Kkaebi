@@ -35,6 +35,13 @@ public class SearchLight : MonoBehaviour
         GhostCheck();
 
     }
+    private void FixedUpdate()
+    {
+        if(OVRInput.Get(OVRInput.RawButton.LThumbstickLeft))
+        {
+
+        }
+    }
     private void LightCheck()
     {
         if (lightSource.intensity > 0)
@@ -68,6 +75,7 @@ public class SearchLight : MonoBehaviour
     }
     private void LineOfSightCheck()
     {
+        /*
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
 
         if(rangeChecks.Length!=0)
@@ -96,5 +104,7 @@ public class SearchLight : MonoBehaviour
         {
             canSeeGhost = false;
         }
+        */
     }
+
 }
