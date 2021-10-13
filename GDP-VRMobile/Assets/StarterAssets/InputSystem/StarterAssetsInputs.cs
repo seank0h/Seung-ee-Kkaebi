@@ -12,7 +12,9 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
-
+		public bool swap;
+		public bool changeBack;
+		public bool dance;
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
@@ -45,6 +47,17 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+		public void OnSwap(InputValue value)
+		{
+			Debug.Log("Called SwapInput");
+			SwapInput(value.isPressed);
+		}
+		public void OnRevertBack(InputValue value)
+        {
+			Debug.Log("called Revert back");
+			RevertInput(value.isPressed);
+        }
+
 #else
 	// old input sys if we do decide to have it (most likely wont)...
 #endif
@@ -69,7 +82,16 @@ namespace StarterAssets
 		{
 			sprint = newSprintState;
 		}
-
+		public void SwapInput(bool newSwapState)
+        {
+			Debug.Log("Called SwapInput");
+			swap = newSwapState;
+        }
+		public void RevertInput(bool newRevertState)
+		{
+			Debug.Log("Called RevertInput");
+			changeBack = newRevertState;
+		}
 #if !UNITY_IOS || !UNITY_ANDROID
 
 		private void OnApplicationFocus(bool hasFocus)

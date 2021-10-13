@@ -5,6 +5,7 @@ using UnityEngine;
 public class SearchLightPhysics : MonoBehaviour
 {
     // Start is called before the first frame update
+    public LineRenderer searchLight; 
     void Start()
     {
         
