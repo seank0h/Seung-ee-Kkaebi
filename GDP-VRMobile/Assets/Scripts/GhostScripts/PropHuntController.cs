@@ -10,6 +10,7 @@ public class PropHuntController : MonoBehaviour
     private StarterAssetsInputs _input;
         public GameObject playerMeshEntity;
         public GameObject playerMeshMem;
+        private Collider playerCollider;
         private MeshFilter playerMesh;
         private MeshFilter originalPlayerMesh;
         public GameObject cameraRoot;
@@ -18,6 +19,7 @@ public class PropHuntController : MonoBehaviour
     {
             playerMesh = playerMeshEntity.GetComponent<MeshFilter>();
             originalPlayerMesh = playerMeshMem.GetComponent<MeshFilter>();
+            playerCollider = playerMeshEntity.GetComponent<CapsuleCollider>();
             Debug.Log(originalPlayerMesh.mesh);
         _input = GetComponent<StarterAssetsInputs>();
     }
@@ -38,7 +40,6 @@ public class PropHuntController : MonoBehaviour
                 Debug.Log("Got to pressing E");
                 RaycastHit hit;
                 GameObject gameObjectHit;
-                LayerMask propMask = 8;
             if(Physics.Raycast(cameraRoot.transform.position, cameraRoot.transform.TransformDirection(Vector3.forward), out hit, 10f))
                 {
                     Debug.DrawRay(cameraRoot.transform.position, cameraRoot.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
