@@ -8,6 +8,7 @@ TagManager:
   - Ghost
   - Environment
   - Prop
+  - Bullet
   layers:
   - Default
   - TransparentFX
