@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 5d075e3ab27893f45a99b3fe2523e24f
+<<<<<<< HEAD:GDP-VRMobile/Assets/Server/client.cs.meta
+guid: 31f4b5e24e0a72d49a3176898a32273c
+=======
+guid: 668b4676d2ff3df4d872644b5f47b50b
+>>>>>>> Dongseok:GDP-VRMobile/Assets/Scripts/client.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
