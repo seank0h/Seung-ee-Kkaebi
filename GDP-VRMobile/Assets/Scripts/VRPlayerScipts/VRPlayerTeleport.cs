@@ -5,16 +5,20 @@ using UnityEngine;
 public class VRPlayerTeleport : MonoBehaviour
 {
 	GameObject characterController;
-	GameObject[] teleportPositions;
-	Transform[] teleportInteractablePositions;
-	GameObject teleportInteractable;
+	public GameObject[] teleportPositions;
+	public Transform[] teleportInteractablePositions;
+	public GameObject teleportInteractable;
 	public int teleportIndex;
 	public int currIndex;
 	public float teleportThresholdtimer;
+
+	public GameObject leftButton;
+	public GameObject rightButton;
     // Start is called before the first frame update
 
     void Start()
     {
+		characterController = this.gameObject;
 		teleportIndex = 0;
 		currIndex = 0;
 		teleportThresholdtimer = 1.0f;
@@ -32,12 +36,17 @@ public class VRPlayerTeleport : MonoBehaviour
         {
 			teleportThresholdtimer -= Time.deltaTime;
 		}
-		if(teleportInteractable.transform.rotation.y>0 && teleportThresholdtimer>0)
+		if(teleportInteractable.transform.rotation.y>0 && teleportThresholdtimer<0)
         {
+			if (currIndex == 3)
+			{
+				teleportIndex = 0;
+			}
+			else
 			teleportIndex++;
 			
         }
-		if (teleportInteractable.transform.rotation.y < 0 && teleportThresholdtimer > 0)
+		if (teleportInteractable.transform.rotation.y < 0 && teleportThresholdtimer < 0)
 		{
 			if (currIndex == 0)
 			{
@@ -46,14 +55,15 @@ public class VRPlayerTeleport : MonoBehaviour
 			else
 				teleportIndex--;
 		}
-		currIndex = teleportIndex;
-		ResetRotation();
+		
+		
 		if(teleportThresholdtimer<0)
         {
+			currIndex = teleportIndex;
 			DoTeleport();
 			MoveTeleportationInteractable();
         }
-		teleportThresholdtimer = 1.0f;
+		
 
     }
 	public void DoTeleport()
@@ -66,19 +76,59 @@ public class VRPlayerTeleport : MonoBehaviour
 		//destPosition.y += character.transform.position.y * 0.5f;
 		Quaternion destRotation = teleportPositions[teleportIndex].transform.rotation;// destTransform.rotation;
 		BlinkTransition();
-		characterTransform.position = destPosition;
-		characterTransform.rotation = destRotation;
+		this.gameObject.transform.position = destPosition;
+		this.gameObject.transform.rotation = destRotation;
+		ResetRotation();
+		teleportThresholdtimer = 1.0f;
 	}
 	public void BlinkTransition()
     {
 
     }
+
+	public void ButtonTeleport(bool direction)
+    {
+		//false = left, true = right
+		if (direction)
+		{
+			if (currIndex == 3)
+			{
+				teleportIndex = 0;
+			}
+			else
+				teleportIndex++;
+		}
+		if (direction==false)
+        {
+			if (currIndex == 0)
+			{
+				teleportIndex = teleportPositions.Length - 1;
+			}
+			else
+				teleportIndex--;
+		}
+		DoTeleport();
+
+	}
 	public void ResetRotation()
     {
+		Debug.Log("Getting To Reset");
 		teleportInteractable.transform.eulerAngles = new Vector3(0, 0, 0);
     }
 	public void MoveTeleportationInteractable()
     {
 		teleportInteractable.transform.position = teleportInteractablePositions[teleportIndex].transform.position;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag =="LeftTeleport")
+        {
+			ButtonTeleport(false);
+        }
+		if(other.gameObject.tag =="RightTeleport")
+        {
+			ButtonTeleport(true);
+		}
     }
 }

@@ -5,14 +5,20 @@ using UnityEngine;
 public class BasicGhostBehavior : MonoBehaviour
 {
     public float timer;
+    public float revealTimer;
     public float timeToKill;
     public float healthPoints;
     public bool beingSeen;
     public bool dmgTickCalled;
     public bool shouldDie;
+    Renderer ghostRenderer;
+    public Material ghostMaterialTransparent;
+    public Material ghostMaterialRevealed;
     // Start is called before the first frame update
     void Start()
     {
+        ghostRenderer = this.GetComponent<Renderer>();
+
         timer = timeToKill;
         healthPoints = 10;
     }
@@ -20,21 +26,23 @@ public class BasicGhostBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(beingSeen & dmgTickCalled==false)
+        if(beingSeen)
         {
-            BeingDamaged();
-            dmgTickCalled = true;
+            revealTimer -= Time.deltaTime;
+            ghostRenderer.material = ghostMaterialRevealed;
         }
-        if(!beingSeen)
+        if(beingSeen==false)
         {
-            dmgTickCalled = false;
+            revealTimer -= Time.deltaTime;
+            if(revealTimer<=0)
+            {
+                ghostRenderer.material = ghostMaterialTransparent;
+                revealTimer = 5.0f;
+            }
         }
+        
         if (shouldDie)
             Death();
-    }
-    public void BeingDamaged()
-    {
-        gameObject.AddComponent<LightDamageTick>();
     }
     public void TakeDamage(float dmg)
     {
@@ -48,6 +56,11 @@ public class BasicGhostBehavior : MonoBehaviour
     }
     public void BeingSeen()
     {
-
+        Debug.Log("Being Seen Called");
+        beingSeen = true;
+    }
+    public void NotSeen()
+    {
+        beingSeen = false;
     }
 }
