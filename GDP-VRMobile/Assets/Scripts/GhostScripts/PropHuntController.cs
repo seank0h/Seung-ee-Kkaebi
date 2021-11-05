@@ -50,7 +50,7 @@ public class PropHuntController : MonoBehaviour
                         gameObjectHit = hit.transform.gameObject;
                         playerMesh.mesh = gameObjectHit.GetComponent<MeshFilter>().mesh;
                         //Just a temporary fix because the scale of the objects are so big, hopefully wont be necessary for actual props
-                        playerMesh.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+                        //playerMesh.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
                         _input.swap = false;
                     }
                     

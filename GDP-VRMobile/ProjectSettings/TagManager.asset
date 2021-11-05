@@ -10,6 +10,8 @@ TagManager:
   - Prop
   - Bullet
   - Interactive
+  - LeftButton
+  - RightButton
   layers:
   - Default
   - TransparentFX

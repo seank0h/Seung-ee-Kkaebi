@@ -66,6 +66,10 @@ public class VRPlayerTeleport : MonoBehaviour
 		
 
     }
+	public void TeleportTimer()
+	{
+		
+	}
 	public void DoTeleport()
 	{
 		var character = characterController;
@@ -122,11 +126,11 @@ public class VRPlayerTeleport : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag =="LeftTeleport")
+        if(other.gameObject.name =="OVRHandPrefab_L" && other.gameObject.name =="OVRHandPrefab_R")
         {
 			ButtonTeleport(false);
         }
-		if(other.gameObject.tag =="RightTeleport")
+		if(other.gameObject.name =="OVRHandPrefab_L" && other.gameObject.name =="OVRHandPrefab_R")
         {
 			ButtonTeleport(true);
 		}
