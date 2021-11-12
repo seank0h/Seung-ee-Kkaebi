@@ -8,7 +8,7 @@ public class MoveRandomly : MonoBehaviour
     NavMeshAgent navMeshAgent;
     public float timeForNewPath;
     bool inCoRoutine;
-
+    public List<GameObject> patrolPositions;
     // Start is called before the first frame update
     void Start()
     {

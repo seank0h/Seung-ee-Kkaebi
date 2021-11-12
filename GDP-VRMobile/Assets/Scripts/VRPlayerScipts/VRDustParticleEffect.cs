@@ -8,11 +8,11 @@ public class VRDustParticleEffect : MonoBehaviour
    public ParticleSystem dustEffect;
     bool effectOn;
     float lowerEmissionRate;
-    float NormalEmissionRate;
+    public float NormalEmissionRate;
     void Start()
     {
         effectOn = false;
-        NormalEmissionRate = 1000;
+        NormalEmissionRate = 300;
     }
 
     // Update is called once per frame
