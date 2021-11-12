@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &150846052
 Transform:
   m_ObjectHideFlags: 0
@@ -505,45 +505,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3511abf9eec40f4d8774d5d60e19015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &571669755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4416926083347132227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d5b5802f8d22e34aa4616872290cb30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMeshEntity: {fileID: 150846051}
-  playerMeshMem: {fileID: 1005704382}
-  cameraRoot: {fileID: 8338988565591873048}
---- !u!114 &571669756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4416926083347132227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fb06b50f66a6d945b687d736632d864, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &571669761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4416926083347132227}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60ba21d866bfa884f9bc0b9164f81e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &666766274 stripped
@@ -2667,7 +2628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &3877542988640532908
 GameObject:
   m_ObjectHideFlags: 0
@@ -2905,9 +2866,6 @@ GameObject:
   - component: {fileID: 135756641613574975}
   - component: {fileID: 4416926083347132239}
   - component: {fileID: 571669754}
-  - component: {fileID: 571669755}
-  - component: {fileID: 571669756}
-  - component: {fileID: 571669761}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Player
