@@ -2,6 +2,7 @@
 // https://www.youtube.com/watch?v=TjBIEOFiqoI
 // https://gitlab.com/tnd-public/tndscripts
 
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -92,6 +93,8 @@ public class GestureDetector : MonoBehaviour{
 
                 // after that i will invoke what put in the Event if is present
                 currentGesture.onRecognized?.Invoke();
+
+                Debug.Log("New Gesture Found : " + currentGesture.name);
             }
             // if the gesture we done is no more recognized
             else{
@@ -184,8 +187,8 @@ public class GestureDetector : MonoBehaviour{
 }
 
 
-
 /*
+// **************************** ONLY for Gestrue Saving **************************** 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
