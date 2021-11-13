@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TeleportToggle : MonoBehaviour
 {    
+    
     [SerializeField]
     private Material activeMat;
     [SerializeField]
