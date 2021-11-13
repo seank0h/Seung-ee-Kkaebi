@@ -85,8 +85,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275997300936778294}
-  m_LocalRotation: {x: 0.0000000030267986, y: -0.000000014901161, z: 0.0000000032596292,
-    w: 1}
+  m_LocalRotation: {x: 0.0000000030267986, y: -0.000000014901161, z: 0.0000000032596292, w: 1}
   m_LocalPosition: {x: -0.02758171, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -230,8 +229,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539548628561899140}
-  m_LocalRotation: {x: 5.551115e-17, y: -0.000000014901161, z: 0.0000000037252903,
-    w: 1}
+  m_LocalRotation: {x: 5.551115e-17, y: -0.000000014901161, z: 0.0000000037252903, w: 1}
   m_LocalPosition: {x: -0.028380737, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1.0000001}
   m_Children: []
@@ -454,8 +452,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575990249822682425}
-  m_LocalRotation: {x: -0.000000010753534, y: -0.000000043749147, z: -0.116402246,
-    w: 0.99320215}
+  m_LocalRotation: {x: -0.000000010753534, y: -0.000000043749147, z: -0.116402246, w: 0.99320215}
   m_LocalPosition: {x: -0.018443527, y: 0, z: 0.000000038146972}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_Children:
@@ -1836,6 +1833,8 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2231,8 +2230,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9013825696964327246}
-  m_LocalRotation: {x: -0.000000004146516, y: 0.0000000072246356, z: 0.057359066,
-    w: 0.99835366}
+  m_LocalRotation: {x: -0.000000004146516, y: 0.0000000072246356, z: 0.057359066, w: 0.99835366}
   m_LocalPosition: {x: -0.39752197, y: 0.000000009536743, z: 0}
   m_LocalScale: {x: 1, y: 0.9999999, z: 1}
   m_Children:

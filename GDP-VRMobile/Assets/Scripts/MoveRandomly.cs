@@ -9,34 +9,53 @@ public class MoveRandomly : MonoBehaviour
     public float timeForNewPath;
     bool inCoRoutine;
     public List<GameObject> patrolPositions;
+    [SerializeField]
+    int patrolIndex;
+    [SerializeField]
+    Vector3 newPatrolPos;
+    bool firstStart;
     // Start is called before the first frame update
     void Start()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();    
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        firstStart = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!inCoRoutine) StartCoroutine(coRoutine());
+
+        if(firstStart)
+        {
+            GetNewPath();
+            firstStart = false;
+        }
+        if (GotToNewPosition())
+        {
+            GetNewPath();
+        }
     }
 
     Vector3 getNewRandomPosition(){
-        float x = Random.Range(-20, 20);
-        float z = Random.Range(-20, 20);
-        
-        Vector3 pos = new Vector3(x, 0, z);
-        return pos;
-    }
+         patrolIndex = Random.Range(0, 19);
 
-    IEnumerator coRoutine(){
-        inCoRoutine = true;
-        yield return new WaitForSeconds(timeForNewPath);
-        GetNewPath();
-        inCoRoutine = false;
+        newPatrolPos = patrolPositions[patrolIndex].transform.position;
+        return newPatrolPos;
+    }
+    bool GotToNewPosition()
+    {
+        if (gameObject.transform.position.x == newPatrolPos.x && gameObject.transform.position.z==newPatrolPos.z)
+        {
+            Debug.Log("GotToNewPosition");
+            return true;
+        }
+        else
+            return false;
+        
     }
 
     void GetNewPath(){
+        Debug.Log("Called GetNewPath");
         navMeshAgent.SetDestination(getNewRandomPosition());
     }
 }
