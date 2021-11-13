@@ -13,6 +13,7 @@ TagManager:
   - LeftButton
   - RightButton
   - NPC
+  - Dokkaebi
   layers:
   - Default
   - TransparentFX
