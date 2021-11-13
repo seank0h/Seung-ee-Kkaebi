@@ -5,132 +5,35 @@ using UnityEngine.UI;
 
 public class VRPlayerTeleport : MonoBehaviour
 {
-	public GameObject characterController;
-	public GameObject[] teleportPositions;
-	public Transform[] teleportInteractablePositions;
-	public int teleportIndex;
-	public int currIndex;
-	public float teleportThresholdtimer;
-
-	[SerializeField]
+	public GameObject vrPlayerEntity;
+    public float yPositionCalibration;
+    TeleportToggle vrPlayerTeleport;
+ [SerializeField]
     private Material activeMat;
     [SerializeField]
     private Material holdMat;
     [SerializeField]
     private Material inactiveMat;
-
-    [Header("Fade Screen")]
-    public Image blackScreen;
-
-    public bool teleportLock;
-
     void Start()
     {
 		
-		teleportIndex = 0;
-		currIndex = 0;
-		teleportThresholdtimer = 1.0f;
-
-	}
-
-    // Update is called once per frame
-
-	public void DoTeleport()
-	{
-		Debug.Log("Got To Teleport");
-		var character = characterController;
-		var characterTransform = character.transform;
-		var destTransform = teleportPositions[teleportIndex];
-
-		Vector3 destPosition = destTransform.transform.position;
-		//destPosition.y += character.transform.position.y * 0.5f;
-		Quaternion destRotation = teleportPositions[teleportIndex].transform.rotation;// destTransform.rotation;
-		BlinkTransition();
-		character.transform.position = destPosition;
-		character.transform.rotation = destRotation;
-		teleportThresholdtimer = 1.0f;
-	}
-	public void BlinkTransition()
-    {
-		StartCoroutine(FadeInOut());
-    }
-
-	private IEnumerator FadeInOut()
-    {
-        // Make sure teleport can't be called again
-        teleportLock = true;
-            
-        // Reset Time counter variable
-        float currentTime = 0;
-        // Loop until counter is done
-        while (currentTime < 1)
-        {
-            // Fade out screen
-            blackScreen.color = Color.Lerp(Color.clear, Color.black, currentTime);
-            // Wait one frame
-            yield return null;
-            // Increment Timer
-            currentTime += Time.deltaTime;
-        }
-        // Set full black screen
-        blackScreen.color = Color.black;
-            
-        // Wait one second
-        yield return new WaitForSeconds(0.1f);
-        // Reset timer again
-        currentTime = 0;
-        // Loop until timer is done again
-        while (currentTime < 1)
-        {
-            // Fade in screen
-            blackScreen.color = Color.Lerp(Color.black, Color.clear, currentTime);
-            // Wait one frame
-            yield return null;
-            // Increment Timer
-            currentTime += Time.deltaTime;
-        }
-        // Allow teleporting again
-        teleportLock = false;
-    }
-
-	public void ButtonTeleport(bool direction)
-    {
-		//false = left, true = right
-		if (direction)
-		{
-			if (currIndex == 3)
-			{
-				teleportIndex = 0;
-			}
-			else
-				teleportIndex++;
-		}
-		if (direction==false)
-        {
-			if (currIndex == 0)
-			{
-				teleportIndex = teleportPositions.Length - 1;
-			}
-			else
-				teleportIndex--;
-		}
-		DoTeleport();
-
+	    vrPlayerTeleport = vrPlayerEntity.GetComponent<TeleportToggle>();
+         yPositionCalibration = vrPlayerEntity.transform.position.y;
+        this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x,3.43F, this.gameObject.transform.position.z);
 	}
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name =="OVRHandPrefab_L" || other.gameObject.name =="OVRHandPrefab_R" && other.GetComponent<BoneTriggerLogic>() != null)
+        if(other.gameObject.name =="Teleport_L")
         {
 			Debug.Log("Touched Left Teleport");
-			GetComponent<MeshRenderer>().material = holdMat;
-			ButtonTeleport(false); // teleport to Left
+		
+			vrPlayerTeleport.ButtonTeleport(false); // teleport to Left
         }
-		if(other.gameObject.name =="OVRHandPrefab_L" || other.gameObject.name =="OVRHandPrefab_R" && other.GetComponent<BoneTriggerLogic>() != null)
+		if(other.gameObject.name =="Teleport_R")
         {
 			Debug.Log("Touched Right Teleport");
-			GetComponent<MeshRenderer>().material = holdMat;
-			ButtonTeleport(true); // teleport to Right
+			vrPlayerTeleport.ButtonTeleport(true); // teleport to Right
 		}
     }
 	private void OnTriggerExit(Collider other)

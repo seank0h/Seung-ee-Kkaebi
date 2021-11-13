@@ -5,37 +5,67 @@ using UnityEngine.UI;
 
 public class TeleportToggle : MonoBehaviour
 {    
-    
-    [SerializeField]
-    private Material activeMat;
-    [SerializeField]
-    private Material holdMat;
-    [SerializeField]
-    private Material inactiveMat;
+    public GameObject characterController;
+	public GameObject[] teleportPositions;
+	public Transform[] teleportInteractablePositions;
+	public int teleportIndex;
+	public int currIndex;
+
+   public bool teleportDelay;
+   public float teleportTimer;
 
     [Header("Fade Screen")]
     public Image blackScreen;
 
     public bool teleportLock;
 
-    private void OnTriggerEnter(Collider other)
+    
+    void Start()
     {
-        if (other.GetComponent<BoneTriggerLogic>() != null)
+		characterController = this.gameObject;
+		teleportIndex = 0;
+		currIndex = 0;
+
+
+	}
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(teleportDelay)
         {
-            GetComponent<MeshRenderer>().material = holdMat;
-            StartCoroutine(FadeTeleport());
+            teleportTimer-=Time.deltaTime;
         }
     }
+	public void DoTeleport()
+	{
+		
+		var character = characterController;
+		var characterTransform = character.transform;
+		var destTransform = teleportPositions[teleportIndex];
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.GetComponent<BoneTriggerLogic>() != null)
+		Vector3 destPosition = destTransform.transform.position;
+		//destPosition.y += character.transform.position.y * 0.5f;
+		Quaternion destRotation = teleportPositions[teleportIndex].transform.rotation;// destTransform.rotation;
+		BlinkTransition();
+        if(teleportTimer<=0)
         {
-            GetComponent<MeshRenderer>().material = inactiveMat;
+            Debug.Log("cAME TO teleport");
+            character.transform.position = destPosition;
+		    character.transform.rotation = destRotation;
+            teleportTimer=1.0f;
+            teleportDelay = false;
         }
+		
+       
+	}
+	public void BlinkTransition()
+    {
+        teleportDelay = true;
+		StartCoroutine(FadeInOut());
     }
 
-    private IEnumerator FadeTeleport()
+	private IEnumerator FadeInOut()
     {
         // Make sure teleport can't be called again
         teleportLock = true;
@@ -64,12 +94,48 @@ public class TeleportToggle : MonoBehaviour
         {
             // Fade in screen
             blackScreen.color = Color.Lerp(Color.black, Color.clear, currentTime);
+             
             // Wait one frame
             yield return null;
             // Increment Timer
             currentTime += Time.deltaTime;
         }
         // Allow teleporting again
-        teleportLock = false;
+       teleportLock = false;
     }
+
+	public void ButtonTeleport(bool direction)
+    {
+		//false = left, true = right
+		if (direction)
+		{
+			if (currIndex == 3)
+			{
+				teleportIndex = 0;
+                currIndex = teleportIndex;
+			}
+			else
+            {
+                teleportIndex++;
+                currIndex = teleportIndex;
+            }
+				
+		}
+		if (direction==false)
+        {
+			if (currIndex == 0)
+			{
+				teleportIndex = teleportPositions.Length - 1;
+                 currIndex = teleportIndex;
+			}
+			else
+            {
+                teleportIndex--;
+                currIndex = teleportIndex;
+            }
+				
+		}
+		DoTeleport();
+
+	}
 }

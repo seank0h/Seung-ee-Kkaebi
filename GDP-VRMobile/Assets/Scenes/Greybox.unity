@@ -235,36 +235,6 @@ Transform:
   m_Father: {fileID: 301104662}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &29598264
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 29598265}
-  m_Layer: 0
-  m_Name: Interactable
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &29598265
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29598264}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.07, z: 2.93}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 985925418}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &45420758
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,7 +797,6 @@ GameObject:
   - component: {fileID: 104703446}
   - component: {fileID: 104703445}
   - component: {fileID: 104703448}
-  - component: {fileID: 104703449}
   m_Layer: 0
   m_Name: House (21)
   m_TagString: Untagged
@@ -927,21 +896,94 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &104703449
+--- !u!1 &127958756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 127958757}
+  - component: {fileID: 127958759}
+  - component: {fileID: 127958758}
+  - component: {fileID: 127958761}
+  - component: {fileID: 127958760}
+  m_Layer: 0
+  m_Name: TeleportTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &127958757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127958756}
+  m_LocalRotation: {x: 0.0015878824, y: 0.003235757, z: 0.08417147, w: 0.9964448}
+  m_LocalPosition: {x: 0.084, y: 0.017, z: 0.002}
+  m_LocalScale: {x: 0.2, y: 0.02, z: 0.11}
+  m_Children: []
+  m_Father: {fileID: 465801719}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0.15, y: 0.385, z: 9.657}
+--- !u!64 &127958758
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127958756}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &127958759
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127958756}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &127958760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127958756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d286998f1f4c74d89abc69b607c611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vrPlayerEntity: {fileID: 1314668137}
+  yPositionCalibration: 0
+  activeMat: {fileID: 2100000, guid: 9989d3b00f40c7643a89236b002516aa, type: 2}
+  holdMat: {fileID: 2100000, guid: 62e7ee0692714544a927d2feaca6c2f6, type: 2}
+  inactiveMat: {fileID: 2100000, guid: 493fe30ae6df68e428b8efee53f503ed, type: 2}
+--- !u!54 &127958761
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 104703443}
+  m_GameObject: {fileID: 127958756}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!1 &134299941
 GameObject:
@@ -2194,7 +2236,6 @@ GameObject:
   - component: {fileID: 276252247}
   - component: {fileID: 276252246}
   - component: {fileID: 276252249}
-  - component: {fileID: 276252250}
   m_Layer: 0
   m_Name: House (11)
   m_TagString: Untagged
@@ -2294,22 +2335,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &276252250
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276252244}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &278640478
 GameObject:
   m_ObjectHideFlags: 0
@@ -2504,7 +2529,6 @@ GameObject:
   - component: {fileID: 299469530}
   - component: {fileID: 299469529}
   - component: {fileID: 299469532}
-  - component: {fileID: 299469533}
   m_Layer: 0
   m_Name: House (26)
   m_TagString: Untagged
@@ -2604,22 +2628,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &299469533
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 299469527}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &301104661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2968,7 +2976,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 10}
   m_Children: []
   m_Father: {fileID: 2115719973}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 40, z: 0}
 --- !u!54 &353498674
 Rigidbody:
@@ -3442,7 +3450,6 @@ GameObject:
   - component: {fileID: 413599357}
   - component: {fileID: 413599356}
   - component: {fileID: 413599359}
-  - component: {fileID: 413599360}
   m_Layer: 0
   m_Name: House (1)
   m_TagString: Untagged
@@ -3542,22 +3549,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &413599360
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 413599354}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &419325544
 GameObject:
   m_ObjectHideFlags: 0
@@ -3801,36 +3792,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &449988865
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 449988866}
-  m_Layer: 0
-  m_Name: Interactable
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &449988866
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 449988865}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -2.23, z: 2.39}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 733781851}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &464734822
 GameObject:
   m_ObjectHideFlags: 0
@@ -3844,7 +3805,6 @@ GameObject:
   - component: {fileID: 464734825}
   - component: {fileID: 464734824}
   - component: {fileID: 464734827}
-  - component: {fileID: 464734828}
   m_Layer: 0
   m_Name: House (13)
   m_TagString: Untagged
@@ -3944,22 +3904,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &464734828
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464734822}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1001 &465801716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4046,66 +3990,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4453513310108136, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
   m_PrefabInstance: {fileID: 465801716}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &465801720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465801718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56249a42b222af8428ed3ddbd31ca5fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &465801721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465801718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc3f499bf60f2eb4dabbbe0fef1b280c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRightHanded: 0
---- !u!114 &465801722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465801718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da391a972208e11469523102c5b018b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabBegin: 0.55
-  grabEnd: 0.35
-  m_parentHeldObject: 1
-  m_moveHandPosition: 0
-  m_gripTransform: {fileID: 465801719}
-  m_grabVolumes: []
-  m_controller: 0
-  m_parentTransform: {fileID: 0}
-  m_player: {fileID: 0}
-  pinchThreshold: 0.7
---- !u!135 &465801723
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465801718}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &465801724
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4565,7 +4449,6 @@ GameObject:
   - component: {fileID: 544555389}
   - component: {fileID: 544555388}
   - component: {fileID: 544555391}
-  - component: {fileID: 544555392}
   m_Layer: 0
   m_Name: r
   m_TagString: Untagged
@@ -4666,22 +4549,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &544555392
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 544555386}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &544934104
 GameObject:
   m_ObjectHideFlags: 0
@@ -5992,7 +5859,6 @@ GameObject:
   - component: {fileID: 682000497}
   - component: {fileID: 682000496}
   - component: {fileID: 682000499}
-  - component: {fileID: 682000500}
   m_Layer: 0
   m_Name: House (16)
   m_TagString: Untagged
@@ -6092,22 +5958,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &682000500
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682000494}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &691351607
 GameObject:
   m_ObjectHideFlags: 0
@@ -6121,7 +5971,6 @@ GameObject:
   - component: {fileID: 691351610}
   - component: {fileID: 691351609}
   - component: {fileID: 691351612}
-  - component: {fileID: 691351613}
   m_Layer: 0
   m_Name: House (6)
   m_TagString: Untagged
@@ -6221,22 +6070,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &691351613
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691351607}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &700448801
 GameObject:
   m_ObjectHideFlags: 0
@@ -6295,8 +6128,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -2.5, y: 3, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 449988866}
+  m_Children: []
   m_Father: {fileID: 1713380783}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -6519,7 +6351,6 @@ GameObject:
   - component: {fileID: 771872885}
   - component: {fileID: 771872884}
   - component: {fileID: 771872887}
-  - component: {fileID: 771872888}
   m_Layer: 0
   m_Name: House (22)
   m_TagString: Untagged
@@ -6619,22 +6450,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &771872888
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771872882}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &782616999
 GameObject:
   m_ObjectHideFlags: 0
@@ -7247,7 +7062,6 @@ GameObject:
   - component: {fileID: 873179794}
   - component: {fileID: 873179793}
   - component: {fileID: 873179796}
-  - component: {fileID: 873179797}
   m_Layer: 0
   m_Name: House (15)
   m_TagString: Untagged
@@ -7347,22 +7161,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &873179797
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 873179791}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &881866593
 GameObject:
   m_ObjectHideFlags: 0
@@ -7406,7 +7204,6 @@ GameObject:
   - component: {fileID: 882646359}
   - component: {fileID: 882646358}
   - component: {fileID: 882646361}
-  - component: {fileID: 882646362}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -7506,22 +7303,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &882646362
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882646356}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &892485179
 GameObject:
   m_ObjectHideFlags: 0
@@ -7537,7 +7318,6 @@ GameObject:
   - component: {fileID: 892485184}
   - component: {fileID: 892485185}
   - component: {fileID: 892485186}
-  - component: {fileID: 892485187}
   m_Layer: 0
   m_Name: curse3
   m_TagString: Interactive
@@ -7662,22 +7442,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &892485187
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892485179}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &896257074
 GameObject:
   m_ObjectHideFlags: 0
@@ -8185,7 +7949,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &921793681
 Transform:
   m_ObjectHideFlags: 0
@@ -8213,21 +7977,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d286998f1f4c74d89abc69b607c611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 1314668137}
-  teleportPositions:
-  - {fileID: 1702737281}
-  - {fileID: 733781850}
-  - {fileID: 985925417}
-  - {fileID: 2006088080}
-  teleportInteractablePositions: []
-  teleportIndex: 0
-  currIndex: 0
-  teleportThresholdtimer: 0
+  vrPlayerEntity: {fileID: 1314668137}
+  yPositionCalibration: 0
   activeMat: {fileID: 2100000, guid: 9989d3b00f40c7643a89236b002516aa, type: 2}
   holdMat: {fileID: 2100000, guid: 62e7ee0692714544a927d2feaca6c2f6, type: 2}
   inactiveMat: {fileID: 2100000, guid: 493fe30ae6df68e428b8efee53f503ed, type: 2}
-  blackScreen: {fileID: 864704985}
-  teleportLock: 0
 --- !u!54 &921793683
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8252,7 +8006,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921793680}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -8605,7 +8359,6 @@ GameObject:
   - component: {fileID: 971153430}
   - component: {fileID: 971153429}
   - component: {fileID: 971153432}
-  - component: {fileID: 971153433}
   m_Layer: 0
   m_Name: House (2)
   m_TagString: Untagged
@@ -8705,22 +8458,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &971153433
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 971153427}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &985925417
 GameObject:
   m_ObjectHideFlags: 0
@@ -8748,10 +8485,9 @@ Transform:
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 52.5, y: 3, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 29598265}
+  m_Children: []
   m_Father: {fileID: 1713380783}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &985925419
 MonoBehaviour:
@@ -8779,7 +8515,6 @@ GameObject:
   - component: {fileID: 1006089396}
   - component: {fileID: 1006089395}
   - component: {fileID: 1006089398}
-  - component: {fileID: 1006089399}
   m_Layer: 0
   m_Name: House (5)
   m_TagString: Untagged
@@ -8879,22 +8614,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &1006089399
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1006089393}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &1016191712
 GameObject:
   m_ObjectHideFlags: 0
@@ -9021,7 +8740,6 @@ GameObject:
   - component: {fileID: 1033714067}
   - component: {fileID: 1033714068}
   - component: {fileID: 1033714069}
-  - component: {fileID: 1033714070}
   m_Layer: 0
   m_Name: curse4
   m_TagString: Interactive
@@ -9146,22 +8864,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &1033714070
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1033714062}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &1038116052
 GameObject:
   m_ObjectHideFlags: 0
@@ -9289,7 +8991,6 @@ GameObject:
   - component: {fileID: 1040310167}
   - component: {fileID: 1040310168}
   - component: {fileID: 1040310169}
-  - component: {fileID: 1040310170}
   m_Layer: 0
   m_Name: curse1
   m_TagString: Interactive
@@ -9414,22 +9115,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &1040310170
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040310162}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &1046629230
 GameObject:
   m_ObjectHideFlags: 0
@@ -9607,7 +9292,6 @@ GameObject:
   - component: {fileID: 1076870496}
   - component: {fileID: 1076870495}
   - component: {fileID: 1076870498}
-  - component: {fileID: 1076870499}
   m_Layer: 0
   m_Name: House (27)
   m_TagString: Untagged
@@ -9707,22 +9391,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &1076870499
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1076870493}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &1105361116
 GameObject:
   m_ObjectHideFlags: 0
@@ -9797,36 +9465,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!1 &1109340429
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1109340430}
-  m_Layer: 0
-  m_Name: Interactable
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1109340430
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1109340429}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.15, z: 2.55}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1702737282}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1111915450
 GameObject:
   m_ObjectHideFlags: 0
@@ -10207,7 +9845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1188211680
 Transform:
   m_ObjectHideFlags: 0
@@ -10235,21 +9873,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d286998f1f4c74d89abc69b607c611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 1314668137}
-  teleportPositions:
-  - {fileID: 1702737281}
-  - {fileID: 733781850}
-  - {fileID: 985925417}
-  - {fileID: 2006088080}
-  teleportInteractablePositions: []
-  teleportIndex: 0
-  currIndex: 0
-  teleportThresholdtimer: 0
+  vrPlayerEntity: {fileID: 1314668137}
+  yPositionCalibration: 0
   activeMat: {fileID: 2100000, guid: 9989d3b00f40c7643a89236b002516aa, type: 2}
   holdMat: {fileID: 2100000, guid: 62e7ee0692714544a927d2feaca6c2f6, type: 2}
   inactiveMat: {fileID: 2100000, guid: 493fe30ae6df68e428b8efee53f503ed, type: 2}
-  blackScreen: {fileID: 864704985}
-  teleportLock: 0
 --- !u!54 &1188211682
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10274,7 +9902,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188211679}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -10930,7 +10558,6 @@ GameObject:
   - component: {fileID: 1292109875}
   - component: {fileID: 1292109874}
   - component: {fileID: 1292109877}
-  - component: {fileID: 1292109878}
   m_Layer: 0
   m_Name: House (7)
   m_TagString: Untagged
@@ -11030,22 +10657,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &1292109878
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1292109872}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &1298238238
 GameObject:
   m_ObjectHideFlags: 0
@@ -11313,6 +10924,7 @@ GameObject:
   - component: {fileID: 1314668141}
   - component: {fileID: 1314668140}
   - component: {fileID: 1314668139}
+  - component: {fileID: 1314668142}
   m_Layer: 0
   m_Name: OVRCameraRig
   m_TagString: Untagged
@@ -11429,6 +11041,31 @@ MonoBehaviour:
   usePerEyeCameras: 0
   useFixedUpdateForTracking: 0
   disableEyeAnchorCameras: 0
+--- !u!114 &1314668142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314668137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc84e2e7ba5531442b86104af18b5538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterController: {fileID: 0}
+  teleportPositions:
+  - {fileID: 1702737281}
+  - {fileID: 733781850}
+  - {fileID: 2006088080}
+  - {fileID: 985925417}
+  teleportInteractablePositions: []
+  teleportIndex: 0
+  currIndex: 0
+  teleportDelay: 0
+  teleportTimer: 0
+  blackScreen: {fileID: 864704985}
+  teleportLock: 0
 --- !u!1 &1315450649
 GameObject:
   m_ObjectHideFlags: 0
@@ -11534,36 +11171,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!1 &1349913542
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1349913543}
-  m_Layer: 0
-  m_Name: Interactable
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1349913543
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349913542}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.09, z: 2.72}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2006088081}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1380994446
 GameObject:
   m_ObjectHideFlags: 0
@@ -11935,7 +11542,6 @@ GameObject:
   - component: {fileID: 1429475805}
   - component: {fileID: 1429475804}
   - component: {fileID: 1429475807}
-  - component: {fileID: 1429475808}
   m_Layer: 0
   m_Name: House (9)
   m_TagString: Untagged
@@ -12035,22 +11641,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &1429475808
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1429475802}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &1439798170
 GameObject:
   m_ObjectHideFlags: 0
@@ -12145,7 +11735,6 @@ GameObject:
   - component: {fileID: 1442252733}
   - component: {fileID: 1442252732}
   - component: {fileID: 1442252735}
-  - component: {fileID: 1442252736}
   m_Layer: 0
   m_Name: House (23)
   m_TagString: Untagged
@@ -12245,22 +11834,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &1442252736
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1442252730}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &1443784595
 GameObject:
   m_ObjectHideFlags: 0
@@ -12517,7 +12090,6 @@ GameObject:
   - component: {fileID: 1478086119}
   - component: {fileID: 1478086118}
   - component: {fileID: 1478086121}
-  - component: {fileID: 1478086122}
   m_Layer: 0
   m_Name: House (10)
   m_TagString: Untagged
@@ -12617,22 +12189,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &1478086122
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1478086116}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &1502015832
 GameObject:
   m_ObjectHideFlags: 0
@@ -13311,7 +12867,6 @@ GameObject:
   - component: {fileID: 1609178091}
   - component: {fileID: 1609178090}
   - component: {fileID: 1609178093}
-  - component: {fileID: 1609178094}
   m_Layer: 0
   m_Name: House (18)
   m_TagString: Untagged
@@ -13411,22 +12966,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &1609178094
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609178088}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &1618599270
 GameObject:
   m_ObjectHideFlags: 0
@@ -13717,8 +13256,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 25.44, y: 3.148, z: -0.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1109340430}
+  m_Children: []
   m_Father: {fileID: 1713380783}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13764,8 +13302,8 @@ Transform:
   m_Children:
   - {fileID: 1702737282}
   - {fileID: 733781851}
-  - {fileID: 985925418}
   - {fileID: 2006088081}
+  - {fileID: 985925418}
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13782,7 +13320,6 @@ GameObject:
   - component: {fileID: 1731374394}
   - component: {fileID: 1731374393}
   - component: {fileID: 1731374396}
-  - component: {fileID: 1731374397}
   m_Layer: 0
   m_Name: House (24)
   m_TagString: Untagged
@@ -13882,21 +13419,94 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &1731374397
+--- !u!1 &1747151251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1747151252}
+  - component: {fileID: 1747151254}
+  - component: {fileID: 1747151253}
+  - component: {fileID: 1747151256}
+  - component: {fileID: 1747151255}
+  m_Layer: 0
+  m_Name: TeleportTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1747151252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747151251}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.084, y: -0.017, z: -0.002}
+  m_LocalScale: {x: 0.20000002, y: 0.020000001, z: 0.11000001}
+  m_Children: []
+  m_Father: {fileID: 2115719973}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1747151253
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747151251}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &1747151254
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747151251}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1747151255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747151251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d286998f1f4c74d89abc69b607c611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vrPlayerEntity: {fileID: 1314668137}
+  yPositionCalibration: 0
+  activeMat: {fileID: 2100000, guid: 9989d3b00f40c7643a89236b002516aa, type: 2}
+  holdMat: {fileID: 2100000, guid: 62e7ee0692714544a927d2feaca6c2f6, type: 2}
+  inactiveMat: {fileID: 2100000, guid: 493fe30ae6df68e428b8efee53f503ed, type: 2}
+--- !u!54 &1747151256
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731374391}
+  m_GameObject: {fileID: 1747151251}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!1 &1748971700
 GameObject:
@@ -13913,7 +13523,6 @@ GameObject:
   - component: {fileID: 1748971705}
   - component: {fileID: 1748971706}
   - component: {fileID: 1748971707}
-  - component: {fileID: 1748971708}
   m_Layer: 0
   m_Name: curse2
   m_TagString: Interactive
@@ -14038,22 +13647,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &1748971708
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1748971700}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &1759767031
 GameObject:
   m_ObjectHideFlags: 0
@@ -14067,7 +13660,6 @@ GameObject:
   - component: {fileID: 1759767034}
   - component: {fileID: 1759767033}
   - component: {fileID: 1759767036}
-  - component: {fileID: 1759767037}
   m_Layer: 0
   m_Name: House (25)
   m_TagString: Untagged
@@ -14167,22 +13759,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &1759767037
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1759767031}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &1759886246
 GameObject:
   m_ObjectHideFlags: 0
@@ -14458,7 +14034,6 @@ GameObject:
   - component: {fileID: 1802702784}
   - component: {fileID: 1802702783}
   - component: {fileID: 1802702786}
-  - component: {fileID: 1802702787}
   m_Layer: 0
   m_Name: House (19)
   m_TagString: Untagged
@@ -14558,22 +14133,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &1802702787
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802702781}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &1807390529
 GameObject:
   m_ObjectHideFlags: 0
@@ -15160,7 +14719,6 @@ GameObject:
   - component: {fileID: 1968130557}
   - component: {fileID: 1968130556}
   - component: {fileID: 1968130559}
-  - component: {fileID: 1968130560}
   m_Layer: 0
   m_Name: House (17)
   m_TagString: Untagged
@@ -15260,22 +14818,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &1968130560
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968130554}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &1976333632
 GameObject:
   m_ObjectHideFlags: 0
@@ -15415,10 +14957,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 25.5, y: 3, z: 52.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1349913543}
+  m_Children: []
   m_Father: {fileID: 1713380783}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &2006088082
 MonoBehaviour:
@@ -15651,7 +15192,6 @@ GameObject:
   - component: {fileID: 2091551311}
   - component: {fileID: 2091551310}
   - component: {fileID: 2091551313}
-  - component: {fileID: 2091551314}
   m_Layer: 0
   m_Name: House (12)
   m_TagString: Untagged
@@ -15751,22 +15291,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &2091551314
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2091551308}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &2108437136
 GameObject:
   m_ObjectHideFlags: 0
@@ -15947,66 +15471,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1870938896605422, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
   m_PrefabInstance: {fileID: 2115719972}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2115719975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2115719974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56249a42b222af8428ed3ddbd31ca5fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2115719976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2115719974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc3f499bf60f2eb4dabbbe0fef1b280c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRightHanded: 1
---- !u!114 &2115719977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2115719974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da391a972208e11469523102c5b018b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabBegin: 0.55
-  grabEnd: 0.35
-  m_parentHeldObject: 1
-  m_moveHandPosition: 0
-  m_gripTransform: {fileID: 2115719973}
-  m_grabVolumes: []
-  m_controller: 0
-  m_parentTransform: {fileID: 0}
-  m_player: {fileID: 0}
-  pinchThreshold: 0.7
---- !u!135 &2115719978
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2115719974}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2115719979
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16112,7 +15576,6 @@ GameObject:
   - component: {fileID: 2129645019}
   - component: {fileID: 2129645018}
   - component: {fileID: 2129645021}
-  - component: {fileID: 2129645022}
   m_Layer: 0
   m_Name: House (8)
   m_TagString: Untagged
@@ -16212,22 +15675,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &2129645022
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129645016}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &2140313626
 GameObject:
   m_ObjectHideFlags: 0
