@@ -12,6 +12,7 @@ TagManager:
   - Interactive
   - LeftButton
   - RightButton
+  - NPC
   layers:
   - Default
   - TransparentFX

@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class RayCast_cam : MonoBehaviour
 {
     RaycastHit hit;
     Vector3 height = new Vector3(0, 0, 0);
-    bool reset = false;
-    Behaviour halo;
+    bool c_reset = false;
+    Behaviour c_halo;
+    bool n_reset = false;
+    Behaviour n_halo;
 
-    float hold_time;
+    float c_hold_time = 0;
+    float n_hold_time = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,50 +29,82 @@ public class RayCast_cam : MonoBehaviour
 
     private void Dance()
     {
-        if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out hit, 1000))
+        if (Physics.Raycast(gameObject.transform.position + height, gameObject.transform.forward, out hit, 1000))
         {
-            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 1000, Color.red);
+            Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.red);
             if (hit.collider.tag == "Interactive")
             {
-                Debug.Log(hit.collider.name);
-                Debug.Log(hit.distance);
-                if (hit.distance <= 100000)
+                //Debug.Log(hit.collider.name + " : " + hit.distance);
+                if (hit.distance <= 3.0f)
                 {
-                    Debug.DrawRay(transform.position, transform.forward * 1000, Color.yellow);
-                    halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
-                    halo.enabled = true;
-                    reset = true;
-                }
-                if (Input.GetKey("q"))
-                {
-                    Debug.DrawRay(transform.position + height, transform.forward * 1000, Color.blue);
-                    hold_time += Time.deltaTime;
-                    Debug.Log(hold_time);
-                    if (hold_time >= 3)
+                    Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
+                    c_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
+                    c_halo.enabled = true;
+                    c_reset = true;
+                    //Debug.Log(hold_time);
+                    if (Input.GetKey("q"))
                     {
-                        hold_time = 3;
-                        hit.transform.gameObject.SetActive(false);
-                        //Behaviour halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
-                        //halo.enabled = false;
+                        Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.blue);
+                        c_hold_time += Time.deltaTime;
+                        Debug.Log(c_hold_time);
+                        if (c_hold_time >= 3.0f)
+                        {
+                            c_hold_time = 3.0f;
+                            CurseManage curse = hit.collider.gameObject.GetComponent<CurseManage>();
+                            curse.cursed = true;
+                        }
+                        return;
                     }
+                    c_hold_time = 0;
                 }
-                //Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
-                hold_time = 0;
+                return;
+            }
+            else if (hit.collider.tag == "NPC")
+            {
+                //Debug.Log(hit.collider.name + " : " + hit.distance);
+                if (hit.distance <= 3.0f)
+                {
+                    Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
+                    n_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
+                    n_halo.enabled = true;
+                    n_reset = true;
+                    //Debug.Log(hold_time);
+                    if (Input.GetKey("q"))
+                    {
+                        Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.blue);
+                        n_hold_time += Time.deltaTime;
+                        Debug.Log(n_hold_time);
+                        if (n_hold_time >= 0.8f)
+                        {
+                            n_hold_time = 0.8f;
+                            hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.red;
+                        }
+                        return;
+                    }
+                    n_hold_time = 0;
+                }
                 return;
             }
             else
             {
-                hold_time = 0;
-                if (reset)
+                n_hold_time = 0;
+                c_hold_time = 0;
+                if (c_reset)
                 {
-                    halo.enabled = false;
-                    reset = false;
+                    c_halo.enabled = false;
+                    c_reset = false;
+                }
+                if (n_reset)
+                {
+                    n_halo.enabled = false;
+                    n_reset = false;
                 }
             }
         }
         else
         {
-            hold_time = 0;
+            c_hold_time = 0;
+            n_hold_time = 0;
         }
 
     }

@@ -124,6 +124,7 @@ public class VRPlayerTeleport : MonoBehaviour
 		teleportInteractable.transform.position = teleportInteractablePositions[teleportIndex].transform.position;
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.name =="OVRHandPrefab_L" && other.gameObject.name =="OVRHandPrefab_R")
