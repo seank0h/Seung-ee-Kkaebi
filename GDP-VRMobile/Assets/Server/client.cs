@@ -9,7 +9,7 @@ using UnityEngine;
 public class client : MonoBehaviour{
 	#region private members 	
 
-    public string clientID;
+    public string clientID = "c1";
 
     public static client tcp;
     private String msg = "";
@@ -25,20 +25,18 @@ public class client : MonoBehaviour{
         else
             tcp = this;
 
-		ConnectToTcpServer();     
+		ConnectToTcpServer();    
 	}
-
-
-
 
 	public void reconnectServer(){
 		ConnectToTcpServer();
 	}
 
-    public void sendMsg(int code, float x, float y, float z){
-        String coord = x.ToString() + "/" + y.ToString() + "/" + z.ToString();
-        SendMessage(clientID + "/" + code + "/" + coord + "/#");
+
+    public void sendMsg(String message){
+        SendMessage(clientID + "/" + message + "/#");
     }
+
 
     public string[][] receiveMsg(){
         string[] msgQueue = msg.Split('#');
@@ -52,8 +50,6 @@ public class client : MonoBehaviour{
 
         return res;
     }
-
-
 
 
     private void printMessage(string[][] message){
@@ -103,6 +99,7 @@ public class client : MonoBehaviour{
 
                         if(checkMsg(serverMessage)){
                             msg = serverMessage;
+							//Debug.Log(serverMessage);
                         }else if(serverMessage.Contains("END GAME")){
 							closeConn();
 						}
