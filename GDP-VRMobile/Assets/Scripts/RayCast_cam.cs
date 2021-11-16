@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.EventSystems;
 
-public class RayCast_cam : MonoBehaviour
+
+public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     RaycastHit hit;
     Vector3 height = new Vector3(0, 0, 0);
@@ -11,9 +13,15 @@ public class RayCast_cam : MonoBehaviour
     Behaviour c_halo;
     bool n_reset = false;
     Behaviour n_halo;
+    bool p_reset = false;
+    Behaviour p_halo;
+    private bool isBtnDown = false;
 
     float c_hold_time = 0;
     float n_hold_time = 0;
+
+    char[] c_house = new char[] { '0', '0', '0', '0' };
+    char[] s_npc = new char[] { '0', '0', '0', '0', '0' };
     // Start is called before the first frame update
     void Start()
     {
@@ -27,13 +35,34 @@ public class RayCast_cam : MonoBehaviour
 
     }
 
-    private void Dance()
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        isBtnDown = true;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        isBtnDown = false;
+    }
+
+    public void Dance()
     {
         if (Physics.Raycast(gameObject.transform.position + height, gameObject.transform.forward, out hit, 1000))
         {
             Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.red);
-            if (hit.collider.tag == "Interactive")
+            if (hit.collider.tag == "Interactive") //건물 저주
             {
+                n_hold_time = 0;
+                if (n_reset)
+                {
+                    n_halo.enabled = false;
+                    n_reset = false;
+                }
+                if (p_reset)
+                {
+                    p_halo.enabled = false;
+                    p_reset = false;
+                }
                 //Debug.Log(hit.collider.name + " : " + hit.distance);
                 if (hit.distance <= 3.0f)
                 {
@@ -42,7 +71,7 @@ public class RayCast_cam : MonoBehaviour
                     c_halo.enabled = true;
                     c_reset = true;
                     //Debug.Log(hold_time);
-                    if (Input.GetKey("q"))
+                    if (Input.GetKey("q") || isBtnDown)
                     {
                         Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.blue);
                         c_hold_time += Time.deltaTime;
@@ -59,8 +88,19 @@ public class RayCast_cam : MonoBehaviour
                 }
                 return;
             }
-            else if (hit.collider.tag == "NPC")
+            else if (hit.collider.tag == "NPC") // npc 스턴
             {
+                c_hold_time = 0;
+                if (c_reset)
+                {
+                    c_halo.enabled = false;
+                    c_reset = false;
+                }
+                if (p_reset)
+                {
+                    p_halo.enabled = false;
+                    p_reset = false;
+                }
                 //Debug.Log(hit.collider.name + " : " + hit.distance);
                 if (hit.distance <= 3.0f)
                 {
@@ -69,7 +109,7 @@ public class RayCast_cam : MonoBehaviour
                     n_halo.enabled = true;
                     n_reset = true;
                     //Debug.Log(hold_time);
-                    if (Input.GetKey("q"))
+                    if (Input.GetKey("q") || isBtnDown)
                     {
                         Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.blue);
                         n_hold_time += Time.deltaTime;
@@ -77,11 +117,40 @@ public class RayCast_cam : MonoBehaviour
                         if (n_hold_time >= 0.8f)
                         {
                             n_hold_time = 0.8f;
-                            hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.red;
+                            PlayerAlart sturned = hit.collider.gameObject.GetComponent<PlayerAlart>();
+                            sturned.sturn = true;
                         }
                         return;
                     }
                     n_hold_time = 0;
+                }
+                return;
+            }
+            else if (hit.collider.tag == "Prop")
+            {
+                n_hold_time = 0;
+                c_hold_time = 0;
+                if (c_reset)
+                {
+                    c_halo.enabled = false;
+                    c_reset = false;
+                }
+                if (n_reset)
+                {
+                    n_halo.enabled = false;
+                    n_reset = false;
+                }
+                if (hit.distance <= 3.0f)
+                {
+                    Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
+                    p_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
+                    p_halo.enabled = true;
+                    p_reset = true;
+                    //Debug.Log(hold_time);
+                    if (Input.GetKey("q"))
+                    {
+                        Debug.Log("prop");
+                    }
                 }
                 return;
             }
@@ -99,6 +168,11 @@ public class RayCast_cam : MonoBehaviour
                     n_halo.enabled = false;
                     n_reset = false;
                 }
+                if (p_reset)
+                {
+                    p_halo.enabled = false;
+                    p_reset = false;
+                }
             }
         }
         else
@@ -109,3 +183,4 @@ public class RayCast_cam : MonoBehaviour
 
     }
 }
+    

@@ -61,6 +61,9 @@ public class mobileClient : MonoBehaviour{
             rPos = new Vector3(float.Parse(msg[i][4]), float.Parse(msg[i][5]), float.Parse(msg[i][6]));
             flarePos = new Vector3(float.Parse(msg[i][7]), float.Parse(msg[i][8]), float.Parse(msg[i][9]));
 
+            lHand.GetComponent<Transform>().position = lPos;
+            rHand.GetComponent<Transform>().position = rPos;
+
             setBulletCollision(int.Parse(msg[i][10]));
             setCatchEvent(int.Parse(msg[i][11]));
             setDustClean(int.Parse(msg[i][12]));

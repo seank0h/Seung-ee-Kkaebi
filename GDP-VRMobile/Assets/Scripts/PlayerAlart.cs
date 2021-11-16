@@ -6,6 +6,8 @@ public class PlayerAlart : MonoBehaviour
 {
     GameObject player;
     float stay = 0;
+    float release = 0;
+    public bool sturn = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,18 +20,31 @@ public class PlayerAlart : MonoBehaviour
     {
         float distance = Vector3.Distance(player.transform.position, transform.position);
 
-        if (distance <= 5)
+        if (sturn)
         {
-            stay += Time.deltaTime;
-            if (stay >= 2f)
+            this.gameObject.GetComponent<Renderer>().material.color = Color.red;
+        } else
+        {
+            if (distance <= 5)
             {
-                this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
+                stay += Time.deltaTime;
+                release = 0;
+                if (stay >= 2f)
+                {
+                    this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
+                }
             }
-        }
-        else
-        {
-            stay = 0;
-            this.gameObject.GetComponent<Renderer>().material.color = Color.black;
+            else
+            {
+                release += Time.deltaTime;
+                if (release <= 2)
+                {
+                    return;
+                }
+                stay = 0;
+                release = 0;
+                this.gameObject.GetComponent<Renderer>().material.color = Color.black;
+            }
         }
     }
 }
