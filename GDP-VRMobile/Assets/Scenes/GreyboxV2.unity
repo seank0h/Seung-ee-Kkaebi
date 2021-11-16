@@ -776,6 +776,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KoreanMansion_Wall_S (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     - target: {fileID: 3322393375029079429, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_RootOrder
       value: 26
@@ -982,6 +986,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Axe_03
       objectReference: {fileID: 0}
+    - target: {fileID: 8735299467921520943, guid: 32df5fe5605b8154caf0effd6dba1855, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32df5fe5605b8154caf0effd6dba1855, type: 3}
 --- !u!4 &96425039 stripped
@@ -999,6 +1007,10 @@ PrefabInstance:
     - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_Name
       value: KoreanMansion_Wall_S (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     - target: {fileID: 3322393375029079429, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_RootOrder
@@ -1564,6 +1576,10 @@ PrefabInstance:
     - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_Name
       value: KoreanMansion_Wall_S (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     - target: {fileID: 3322393375029079429, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_RootOrder
@@ -2382,6 +2398,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghg_ThatchHouse_C (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4489333828059537296, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
 --- !u!4 &226677437 stripped
@@ -3049,6 +3069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04ee0df1343b89438dba16602889c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sturn: 0
 --- !u!122 &278640486
 Halo:
   m_ObjectHideFlags: 0
@@ -3196,7 +3217,7 @@ GameObject:
   - component: {fileID: 301529296}
   m_Layer: 0
   m_Name: Wood_L_Leaf005 (1)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3448,6 +3469,10 @@ PrefabInstance:
     - target: {fileID: 138866939502801115, guid: 780320193229ea047973872b3ce45e98, type: 3}
       propertyPath: m_Name
       value: Ghg_ThatchHouse_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 138866939502801115, guid: 780320193229ea047973872b3ce45e98, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     - target: {fileID: 4014399854595457736, guid: 780320193229ea047973872b3ce45e98, type: 3}
       propertyPath: m_RootOrder
@@ -4156,6 +4181,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KoreanMansion_Wall_S (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     - target: {fileID: 3322393375029079429, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -4490,6 +4519,10 @@ PrefabInstance:
     - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_Name
       value: KoreanMansion_Wall_S (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     - target: {fileID: 3322393375029079429, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_RootOrder
@@ -4963,6 +4996,10 @@ PrefabInstance:
     - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_Name
       value: KoreanMansion_Wall_S (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     - target: {fileID: 3322393375029079429, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_RootOrder
@@ -5563,6 +5600,10 @@ PrefabInstance:
     - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_Name
       value: KoreanMansion_Wall_S (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     - target: {fileID: 3322393375029079429, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_RootOrder
@@ -6862,6 +6903,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KoreanMansion_Gate
       objectReference: {fileID: 0}
+    - target: {fileID: 3676403260073410540, guid: cb49b36ed0bc54644ab8464079196701, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb49b36ed0bc54644ab8464079196701, type: 3}
 --- !u!4 &706876552 stripped
@@ -6879,6 +6924,10 @@ PrefabInstance:
     - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_Name
       value: KoreanMansion_Wall_S (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     - target: {fileID: 3322393375029079429, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_RootOrder
@@ -6993,6 +7042,10 @@ PrefabInstance:
     - target: {fileID: 4489333828059537296, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
       propertyPath: m_Name
       value: Ghg_ThatchHouse_C (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489333828059537296, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
@@ -7317,7 +7370,7 @@ GameObject:
   - component: {fileID: 775684960}
   m_Layer: 0
   m_Name: Wood_L_Leaf006 (2)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8001,6 +8054,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SawingBuck_01
       objectReference: {fileID: 0}
+    - target: {fileID: 3194921430109142779, guid: ed63e9563d8434946adf40b9589c8082, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     - target: {fileID: 3194921430109627099, guid: ed63e9563d8434946adf40b9589c8082, type: 3}
       propertyPath: m_RootOrder
       value: 32
@@ -8182,6 +8239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KoreanMansion_House_7
       objectReference: {fileID: 0}
+    - target: {fileID: 2894363442175058959, guid: c785dab6010446d40a073e15daae7db8, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c785dab6010446d40a073e15daae7db8, type: 3}
 --- !u!4 &866229930 stripped
@@ -8281,6 +8342,10 @@ PrefabInstance:
     - target: {fileID: 4425698654961415001, guid: c24e461af7121274eb79602afa609c3a, type: 3}
       propertyPath: m_Name
       value: Ghg_ThatchHouse_B (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425698654961415001, guid: c24e461af7121274eb79602afa609c3a, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c24e461af7121274eb79602afa609c3a, type: 3}
@@ -9103,6 +9168,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KoreanMansion_Wall_S (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     - target: {fileID: 3322393375029079429, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -9164,6 +9233,10 @@ PrefabInstance:
     - target: {fileID: 127928892458272619, guid: 289346824ff66f54ab597c3fe82eff4b, type: 3}
       propertyPath: m_Name
       value: CurseableHouse3
+      objectReference: {fileID: 0}
+    - target: {fileID: 127928892458272619, guid: 289346824ff66f54ab597c3fe82eff4b, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     - target: {fileID: 4007402668517160312, guid: 289346824ff66f54ab597c3fe82eff4b, type: 3}
       propertyPath: m_RootOrder
@@ -9686,6 +9759,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghg_ThatchHouse_C (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4489333828059537296, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
 --- !u!4 &1026267079 stripped
@@ -10032,6 +10109,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CurseableHouse2
       objectReference: {fileID: 0}
+    - target: {fileID: 4489333828059537296, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
 --- !u!4 &1097345090 stripped
@@ -10262,7 +10343,7 @@ GameObject:
   - component: {fileID: 1144796674}
   m_Layer: 0
   m_Name: Wood_L005 (3)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11237,7 +11318,7 @@ GameObject:
   - component: {fileID: 1287978219}
   m_Layer: 0
   m_Name: Wood_L_Leaf004 (1)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11914,7 +11995,7 @@ GameObject:
   - component: {fileID: 1382813861}
   m_Layer: 0
   m_Name: Wood_L005 (1)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12244,6 +12325,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KoreanMansion_Wall_S (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     - target: {fileID: 3322393375029079429, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -12469,6 +12554,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KoreanMansion_Wall_L (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1444099508409698724, guid: 20ec3724f55df194e84e64ea01bcedd8, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     - target: {fileID: 2472793966710717367, guid: 20ec3724f55df194e84e64ea01bcedd8, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -12664,6 +12753,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghg_ThatchHouse_D
       objectReference: {fileID: 0}
+    - target: {fileID: 3931760790848804560, guid: a98c8d30f2e1e3345be9eae9f68ab5a2, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a98c8d30f2e1e3345be9eae9f68ab5a2, type: 3}
 --- !u!4 &1444142368 stripped
@@ -12684,7 +12777,7 @@ GameObject:
   - component: {fileID: 1456371855}
   m_Layer: 0
   m_Name: Wood_L_Leaf005 (2)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13544,6 +13637,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghg_ThatchHouse_A (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 138866939502801115, guid: 780320193229ea047973872b3ce45e98, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     - target: {fileID: 4014399854595457736, guid: 780320193229ea047973872b3ce45e98, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -13829,6 +13926,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CurseableHouse1
       objectReference: {fileID: 0}
+    - target: {fileID: 4489333828059537296, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
 --- !u!4 &1625681967 stripped
@@ -14039,6 +14140,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House
       objectReference: {fileID: 0}
+    - target: {fileID: 4489333828059537296, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
 --- !u!4 &1648850927 stripped
@@ -14059,7 +14164,7 @@ GameObject:
   - component: {fileID: 1672188774}
   m_Layer: 0
   m_Name: Wood_L004 (1)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14217,6 +14322,10 @@ PrefabInstance:
     - target: {fileID: 3676403260073410540, guid: cb49b36ed0bc54644ab8464079196701, type: 3}
       propertyPath: m_Name
       value: KoreanMansion_Gate
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676403260073410540, guid: cb49b36ed0bc54644ab8464079196701, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb49b36ed0bc54644ab8464079196701, type: 3}
@@ -14589,6 +14698,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghg_ThatchHouse_C
       objectReference: {fileID: 0}
+    - target: {fileID: 4489333828059537296, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
 --- !u!4 &1779075932 stripped
@@ -14834,6 +14947,10 @@ PrefabInstance:
     - target: {fileID: 138866939502801115, guid: 780320193229ea047973872b3ce45e98, type: 3}
       propertyPath: m_Name
       value: Ghg_ThatchHouse_A (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 138866939502801115, guid: 780320193229ea047973872b3ce45e98, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     - target: {fileID: 4014399854595457736, guid: 780320193229ea047973872b3ce45e98, type: 3}
       propertyPath: m_RootOrder
@@ -15201,6 +15318,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KoreanMansion_House_2
       objectReference: {fileID: 0}
+    - target: {fileID: 127928892458272619, guid: 289346824ff66f54ab597c3fe82eff4b, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     - target: {fileID: 4007402668517160312, guid: 289346824ff66f54ab597c3fe82eff4b, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -15266,6 +15387,10 @@ PrefabInstance:
     - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_Name
       value: KoreanMansion_Wall_S (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     - target: {fileID: 3322393375029079429, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_RootOrder
@@ -15409,6 +15534,10 @@ PrefabInstance:
     - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_Name
       value: KoreanMansion_Wall_S
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747637392987053974, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     - target: {fileID: 3322393375029079429, guid: ed97138ba8e2b91488f5100df8dfc0fc, type: 3}
       propertyPath: m_RootOrder
@@ -15652,7 +15781,7 @@ GameObject:
   - component: {fileID: 1910099633}
   m_Layer: 0
   m_Name: Wood_L006 (2)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15863,6 +15992,10 @@ PrefabInstance:
     - target: {fileID: 4425698654961415001, guid: c24e461af7121274eb79602afa609c3a, type: 3}
       propertyPath: m_Name
       value: Ghg_ThatchHouse_B (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425698654961415001, guid: c24e461af7121274eb79602afa609c3a, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c24e461af7121274eb79602afa609c3a, type: 3}
@@ -16350,6 +16483,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KoreanMansion_Wall_L (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1444099508409698724, guid: 20ec3724f55df194e84e64ea01bcedd8, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     - target: {fileID: 2472793966710717367, guid: 20ec3724f55df194e84e64ea01bcedd8, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -16418,7 +16555,7 @@ GameObject:
   - component: {fileID: 2031820363}
   m_Layer: 0
   m_Name: Wood_L005 (2)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16592,7 +16729,7 @@ GameObject:
   - component: {fileID: 2079796586}
   m_Layer: 0
   m_Name: Wood_L_Leaf005 (3)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16797,6 +16934,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LogPile_01
       objectReference: {fileID: 0}
+    - target: {fileID: 6065991525383051619, guid: af8a61a4e56f6ff4e9cf2abd4f1e8e72, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af8a61a4e56f6ff4e9cf2abd4f1e8e72, type: 3}
 --- !u!4 &2094995040 stripped
@@ -16814,6 +16955,10 @@ PrefabInstance:
     - target: {fileID: 138866939502801115, guid: 780320193229ea047973872b3ce45e98, type: 3}
       propertyPath: m_Name
       value: Ghg_ThatchHouse_A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 138866939502801115, guid: 780320193229ea047973872b3ce45e98, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     - target: {fileID: 4014399854595457736, guid: 780320193229ea047973872b3ce45e98, type: 3}
       propertyPath: m_RootOrder
@@ -16977,6 +17122,10 @@ PrefabInstance:
     - target: {fileID: 5411511088664246016, guid: e8f6333baf9187d43b3d5f66fda56294, type: 3}
       propertyPath: m_Name
       value: KoreanMansion_Jungja
+      objectReference: {fileID: 0}
+    - target: {fileID: 5411511088664246016, guid: e8f6333baf9187d43b3d5f66fda56294, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     - target: {fileID: 9026011284620805395, guid: e8f6333baf9187d43b3d5f66fda56294, type: 3}
       propertyPath: m_RootOrder
@@ -17270,6 +17419,10 @@ PrefabInstance:
     - target: {fileID: 4489333828059537296, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
       propertyPath: m_Name
       value: CurseableHouse4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489333828059537296, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
+      propertyPath: m_TagString
+      value: Environment
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12b57d8d856755847877448e8351d0e7, type: 3}
@@ -20149,7 +20302,7 @@ GameObject:
   - component: {fileID: 2299879114597209561}
   m_Layer: 0
   m_Name: Wood_L002
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24915,7 +25068,7 @@ GameObject:
   - component: {fileID: 5037605197160245106}
   m_Layer: 0
   m_Name: Wood_L_Leaf003
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27481,7 +27634,7 @@ GameObject:
   - component: {fileID: 7584176701826365552}
   m_Layer: 0
   m_Name: Wood_L001
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29943,7 +30096,7 @@ GameObject:
   - component: {fileID: 2365314742850877568}
   m_Layer: 0
   m_Name: Wood_L003
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30161,7 +30314,7 @@ GameObject:
   - component: {fileID: 2993251509448012293}
   m_Layer: 0
   m_Name: Wood_L_Leaf001
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35471,7 +35624,7 @@ GameObject:
   - component: {fileID: 3168788447470467204}
   m_Layer: 0
   m_Name: Wood_L_Leaf002
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

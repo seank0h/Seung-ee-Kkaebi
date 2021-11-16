@@ -7,34 +7,36 @@ namespace StarterAssets
 { 
 public class PropHuntController : MonoBehaviour
 {
-    private StarterAssetsInputs _input;
-    public GameObject playerMeshEntity;
-    public GameObject playerMeshMem;
-    private Collider playerCollider;
+        public GameObject playerMeshEntity;
+        public GameObject playerPropMeshEntity;
+        private MeshFilter playerPropMesh;
+        private Renderer playerPropRenderer;
+        private Collider playerCollider;
     private SkinnedMeshRenderer playerMesh;
     private SkinnedMeshRenderer originalPlayerMesh;
     public GameObject cameraRoot;
-    // Start is called before the first frame update
-    void Start()
+        public bool changeBack;
+        public bool swapToProp;
+        // Start is called before the first frame update
+        void Start()
     {
-        playerMesh = playerMeshEntity.GetComponent<SkinnedMeshRenderer>();
-        originalPlayerMesh = playerMeshMem.GetComponent<SkinnedMeshRenderer>();
-        playerCollider = playerMeshEntity.GetComponent<CapsuleCollider>();
-        Debug.Log(originalPlayerMesh.sharedMesh);
-        _input = GetComponent<StarterAssetsInputs>();
-    }
+            playerMesh = playerMeshEntity.GetComponent<SkinnedMeshRenderer>();
+            playerCollider = playerMeshEntity.GetComponent<CapsuleCollider>();
+            playerPropMesh = playerPropMeshEntity.GetComponent<MeshFilter>();
+            playerPropRenderer = playerPropMeshEntity.GetComponent<Renderer>();
+        }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(originalPlayerMesh.sharedMesh);
+        Debug.Log(playerPropMesh.mesh);
         ChangeModelAttempt();
         ModelSwap();
     }
 
     public void ChangeModelAttempt()
     {
-            if(Input.GetKeyDown(KeyCode.F))
+            if(Input.GetKeyDown(KeyCode.E))
             {
                 RaycastHit hit;
                 GameObject gameObjectHit;
@@ -49,10 +51,12 @@ public class PropHuntController : MonoBehaviour
                             playerPropMesh.gameObject.SetActive(true);
                         Debug.Log("Raycast hit Prop");
                         gameObjectHit = hit.transform.gameObject;
-                        playerMesh.sharedMesh = gameObjectHit.GetComponent<MeshFilter>().sharedMesh;
-                        //Just a temporary fix because the scale of the objects are so big, hopefully wont be necessary for actual props
-                        //playerMesh.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
-                        _input.swap = false;
+                        playerPropMesh.mesh = gameObjectHit.GetComponent<MeshFilter>().mesh;
+                        Renderer hitPropMat = gameObjectHit.GetComponent<Renderer>();
+                        playerPropRenderer.material = hitPropMat.material;
+
+                        playerMesh.gameObject.SetActive(false);
+                        swapToProp = true;
                     }
 
 
@@ -68,12 +72,13 @@ public class PropHuntController : MonoBehaviour
     }
         public void ModelSwap()
         {
-            
-                Debug.Log(originalPlayerMesh.sharedMesh);
-                playerMesh.sharedMesh = originalPlayerMesh.sharedMesh;
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                playerPropMesh.gameObject.SetActive(false);
+                playerMesh.gameObject.SetActive(true);
                 playerMesh.transform.localScale = new Vector3(1f, 1f, 1f);
-                _input.changeBack = false;
-            
+                changeBack = false;
+            }
         }
 }
 }
