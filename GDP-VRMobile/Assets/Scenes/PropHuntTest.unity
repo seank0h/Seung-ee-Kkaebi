@@ -2847,6 +2847,24 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000000029802322, y: -0.09214255, z: 0.026248664}
     m_Extent: {x: 0.52818465, y: 0.88092995, z: 0.22050178}
   m_DirtyAABB: 0
+--- !u!1 &1646768467 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 449767910060640177, guid: 6ee920c3ee0c5934986fabfc0d7a098d, type: 3}
+  m_PrefabInstance: {fileID: 522764714}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1646768468
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646768467}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3370963, y: 0.51975304, z: 1.3370963}
+  m_Center: {x: 0, y: 0.20194335, z: 0}
 --- !u!1 &1679334901
 GameObject:
   m_ObjectHideFlags: 0
