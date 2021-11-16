@@ -966,9 +966,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vrPlayerEntity: {fileID: 1314668137}
   yPositionCalibration: 0
-  activeMat: {fileID: 2100000, guid: 9989d3b00f40c7643a89236b002516aa, type: 2}
-  holdMat: {fileID: 2100000, guid: 62e7ee0692714544a927d2feaca6c2f6, type: 2}
-  inactiveMat: {fileID: 2100000, guid: 493fe30ae6df68e428b8efee53f503ed, type: 2}
 --- !u!54 &127958761
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7942,7 +7939,6 @@ GameObject:
   - component: {fileID: 921793685}
   - component: {fileID: 921793684}
   - component: {fileID: 921793683}
-  - component: {fileID: 921793682}
   m_Layer: 0
   m_Name: Teleport_R
   m_TagString: Untagged
@@ -7958,30 +7954,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921793680}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.494, y: 0, z: 0.14999996}
+  m_LocalPosition: {x: 0.494, y: 1.5, z: 0.14999996}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 1038116053}
   m_Father: {fileID: 1314668138}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &921793682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 921793680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81d286998f1f4c74d89abc69b607c611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vrPlayerEntity: {fileID: 1314668137}
-  yPositionCalibration: 0
-  activeMat: {fileID: 2100000, guid: 9989d3b00f40c7643a89236b002516aa, type: 2}
-  holdMat: {fileID: 2100000, guid: 62e7ee0692714544a927d2feaca6c2f6, type: 2}
-  inactiveMat: {fileID: 2100000, guid: 493fe30ae6df68e428b8efee53f503ed, type: 2}
 --- !u!54 &921793683
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9838,7 +9817,6 @@ GameObject:
   - component: {fileID: 1188211684}
   - component: {fileID: 1188211683}
   - component: {fileID: 1188211682}
-  - component: {fileID: 1188211681}
   m_Layer: 0
   m_Name: Teleport_L
   m_TagString: Untagged
@@ -9854,30 +9832,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188211679}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.523, y: 0, z: 0.14999996}
+  m_LocalPosition: {x: -0.494, y: 1.5, z: 0.14999996}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 1807390530}
   m_Father: {fileID: 1314668138}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1188211681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1188211679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81d286998f1f4c74d89abc69b607c611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vrPlayerEntity: {fileID: 1314668137}
-  yPositionCalibration: 0
-  activeMat: {fileID: 2100000, guid: 9989d3b00f40c7643a89236b002516aa, type: 2}
-  holdMat: {fileID: 2100000, guid: 62e7ee0692714544a927d2feaca6c2f6, type: 2}
-  inactiveMat: {fileID: 2100000, guid: 493fe30ae6df68e428b8efee53f503ed, type: 2}
 --- !u!54 &1188211682
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11059,13 +11020,13 @@ MonoBehaviour:
   - {fileID: 733781850}
   - {fileID: 2006088080}
   - {fileID: 985925417}
-  teleportInteractablePositions: []
   teleportIndex: 0
   currIndex: 0
-  teleportDelay: 0
-  teleportTimer: 0
-  blackScreen: {fileID: 864704985}
+  fadeScreen: {fileID: 864704985}
   teleportLock: 0
+  activeMat: {fileID: 2100000, guid: 9989d3b00f40c7643a89236b002516aa, type: 2}
+  holdMat: {fileID: 2100000, guid: 62e7ee0692714544a927d2feaca6c2f6, type: 2}
+  inactiveMat: {fileID: 2100000, guid: 493fe30ae6df68e428b8efee53f503ed, type: 2}
 --- !u!1 &1315450649
 GameObject:
   m_ObjectHideFlags: 0
@@ -13489,9 +13450,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vrPlayerEntity: {fileID: 1314668137}
   yPositionCalibration: 0
-  activeMat: {fileID: 2100000, guid: 9989d3b00f40c7643a89236b002516aa, type: 2}
-  holdMat: {fileID: 2100000, guid: 62e7ee0692714544a927d2feaca6c2f6, type: 2}
-  inactiveMat: {fileID: 2100000, guid: 493fe30ae6df68e428b8efee53f503ed, type: 2}
 --- !u!54 &1747151256
 Rigidbody:
   m_ObjectHideFlags: 0

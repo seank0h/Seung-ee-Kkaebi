@@ -7,18 +7,19 @@ public class TeleportToggle : MonoBehaviour
 {    
     public GameObject characterController;
 	public GameObject[] teleportPositions;
-	public Transform[] teleportInteractablePositions;
 	public int teleportIndex;
 	public int currIndex;
-
-   public bool teleportDelay;
-   public float teleportTimer;
-
-    [Header("Fade Screen")]
-    public Image blackScreen;
-
+    public Image fadeScreen;
     public bool teleportLock;
 
+    private GameObject trigger_L,trigger_R;
+    
+    [SerializeField]
+    private Material activeMat;
+    [SerializeField]
+    private Material holdMat;
+    [SerializeField]
+    private Material inactiveMat;
     
     void Start()
     {
@@ -26,47 +27,39 @@ public class TeleportToggle : MonoBehaviour
 		teleportIndex = 0;
 		currIndex = 0;
 
-
+        trigger_L = GameObject.Find("Teleport_L");
+        trigger_R = GameObject.Find("Teleport_R");
 	}
 
-    // Update is called once per frame
-    void Update()
+    public void ButtonTeleport(bool direction)
     {
-        if(teleportDelay)
-        {
-            teleportTimer-=Time.deltaTime;
-        }
-    }
-	public void DoTeleport()
-	{
-		
-		var character = characterController;
-		var characterTransform = character.transform;
-		var destTransform = teleportPositions[teleportIndex];
+		trigger_L.GetComponent<SphereCollider>().isTrigger = false;
+        trigger_R.GetComponent<SphereCollider>().isTrigger = false;
 
-		Vector3 destPosition = destTransform.transform.position;
-		//destPosition.y += character.transform.position.y * 0.5f;
-		Quaternion destRotation = teleportPositions[teleportIndex].transform.rotation;// destTransform.rotation;
-		BlinkTransition();
-        if(teleportTimer<=0)
-        {
-            Debug.Log("cAME TO teleport");
-            character.transform.position = destPosition;
-		    character.transform.rotation = destRotation;
-            teleportTimer=1.0f;
-            teleportDelay = false;
-        }
-		
-       
-	}
-	public void BlinkTransition()
-    {
-        teleportDelay = true;
+        //true = left, false = right
+		if (direction == true && teleportLock == false){
+            trigger_L.GetComponent<MeshRenderer>().material = holdMat;
+			if (currIndex == 3){
+				teleportIndex = 0;
+                currIndex = teleportIndex;
+			}else{
+                teleportIndex++;
+                currIndex = teleportIndex;
+            }	
+		}if (direction == false && teleportLock == false){
+            trigger_R.GetComponent<MeshRenderer>().material = holdMat;
+			if (currIndex == 0){
+				teleportIndex = teleportPositions.Length - 1;
+                currIndex = teleportIndex;
+			}else{
+                teleportIndex--;
+                currIndex = teleportIndex;
+            }
+		}
 		StartCoroutine(FadeInOut());
-    }
+	}
 
-	private IEnumerator FadeInOut()
-    {
+	private IEnumerator FadeInOut(){
         // Make sure teleport can't be called again
         teleportLock = true;
             
@@ -76,15 +69,28 @@ public class TeleportToggle : MonoBehaviour
         while (currentTime < 1)
         {
             // Fade out screen
-            blackScreen.color = Color.Lerp(Color.clear, Color.black, currentTime);
+            fadeScreen.color = Color.Lerp(Color.clear, Color.black, currentTime);
             // Wait one frame
             yield return null;
             // Increment Timer
             currentTime += Time.deltaTime;
         }
         // Set full black screen
-        blackScreen.color = Color.black;
-            
+        fadeScreen.color = Color.black;
+        
+        // TELEPORT HERE
+        var character = characterController;
+		var characterTransform = character.transform;
+		var destTransform = teleportPositions[teleportIndex];
+
+		Vector3 destPosition = destTransform.transform.position;
+		//destPosition.y += character.transform.position.y * 0.5f;
+		Quaternion destRotation = teleportPositions[teleportIndex].transform.rotation;// destTransform.rotation;
+		
+        Debug.Log("TELEPORT TO : " + teleportPositions[teleportIndex]);
+        character.transform.position = destPosition;
+		character.transform.rotation = destRotation;
+        
         // Wait one second
         yield return new WaitForSeconds(0.1f);
         // Reset timer again
@@ -93,7 +99,7 @@ public class TeleportToggle : MonoBehaviour
         while (currentTime < 1)
         {
             // Fade in screen
-            blackScreen.color = Color.Lerp(Color.black, Color.clear, currentTime);
+            fadeScreen.color = Color.Lerp(Color.black, Color.clear, currentTime);
              
             // Wait one frame
             yield return null;
@@ -101,41 +107,13 @@ public class TeleportToggle : MonoBehaviour
             currentTime += Time.deltaTime;
         }
         // Allow teleporting again
-       teleportLock = false;
+        teleportLock = false;
+
+        trigger_L.GetComponent<MeshRenderer>().material = inactiveMat;
+        trigger_R.GetComponent<MeshRenderer>().material = inactiveMat;
+        trigger_L.GetComponent<SphereCollider>().isTrigger = true;
+        trigger_R.GetComponent<SphereCollider>().isTrigger = true;
     }
 
-	public void ButtonTeleport(bool direction)
-    {
-		//false = left, true = right
-		if (direction)
-		{
-			if (currIndex == 3)
-			{
-				teleportIndex = 0;
-                currIndex = teleportIndex;
-			}
-			else
-            {
-                teleportIndex++;
-                currIndex = teleportIndex;
-            }
-				
-		}
-		if (direction==false)
-        {
-			if (currIndex == 0)
-			{
-				teleportIndex = teleportPositions.Length - 1;
-                 currIndex = teleportIndex;
-			}
-			else
-            {
-                teleportIndex--;
-                currIndex = teleportIndex;
-            }
-				
-		}
-		DoTeleport();
-
-	}
+	
 }
