@@ -36,14 +36,8 @@ public class MoveRandomly : MonoBehaviour
         }
     }
 
-    Vector3 GetNewPosition(){
-        
-            if(patrolIndex==patrolPositions.Count)
-            {
-            patrolIndex = 0;
-            }
-            else
-            patrolIndex++;
+    Vector3 getNewRandomPosition(){
+         patrolIndex = Random.Range(0, 19);
 
         newPatrolPos = patrolPositions[patrolIndex].transform.position;
         return newPatrolPos;
@@ -62,6 +56,6 @@ public class MoveRandomly : MonoBehaviour
 
     void GetNewPath(){
         Debug.Log("Called GetNewPath");
-        navMeshAgent.SetDestination(GetNewPosition());
+        navMeshAgent.SetDestination(getNewRandomPosition());
     }
 }
