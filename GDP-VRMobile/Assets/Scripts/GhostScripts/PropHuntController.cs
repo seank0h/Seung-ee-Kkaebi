@@ -40,10 +40,13 @@ public class PropHuntController : MonoBehaviour
                 GameObject gameObjectHit;
                 if (Physics.Raycast(cameraRoot.transform.position, cameraRoot.transform.TransformDirection(Vector3.forward), out hit, 10f))
                 {
+                    
                     Debug.DrawRay(cameraRoot.transform.position, cameraRoot.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
                     Debug.Log("Raycast hit");
                     if (hit.transform.gameObject.tag == "Prop")
                     {
+                        if (changeBack)
+                            playerPropMesh.gameObject.SetActive(true);
                         Debug.Log("Raycast hit Prop");
                         gameObjectHit = hit.transform.gameObject;
                         playerMesh.sharedMesh = gameObjectHit.GetComponent<MeshFilter>().sharedMesh;

@@ -63,4 +63,11 @@ public class BasicGhostBehavior : MonoBehaviour
     {
         beingSeen = false;
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.name=="OVRHandPrefab_L" || other.gameObject.name=="OVRHandPrefab_R")
+        {
+            Debug.Log("I got Hit by hands");
+        }
+    }
 }

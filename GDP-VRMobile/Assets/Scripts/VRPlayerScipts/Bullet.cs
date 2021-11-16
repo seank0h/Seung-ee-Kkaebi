@@ -30,5 +30,10 @@ public class Bullet : MonoBehaviour
             speed = 0f;
             Destroy(gameObject);
         }
+        if(co.gameObject.tag == "Dokkaebi"){
+            speed = 0f;
+            Destroy(gameObject);
+            Debug.Log("COLLISION WITH DOKKAEBI");
+        }
     }
 }
