@@ -11,7 +11,7 @@ public class PlayerAlart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Dokkaebi");
+        player = GameObject.Find("Player");
         this.gameObject.GetComponent<Renderer>().material.color = Color.black;
     }
 

@@ -63,7 +63,7 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     p_halo.enabled = false;
                     p_reset = false;
                 }
-                //Debug.Log(hit.collider.name + " : " + hit.distance);
+                Debug.Log(hit.collider.name + " : " + hit.distance);
                 if (hit.distance <= 3.0f)
                 {
                     Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
