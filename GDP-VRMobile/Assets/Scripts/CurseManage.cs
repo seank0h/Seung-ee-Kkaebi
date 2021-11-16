@@ -27,7 +27,7 @@ public class CurseManage : MonoBehaviour
         }
         else
         {
-            halo.enabled = false;
+            // halo.enabled = false;
             halo2.FindProperty("m_Color").colorValue = Color.white;
             halo2.ApplyModifiedProperties();
         }

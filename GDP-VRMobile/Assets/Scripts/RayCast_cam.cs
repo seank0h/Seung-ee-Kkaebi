@@ -63,14 +63,20 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     p_halo.enabled = false;
                     p_reset = false;
                 }
+                c_hold_time = 0;
+                if (c_reset)
+                {
+                    c_halo.enabled = false;
+                    c_reset = false;
+                }
                 Debug.Log(hit.collider.name + " : " + hit.distance);
                 if (hit.distance <= 3.0f)
                 {
                     Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
                     c_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
+                    Debug.Log(c_halo);
                     c_halo.enabled = true;
                     c_reset = true;
-                    //Debug.Log(hold_time);
                     if (Input.GetKey("q") || isBtnDown)
                     {
                         Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.blue);
