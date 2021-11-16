@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class mobile2vr : MonoBehaviour
 {
+    public static mobile2vr mobileToVRCl;
     int life, startNPC, playermat, prop, duststorm;
     string[] curse = new string[2];
     string[] npcmat = new string[2];
@@ -137,5 +138,17 @@ public class mobile2vr : MonoBehaviour
                 }
             }
         }
+    }
+    public void NPCDetection()
+    {
+
+    }
+    public void CurseDetection()
+    {
+
+    }
+    public void DustStormInteraction()
+    {
+
     }
 }
