@@ -18,7 +18,6 @@ public class BasicGhostBehavior : MonoBehaviour
     void Start()
     {
         ghostRenderer = this.GetComponent<Renderer>();
-
         timer = timeToKill;
         healthPoints = 10;
     }
@@ -46,8 +45,7 @@ public class BasicGhostBehavior : MonoBehaviour
     }
     public void TakeDamage(float dmg)
     {
-        Debug.Log("Taking Damage");
-        healthPoints -= dmg;
+
     }
     public void Death()
     {

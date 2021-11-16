@@ -15,7 +15,7 @@ public class mobileClient : MonoBehaviour{
 
     //VR -> Mobile
     private int bulletCol=0, catchMobile=0, dustClean=0, isFlare=0;  //boolean
-    private int vrPos=0;  //0~3
+    private int vrPos=-1;  //0~3
     public GameObject lHand, rHand, flare;
     private Vector3 lPos, rPos, flarePos;  //positions (x,y,z)
 

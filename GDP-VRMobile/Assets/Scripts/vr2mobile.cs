@@ -55,7 +55,7 @@ public class vr2mobile : MonoBehaviour
         rHand = mobileClient.cl.getRHand();
         flarePos = mobileClient.cl.getFlare();
 
-        if (startNPC == 2)
+        if (vrPos[0] == 0)
         {
             // NPC ¿òÁ÷ÀÓ
             mobileClient.cl.setstartNPCMove(3);
@@ -100,12 +100,9 @@ public class vr2mobile : MonoBehaviour
         
         if (catchMobile[0] != catchMobile[1])
         {
-            if (catchMobile[0] == 1)
-            {
                 Debug.Log("Jot");
                 int life = mobileClient.cl.getLife();
                 mobileClient.cl.setLife(life - 1);
-            }
         }
         
         if (vrPos[0] != vrPos[1])

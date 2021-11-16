@@ -19,13 +19,14 @@ public class MoveRandomly : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         firstStart = true;
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if(firstStart)
+        if(firstStart || mobile2vr.mobileToVRCl.NPCMovementStart())
         {
             GetNewPath();
             firstStart = false;

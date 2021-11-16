@@ -12,7 +12,7 @@ public class VRDustParticleEffect : MonoBehaviour
     void Start()
     {
         effectOn = false;
-        NormalEmissionRate = 300;
+        NormalEmissionRate = 325;
     }
 
     // Update is called once per frame
