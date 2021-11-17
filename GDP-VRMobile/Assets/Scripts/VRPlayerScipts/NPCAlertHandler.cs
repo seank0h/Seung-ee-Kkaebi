@@ -8,10 +8,12 @@ public class NPCAlertHandler : MonoBehaviour
     public GameObject player;
     float stay = 0;
     float release = 0;
+    float speed;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        speed = this.gameObject.GetComponent<NavMeshAgent>().speed;
     }
 
     // Update is called once per frame
@@ -39,6 +41,7 @@ public class NPCAlertHandler : MonoBehaviour
                 stay = 0;
                 release = 0;
                 this.gameObject.GetComponent<Renderer>().material.color = Color.black;
+                this.gameObject.GetComponent<NavMeshAgent>().speed = speed;
             }
     }
     

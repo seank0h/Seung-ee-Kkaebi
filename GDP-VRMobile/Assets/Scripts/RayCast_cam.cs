@@ -20,8 +20,6 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     float c_hold_time = 0;
     float n_hold_time = 0;
 
-    char[] c_house = new char[] { '0', '0', '0', '0' };
-    char[] s_npc = new char[] { '0', '0', '0', '0', '0' };
     // Start is called before the first frame update
     void Start()
     {
@@ -69,24 +67,40 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     c_halo.enabled = false;
                     c_reset = false;
                 }
-                Debug.Log(hit.collider.name + " : " + hit.distance);
+                // Debug.Log(hit.collider.name + " : " + hit.distance);
                 if (hit.distance <= 3.0f)
                 {
                     Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
                     c_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
-                    Debug.Log(c_halo);
+                    // Debug.Log(c_halo);
                     c_halo.enabled = true;
                     c_reset = true;
                     if (Input.GetKey("q") || isBtnDown)
                     {
                         Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.blue);
                         c_hold_time += Time.deltaTime;
-                        Debug.Log(c_hold_time);
+                        //Debug.Log(c_hold_time);
                         if (c_hold_time >= 3.0f)
                         {
                             c_hold_time = 3.0f;
                             CurseManage curse = hit.collider.gameObject.GetComponent<CurseManage>();
                             curse.cursed = true;
+                            if(hit.collider.gameObject.name == "curse1")
+                            {
+                                vr2mobile.vm.curse_send(0);
+                            }
+                            else if (hit.collider.gameObject.name == "curse2")
+                            {
+                                vr2mobile.vm.curse_send(1);
+                            }
+                            else if (hit.collider.gameObject.name == "curse3")
+                            {
+                                vr2mobile.vm.curse_send(2);
+                            }
+                            else if (hit.collider.gameObject.name == "curse4")
+                            {
+                                vr2mobile.vm.curse_send(3);
+                            }
                         }
                         return;
                     }
@@ -115,16 +129,38 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     n_halo.enabled = true;
                     n_reset = true;
                     //Debug.Log(hold_time);
+                    Debug.Log(vr2mobile.vm);
                     if (Input.GetKey("q") || isBtnDown)
                     {
                         Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.blue);
                         n_hold_time += Time.deltaTime;
-                        Debug.Log(n_hold_time);
+                        //Debug.Log(n_hold_time);
                         if (n_hold_time >= 0.8f)
                         {
                             n_hold_time = 0.8f;
                             PlayerAlart sturned = hit.collider.gameObject.GetComponent<PlayerAlart>();
                             sturned.sturn = true;
+
+                            if (hit.collider.gameObject.name == "NPC1")
+                            {
+                                vr2mobile.vm.strun_send(0);
+                            }
+                            else if (hit.collider.gameObject.name == "NPC2")
+                            {
+                                vr2mobile.vm.strun_send(1);
+                            }
+                            else if (hit.collider.gameObject.name == "NPC3")
+                            {
+                                vr2mobile.vm.strun_send(2);
+                            }
+                            else if (hit.collider.gameObject.name == "NPC4")
+                            {
+                                vr2mobile.vm.strun_send(3);
+                            }
+                            else if (hit.collider.gameObject.name == "NPC5")
+                            {
+                                vr2mobile.vm.strun_send(4);
+                            }
                         }
                         return;
                     }
