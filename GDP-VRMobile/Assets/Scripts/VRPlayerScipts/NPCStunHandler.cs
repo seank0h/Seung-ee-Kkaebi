@@ -24,30 +24,35 @@ public class NPCStunHandler : MonoBehaviour
         {
             NPCList[0].gameObject.GetComponent<Renderer>().material.color = Color.red;
             NPCList[0].gameObject.GetComponent<NavMeshAgent>().speed = 0;
+            NPCList[0].gameObject.GetComponent<CapsuleCollider>().enabled = false;
             mobile2vr.mobileToVRCl.npcStunState = -1;
         }
         else if (mobile2vr.mobileToVRCl.NPCStunState() == 1)
         {
             NPCList[1].gameObject.GetComponent<Renderer>().material.color = Color.red;
             NPCList[1].gameObject.GetComponent<NavMeshAgent>().speed = 0;
+            NPCList[1].gameObject.GetComponent<CapsuleCollider>().enabled = false;
             mobile2vr.mobileToVRCl.npcStunState = -1;
         }
         else if (mobile2vr.mobileToVRCl.NPCStunState() == 2)
         {
             NPCList[2].gameObject.GetComponent<Renderer>().material.color = Color.red;
             NPCList[2].gameObject.GetComponent<NavMeshAgent>().speed = 0;
+            NPCList[2].gameObject.GetComponent<CapsuleCollider>().enabled = false;
             mobile2vr.mobileToVRCl.npcStunState = -1;
         }
         else if (mobile2vr.mobileToVRCl.NPCStunState() == 3)
         {
             NPCList[3].gameObject.GetComponent<Renderer>().material.color = Color.red;
             NPCList[3].gameObject.GetComponent<NavMeshAgent>().speed = 0;
+            NPCList[3].gameObject.GetComponent<CapsuleCollider>().enabled = false;
             mobile2vr.mobileToVRCl.npcStunState = -1;
         }
         else if (mobile2vr.mobileToVRCl.NPCStunState() == 4)
         {
             NPCList[4].gameObject.GetComponent<Renderer>().material.color = Color.red;
             NPCList[4].gameObject.GetComponent<NavMeshAgent>().speed = 0;
+            NPCList[4].gameObject.GetComponent<CapsuleCollider>().enabled = false;
             mobile2vr.mobileToVRCl.npcStunState = -1;
         }
 

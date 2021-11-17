@@ -12,6 +12,7 @@ public class mobile2vr : MonoBehaviour
     char[] n_detail = new char[5];
     public int npcStunState=-1;
     public bool firstStart = false;
+
     // Start is called before the first frame update
     private void Awake()
     {
