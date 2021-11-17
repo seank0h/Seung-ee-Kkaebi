@@ -13,6 +13,13 @@ public class mobile2vr : MonoBehaviour
     public int npcStunState=-1;
     public bool firstStart = false;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        if (mobileToVRCl && mobileToVRCl != this)
+            Destroy(this);
+        else
+            mobileToVRCl = this;
+    }
     void Start()
     {
         life = mobileClient.cl.getLife();
