@@ -25,8 +25,8 @@ public class MoveRandomly : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if(firstStart || mobile2vr.mobileToVRCl.NPCMovementStart())
+        // (mobile2vr.mobileToVRCl.NPCMovementStart()) || vr2mobile.vm.go()
+        if (firstStart)
         {
             GetNewPath();
             firstStart = false;

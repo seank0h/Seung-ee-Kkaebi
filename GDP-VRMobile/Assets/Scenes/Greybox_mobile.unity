@@ -313,6 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04ee0df1343b89438dba16602889c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   sturn: 0
 --- !u!122 &278640486
 Halo:
@@ -7139,7 +7140,7 @@ GameObject:
   - component: {fileID: 1550122775587107864}
   - component: {fileID: 1550122775587107865}
   m_Layer: 0
-  m_Name: PlasterWall_10
+  m_Name: curse2
   m_TagString: Interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7199,7 +7200,7 @@ GameObject:
   - component: {fileID: 1550122775940033453}
   - component: {fileID: 1550122775940033452}
   m_Layer: 0
-  m_Name: PlasterWall_10
+  m_Name: curse4
   m_TagString: Interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7259,7 +7260,7 @@ GameObject:
   - component: {fileID: 1550122776114850940}
   - component: {fileID: 1550122776114850939}
   m_Layer: 0
-  m_Name: PlasterWall_10
+  m_Name: curse1
   m_TagString: Interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26550,7 +26551,7 @@ GameObject:
   - component: {fileID: 6494559516385236010}
   - component: {fileID: 6494559516385236009}
   m_Layer: 0
-  m_Name: CurseableHouse3
+  m_Name: curse3
   m_TagString: Interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42255,6 +42256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04ee0df1343b89438dba16602889c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 974238579172251042}
   sturn: 0
 --- !u!122 &8127291306405897086
 Halo:
@@ -42374,6 +42376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04ee0df1343b89438dba16602889c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 974238579172251042}
   sturn: 0
 --- !u!122 &8127291307291227978
 Halo:
@@ -42607,6 +42610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04ee0df1343b89438dba16602889c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 974238579172251042}
   sturn: 0
 --- !u!33 &8127291307459155802
 MeshFilter:
@@ -42753,6 +42757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04ee0df1343b89438dba16602889c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 974238579172251042}
   sturn: 0
 --- !u!122 &8127291307557194631
 Halo:
@@ -42975,6 +42980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04ee0df1343b89438dba16602889c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 974238579172251042}
   sturn: 0
 --- !u!195 &8127291307567877367
 NavMeshAgent:

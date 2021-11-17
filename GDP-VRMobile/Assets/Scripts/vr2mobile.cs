@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class vr2mobile : MonoBehaviour
 {
+    public static vr2mobile vm;
     // 0 번째 원소는 현재 상태, 1번째 원소는 이전 상태를 말함
     int[] bulletCol = new int[2];
     int[] catchMobile = new int[2];
@@ -18,6 +19,9 @@ public class vr2mobile : MonoBehaviour
     bool effectOn;
     float lowerEmissionRate;
     public float NormalEmissionRate;
+    char[] c_detail = new char[4];
+    char[] n_detail = new char[5];
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +40,13 @@ public class vr2mobile : MonoBehaviour
         effectOn = false;
         NormalEmissionRate = 300;
         mobileClient.cl.setstartNPCMove(1);
+        c_detail = mobileClient.cl.getCurse().ToCharArray();
+        n_detail = mobileClient.cl.getNPCMat().ToCharArray();
+
+        if (vm && vm != this)
+            Destroy(this);
+        else
+            vm = this;
     }
 
     // Update is called once per frame
@@ -54,11 +65,13 @@ public class vr2mobile : MonoBehaviour
         lHand = mobileClient.cl.getLHand();
         rHand = mobileClient.cl.getRHand();
         flarePos = mobileClient.cl.getFlare();
+        c_detail = mobileClient.cl.getCurse().ToCharArray();
+        n_detail = mobileClient.cl.getNPCMat().ToCharArray();
 
         if (vrPos[0] == 0)
         {
-            // NPC 움직임
             mobileClient.cl.setstartNPCMove(3);
+            //NPC움짐익
         }
 
         if (dustClean[0] != dustClean[1])
@@ -109,5 +122,26 @@ public class vr2mobile : MonoBehaviour
         {
             // vr캐릭터 보이는 위치를 이동해야겠지
         }
+    }
+
+    public bool go()
+    {
+        return mobileClient.cl.getstartNPCMove() == 3;
+    }
+
+    public void curse_send(int index)
+    {
+        c_detail[index] = '1';
+        string result = new string(c_detail);
+        mobileClient.cl.setCurse(result);
+    }
+
+    public void strun_send(int index)
+    {
+        Debug.Log("index : " + index);
+        n_detail[index] = '1';
+        string result = new string(n_detail);
+        Debug.Log("n_detail : " + result);
+        mobileClient.cl.setCurse(result);
     }
 }
