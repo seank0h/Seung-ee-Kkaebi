@@ -564,7 +564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: {fileID: 1020760111}
   projectilePrefab: {fileID: 7383411166283806937, guid: 07fb304b2a293e24583cdadf8412a3a1, type: 3}
-  positionPlaceHolder: {fileID: 0}
+  positionPlaceHolder: {fileID: 899294152}
   shootMode: 1
 --- !u!4 &63358258
 Transform:
@@ -6022,7 +6022,7 @@ MonoBehaviour:
   threshold: 0.05
   skeleton: {fileID: 2115719984}
   gestures:
-  - name: BatSpawner
+  - name: R1
     fingerDatas:
     - {x: 0.00000003521165, y: 0.00000010722605, z: 0.0000003764635}
     - {x: 0.00000003521165, y: 0.00000010722605, z: 0.0000003764635}
@@ -6048,6 +6048,76 @@ MonoBehaviour:
     - {x: -0.06893297, y: -0.015469251, z: -0.0076475223}
     - {x: -0.06345304, y: -0.015736995, z: 0.006847724}
     - {x: -0.060370192, y: -0.018297706, z: 0.019502373}
+    onRecognized:
+      m_PersistentCalls:
+        m_Calls: []
+  - name: R2
+    fingerDatas:
+    - {x: -0.000000047318707, y: 0.00000037910493, z: -0.00000011941002}
+    - {x: -0.000000047318707, y: 0.00000037910493, z: -0.00000011941002}
+    - {x: -0.020069368, y: -0.011553961, z: -0.010496711}
+    - {x: -0.038370434, y: -0.024881292, z: -0.020747816}
+    - {x: -0.062238973, y: -0.046355188, z: -0.025876723}
+    - {x: -0.09055257, y: -0.06477722, z: -0.026819227}
+    - {x: -0.09599627, y: -0.007315629, z: -0.02355084}
+    - {x: -0.122582674, y: -0.03416707, z: -0.026821826}
+    - {x: -0.12278374, y: -0.058447707, z: -0.025786191}
+    - {x: -0.09564664, y: -0.002543461, z: -0.0017255249}
+    - {x: -0.11277355, y: -0.041904364, z: -0.0018603504}
+    - {x: -0.08540587, y: -0.044782497, z: -0.003167378}
+    - {x: -0.08869378, y: -0.0065296483, z: 0.017465413}
+    - {x: -0.100508384, y: -0.04358999, z: 0.014710186}
+    - {x: -0.074289866, y: -0.04330021, z: 0.010390933}
+    - {x: -0.0340737, y: -0.009420181, z: 0.022998763}
+    - {x: -0.07789596, y: -0.013692063, z: 0.03505461}
+    - {x: -0.09055399, y: -0.041344948, z: 0.030716363}
+    - {x: -0.07296808, y: -0.045761112, z: 0.021563005}
+    - {x: -0.10887091, y: -0.08067757, z: -0.031046072}
+    - {x: -0.11870013, y: -0.08027225, z: -0.022913463}
+    - {x: -0.069850795, y: -0.02547217, z: -0.0062885038}
+    - {x: -0.058761105, y: -0.02466066, z: 0.007979682}
+    - {x: -0.059957474, y: -0.028668337, z: 0.017011365}
+    onRecognized:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1247745695}
+          m_TargetAssemblyTypeName: GestureSpawner, Assembly-CSharp
+          m_MethodName: OnActivate
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - name: Bat Spawner
+    fingerDatas:
+    - {x: -0.00000022377777, y: -0.0000000099472635, z: 0.000000372007}
+    - {x: -0.00000022377777, y: -0.0000000099472635, z: 0.000000372007}
+    - {x: -0.020069033, y: -0.011553776, z: -0.010496758}
+    - {x: -0.03849663, y: -0.025243426, z: -0.020019474}
+    - {x: -0.06708853, y: -0.039316386, z: -0.026467053}
+    - {x: -0.087791435, y: -0.04374022, z: -0.00012683889}
+    - {x: -0.09599605, y: -0.007316397, z: -0.023551093}
+    - {x: -0.13272372, y: -0.0150055615, z: -0.018033545}
+    - {x: -0.15579852, y: -0.021589203, z: -0.014176378}
+    - {x: -0.09564668, y: -0.0025431055, z: -0.0017257618}
+    - {x: -0.13685323, y: -0.013457094, z: 0.0033326452}
+    - {x: -0.16297594, y: -0.021518825, z: 0.0067455256}
+    - {x: -0.08869354, y: -0.006528955, z: 0.017464947}
+    - {x: -0.12662552, y: -0.014993344, z: 0.02067364}
+    - {x: -0.15239097, y: -0.021078292, z: 0.022955574}
+    - {x: -0.03407403, y: -0.009420155, z: 0.022999285}
+    - {x: -0.07789573, y: -0.013691096, z: 0.035053644}
+    - {x: -0.10851177, y: -0.016187163, z: 0.03546141}
+    - {x: -0.12838183, y: -0.02020692, z: 0.036724877}
+    - {x: -0.08365944, y: -0.038545236, z: 0.023582159}
+    - {x: -0.17728412, y: -0.0253019, z: -0.0090896925}
+    - {x: -0.18682161, y: -0.028106986, z: 0.010292485}
+    - {x: -0.17587037, y: -0.027609995, z: 0.023668265}
+    - {x: -0.15002213, y: -0.023808084, z: 0.035808463}
     onRecognized:
       m_PersistentCalls:
         m_Calls:
@@ -10411,31 +10481,7 @@ MonoBehaviour:
   debugMode: 1
   notRecognize:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 837088559}
-        m_TargetAssemblyTypeName: GestureShootBullet, Assembly-CSharp
-        m_MethodName: StopShoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 63358257}
-        m_TargetAssemblyTypeName: GestureShootFlare, Assembly-CSharp
-        m_MethodName: StopShoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!4 &1523416790
 Transform:
   m_ObjectHideFlags: 0
