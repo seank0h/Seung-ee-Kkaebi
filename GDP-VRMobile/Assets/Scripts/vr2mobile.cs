@@ -15,7 +15,7 @@ public class vr2mobile : MonoBehaviour
     Vector3 lHand, rHand, flarePos;
     public GameObject flare;
     public GameObject bullet;
-    public ParticleSystem dustEffect;
+    //public ParticleSystem dustEffect;
     bool effectOn;
     float lowerEmissionRate;
     public float NormalEmissionRate;
@@ -68,12 +68,19 @@ public class vr2mobile : MonoBehaviour
         c_detail = mobileClient.cl.getCurse().ToCharArray();
         n_detail = mobileClient.cl.getNPCMat().ToCharArray();
 
+        mobileClient.cl.setstartNPCMove(1);
+        //Debug.Log(mobileClient.cl.getstartNPCMove());
+
+        
         if (vrPos[0] == 0)
         {
             mobileClient.cl.setstartNPCMove(3);
-            //NPC움짐익
+            //Debug.Log("스타트가 3인가? : " + mobileClient.cl.getstartNPCMove());
         }
 
+        //Debug.Log(mobileClient.cl.getVRPos());
+
+        /*
         if (dustClean[0] != dustClean[1])
         {
             if (dustClean[0] == 1)
@@ -97,7 +104,7 @@ public class vr2mobile : MonoBehaviour
                     effectOn = false;
                 }
             }
-        }
+        }*/
 
         if (isFlare[0] != isFlare[1])
         {
@@ -105,17 +112,19 @@ public class vr2mobile : MonoBehaviour
             {
                 Instantiate(flare, flarePos, Quaternion.identity);
             }
-            else if (isFlare[0] == 0)
+            else if (isFlare[0] == 2)
             {
                 Instantiate(bullet, lHand, Quaternion.identity);
             }
         }
         
+
         if (catchMobile[0] != catchMobile[1])
         {
-                Debug.Log("Jot");
-                int life = mobileClient.cl.getLife();
-                mobileClient.cl.setLife(life - 1);
+            Debug.Log("Jot");
+            int life = mobileClient.cl.getLife();
+            mobileClient.cl.setLife(life - 1);
+            Debug.Log(mobileClient.cl.getLife());
         }
         
         if (vrPos[0] != vrPos[1])
@@ -138,10 +147,9 @@ public class vr2mobile : MonoBehaviour
 
     public void strun_send(int index)
     {
-        Debug.Log("index : " + index);
+        // Debug.Log("index : " + index);
         n_detail[index] = '1';
         string result = new string(n_detail);
-        Debug.Log("n_detail : " + result);
-        mobileClient.cl.setCurse(result);
+        mobileClient.cl.setNPCMat(result);
     }
 }

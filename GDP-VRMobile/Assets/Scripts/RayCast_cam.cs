@@ -61,12 +61,6 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     p_halo.enabled = false;
                     p_reset = false;
                 }
-                c_hold_time = 0;
-                if (c_reset)
-                {
-                    c_halo.enabled = false;
-                    c_reset = false;
-                }
                 // Debug.Log(hit.collider.name + " : " + hit.distance);
                 if (hit.distance <= 3.0f)
                 {
@@ -79,12 +73,13 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     {
                         Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.blue);
                         c_hold_time += Time.deltaTime;
-                        //Debug.Log(c_hold_time);
+                        Debug.Log(c_hold_time);
                         if (c_hold_time >= 3.0f)
                         {
                             c_hold_time = 3.0f;
                             CurseManage curse = hit.collider.gameObject.GetComponent<CurseManage>();
                             curse.cursed = true;
+
                             if(hit.collider.gameObject.name == "curse1")
                             {
                                 vr2mobile.vm.curse_send(0);
