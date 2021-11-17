@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GestureShoot : MonoBehaviour
+public class GestureShootBullet : MonoBehaviour
 {
     [Header("SpawnTransform")]
     // Transform where the bullet have to be Instantiated

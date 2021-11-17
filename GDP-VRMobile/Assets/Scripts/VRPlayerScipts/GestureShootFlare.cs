@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GestureShoot : MonoBehaviour
+public class GestureShootFlare : MonoBehaviour
 {
     [Header("SpawnTransform")]
     // Transform where the bullet have to be Instantiated
     public Transform hand;
 
-    [Header("BulletPrefab")]
+    [Header("FlarePrefab")]
     // GameObject used as Bullet to Instantiate
     public GameObject projectilePrefab;
 
@@ -36,7 +36,7 @@ public class GestureShoot : MonoBehaviour
             case ShootMode.Auto:
                 Debug.Log("Shooting in Auto");
                 if (Time.time >= timeToFire){
-                    timeToFire = Time.time + 1.0f / projectilePrefab.GetComponent<Bullet>().fireRate;
+                    timeToFire = Time.time + 1.0f / projectilePrefab.GetComponent<Flare>().fireRate;
                     Shoot();
                 }
                 break;
@@ -45,7 +45,7 @@ public class GestureShoot : MonoBehaviour
                 if (!hasShoot){
                     hasShoot = true;
                     Debug.Log("Shooting in Single");
-                    timeToFire = Time.time + 1.0f / projectilePrefab.GetComponent<Bullet>().fireRate;
+                    timeToFire = Time.time + 1.0f / projectilePrefab.GetComponent<Flare>().fireRate;
                     Shoot();
                 }
                 break;
@@ -53,9 +53,18 @@ public class GestureShoot : MonoBehaviour
     }
 
     private void Shoot(){
+        RaycastHit hit;
+        if(Physics.Raycast(gameObject.transform.position,gameObject.transform.forward,out hit))
+        {
+            Debug.Log("Shootflare");
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow); 
+            Vector3 hitPosition = hit.point;
+            Instantiate(projectilePrefab, hitPosition,transform.rotation);
+        }
+
         // In the End we will going to shoot a bullet
-        GameObject bullet = Instantiate(projectilePrefab, hand.position, Quaternion.identity);
-        bullet.transform.localRotation = hand.rotation;
+        //GameObject flare = Instantiate(projectilePrefab, hand.position, Quaternion.identity);
+        //flare.transform.localRotation = hand.rotation;
     }
 
     // Method to put in the Event when the gesture are not recognized

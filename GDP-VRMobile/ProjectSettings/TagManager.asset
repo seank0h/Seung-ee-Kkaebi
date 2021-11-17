@@ -14,6 +14,7 @@ TagManager:
   - RightButton
   - NPC
   - Dokkaebi
+  - Flare
   layers:
   - Default
   - TransparentFX
