@@ -10,7 +10,7 @@ public class GestureShoot : MonoBehaviour
 
     [Header("BulletPrefab")]
     // GameObject used as Bullet to Instantiate
-    public GameObject bulletPrefab;
+    public GameObject projectilePrefab;
 
     // Enum where we set the mode of shooting the bullet
     public enum ShootMode{
@@ -36,7 +36,7 @@ public class GestureShoot : MonoBehaviour
             case ShootMode.Auto:
                 Debug.Log("Shooting in Auto");
                 if (Time.time >= timeToFire){
-                    timeToFire = Time.time + 1.0f / bulletPrefab.GetComponent<Bullet>().fireRate;
+                    timeToFire = Time.time + 1.0f / projectilePrefab.GetComponent<Bullet>().fireRate;
                     Shoot();
                 }
                 break;
@@ -45,7 +45,7 @@ public class GestureShoot : MonoBehaviour
                 if (!hasShoot){
                     hasShoot = true;
                     Debug.Log("Shooting in Single");
-                    timeToFire = Time.time + 1.0f / bulletPrefab.GetComponent<Bullet>().fireRate;
+                    timeToFire = Time.time + 1.0f / projectilePrefab.GetComponent<Bullet>().fireRate;
                     Shoot();
                 }
                 break;
@@ -54,7 +54,7 @@ public class GestureShoot : MonoBehaviour
 
     private void Shoot(){
         // In the End we will going to shoot a bullet
-        GameObject bullet = Instantiate(bulletPrefab, hand.position, Quaternion.identity);
+        GameObject bullet = Instantiate(projectilePrefab, hand.position, Quaternion.identity);
         bullet.transform.localRotation = hand.rotation;
     }
 

@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 1020760111}
-  bulletPrefab: {fileID: 5322312882231739826, guid: 9acf6bc071192a1429a3c7b371133cec, type: 3}
+  projectilePrefab: {fileID: 0}
   shootMode: 0
 --- !u!4 &63358258
 Transform:
@@ -5681,7 +5681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 1020760111}
-  bulletPrefab: {fileID: 6637671774708327274, guid: 59654bc768a59e241a3052580650aa97, type: 3}
+  projectilePrefab: {fileID: 0}
   shootMode: 0
 --- !u!4 &782617001
 Transform:
@@ -5828,7 +5828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 1020760111}
-  bulletPrefab: {fileID: 1889091287430246979, guid: e017e862358d74648bf2193f6561e3e1, type: 3}
+  projectilePrefab: {fileID: 0}
   shootMode: 0
 --- !u!4 &837088560
 Transform:
@@ -8926,11 +8926,11 @@ MonoBehaviour:
   - {fileID: 985925417}
   teleportIndex: 0
   currIndex: 0
-  fadeScreen: {fileID: 0}
+  fadeScreen: {fileID: 864704985}
   teleportLock: 0
-  activeMat: {fileID: 0}
-  holdMat: {fileID: 0}
-  inactiveMat: {fileID: 0}
+  activeMat: {fileID: 2100000, guid: 9989d3b00f40c7643a89236b002516aa, type: 2}
+  holdMat: {fileID: 2100000, guid: 62e7ee0692714544a927d2feaca6c2f6, type: 2}
+  inactiveMat: {fileID: 2100000, guid: 493fe30ae6df68e428b8efee53f503ed, type: 2}
 --- !u!1 &1333821588
 GameObject:
   m_ObjectHideFlags: 0
