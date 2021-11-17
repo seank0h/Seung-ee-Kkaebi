@@ -27,6 +27,7 @@ public class PlayerAlart : MonoBehaviour
         {
             this.gameObject.GetComponent<Renderer>().material.color = Color.red;
             this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
+            this.ameObject.GetComponent<CapsuleCollider>().enabled = false;
         } else
         {
             if (distance <= 5)
