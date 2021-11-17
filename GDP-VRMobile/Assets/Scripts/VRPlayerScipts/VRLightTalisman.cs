@@ -9,6 +9,7 @@ public class VRLightTalisman : MonoBehaviour
     float timer = 5.0f;
     private void Start()
     {
+        vrClient.cl.setIsFlare(0);
         timer = 5.0f;
     }
     private void FixedUpdate()
@@ -22,17 +23,17 @@ public class VRLightTalisman : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other);
-        if(other.gameObject.tag=="Ghost")
+        if(other.gameObject.tag=="Dokkaebi")
         {
-            Debug.Log("Seeing Ghost");
+            Debug.Log("Seeing Dokkaebi");
             other.gameObject.GetComponent<BasicGhostBehavior>().BeingSeen();
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Ghost")
+        if (other.gameObject.tag == "Dokkaebi")
         {
-            Debug.Log("Seeing Ghost");
+            Debug.Log("Not Seeing Dokkaebi");
             other.gameObject.GetComponent<BasicGhostBehavior>().NotSeen();
         }
     }

@@ -6,25 +6,26 @@ public class BasicGhostBehavior : MonoBehaviour
 {
     public float timer;
     public float revealTimer;
-    public float timeToKill;
-    public float healthPoints;
     public bool beingSeen;
-    public bool dmgTickCalled;
     public bool shouldDie;
     Renderer ghostRenderer;
     public Material ghostMaterialTransparent;
     public Material ghostMaterialRevealed;
+    public float yPositionCalibration;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        yPositionCalibration = 1.0f;
         ghostRenderer = this.GetComponent<Renderer>();
-        timer = timeToKill;
-        healthPoints = 10;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+       
         if(beingSeen)
         {
             revealTimer -= Time.deltaTime;

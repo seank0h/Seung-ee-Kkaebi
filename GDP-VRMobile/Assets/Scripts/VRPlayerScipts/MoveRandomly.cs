@@ -7,7 +7,6 @@ public class MoveRandomly : MonoBehaviour
 {
     NavMeshAgent navMeshAgent;
     public float timeForNewPath;
-    bool inCoRoutine;
     public List<GameObject> patrolPositions;
     [SerializeField]
     int patrolIndex;
@@ -26,7 +25,7 @@ public class MoveRandomly : MonoBehaviour
     void Update()
     {
         // (mobile2vr.mobileToVRCl.NPCMovementStart()) || vr2mobile.vm.go()
-        if (firstStart)
+        if (firstStart && mobile2vr.mobileToVRCl.NPCMovementStart())
         {
             GetNewPath();
             firstStart = false;
@@ -52,7 +51,7 @@ public class MoveRandomly : MonoBehaviour
     {
         if (gameObject.transform.position.x == newPatrolPos.x && gameObject.transform.position.z==newPatrolPos.z)
         {
-            Debug.Log("GotToNewPosition");
+            
             return true;
         }
         else
@@ -61,7 +60,7 @@ public class MoveRandomly : MonoBehaviour
     }
 
     void GetNewPath(){
-        Debug.Log("Called GetNewPath");
+       
         navMeshAgent.SetDestination(GetNewPosition());
     }
 }

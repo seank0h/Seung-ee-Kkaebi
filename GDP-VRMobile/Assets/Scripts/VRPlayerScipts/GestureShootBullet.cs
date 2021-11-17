@@ -54,6 +54,7 @@ public class GestureShootBullet : MonoBehaviour
 
     private void Shoot(){
         // In the End we will going to shoot a bullet
+        vrClient.cl.setIsFlare(2);
         GameObject bullet = Instantiate(projectilePrefab, hand.position, Quaternion.identity);
         bullet.transform.localRotation = hand.rotation;
     }

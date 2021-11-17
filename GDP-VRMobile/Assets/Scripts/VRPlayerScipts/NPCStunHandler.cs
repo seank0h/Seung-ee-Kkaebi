@@ -20,6 +20,7 @@ public class NPCStunHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Stun Check: "+mobile2vr.mobileToVRCl.NPCStunState());
         if (mobile2vr.mobileToVRCl.NPCStunState() == 0)
         {
             NPCList[0].gameObject.GetComponent<Renderer>().material.color = Color.red;

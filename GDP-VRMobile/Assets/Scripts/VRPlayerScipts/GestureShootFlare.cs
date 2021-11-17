@@ -11,6 +11,7 @@ public class GestureShootFlare : MonoBehaviour
     [Header("FlarePrefab")]
     // GameObject used as Bullet to Instantiate
     public GameObject projectilePrefab;
+    public GameObject positionPlaceHolder;
 
     // Enum where we set the mode of shooting the bullet
     public enum ShootMode{
@@ -36,7 +37,7 @@ public class GestureShootFlare : MonoBehaviour
             case ShootMode.Auto:
                 Debug.Log("Shooting in Auto");
                 if (Time.time >= timeToFire){
-                    timeToFire = Time.time + 1.0f / projectilePrefab.GetComponent<Flare>().fireRate;
+                    
                     Shoot();
                 }
                 break;
@@ -45,7 +46,7 @@ public class GestureShootFlare : MonoBehaviour
                 if (!hasShoot){
                     hasShoot = true;
                     Debug.Log("Shooting in Single");
-                    timeToFire = Time.time + 1.0f / projectilePrefab.GetComponent<Flare>().fireRate;
+                    
                     Shoot();
                 }
                 break;
@@ -54,12 +55,14 @@ public class GestureShootFlare : MonoBehaviour
 
     private void Shoot(){
         RaycastHit hit;
-        if(Physics.Raycast(gameObject.transform.position,gameObject.transform.forward,out hit))
+        if(Physics.Raycast(hand.transform.position, hand.transform.forward,out hit))
         {
+            vrClient.cl.setIsFlare(1);
             Debug.Log("Shootflare");
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow); 
+            Debug.DrawRay(hand.transform.position, hand.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow); 
             Vector3 hitPosition = hit.point;
-            Instantiate(projectilePrefab, hitPosition,transform.rotation);
+            positionPlaceHolder.transform.position = hitPosition;
+            Instantiate(projectilePrefab, positionPlaceHolder.transform.position, transform.rotation);
         }
 
         // In the End we will going to shoot a bullet

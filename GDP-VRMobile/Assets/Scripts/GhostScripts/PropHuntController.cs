@@ -12,9 +12,9 @@ public class PropHuntController : MonoBehaviour
         private MeshFilter playerPropMesh;
         private Renderer playerPropRenderer;
         private Collider playerCollider;
-    private SkinnedMeshRenderer playerMesh;
-    private SkinnedMeshRenderer originalPlayerMesh;
-    public GameObject cameraRoot;
+        private SkinnedMeshRenderer playerMesh;
+        private SkinnedMeshRenderer originalPlayerMesh;
+        public GameObject cameraRoot;
         public bool changeBack;
         public bool swapToProp;
         // Start is called before the first frame update

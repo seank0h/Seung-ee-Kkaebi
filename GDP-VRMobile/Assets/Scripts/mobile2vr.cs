@@ -23,15 +23,15 @@ public class mobile2vr : MonoBehaviour
     }
     void Start()
     {
-        life = mobileClient.cl.getLife();
-        startNPC = mobileClient.cl.getstartNPCMove();
-        playermat = mobileClient.cl.getPlayerMat();
-        prop = mobileClient.cl.getProp();
-        duststorm = mobileClient.cl.getDustStrom();
-        curse[0] = mobileClient.cl.getCurse();
-        curse[1] = mobileClient.cl.getCurse();
-        npcmat[0] = mobileClient.cl.getNPCMat();
-        npcmat[1] = mobileClient.cl.getNPCMat();
+        life = vrClient.cl.getLife();
+        startNPC = vrClient.cl.getstartNPCMove();
+        playermat = vrClient.cl.getPlayerMat();
+        prop = vrClient.cl.getProp();
+        duststorm = vrClient.cl.getDustStrom();
+        curse[0] = vrClient.cl.getCurse();
+        curse[1] = vrClient.cl.getCurse();
+        npcmat[0] = vrClient.cl.getNPCMat();
+        npcmat[1] = vrClient.cl.getNPCMat();
         c_detail = curse[0].ToCharArray();
         n_detail = npcmat[0].ToCharArray();
     }
@@ -39,16 +39,16 @@ public class mobile2vr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        life = mobileClient.cl.getLife();
-        startNPC = mobileClient.cl.getstartNPCMove();
-        playermat = mobileClient.cl.getPlayerMat();
-        prop = mobileClient.cl.getProp();
-        duststorm = mobileClient.cl.getDustStrom();
+        life = vrClient.cl.getLife();
+        startNPC = vrClient.cl.getstartNPCMove();
+        playermat = vrClient.cl.getPlayerMat();
+        prop = vrClient.cl.getProp();
+        duststorm = vrClient.cl.getDustStrom();
         curse[1] = curse[0];
-        curse[0] = mobileClient.cl.getCurse();
+        curse[0] = vrClient.cl.getCurse();
         c_detail = curse[0].ToCharArray();
         npcmat[1] = npcmat[0];
-        npcmat[0] = mobileClient.cl.getNPCMat();
+        npcmat[0] = vrClient.cl.getNPCMat();
         n_detail = npcmat[0].ToCharArray();
 
         NPCMovementStart();
@@ -82,11 +82,12 @@ public class mobile2vr : MonoBehaviour
             }
         }
         */
+        Debug.Log("Dokkaeibi Life: " + life);
         if (npcmat[0] != npcmat[1])
         {
             if (n_detail[0] != '0') // 1번 npc
             {
-                 if (n_detail[0] == '2') // 기절
+                 if (n_detail[0] == '1') // 기절
                  {
                     npcStunState = 0;
                  }
@@ -94,7 +95,7 @@ public class mobile2vr : MonoBehaviour
             else if (n_detail[1] != '0') // 2번 npc
             {
                
-                 if (n_detail[1] == '2') // 기절
+                 if (n_detail[1] == '1') // 기절
                  {
                     npcStunState = 1;
                  }
@@ -102,21 +103,21 @@ public class mobile2vr : MonoBehaviour
             else if (n_detail[2] != '0') // 3번 npc
             {
 
-                 if (n_detail[2] == '2') // 기절
+                 if (n_detail[2] == '1') // 기절
                  {
                     npcStunState = 2;
                  }
             }
             else if (n_detail[3] != '0') // 4번 npc
             {
-                   if (n_detail[3] == '2') // 기절
+                   if (n_detail[3] == '1') // 기절
                     {
                        npcStunState = 3;
                     }
             }
             else if (n_detail[4] != '0') // 5번 npc
             {
-                     if (n_detail[4] == '2') // 기절
+                     if (n_detail[4] == '1') // 기절
                      {
                        npcStunState = 4;
                      }
@@ -124,6 +125,10 @@ public class mobile2vr : MonoBehaviour
         
         }
         
+    }
+    public int GetPropState()
+    {
+        return prop;
     }
     public int NPCStunState()
     {
@@ -168,6 +173,7 @@ public class mobile2vr : MonoBehaviour
     }
     public bool NPCMovementStart()
     {
+        
         if (startNPC == 1)
         {
             vrClient.cl.setVRPos(0);

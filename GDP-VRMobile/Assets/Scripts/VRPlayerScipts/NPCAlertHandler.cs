@@ -25,7 +25,7 @@ public class NPCAlertHandler : MonoBehaviour
             {
                 stay += Time.deltaTime;
                 release = 0;
-                if (stay >= 2f)
+                if (stay >= 2f && this.gameObject.GetComponent<Renderer>().material.color!=Color.red)
                 {
                     this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
                     this.gameObject.GetComponent<NavMeshAgent>().speed = 0;

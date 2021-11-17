@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
+        vrClient.cl.setIsFlare(0);
         rb = GetComponent<Rigidbody>();
         Destroy(gameObject, timeBeforeDestroyed);
     }
@@ -34,6 +35,7 @@ public class Bullet : MonoBehaviour
             speed = 0f;
             Destroy(gameObject);
             Debug.Log("COLLISION WITH DOKKAEBI");
+            vrClient.cl.setBulletCollision(1);
         }
     }
 }

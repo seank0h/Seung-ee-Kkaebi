@@ -26,11 +26,12 @@ public class Bat : MonoBehaviour
                 hit = 0;
             else
                 hit = 1;
+            Debug.Log(hit);
             vrClient.cl.setCatchEvent(hit);
         }
         if(co.gameObject.tag == "Environment"){
             Debug.Log("***BAT *** COLLISION WITH ENVIRONMENT");
         }
-        vrClient.cl.setCatchEvent(0);
+        
     }
 }

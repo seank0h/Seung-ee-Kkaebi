@@ -12,8 +12,8 @@ public class VRPlayerTeleport : MonoBehaviour
     void Start()
     {
 	    vrPlayerTeleport = vrPlayerEntity.GetComponent<TeleportToggle>();
-        yPositionCalibration = vrPlayerEntity.transform.position.y;
-        this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x,3.43F, this.gameObject.transform.position.z);
+        //yPositionCalibration = vrPlayerEntity.transform.position.y;
+        //this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x,3.43F, this.gameObject.transform.position.z);
 	}
 
     private void OnTriggerEnter(Collider other)

@@ -54,8 +54,9 @@ public class vrClient : MonoBehaviour{
             if(msg[i].Length != 14)
                 continue;
 
-            player.GetComponent<Transform>().position = new Vector3(float.Parse(msg[i][1]), float.Parse(msg[i][2]), float.Parse(msg[i][3]));
+            player.GetComponent<Transform>().position = new Vector3(float.Parse(msg[i][1]), float.Parse(msg[i][2])+0.5f, float.Parse(msg[i][3]));
             player.GetComponent<Transform>().eulerAngles = new Vector3(float.Parse(msg[i][4]), float.Parse(msg[i][5]), float.Parse(msg[i][6]));
+
             
             setPlayerMat(int.Parse(msg[i][7]));
             setProp(int.Parse(msg[i][8]));
@@ -123,7 +124,6 @@ public class vrClient : MonoBehaviour{
     public void setPlayerMat(int mat){
         this.playerMat = mat;
     }
-
 
 
 
