@@ -13,7 +13,6 @@ public class PropHuntController : MonoBehaviour
         private Renderer playerPropRenderer;
         private Collider playerCollider;
         private SkinnedMeshRenderer playerMesh;
-        private SkinnedMeshRenderer originalPlayerMesh;
         public GameObject cameraRoot;
         public bool changeBack;
         public bool swapToProp;
@@ -47,8 +46,8 @@ public class PropHuntController : MonoBehaviour
                     Debug.Log("Raycast hit");
                     if (hit.transform.gameObject.tag == "Prop")
                     {
-                        if (changeBack)
-                            playerPropMesh.gameObject.SetActive(true);
+                        
+                        playerPropMesh.gameObject.SetActive(true);
                         Debug.Log("Raycast hit Prop");
                         gameObjectHit = hit.transform.gameObject;
                         playerPropMesh.mesh = gameObjectHit.GetComponent<MeshFilter>().mesh;
@@ -63,7 +62,7 @@ public class PropHuntController : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log(originalPlayerMesh.sharedMesh);
+                    
                     Debug.DrawRay(cameraRoot.transform.position, cameraRoot.transform.TransformDirection(Vector3.forward) * 1000, Color.black);
                     //Debug.Log("Did not Hit");
                 }

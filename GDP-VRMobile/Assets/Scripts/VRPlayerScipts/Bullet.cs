@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 20f;
+    public float speed = 40f;
     public float fireRate = 1f;
     public float timeBeforeDestroyed = 5f;
     private bool collided = false;
     private Rigidbody rb = null;
+    public GameObject visualEffectToSpawn;
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class Bullet : MonoBehaviour
         if (co.gameObject.tag != "Bullet" && !collided){
             collided = true;
             speed = 0f;
+            Instantiate(visualEffectToSpawn, co.transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
         if(co.gameObject.tag == "Dokkaebi"){

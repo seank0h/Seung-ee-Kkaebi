@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bat : MonoBehaviour
 {
     public int hit;
+    public GameObject hitEffectToSpawn;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,8 @@ public class Bat : MonoBehaviour
                 hit = 0;
             else
                 hit = 1;
-            Debug.Log(hit);
+
+            Instantiate(hitEffectToSpawn, co.transform.position, Quaternion.identity);
             vrClient.cl.setCatchEvent(hit);
         }
         if(co.gameObject.tag == "Environment"){

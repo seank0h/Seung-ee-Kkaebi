@@ -71,7 +71,7 @@ public class PropControllerForVR : MonoBehaviour
     {
         if(propState==0)
         {
-
+            playerMeshEntity.transform.localScale = new Vector3(3, 3, 3);
         }
         else if(propState==1)
         {
