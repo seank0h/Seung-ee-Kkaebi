@@ -20,12 +20,12 @@ public class VRPlayerTeleport : MonoBehaviour
     {
         if(other.gameObject.name =="Teleport_L")
         {
-			Debug.Log("Touched Left Teleport");
+			//Debug.Log("Touched Left Teleport");
 			vrPlayerTeleport.ButtonTeleport(true); // teleport to Left
         }
 		if(other.gameObject.name =="Teleport_R")
         {
-			Debug.Log("Touched Right Teleport");
+			//Debug.Log("Touched Right Teleport");
 			vrPlayerTeleport.ButtonTeleport(false); // teleport to Right
 		}
     }

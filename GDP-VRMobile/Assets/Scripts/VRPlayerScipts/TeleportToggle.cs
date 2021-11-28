@@ -59,7 +59,7 @@ public class TeleportToggle : MonoBehaviour
 		StartCoroutine(FadeInOut());
 	}
 
-	private IEnumerator FadeInOut(){
+    private IEnumerator FadeInOut(){
         // Make sure teleport can't be called again
         teleportLock = true;
             
@@ -73,7 +73,7 @@ public class TeleportToggle : MonoBehaviour
             // Wait one frame
             yield return null;
             // Increment Timer
-            currentTime += Time.deltaTime;
+            currentTime += Time.deltaTime * 2;
         }
         // Set full black screen
         fadeScreen.color = Color.black;
@@ -104,7 +104,7 @@ public class TeleportToggle : MonoBehaviour
             // Wait one frame
             yield return null;
             // Increment Timer
-            currentTime += Time.deltaTime;
+            currentTime += Time.deltaTime * 2;
         }
         // Allow teleporting again
         teleportLock = false;
@@ -114,6 +114,5 @@ public class TeleportToggle : MonoBehaviour
         trigger_L.GetComponent<SphereCollider>().isTrigger = true;
         trigger_R.GetComponent<SphereCollider>().isTrigger = true;
     }
-
 	
 }
