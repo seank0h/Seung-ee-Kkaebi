@@ -120,18 +120,22 @@ public class vr2mobile : MonoBehaviour
             else if (isFlare[0] == 2)
             {
                 Debug.Log("bullet");
-                Instantiate(bullet, lHand, Quaternion.identity);
+                Instantiate(bullet, lHand, Quaternion.Euler(flarePos));
+                Debug.Log("flarepos" + flarePos);
             }
         }
         
 
         if (catchMobile[0] != catchMobile[1])
         {
-            playecon.MoveSpeed = 9;
-            Invoke("speed_return", 3f);
             int life = mobileClient.cl.getLife();
             mobileClient.cl.setLife(life - 1);
             Debug.Log(mobileClient.cl.getLife());
+            Debug.Log("first : " + playecon.MoveSpeed);
+            playecon.MoveSpeed = 10;
+            Debug.Log("second : " + playecon.MoveSpeed);
+            Invoke("speed_return", 5f);
+            Debug.Log("third : " + playecon.MoveSpeed);
         }
         
         if (vrPos[0] != vrPos[1])

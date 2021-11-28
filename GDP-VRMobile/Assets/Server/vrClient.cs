@@ -10,6 +10,7 @@ public class vrClient : MonoBehaviour{
     private int vrPos=-1;  //0~3
     public GameObject lHand, rHand, flare;
     private Vector3 lPos, rPos, flarePos;  //positions (x,y,z)
+    private Vector3 rHandRot;
 
     //Mobile -> VR
     public GameObject player;
@@ -43,8 +44,11 @@ public class vrClient : MonoBehaviour{
         string rHandCoord = formatCoord(rHand);
         string flareCoord = formatCoord(flare);
         
+        Vector3 handRot = rHand.GetComponent<Transform>().eulerAngles;
+        string rHandRotVal = handRot.x.ToString() + "/" + handRot.y.ToString() + "/" + handRot.z.ToString();;
+        
         // Formatting
-        string message = lHandCoord + "/" + rHandCoord + "/" + flareCoord + "/" + bulletCol.ToString() + "/" + catchMobile.ToString() + "/" + dustClean.ToString() + "/" + isFlare.ToString() + "/" + vrPos.ToString();
+        string message = lHandCoord + "/" + rHandCoord + "/" + flareCoord + "/" + bulletCol.ToString() + "/" + catchMobile.ToString() + "/" + dustClean.ToString() + "/" + isFlare.ToString() + "/" + vrPos.ToString() + "/" + rHandRotVal;
         
         client.tcp.sendMsg(message);
     }
@@ -69,7 +73,6 @@ public class vrClient : MonoBehaviour{
             setNPCMovement(msg[i]);
         }
     }
-
 
     public void setNPCMovement(string[] msg){
         int startIdx = 14;
