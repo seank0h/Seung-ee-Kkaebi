@@ -63,6 +63,7 @@ public class GestureShootFlare : MonoBehaviour
             Vector3 hitPosition = hit.point;
             positionPlaceHolder.transform.position = hitPosition;
             Instantiate(projectilePrefab, positionPlaceHolder.transform.position, transform.rotation);
+            Invoke("DelayMessage", 0.5f);
         }
 
         // In the End we will going to shoot a bullet
@@ -74,5 +75,9 @@ public class GestureShootFlare : MonoBehaviour
     public void StopShoot(){
         hasShoot = false;
         Debug.Log("Stop Shooting");
+    }
+    private void DelayMessage()
+    {
+        vrClient.cl.setIsFlare(0);
     }
 }

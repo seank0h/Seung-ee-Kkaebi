@@ -17,7 +17,7 @@ public class BasicGhostBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        yPositionCalibration = 1.0f;
+        
         ghostRenderer = this.GetComponent<Renderer>();
 
     }
@@ -44,10 +44,6 @@ public class BasicGhostBehavior : MonoBehaviour
         if (shouldDie)
             Death();
     }
-    public void TakeDamage(float dmg)
-    {
-
-    }
     public void Death()
     {
         Debug.Log("Ghost Die");
@@ -63,10 +59,13 @@ public class BasicGhostBehavior : MonoBehaviour
         beingSeen = false;
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.name=="OVRHandPrefab_L" || other.gameObject.name=="OVRHandPrefab_R")
-        {
-            Debug.Log("I got Hit by hands");
-        }
+    public void HitbyBat()
+    {
+        ghostRenderer.enabled = false;
+        Invoke("ShowGhost", 5.0f);
+    }
+    void ShowGhost()
+    {
+        ghostRenderer.enabled = true;
     }
 }

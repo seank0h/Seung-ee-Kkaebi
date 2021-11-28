@@ -12,6 +12,8 @@ public class GestureShootBullet : MonoBehaviour
     // GameObject used as Bullet to Instantiate
     public GameObject projectilePrefab;
 
+    public GameObject flare_pos;
+
     // Enum where we set the mode of shooting the bullet
     public enum ShootMode{
         Auto,
@@ -55,6 +57,9 @@ public class GestureShootBullet : MonoBehaviour
     private void Shoot(){
         // In the End we will going to shoot a bullet
         vrClient.cl.setIsFlare(2);
+        Vector3 handRotation;
+        handRotation = hand.rotation.eulerAngles;
+        flare_pos.transform.position = handRotation;
         GameObject bullet = Instantiate(projectilePrefab, hand.position, Quaternion.identity);
         Invoke("DelayMessage", 0.5f);
         bullet.transform.localRotation = hand.rotation;

@@ -558,7 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 1020760111}
-  projectilePrefab: {fileID: 7383411166283806937, guid: 07fb304b2a293e24583cdadf8412a3a1, type: 3}
+  projectilePrefab: {fileID: 121928, guid: 313e5c5f850e5be429d4a6787a725f73, type: 3}
   positionPlaceHolder: {fileID: 899294152}
   shootMode: 1
 --- !u!4 &63358258
@@ -4978,7 +4978,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733781850}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.5, y: 3, z: 25}
+  m_LocalPosition: {x: -2.5, y: 8, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1713380783}
@@ -5271,7 +5271,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: {fileID: 1020760111}
   projectilePrefab: {fileID: 0}
+  flarepos: {fileID: 0}
   shootMode: 0
+  hasShoot: 0
+  timeToFire: 0
 --- !u!4 &782617001
 Transform:
   m_ObjectHideFlags: 0
@@ -5398,6 +5401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: {fileID: 1020760111}
   projectilePrefab: {fileID: 119242, guid: 4bc451a9c5656db4794e16cdecbabbac, type: 3}
+  flare_pos: {fileID: 899294152}
   shootMode: 0
 --- !u!4 &837088560
 Transform:
@@ -6705,7 +6709,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 985925417}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 52.5, y: 3, z: 25}
+  m_LocalPosition: {x: 52.5, y: 8, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1713380783}
@@ -8390,7 +8394,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314668137}
   m_LocalRotation: {x: 0.21213396, y: -0, z: -0, w: 0.9772407}
-  m_LocalPosition: {x: 25.26, y: 5.59, z: 0.61}
+  m_LocalPosition: {x: 25.26, y: 8, z: -0.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1188211680}
@@ -9909,7 +9913,19 @@ MonoBehaviour:
   debugMode: 1
   notRecognize:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 63358257}
+        m_TargetAssemblyTypeName: GestureShootFlare, Assembly-CSharp
+        m_MethodName: StopShoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1523416790
 Transform:
   m_ObjectHideFlags: 0
@@ -10643,7 +10659,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1702737281}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.44, y: 3.148, z: -0.87}
+  m_LocalPosition: {x: 25.44, y: 8, z: -0.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1713380783}
@@ -11835,7 +11851,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006088080}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 25.5, y: 3, z: 52.5}
+  m_LocalPosition: {x: 25.5, y: 8, z: 52.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1713380783}
@@ -34302,6 +34318,10 @@ PrefabInstance:
     - target: {fileID: 6231877722961958349, guid: 6e6670fafbca53e4db88110d772b1da6, type: 3}
       propertyPath: m_Name
       value: Dokkaebi
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231877722961958355, guid: 6e6670fafbca53e4db88110d772b1da6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6231877722961958358, guid: 6e6670fafbca53e4db88110d772b1da6, type: 3}
       propertyPath: m_RootOrder
