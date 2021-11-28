@@ -17,6 +17,7 @@ public class vrClient : MonoBehaviour{
     private Vector3 playerRot;
     private int playerMat=0, prop=0, life=2, dustStorm=0, startNPCMove=0;
     private string curse="0000", NPCMat="00000";
+    public GameObject[] NPCs = new GameObject[5];
     
 
     // Start is called before the first frame update
@@ -51,7 +52,7 @@ public class vrClient : MonoBehaviour{
     public void decodeMsg(){
         string[][] msg = client.tcp.receiveMsg();
         for(int i = 0; i < msg.Length; i++){
-            if(msg[i].Length != 14)
+            if(msg[i].Length != 44)
                 continue;
 
             player.GetComponent<Transform>().position = new Vector3(float.Parse(msg[i][1]), float.Parse(msg[i][2])+0.5f, float.Parse(msg[i][3]));
@@ -65,6 +66,18 @@ public class vrClient : MonoBehaviour{
             setCurse(msg[i][11]);
             setstartNPCMove(int.Parse(msg[i][12]));
             setNPCMat(msg[i][13]);
+            setNPCMovement(msg[i]);
+        }
+    }
+
+
+    public void setNPCMovement(string[] msg){
+        int startIdx = 14;
+
+        for(int i = 0; i < NPCs.Length; i++){
+            int fIdx = 6 * i + startIdx;
+            NPCs[i].GetComponent<Transform>().position = new Vector3(float.Parse(msg[fIdx+0]), float.Parse(msg[fIdx+1]), float.Parse(msg[fIdx+2]));
+            NPCs[i].GetComponent<Transform>().eulerAngles = new Vector3(float.Parse(msg[fIdx+3]), float.Parse(msg[fIdx+4]), float.Parse(msg[fIdx+5]));
         }
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using StarterAssets;
 
 public class vr2mobile : MonoBehaviour
 {
@@ -15,12 +16,14 @@ public class vr2mobile : MonoBehaviour
     Vector3 lHand, rHand, flarePos;
     public GameObject flare;
     public GameObject bullet;
+    public GameObject player;
     //public ParticleSystem dustEffect;
     bool effectOn;
     float lowerEmissionRate;
     public float NormalEmissionRate;
     char[] c_detail = new char[4];
     char[] n_detail = new char[5];
+    ThirdPersonController playecon;
 
 
     // Start is called before the first frame update
@@ -42,6 +45,7 @@ public class vr2mobile : MonoBehaviour
         mobileClient.cl.setstartNPCMove(1);
         c_detail = mobileClient.cl.getCurse().ToCharArray();
         n_detail = mobileClient.cl.getNPCMat().ToCharArray();
+        playecon = player.GetComponent<ThirdPersonController>();
 
         if (vm && vm != this)
             Destroy(this);
@@ -110,10 +114,12 @@ public class vr2mobile : MonoBehaviour
         {
             if (isFlare[0] == 1)
             {
+                Debug.Log("flare");
                 Instantiate(flare, flarePos, Quaternion.identity);
             }
             else if (isFlare[0] == 2)
             {
+                Debug.Log("bullet");
                 Instantiate(bullet, lHand, Quaternion.identity);
             }
         }
@@ -121,7 +127,8 @@ public class vr2mobile : MonoBehaviour
 
         if (catchMobile[0] != catchMobile[1])
         {
-            Debug.Log("Jot");
+            playecon.MoveSpeed = 9;
+            Invoke("speed_return", 3f);
             int life = mobileClient.cl.getLife();
             mobileClient.cl.setLife(life - 1);
             Debug.Log(mobileClient.cl.getLife());
@@ -151,5 +158,10 @@ public class vr2mobile : MonoBehaviour
         n_detail[index] = '1';
         string result = new string(n_detail);
         mobileClient.cl.setNPCMat(result);
+    }
+
+    void speed_return()
+    {
+        playecon.MoveSpeed = 2;
     }
 }
