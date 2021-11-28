@@ -133,7 +133,11 @@ public class RFX4_PhysicsMotion : MonoBehaviour
                 else obj.SetActive(false);
             }
         }
-
+        if (collision.gameObject.tag == "Dokkaebi")
+        {
+            Debug.Log("COLLISION WITH DOKKAEBI");
+            vrClient.cl.setBulletCollision(1);
+        }
 
         if (rigid != null) Destroy(rigid);
         if (collid != null) Destroy(collid);

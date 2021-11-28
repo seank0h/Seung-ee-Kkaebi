@@ -36,7 +36,7 @@ public class GestureShootBullet : MonoBehaviour
             case ShootMode.Auto:
                 Debug.Log("Shooting in Auto");
                 if (Time.time >= timeToFire){
-                    timeToFire = Time.time + 1.0f / projectilePrefab.GetComponent<Bullet>().fireRate;
+                    timeToFire = Time.time + 1.0f / 1.0f;
                     Shoot();
                 }
                 break;
@@ -56,6 +56,7 @@ public class GestureShootBullet : MonoBehaviour
         // In the End we will going to shoot a bullet
         vrClient.cl.setIsFlare(2);
         GameObject bullet = Instantiate(projectilePrefab, hand.position, Quaternion.identity);
+        Invoke("DelayMessage", 0.5f);
         bullet.transform.localRotation = hand.rotation;
     }
 
@@ -64,4 +65,9 @@ public class GestureShootBullet : MonoBehaviour
         hasShoot = false;
         Debug.Log("Stop Shooting");
     }
+    private void DelayMessage()
+    {
+        vrClient.cl.setIsFlare(0);
+    }
+
 }
