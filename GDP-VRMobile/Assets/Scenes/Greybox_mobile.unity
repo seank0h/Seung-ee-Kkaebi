@@ -1018,11 +1018,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 974238579172251042}
   NPCs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8127291307567877325}
+  - {fileID: 8127291307291227972}
+  - {fileID: 8127291307459155794}
+  - {fileID: 8127291306405897080}
+  - {fileID: 8127291307557194625}
   lHand: {fileID: 1265536391}
   rHand: {fileID: 314080194}
   flare: {fileID: 1510218402}

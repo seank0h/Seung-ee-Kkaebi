@@ -160,6 +160,22 @@ public class vr2mobile : MonoBehaviour
         mobileClient.cl.setNPCMat(result);
     }
 
+    public void alert_send(int index)
+    {
+        // Debug.Log("index : " + index);
+        n_detail[index] = '2';
+        string result = new string(n_detail);
+        mobileClient.cl.setNPCMat(result);
+    }
+
+    public void alert_end(int index)
+    {
+        // Debug.Log("index : " + index);
+        n_detail[index] = '0';
+        string result = new string(n_detail);
+        mobileClient.cl.setNPCMat(result);
+    }
+
     void speed_return()
     {
         playecon.MoveSpeed = 2;
