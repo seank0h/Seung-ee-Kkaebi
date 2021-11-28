@@ -27,7 +27,7 @@ public class Bat : MonoBehaviour
                 hit = 0;
             else
                 hit = 1;
-
+            co.gameObject.GetComponent<BasicGhostBehavior>().HitbyBat();
             Instantiate(hitEffectToSpawn, co.transform.position, Quaternion.identity);
             vrClient.cl.setCatchEvent(hit);
         }

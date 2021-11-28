@@ -11,6 +11,7 @@ public class mobileClient : MonoBehaviour{
     private Vector3 playerRot;
     private int playerMat=0, prop=0, life=2, dustStorm=0, startNPCMove=0;
     private string curse="0000", NPCMat="00000";
+    public GameObject[] NPCs = new GameObject[5];
 
 
     //VR -> Mobile
@@ -18,6 +19,7 @@ public class mobileClient : MonoBehaviour{
     private int vrPos=-1;  //0~3
     public GameObject lHand, rHand, flare;
     private Vector3 lPos, rPos, flarePos;  //positions (x,y,z)
+    private Vector3 rHandRot;
 
 
     // Start is called before the first frame update
@@ -42,9 +44,11 @@ public class mobileClient : MonoBehaviour{
         string coord = formatCoord(player);
         playerRot = player.GetComponent<Transform>().eulerAngles;
         string rot = playerRot.x.ToString() + "/" + playerRot.y.ToString() + "/" + playerRot.z.ToString();
+
+        string NPCMovement = formatNPCMovement();
         
         //Formating
-        string message = coord + "/" + rot + "/" + playerMat.ToString() + "/" + prop.ToString() + "/" + life.ToString() + "/" + dustStorm.ToString() + "/" + curse + "/" + startNPCMove.ToString() + "/" + NPCMat;
+        string message = coord + "/" + rot + "/" + playerMat.ToString() + "/" + prop.ToString() + "/" + life.ToString() + "/" + dustStorm.ToString() + "/" + curse + "/" + startNPCMove.ToString() + "/" + NPCMat + "/" + NPCMovement;
 
         client.tcp.sendMsg(message);
     }
@@ -54,7 +58,7 @@ public class mobileClient : MonoBehaviour{
         string[][] msg = client.tcp.receiveMsg();
 
         for(int i = 0; i < msg.Length; i++){
-            if(msg[i].Length != 15)
+            if(msg[i].Length != 18)
                 continue;
 
             lPos = new Vector3(float.Parse(msg[i][1]), float.Parse(msg[i][2]), float.Parse(msg[i][3]));
@@ -69,7 +73,28 @@ public class mobileClient : MonoBehaviour{
             setDustClean(int.Parse(msg[i][12]));
             setIsFlare(int.Parse(msg[i][13]));
             setVRPos(int.Parse(msg[i][14]));
+
+            rHandRot = new Vector3(float.Parse(msg[i][15]), float.Parse(msg[i][16]), float.Parse(msg[i][17]));
         }
+    }
+
+    public string formatNPCMovement(){
+        string res = "";
+
+        for(int i=0; i < NPCs.Length; i++){
+            Vector3 npcPos = NPCs[i].GetComponent<Transform>().position;
+            string pos = npcPos.x.ToString() + "/" + npcPos.y.ToString() + "/" + npcPos.z.ToString();
+
+            Vector3 npcRot = NPCs[i].GetComponent<Transform>().eulerAngles;
+            string rot = npcRot.x.ToString() + "/" + npcRot.y.ToString() + "/" + npcRot.z.ToString();
+
+            if(i == NPCs.Length -1)
+                res += pos + "/" + rot;
+            else
+                res += pos + "/" + rot + "/";
+        }
+
+        return res;
     }
 
 
@@ -133,7 +158,9 @@ public class mobileClient : MonoBehaviour{
 
 
 
-
+    public Vector3 getRHandRotation(){
+        return rHandRot;
+    }
 
 
     public Vector3 getLHand(){

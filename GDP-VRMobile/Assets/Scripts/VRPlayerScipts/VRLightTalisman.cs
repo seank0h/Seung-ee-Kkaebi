@@ -9,7 +9,7 @@ public class VRLightTalisman : MonoBehaviour
     float timer = 5.0f;
     private void Start()
     {
-        vrClient.cl.setIsFlare(0);
+        
         timer = 5.0f;
     }
     private void FixedUpdate()

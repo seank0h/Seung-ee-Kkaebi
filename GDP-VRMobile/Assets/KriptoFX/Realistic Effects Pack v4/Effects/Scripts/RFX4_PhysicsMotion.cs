@@ -81,6 +81,7 @@ public class RFX4_PhysicsMotion : MonoBehaviour
         rigid.interpolation = RigidbodyInterpolation.Interpolate;
         rigid.AddForce(transform.forward * (effectSettings.Speed + currentSpeedOffset), ForceMode);
         isInitializedForce = true;
+       
     }
 
     void OnCollisionEnter(Collision collision)
@@ -133,7 +134,11 @@ public class RFX4_PhysicsMotion : MonoBehaviour
                 else obj.SetActive(false);
             }
         }
-
+        if (collision.gameObject.tag == "Dokkaebi")
+        {
+            Debug.Log("COLLISION WITH DOKKAEBI");
+            vrClient.cl.setBulletCollision(1);
+        }
 
         if (rigid != null) Destroy(rigid);
         if (collid != null) Destroy(collid);
@@ -195,4 +200,5 @@ public class RFX4_PhysicsMotion : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(t.position, t.position + t.forward * 100);
     }
+
 }

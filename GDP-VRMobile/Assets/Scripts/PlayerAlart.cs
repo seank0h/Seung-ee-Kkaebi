@@ -10,12 +10,33 @@ public class PlayerAlart : MonoBehaviour
     float release = 0;
     public bool sturn = false;
     float speed;
+    int index;
 
     // Start is called before the first frame update
     void Start()
     {
         this.gameObject.GetComponent<Renderer>().material.color = Color.black;
         speed = this.gameObject.GetComponent<NavMeshAgent>().speed;
+        if (gameObject.name == "NPC1")
+        {
+            index = 0;
+        }
+        else if (gameObject.name == "NPC2")
+        {
+            index = 1;
+        }
+        else if (gameObject.name == "NPC3")
+        {
+            index = 2;
+        }
+        else if (gameObject.name == "NPC4")
+        {
+            index = 3;
+        }
+        else if (gameObject.name == "NPC5")
+        {
+            index = 4;
+        }
     }
 
     // Update is called once per frame
@@ -38,6 +59,7 @@ public class PlayerAlart : MonoBehaviour
                 {
                     this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
                     this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
+                    vr2mobile.vm.alert_send(index);
                 }
             }
             else
@@ -51,6 +73,7 @@ public class PlayerAlart : MonoBehaviour
                 release = 0;
                 this.gameObject.GetComponent<Renderer>().material.color = Color.black;
                 this.gameObject.GetComponent<NavMeshAgent>().speed = speed;
+                vr2mobile.vm.alert_end(index);
             }
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using StarterAssets;
 
 public class vr2mobile : MonoBehaviour
 {
@@ -15,12 +16,14 @@ public class vr2mobile : MonoBehaviour
     Vector3 lHand, rHand, flarePos;
     public GameObject flare;
     public GameObject bullet;
+    public GameObject player;
     //public ParticleSystem dustEffect;
     bool effectOn;
     float lowerEmissionRate;
     public float NormalEmissionRate;
     char[] c_detail = new char[4];
     char[] n_detail = new char[5];
+    ThirdPersonController playecon;
 
 
     // Start is called before the first frame update
@@ -42,6 +45,7 @@ public class vr2mobile : MonoBehaviour
         mobileClient.cl.setstartNPCMove(1);
         c_detail = mobileClient.cl.getCurse().ToCharArray();
         n_detail = mobileClient.cl.getNPCMat().ToCharArray();
+        playecon = player.GetComponent<ThirdPersonController>();
 
         if (vm && vm != this)
             Destroy(this);
@@ -110,21 +114,28 @@ public class vr2mobile : MonoBehaviour
         {
             if (isFlare[0] == 1)
             {
+                Debug.Log("flare");
                 Instantiate(flare, flarePos, Quaternion.identity);
             }
             else if (isFlare[0] == 2)
             {
-                Instantiate(bullet, lHand, Quaternion.identity);
+                Debug.Log("bullet");
+                Instantiate(bullet, lHand, Quaternion.Euler(flarePos));
+                Debug.Log("flarepos" + flarePos);
             }
         }
         
 
         if (catchMobile[0] != catchMobile[1])
         {
-            Debug.Log("Jot");
             int life = mobileClient.cl.getLife();
             mobileClient.cl.setLife(life - 1);
             Debug.Log(mobileClient.cl.getLife());
+            Debug.Log("first : " + playecon.MoveSpeed);
+            playecon.MoveSpeed = 10;
+            Debug.Log("second : " + playecon.MoveSpeed);
+            Invoke("speed_return", 5f);
+            Debug.Log("third : " + playecon.MoveSpeed);
         }
         
         if (vrPos[0] != vrPos[1])
@@ -151,5 +162,26 @@ public class vr2mobile : MonoBehaviour
         n_detail[index] = '1';
         string result = new string(n_detail);
         mobileClient.cl.setNPCMat(result);
+    }
+
+    public void alert_send(int index)
+    {
+        // Debug.Log("index : " + index);
+        n_detail[index] = '2';
+        string result = new string(n_detail);
+        mobileClient.cl.setNPCMat(result);
+    }
+
+    public void alert_end(int index)
+    {
+        // Debug.Log("index : " + index);
+        n_detail[index] = '0';
+        string result = new string(n_detail);
+        mobileClient.cl.setNPCMat(result);
+    }
+
+    void speed_return()
+    {
+        playecon.MoveSpeed = 2;
     }
 }
