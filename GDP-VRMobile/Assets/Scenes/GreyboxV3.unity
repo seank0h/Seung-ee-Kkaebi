@@ -2836,7 +2836,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0.3420201, z: 0, w: 0.9396927}
   m_LocalPosition: {x: -3.22, y: -0.04, z: -3.76}
   m_LocalScale: {x: 0.1, y: 0.1, z: 10}
-  m_Children: []
+  m_Children:
+  - {fileID: 2120686009}
   m_Father: {fileID: 2115719973}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 40, z: 0}
@@ -4388,179 +4389,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3429576664946493646, guid: 4d28e52e94348cc4e970f65b10338893, type: 3}
   m_PrefabInstance: {fileID: 3429576665420873372}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &639370898
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 639370900}
-  - component: {fileID: 639370899}
-  m_Layer: 0
-  m_Name: Gesture Detection
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &639370899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 639370898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1025bb47e3eddc43926edd94fd9ca88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  threshold: 0.05
-  skeleton: {fileID: 0}
-  gestures:
-  - name: Zero
-    fingerDatas:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.020069294, y: 0.011554078, z: 0.010496518}
-    - {x: 0.035787728, y: 0.018789478, z: 0.028335508}
-    - {x: 0.058179773, y: 0.034742214, z: 0.04569057}
-    - {x: 0.08494678, y: 0.05136781, z: 0.03348051}
-    - {x: 0.09599621, y: 0.0073164464, z: 0.023550672}
-    - {x: 0.10356609, y: 0.044366546, z: 0.020639883}
-    - {x: 0.079270065, y: 0.044973753, z: 0.020710822}
-    - {x: 0.095646605, y: 0.0025431453, z: 0.0017259006}
-    - {x: 0.10230078, y: 0.04495129, z: 0.0017456287}
-    - {x: 0.07486039, y: 0.04567295, z: 0.0040875063}
-    - {x: 0.08869383, y: 0.006529315, z: -0.017465241}
-    - {x: 0.093708776, y: 0.045120265, z: -0.0149580715}
-    - {x: 0.06825918, y: 0.043063555, z: -0.0075936858}
-    - {x: 0.03407355, y: 0.009419817, z: -0.022998577}
-    - {x: 0.077895835, y: 0.013691172, z: -0.035054076}
-    - {x: 0.08537532, y: 0.043007545, z: -0.029729554}
-    - {x: 0.06778204, y: 0.041812304, z: -0.019649915}
-    - {x: 0.09062516, y: 0.055071138, z: 0.009810872}
-    - {x: 0.07018634, y: 0.024567539, z: 0.022236774}
-    - {x: 0.06534348, y: 0.022911308, z: 0.008084166}
-    - {x: 0.064115964, y: 0.019075153, z: -0.0062505333}
-    - {x: 0.06125264, y: 0.020982135, z: -0.01728322}
-    onRecognized:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: GestureShoot, Assembly-CSharp
-          m_MethodName: OnShoot
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - name: One
-    fingerDatas:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.020069312, y: 0.011554116, z: 0.010496521}
-    - {x: 0.034283973, y: 0.015646929, z: 0.030467536}
-    - {x: 0.055657916, y: 0.027616406, z: 0.051844526}
-    - {x: 0.078824975, y: 0.03459759, z: 0.07543523}
-    - {x: 0.09599621, y: 0.0073164385, z: 0.023550676}
-    - {x: 0.103592366, y: 0.044375893, z: 0.020834332}
-    - {x: 0.079304524, y: 0.04513863, z: 0.020403214}
-    - {x: 0.0956466, y: 0.0025431493, z: 0.0017259085}
-    - {x: 0.10304421, y: 0.044827905, z: 0.0016596701}
-    - {x: 0.07563461, y: 0.043548904, z: 0.0041207774}
-    - {x: 0.08869379, y: 0.0065293033, z: -0.017465241}
-    - {x: 0.095111236, y: 0.04493424, z: -0.015325504}
-    - {x: 0.069697596, y: 0.043887503, z: -0.007631495}
-    - {x: 0.034073543, y: 0.009419835, z: -0.022998577}
-    - {x: 0.077895835, y: 0.013691196, z: -0.03505407}
-    - {x: 0.086971596, y: 0.04266099, z: -0.030350298}
-    - {x: 0.069429174, y: 0.043348137, z: -0.020135429}
-    - {x: 0.087798975, y: 0.037890643, z: 0.09812523}
-    - {x: 0.070468724, y: 0.02461162, z: 0.021755982}
-    - {x: 0.06781553, y: 0.020131126, z: 0.008007548}
-    - {x: 0.06471618, y: 0.020073919, z: -0.0060467753}
-    - {x: 0.06336502, y: 0.022303622, z: -0.01855955}
-    onRecognized:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 782617000}
-          m_TargetAssemblyTypeName: GestureShoot, Assembly-CSharp
-          m_MethodName: OnShoot
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - name: Two
-    fingerDatas:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.020069325, y: 0.0115541145, z: 0.010496526}
-    - {x: 0.032046635, y: 0.01121385, z: 0.032269843}
-    - {x: 0.054096047, y: 0.011991471, z: 0.056150973}
-    - {x: 0.079622954, y: 0.00979458, z: 0.078185566}
-    - {x: 0.09599623, y: 0.0073164506, z: 0.023550672}
-    - {x: 0.12778893, y: 0.027116615, z: 0.01757908}
-    - {x: 0.14800858, y: 0.0399429, z: 0.013417412}
-    - {x: 0.09564664, y: 0.0025431693, z: 0.0017259165}
-    - {x: 0.103340715, y: 0.04475999, z: 0.0006019252}
-    - {x: 0.0763895, y: 0.042847037, z: 0.00598241}
-    - {x: 0.08869382, y: 0.006529327, z: -0.017465236}
-    - {x: 0.093532965, y: 0.04516032, z: -0.01524568}
-    - {x: 0.06846659, y: 0.04305543, z: -0.00667874}
-    - {x: 0.034073565, y: 0.009419824, z: -0.022998566}
-    - {x: 0.07789584, y: 0.013691168, z: -0.035054076}
-    - {x: 0.08445656, y: 0.043033667, z: -0.02875189}
-    - {x: 0.06625373, y: 0.043321412, z: -0.019744959}
-    - {x: 0.09208709, y: 0.006531608, z: 0.09916669}
-    - {x: 0.16736819, y: 0.0497935, z: 0.007992507}
-    - {x: 0.069586955, y: 0.01926209, z: 0.010684534}
-    - {x: 0.064477906, y: 0.019056508, z: -0.0050808345}
-    - {x: 0.060594138, y: 0.022125885, z: -0.018822279}
-    onRecognized:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: GestureShoot, Assembly-CSharp
-          m_MethodName: OnShoot
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  debugMode: 1
-  notRecognize:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!4 &639370900
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 639370898}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1111915451}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &644691181
 GameObject:
   m_ObjectHideFlags: 0
@@ -6056,7 +5884,7 @@ Transform:
   m_Children:
   - {fileID: 1247745696}
   m_Father: {fileID: 1111915451}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &864704983
 GameObject:
@@ -7624,7 +7452,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 639370900}
   - {fileID: 1523416790}
   - {fileID: 863511236}
   m_Father: {fileID: 0}
@@ -10393,7 +10220,7 @@ Transform:
   - {fileID: 782617001}
   - {fileID: 63358258}
   m_Father: {fileID: 1111915451}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1534858150
 GameObject:
@@ -12915,6 +12742,50 @@ Halo:
     serializedVersion: 2
     rgba: 4286120076
   m_Size: 7.5
+--- !u!1 &2120686008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2120686009}
+  - component: {fileID: 2120686010}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2120686009
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120686008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5, y: 0.000010655, z: 0.234}
+  m_LocalScale: {x: 29.178028, y: 20.144222, z: -0.51137847}
+  m_Children: []
+  m_Father: {fileID: 353498673}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2120686010
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120686008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2140313626
 GameObject:
   m_ObjectHideFlags: 0
