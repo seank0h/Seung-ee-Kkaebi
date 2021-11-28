@@ -64,6 +64,7 @@ public class GestureShootFlare : MonoBehaviour
             positionPlaceHolder.transform.position = hitPosition;
             Instantiate(projectilePrefab, positionPlaceHolder.transform.position, transform.rotation);
             Invoke("DelayMessage", 0.5f);
+            Invoke("CooldownForFlare", 30.0f);
         }
 
         // In the End we will going to shoot a bullet
@@ -73,11 +74,15 @@ public class GestureShootFlare : MonoBehaviour
 
     // Method to put in the Event when the gesture are not recognized
     public void StopShoot(){
-        hasShoot = false;
+        
         Debug.Log("Stop Shooting");
     }
     private void DelayMessage()
     {
         vrClient.cl.setIsFlare(0);
+    }
+    public void CooldownForFlare()
+    {
+        hasShoot = false;
     }
 }
