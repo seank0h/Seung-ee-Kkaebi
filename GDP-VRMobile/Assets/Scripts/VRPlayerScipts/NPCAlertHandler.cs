@@ -5,47 +5,15 @@ using UnityEngine.AI;
 
 public class NPCAlertHandler : MonoBehaviour
 {
-    public GameObject player;
-    float stay = 0;
-    float release = 0;
-    float speed;
-
-    // Start is called before the first frame update
-    void Start()
+    public SkinnedMeshRenderer npcRenderer;
+    public void AlertState()
     {
-        speed = this.gameObject.GetComponent<NavMeshAgent>().speed;
+        npcRenderer.material.color = Color.blue;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PatrolState()
     {
-        float distance = Vector3.Distance(player.transform.position, transform.position);
-        if(this.gameObject.GetComponent<Renderer>().material.color==Color.red)
-        {
-            return;
-        }
-        if (distance <= 5)
-        {
-            stay += Time.deltaTime;
-            release = 0;
-            if (stay >= 2f && this.gameObject.GetComponent<Renderer>().material.color != Color.red)
-            {
-                this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
-                this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
-            }
-        }
-        else
-        {
-            release += Time.deltaTime;
-            if (release <= 2)
-            {
-                return;
-            }
-            stay = 0;
-            release = 0;
-            this.gameObject.GetComponent<Renderer>().material.color = Color.black;
-            this.gameObject.GetComponent<NavMeshAgent>().speed = speed;
-        }
+        npcRenderer.material.color = Color.black;
     }
     
 }

@@ -70,14 +70,14 @@ public class PropHuntController : MonoBehaviour
             
     }
         public void ModelSwap()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                playerPropMesh.gameObject.SetActive(false);
-                playerMesh.gameObject.SetActive(true);
-                playerMesh.transform.localScale = new Vector3(1f, 1f, 1f);
-                changeBack = false;
-            }
+            playerPropMesh.gameObject.SetActive(false);
+            playerMesh.gameObject.SetActive(true);
+            playerMesh.transform.localScale = new Vector3(1f, 1f, 1f);
+            changeBack = false;
         }
+    }
 }
 }

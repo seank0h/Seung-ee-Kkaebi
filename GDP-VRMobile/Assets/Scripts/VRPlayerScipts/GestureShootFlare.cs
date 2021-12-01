@@ -13,6 +13,7 @@ public class GestureShootFlare : MonoBehaviour
     public GameObject projectilePrefab;
     public GameObject positionPlaceHolder;
 
+    LineRenderer aimLine;
     // Enum where we set the mode of shooting the bullet
     public enum ShootMode{
         Auto,
@@ -55,8 +56,12 @@ public class GestureShootFlare : MonoBehaviour
 
     private void Shoot(){
         RaycastHit hit;
-        if(Physics.Raycast(hand.transform.position, hand.transform.forward,out hit))
+        aimLine = GetComponent<LineRenderer>();
+        aimLine.enabled = true;
+        if (Physics.Raycast(hand.transform.position, hand.transform.forward,out hit))
         {
+            aimLine.SetPosition(0, hand.transform.position);
+            aimLine.SetPosition(1, hit.transform.position);
             vrClient.cl.setIsFlare(1);
             Debug.Log("Shootflare");
             Debug.DrawRay(hand.transform.position, hand.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow); 
@@ -74,7 +79,7 @@ public class GestureShootFlare : MonoBehaviour
 
     // Method to put in the Event when the gesture are not recognized
     public void StopShoot(){
-        
+        aimLine.enabled = false;
         Debug.Log("Stop Shooting");
     }
     private void DelayMessage()

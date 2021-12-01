@@ -12,6 +12,7 @@ public class mobile2vr : MonoBehaviour
     char[] n_detail = new char[5];
     public int npcStunState=-1;
     public bool firstStart = false;
+    public List<GameObject> NPCList;
 
     // Start is called before the first frame update
     private void Awake()
@@ -89,16 +90,16 @@ public class mobile2vr : MonoBehaviour
             {
                 if (n_detail[0] == '1') // 기절
                 {
-                    npcStunState = 0;
+                    NPCList[0].GetComponent<NPCStunHandler>().StunState();
                 }
                 if (n_detail[0] == '2') // 경고(파란색)
                 {
-                    
+                    NPCList[0].GetComponent<NPCAlertHandler>().AlertState();
                 }
             }
             else if (n_detail[0] == '0')
             {
-                // 기본적인 원래 색깔로 되돌리기 (1번 NPC)
+                NPCList[0].GetComponent<NPCAlertHandler>().PatrolState();
             }
 
             else if (n_detail[1] != '0') // 2번 npc
@@ -106,16 +107,16 @@ public class mobile2vr : MonoBehaviour
                
                 if (n_detail[1] == '1') // 기절
                 {
-                    npcStunState = 1;
+                    NPCList[1].GetComponent<NPCStunHandler>().StunState();
                 }
                 if (n_detail[1] == '2') // 경고(파란색)
                 {
-
+                    NPCList[1].GetComponent<NPCAlertHandler>().AlertState();
                 }
             }
             else if (n_detail[1] == '0')
             {
-                // 기본적인 원래 색깔로 되돌리기 (2번 NPC)
+                NPCList[1].GetComponent<NPCAlertHandler>().PatrolState();
             }
 
             else if (n_detail[2] != '0') // 3번 npc
@@ -123,48 +124,48 @@ public class mobile2vr : MonoBehaviour
 
                  if (n_detail[2] == '1') // 기절
                  {
-                    npcStunState = 2;
-                 }
+                    NPCList[0].GetComponent<NPCStunHandler>().StunState();
+                }
                 if (n_detail[2] == '2') // 경고(파란색)
                 {
-
+                    NPCList[2].GetComponent<NPCAlertHandler>().AlertState();
                 }
             }
             else if (n_detail[2] == '0')
             {
-                // 기본적인 원래 색깔로 되돌리기 (3번 NPC)
+                NPCList[2].GetComponent<NPCAlertHandler>().PatrolState();
             }
 
             else if (n_detail[3] != '0') // 4번 npc
             {
                 if (n_detail[3] == '1') // 기절
                 {
-                    npcStunState = 3;
+                    NPCList[0].GetComponent<NPCStunHandler>().StunState();
                 }
                 if (n_detail[3] == '2') // 경고(파란색)
                 {
-
+                    NPCList[3].GetComponent<NPCAlertHandler>().AlertState();
                 }
             }
             else if (n_detail[3] == '0')
             {
-                // 기본적인 원래 색깔로 되돌리기 (4번 NPC)
+                NPCList[3].GetComponent<NPCAlertHandler>().PatrolState();
             }
 
             else if (n_detail[4] != '0') // 5번 npc
             {
                 if (n_detail[4] == '1') // 기절
                 {
-                    npcStunState = 4;
+                    NPCList[4].GetComponent<NPCStunHandler>().StunState();
                 }
                 if (n_detail[4] == '2') // 경고(파란색)
                 {
-
+                    NPCList[4].GetComponent<NPCAlertHandler>().AlertState();
                 }
             }
             else if (n_detail[4] == '0')
             {
-                // 기본적인 원래 색깔로 되돌리기 (5번 NPC)
+                NPCList[4].GetComponent<NPCAlertHandler>().PatrolState();
             }
 
         }

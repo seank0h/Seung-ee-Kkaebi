@@ -7,10 +7,12 @@ public class GestureSpawner : MonoBehaviour
     [Header("SpawnTransform")]
     // Transform where the bat have to be Instantiated
     public Transform hand;
+    public GameObject handRotation;
 
-    [Header("BulletPrefab")]
+    [Header("Prefab To Instantiate")]
     // GameObject used as bat to Instantiate
     public GameObject bat;
+    public GameObject currBat;
 
     public float batDuration;
     public float batCooldown = 0;
@@ -22,14 +24,16 @@ public class GestureSpawner : MonoBehaviour
         if(ifBat)
         {
             batDuration -= Time.deltaTime;
+            
             if(batDuration<=0)
             {
-                bat.SetActive(false);
+                currBat.SetActive(false);
                 batDuration = 5.0f;
                 ifBat = false;
                 batCooldown = 5.0f;
                 beginCooldown = true;
             }
+            
         }
         if(beginCooldown)
         {
@@ -37,11 +41,23 @@ public class GestureSpawner : MonoBehaviour
         }
     }
     public void OnActivate(){
-        Debug.Log("BAT is activated!!!"); bat.SetActive(true);
-        ifBat = true;
+        Debug.Log("BAT is activated!!!");
+        
+        /*
+        if(currBat==null)
+        {
+            Vector3 positionCalibration = new Vector3(hand.position.x + 3, hand.position.y, hand.position.z + 3);
+            Vector3 rotationCalibration = new Vector3(30f, 0, 0);
+            currBat = Instantiate(bat, positionCalibration, Quaternion.identity);
+            currBat.transform.parent = hand.transform.parent;
+            currBat.transform.eulerAngles = handRotation.transform.eulerAngles;
+            //currBat.transform.eulerAngles = rotationCalibration; 
+        }
+        */
         if (batCooldown<=0)
         {
-            
+            ifBat = true;
+            currBat.SetActive(true);
         }
        
     }

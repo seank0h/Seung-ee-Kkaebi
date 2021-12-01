@@ -17,20 +17,35 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     Behaviour p_halo;
     private bool isBtnDown = false;
 
-    float c_hold_time = 0;
-    float n_hold_time = 0;
+    public GameObject playerMeshEntity;
+    public GameObject playerPropMeshEntity;
+    private MeshFilter playerPropMesh;
+    private Renderer playerPropRenderer;
+    private Collider playerCollider;
+    private SkinnedMeshRenderer playerMesh;
+    public GameObject cameraRoot;
+    public bool changeBack;
+    public bool swapToProp;
+    public bool proped = false;
+    float prop_time = 0f;
+
+    CurseManage curse = null;
+    PlayerAlart pa = null;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        playerMesh = playerMeshEntity.GetComponent<SkinnedMeshRenderer>();
+        playerCollider = playerMeshEntity.GetComponent<CapsuleCollider>();
+        playerPropMesh = playerPropMeshEntity.GetComponent<MeshFilter>();
+        playerPropRenderer = playerPropMeshEntity.GetComponent<Renderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Dance();
-
+        dust();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -45,179 +60,194 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void Dance()
     {
-        if (Physics.Raycast(gameObject.transform.position + height, gameObject.transform.forward, out hit, 1000))
-        {
-            Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.red);
-            if (hit.collider.tag == "Interactive") //건물 저주
+        if (!proped) {
+            if (Physics.Raycast(gameObject.transform.position + height, gameObject.transform.forward, out hit, 1000))
             {
-                n_hold_time = 0;
-                if (n_reset)
+                Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.red);
+                if (hit.collider.tag == "Interactive") //건물 저주
                 {
-                    n_halo.enabled = false;
-                    n_reset = false;
-                }
-                if (p_reset)
-                {
-                    p_halo.enabled = false;
-                    p_reset = false;
-                }
-                // Debug.Log(hit.collider.name + " : " + hit.distance);
-                if (hit.distance <= 3.0f)
-                {
-                    Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
-                    c_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
-                    // Debug.Log(c_halo);
-                    c_halo.enabled = true;
-                    c_reset = true;
-                    if (Input.GetKey("q") || isBtnDown)
+                    if (n_reset)
                     {
-                        Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.blue);
-                        c_hold_time += Time.deltaTime;
-                        Debug.Log(c_hold_time);
-                        if (c_hold_time >= 3.0f)
-                        {
-                            c_hold_time = 3.0f;
-                            CurseManage curse = hit.collider.gameObject.GetComponent<CurseManage>();
-                            curse.cursed = true;
+                        n_halo.enabled = false;
+                        n_reset = false;
+                        pa.sturning = false;
+                    }
+                    if (p_reset)
+                    {
+                        p_halo.enabled = false;
+                        p_reset = false;
+                    }
 
-                            if(hit.collider.gameObject.name == "curse1")
-                            {
-                                vr2mobile.vm.curse_send(0);
-                            }
-                            else if (hit.collider.gameObject.name == "curse2")
-                            {
-                                vr2mobile.vm.curse_send(1);
-                            }
-                            else if (hit.collider.gameObject.name == "curse3")
-                            {
-                                vr2mobile.vm.curse_send(2);
-                            }
-                            else if (hit.collider.gameObject.name == "curse4")
-                            {
-                                vr2mobile.vm.curse_send(3);
-                            }
-                        }
-                        return;
-                    }
-                    c_hold_time = 0;
-                }
-                return;
-            }
-            else if (hit.collider.tag == "NPC") // npc 스턴
-            {
-                c_hold_time = 0;
-                if (c_reset)
-                {
-                    c_halo.enabled = false;
-                    c_reset = false;
-                }
-                if (p_reset)
-                {
-                    p_halo.enabled = false;
-                    p_reset = false;
-                }
-                //Debug.Log(hit.collider.name + " : " + hit.distance);
-                if (hit.distance <= 3.0f)
-                {
-                    Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
-                    n_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
-                    n_halo.enabled = true;
-                    n_reset = true;
-                    //Debug.Log(hold_time);
-                    Debug.Log(vr2mobile.vm);
-                    if (Input.GetKey("q") || isBtnDown)
+                    if (hit.distance <= 3.0f)
                     {
-                        Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.blue);
-                        n_hold_time += Time.deltaTime;
-                        //Debug.Log(n_hold_time);
-                        if (n_hold_time >= 0.8f)
+                        Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
+                        c_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
+                        c_halo.enabled = true;
+                        c_reset = true;
+                        if (Input.GetKey("q") || isBtnDown)
                         {
-                            n_hold_time = 0.8f;
-                            PlayerAlart sturned = hit.collider.gameObject.GetComponent<PlayerAlart>();
-                            sturned.sturn = true;
-
-                            if (hit.collider.gameObject.name == "NPC1")
-                            {
-                                vr2mobile.vm.strun_send(0);
-                            }
-                            else if (hit.collider.gameObject.name == "NPC2")
-                            {
-                                vr2mobile.vm.strun_send(1);
-                            }
-                            else if (hit.collider.gameObject.name == "NPC3")
-                            {
-                                vr2mobile.vm.strun_send(2);
-                            }
-                            else if (hit.collider.gameObject.name == "NPC4")
-                            {
-                                vr2mobile.vm.strun_send(3);
-                            }
-                            else if (hit.collider.gameObject.name == "NPC5")
-                            {
-                                vr2mobile.vm.strun_send(4);
-                            }
+                            Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.blue);
+                            curse = hit.collider.gameObject.GetComponent<CurseManage>();
+                            curse.cursing = true;
                         }
-                        return;
                     }
-                    n_hold_time = 0;
+                    return;
                 }
-                return;
-            }
-            else if (hit.collider.tag == "Prop")
-            {
-                n_hold_time = 0;
-                c_hold_time = 0;
-                if (c_reset)
+                else if (hit.collider.tag == "NPC") // npc 스턴
                 {
-                    c_halo.enabled = false;
-                    c_reset = false;
-                }
-                if (n_reset)
-                {
-                    n_halo.enabled = false;
-                    n_reset = false;
-                }
-                if (hit.distance <= 3.0f)
-                {
-                    Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
-                    p_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
-                    p_halo.enabled = true;
-                    p_reset = true;
-                    //Debug.Log(hold_time);
-                    if (Input.GetKey("q"))
+                    if (c_reset)
                     {
-                        Debug.Log("prop");
+                        curse.cursing = false;
+                        c_halo.enabled = false;
+                        c_reset = false;
+                    }
+                    if (p_reset)
+                    {
+                        p_halo.enabled = false;
+                        p_reset = false;
+                    }
+                    //Debug.Log(hit.collider.name + " : " + hit.distance);
+                    if (hit.distance <= 3.0f)
+                    {
+                        Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
+                        n_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
+                        n_halo.enabled = true;
+                        n_reset = true;
+                        if (Input.GetKey("q") || isBtnDown)
+                        {
+                            Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.blue);
+                            pa = hit.collider.gameObject.GetComponent<PlayerAlart>();
+                            pa.sturning = true;
+                        }
+                    }
+                    return;
+                }
+                else if (hit.collider.tag == "Prop")
+                {
+                    if (c_reset)
+                    {
+                        curse.cursing = false;
+                        c_halo.enabled = false;
+                        c_reset = false;
+                    }
+                    if (n_reset)
+                    {
+                        n_halo.enabled = false;
+                        n_reset = false;
+                        pa.sturning = false;
+                    }
+                    if (hit.distance <= 3.0f)
+                    {
+                        Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
+                        p_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
+                        p_halo.enabled = true;
+                        p_reset = true;
+                        //Debug.Log(hold_time);
+                        if (Input.GetKeyDown("q") || isBtnDown)
+                        {
+                            Debug.Log("prop : " + hit.collider.gameObject);
+                            ChangeModelAttempt(hit.collider.gameObject);
+                            proped = true;
+                        }
+                    }
+                    return;
+                }
+                else
+                {
+                    if (c_reset)
+                    {
+                        curse.cursing = false;
+                        c_halo.enabled = false;
+                        c_reset = false;
+                    }
+                    if (n_reset)
+                    {
+                        n_halo.enabled = false;
+                        n_reset = false;
+                        pa.sturning = false;
+                    }
+                    if (p_reset)
+                    {
+                        p_halo.enabled = false;
+                        p_reset = false;
                     }
                 }
-                return;
             }
             else
             {
-                n_hold_time = 0;
-                c_hold_time = 0;
-                if (c_reset)
-                {
-                    c_halo.enabled = false;
-                    c_reset = false;
-                }
-                if (n_reset)
-                {
-                    n_halo.enabled = false;
-                    n_reset = false;
-                }
-                if (p_reset)
-                {
-                    p_halo.enabled = false;
-                    p_reset = false;
-                }
+                curse.cursing = false;
+                pa.sturning = false;
+            }
+        } else
+        {
+            // Debug.Log("prop true");
+            if (c_reset)
+            {
+                curse.cursing = false;
+                c_halo.enabled = false;
+                c_reset = false;
+            }
+            if (n_reset)
+            {
+                n_halo.enabled = false;
+                n_reset = false;
+                pa.sturning = false;
+            }
+            if (p_reset)
+            {
+                p_halo.enabled = false;
+                p_reset = false;
+            }
+
+            prop_time += Time.deltaTime;
+
+            // curse.cursing = false;
+            // pa.sturning = false;
+
+            if (prop_time>=10 || (Input.GetKeyDown("q") || isBtnDown))
+            {
+                // Debug.Log("model swap");
+                prop_time = 0;
+                ModelSwap();
+                proped = false;
             }
         }
-        else
-        {
-            c_hold_time = 0;
-            n_hold_time = 0;
-        }
 
+    }
+
+    public void ChangeModelAttempt(GameObject prop)
+    {
+        GameObject gameObjectHit;
+        playerPropMesh.gameObject.SetActive(true);
+        Debug.Log("Raycast hit Prop");
+        gameObjectHit = prop;
+        playerPropMesh.mesh = gameObjectHit.GetComponent<MeshFilter>().mesh;
+        Renderer hitPropMat = gameObjectHit.GetComponent<Renderer>();
+        playerPropRenderer.material = hitPropMat.material;
+
+        playerMesh.gameObject.SetActive(false);
+        swapToProp = true;
+    }
+    public void ModelSwap()
+    {
+        playerPropMesh.gameObject.SetActive(false);
+        playerMesh.gameObject.SetActive(true);
+        playerMesh.transform.localScale = new Vector3(1f, 1f, 1f);
+        changeBack = false;
+    }
+
+    public void dust()
+    {
+        if (Input.GetKeyDown("e"))
+        {
+            Debug.Log("dust on");
+            mobileClient.cl.setDustStrom(1);
+        }
+        else if (Input.GetKeyDown("r"))
+        {
+            Debug.Log("dust off");
+            mobileClient.cl.setDustStrom(0);
+        }
     }
 }
     

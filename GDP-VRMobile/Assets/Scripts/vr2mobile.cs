@@ -17,10 +17,12 @@ public class vr2mobile : MonoBehaviour
     public GameObject flare;
     public GameObject bullet;
     public GameObject player;
-    //public ParticleSystem dustEffect;
+    
+    public ParticleSystem dustEffect;
     bool effectOn;
-    float lowerEmissionRate;
     public float NormalEmissionRate;
+    float lowerEmissionRate;
+
     char[] c_detail = new char[4];
     char[] n_detail = new char[5];
     ThirdPersonController playecon;
@@ -40,8 +42,10 @@ public class vr2mobile : MonoBehaviour
         vrPos[0] = mobileClient.cl.getVRPos();
         vrPos[1] = mobileClient.cl.getVRPos();
         startNPC = mobileClient.cl.getstartNPCMove();
+
         effectOn = false;
-        NormalEmissionRate = 300;
+        NormalEmissionRate = 50;
+
         mobileClient.cl.setstartNPCMove(1);
         c_detail = mobileClient.cl.getCurse().ToCharArray();
         n_detail = mobileClient.cl.getNPCMat().ToCharArray();
@@ -84,31 +88,30 @@ public class vr2mobile : MonoBehaviour
 
         //Debug.Log(mobileClient.cl.getVRPos());
 
-        /*
-        if (dustClean[0] != dustClean[1])
+        Debug.Log("dust storm : " + mobileClient.cl.getDustStrom());
+
+        if (mobileClient.cl.getDustStrom() == 1)
         {
-            if (dustClean[0] == 1)
+
+            if (effectOn == false)
             {
-                mobileClient.cl.setDustStrom(0);
-                if (effectOn == false)
-                {
-                    var dustEffectEmission = dustEffect.emission;
-                    dustEffectEmission.rateOverTime = NormalEmissionRate;
-                    dustEffect.Play();
-                    effectOn = true;
-                }
+                var dustEffectEmission = dustEffect.emission;
+                dustEffectEmission.rateOverTime = NormalEmissionRate;
+                dustEffect.Play();
+                effectOn = true;
             }
-            else
+        }
+        if (mobileClient.cl.getDustStrom() == 0)
+        {
+            if (effectOn)
             {
-                if (effectOn)
-                {
-                    var dustEffectEmission = dustEffect.emission;
-                    lowerEmissionRate--;
-                    dustEffectEmission.rateOverTime = lowerEmissionRate;
-                    effectOn = false;
-                }
+                var dustEffectEmission = dustEffect.emission;
+                lowerEmissionRate--;
+                dustEffectEmission.rateOverTime = lowerEmissionRate;
+                effectOn = false;
             }
-        }*/
+        }
+
 
         if (isFlare[0] != isFlare[1])
         {
@@ -169,6 +172,7 @@ public class vr2mobile : MonoBehaviour
         // Debug.Log("index : " + index);
         n_detail[index] = '2';
         string result = new string(n_detail);
+        // Debug.Log("alart_detail : " + result);
         mobileClient.cl.setNPCMat(result);
     }
 
@@ -177,6 +181,7 @@ public class vr2mobile : MonoBehaviour
         // Debug.Log("index : " + index);
         n_detail[index] = '0';
         string result = new string(n_detail);
+        // Debug.Log("alart_end_detail : " + result);
         mobileClient.cl.setNPCMat(result);
     }
 
