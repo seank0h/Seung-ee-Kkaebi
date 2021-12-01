@@ -17,7 +17,7 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     Behaviour p_halo;
     private bool isBtnDown = false;
 
-    float c_hold_time = 0;
+    CurseManage curse;
     float n_hold_time = 0;
 
     // Start is called before the first frame update
@@ -61,53 +61,27 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     p_halo.enabled = false;
                     p_reset = false;
                 }
-                // Debug.Log(hit.collider.name + " : " + hit.distance);
+
                 if (hit.distance <= 3.0f)
                 {
                     Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
                     c_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
-                    // Debug.Log(c_halo);
                     c_halo.enabled = true;
                     c_reset = true;
                     if (Input.GetKey("q") || isBtnDown)
                     {
                         Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.blue);
-                        c_hold_time += Time.deltaTime;
-                        Debug.Log(c_hold_time);
-                        if (c_hold_time >= 3.0f)
-                        {
-                            c_hold_time = 3.0f;
-                            CurseManage curse = hit.collider.gameObject.GetComponent<CurseManage>();
-                            curse.cursed = true;
-
-                            if(hit.collider.gameObject.name == "curse1")
-                            {
-                                vr2mobile.vm.curse_send(0);
-                            }
-                            else if (hit.collider.gameObject.name == "curse2")
-                            {
-                                vr2mobile.vm.curse_send(1);
-                            }
-                            else if (hit.collider.gameObject.name == "curse3")
-                            {
-                                vr2mobile.vm.curse_send(2);
-                            }
-                            else if (hit.collider.gameObject.name == "curse4")
-                            {
-                                vr2mobile.vm.curse_send(3);
-                            }
-                        }
-                        return;
+                        curse = hit.collider.gameObject.GetComponent<CurseManage>();
+                        curse.cursing = true;
                     }
-                    c_hold_time = 0;
                 }
                 return;
             }
             else if (hit.collider.tag == "NPC") // npc Ω∫≈œ
             {
-                c_hold_time = 0;
                 if (c_reset)
                 {
+                    curse.cursing = false;
                     c_halo.enabled = false;
                     c_reset = false;
                 }
@@ -166,9 +140,9 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             else if (hit.collider.tag == "Prop")
             {
                 n_hold_time = 0;
-                c_hold_time = 0;
                 if (c_reset)
                 {
+                    curse.cursing = false;
                     c_halo.enabled = false;
                     c_reset = false;
                 }
@@ -194,9 +168,9 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             else
             {
                 n_hold_time = 0;
-                c_hold_time = 0;
                 if (c_reset)
                 {
+                    curse.cursing = false;
                     c_halo.enabled = false;
                     c_reset = false;
                 }
@@ -214,7 +188,7 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
         else
         {
-            c_hold_time = 0;
+            curse.cursing = false;
             n_hold_time = 0;
         }
 
