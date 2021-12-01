@@ -12,35 +12,35 @@ public class BasicGhostBehavior : MonoBehaviour
     public Material ghostMaterialTransparent;
     public Material ghostMaterialRevealed;
     public float yPositionCalibration;
-
+    public GameObject dokkaebiArmature;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-        ghostRenderer = this.GetComponent<Renderer>();
+
+        ghostRenderer = dokkaebiArmature.GetComponent<Renderer>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-       
-        if(beingSeen)
+
+        if (beingSeen)
         {
             revealTimer -= Time.deltaTime;
             ghostRenderer.material = ghostMaterialRevealed;
         }
-        if(beingSeen==false)
+        if (beingSeen == false)
         {
             revealTimer -= Time.deltaTime;
-            if(revealTimer<=0)
+            if (revealTimer <= 0)
             {
                 ghostRenderer.material = ghostMaterialTransparent;
                 revealTimer = 5.0f;
             }
         }
-        
+
         if (shouldDie)
             Death();
     }
@@ -63,6 +63,10 @@ public class BasicGhostBehavior : MonoBehaviour
     {
         ghostRenderer.enabled = false;
         Invoke("ShowGhost", 5.0f);
+    }
+    public void HitByBullet()
+    {
+
     }
     void ShowGhost()
     {
