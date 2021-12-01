@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class PlayerAlart : MonoBehaviour
 {
     public GameObject player;
+    public GameObject prop;
     float stay = 0;
     float release = 0;
     float sturn_time = 0;
@@ -13,6 +14,8 @@ public class PlayerAlart : MonoBehaviour
     public bool sturning = false;
     float speed;
     int index;
+    RayCast_cam pp;
+    bool proped;
 
     // Start is called before the first frame update
     void Start()
@@ -39,12 +42,18 @@ public class PlayerAlart : MonoBehaviour
         {
             index = 4;
         }
+
+        pp = prop.GetComponent<RayCast_cam>();
+        proped = pp.proped;
     }
 
     // Update is called once per frame
     void Update()
     {
         float distance = Vector3.Distance(player.transform.position, transform.position);
+        proped = pp.proped;
+
+        // Debug.Log(proped);
 
         if (sturn)
         {
@@ -53,7 +62,8 @@ public class PlayerAlart : MonoBehaviour
             this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
 
             vr2mobile.vm.strun_send(index);
-        } else
+        }
+        else
         {
             if (sturning)
             {
@@ -68,35 +78,38 @@ public class PlayerAlart : MonoBehaviour
             }
             else
             {
-                sturn_time -= Time.deltaTime/3;
+                sturn_time -= Time.deltaTime / 3;
                 if (sturn_time <= 0)
                     sturn_time = 0;
             }
 
-            if (distance <= 5)
+            if (!proped)
             {
-                stay += Time.deltaTime;
-                release = 0;
-                if (stay >= 2f)
+                if (distance <= 5)
                 {
-                    this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
-                    this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
-                    vr2mobile.vm.alert_send(index);
-                    // Debug.Log("alart npc ; " + gameObject.name);
+                    stay += Time.deltaTime;
+                    release = 0;
+                    if (stay >= 2f)
+                    {
+                        this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
+                        this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
+                        vr2mobile.vm.alert_send(index);
+                        // Debug.Log("alart npc ; " + gameObject.name);
+                    }
                 }
-            }
-            else
-            {
-                release += Time.deltaTime;
-                if (release <= 2)
+                else
                 {
-                    return;
+                    release += Time.deltaTime;
+                    if (release <= 2)
+                    {
+                        return;
+                    }
+                    stay = 0;
+                    release = 0;
+                    this.gameObject.GetComponent<Renderer>().material.color = Color.black;
+                    this.gameObject.GetComponent<NavMeshAgent>().speed = speed;
+                    vr2mobile.vm.alert_end(index);
                 }
-                stay = 0;
-                release = 0;
-                this.gameObject.GetComponent<Renderer>().material.color = Color.black;
-                this.gameObject.GetComponent<NavMeshAgent>().speed = speed;
-                vr2mobile.vm.alert_end(index);
             }
         }
     }

@@ -56,7 +56,7 @@ public class CurseManage : MonoBehaviour
             {
                 curse_time += Time.deltaTime;
 
-                Debug.Log("hold time : " + curse_time);
+                // Debug.Log("hold time : " + curse_time);
 
                 if(curse_time >= 3.0f)
                 {

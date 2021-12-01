@@ -49,7 +49,7 @@ namespace StarterAssets
 		}
 		public void OnSwap(InputValue value)
 		{
-			Debug.Log("Called SwapInput");
+			// Debug.Log("Called SwapInput");
 			SwapInput(value.isPressed);
 		}
 		public void OnRevertBack(InputValue value)
