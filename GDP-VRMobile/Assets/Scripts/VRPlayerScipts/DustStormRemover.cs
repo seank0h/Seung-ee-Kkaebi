@@ -4,87 +4,97 @@ using UnityEngine;
 
 public class DustStormRemover : MonoBehaviour
 {
-    public static DustStormRemover dustStormRemover;
-    private GameObject Removal;
-    private GameObject removerOrigin, remover1, remover2, remover3, remover4, removerFinal;
-
+    public static DustStormRemover dsr;
+    private GameObject Removal, originCol;
+    private GameObject removerOrigin;
+    private GameObject[] removers;
+    private Renderer rendO;
+    private Renderer[] rend;
     public int index;
 
-    void Start()
-    {
-         if(dustStormRemover && dustStormRemover != this)
+    public bool trigger;
+    private Collider collider;
+
+    void Start(){
+        if(dsr && dsr != this)
             Destroy(this);
         else
-            dustStormRemover = this;
+            dsr = this;
+        
         index =0;
-        removerOrigin = GameObject.Find("RemoverOrigin");
-        remover1 = GameObject.Find("Remover_1");
-        remover2 = GameObject.Find("Remover_2");
-        remover3 = GameObject.Find("Remover_3");
-        remover4 = GameObject.Find("Remover_4");
-        removerFinal = GameObject.Find("RemoverFinal");
+        initObj();
 
+        rend = new Renderer[5];
+
+        Removal = GameObject.Find("DustStormRemoval");
+        originCol = GameObject.Find("OriginCol");
     }
 
-    private void OnTriggerStay(Collider other) {
-        if(other.gameObject.name == "RemoverOrigin" && index ==0){                    
-            removerOrigin.transform.position = Vector3.Lerp(removerOrigin.transform.position, remover1.transform.position, Time.deltaTime * 2);
-           
+    void Update(){
+        if(trigger && VRDustParticleEffect.VRdpe.effectOn){
+            touchEvent(collider);
         }
-        if(other.gameObject.name == "RemoverOrigin" && index == 1){
-            Debug.Log("Going ti remover2");
-            removerOrigin.transform.position = Vector3.Lerp(removerOrigin.transform.position, remover2.transform.position, Time.deltaTime * 2);
-            
-        }
-        if(other.gameObject.name == "RemoverOrigin" && index == 2){
-            removerOrigin.transform.position = Vector3.Lerp(removerOrigin.transform.position, remover3.transform.position, Time.deltaTime * 2);
-            
-        }
-        if(other.gameObject.name == "RemoverOrigin" && index == 3){
-            removerOrigin.transform.position = Vector3.Lerp(removerOrigin.transform.position, remover4.transform.position, Time.deltaTime * 2);
-            
-        }
-        if(other.gameObject.name == "RemoverOrigin" && index == 4){
-            removerOrigin.transform.position = Vector3.Lerp(removerOrigin.transform.position, removerFinal.transform.position, Time.deltaTime * 2);
-            
-        } 
-            /*
-            if(removerOrigin.transform.position == remover1.transform.position){
-                Debug.Log("EQUAL TRANSFORM@@@@");
-                remover1.SetActive(false);
-                removerOrigin.transform.position = Vector3.Lerp(remover1.transform.position, remover2.transform.position, Time.deltaTime * 2);
-            }
-            if(removerOrigin.transform.position == remover2.transform.position){
-                remover2.SetActive(false);
-                removerOrigin.transform.position = Vector3.Lerp(remover2.transform.position, remover3.transform.position, Time.deltaTime * 2);
-            }
-            if(removerOrigin.transform.position == remover3.transform.position){
-                remover3.SetActive(false);
-                removerOrigin.transform.position = Vector3.Lerp(remover3.transform.position, remover4.transform.position, Time.deltaTime * 2);
-            }
-            if(removerOrigin.transform.position == remover4.transform.position){
-                remover4.SetActive(false);
-                removerOrigin.transform.position = Vector3.Lerp(remover4.transform.position, removerFinal.transform.position, Time.deltaTime * 2);
-            }
-            */
+    }
 
-            //removerOrigin.transform.position = Vector3.Lerp(remover1.transform.position, remover2.transform.position, Time.deltaTime * 2);
-            //removerOrigin.transform.position = Vector3.Lerp(remover2.transform.position, remover3.transform.position, Time.deltaTime * 2);
-            //removerOrigin.transform.position = Vector3.Lerp(remover3.transform.position, remover4.transform.position, Time.deltaTime * 2);
-            //removerOrigin.transform.position = Vector3.Lerp(remover4.transform.position, removerFinal.transform.position, Time.deltaTime * 2);
-            
-            /*
-            remover1_y = Random.Range(remover1_y + 0.3f, remover1_y - 0.3f);
-            //Debug.Log("remover1_y : " + remover1_y);
-            remover2_y = Random.Range(remover2_y + 0.03f, remover2_y - 0.03f);
-            //Debug.Log("remover2_y : " + remover2_y);
-            remover3_y = Random.Range(remover3_y + 0.03f, remover3_y - 0.03f);
-            //Debug.Log("remover3_y : " + remover3_y);
-            remover4_y = Random.Range(remover4_y + 0.03f, remover4_y - 0.03f);
-            //Debug.Log("remover4_y : " + remover4_y);
-            */
-            //Removal.SetActive(true);
+    public void setTrigger(bool status, Collider col){
+        trigger = status;
+        collider = col;
+    }
+
+    public void disableTrigger(bool status){
+        trigger = status;
+    }
+
+    private void touchEvent(Collider other) {       
+        for(int i = 0; i < 5; i++) {
+            if(other.gameObject.name == "RemoverOrigin" && index == i){
+                initObj();
+                Debug.Log("INDEX : " + index);
+
+                removerOrigin.transform.position = Vector3.Lerp(removerOrigin.transform.position, removers[i].transform.position, Time.deltaTime * 2);
+                float percent = GetPercentageAlong(removerOrigin.transform.position, removers[i].transform.position, originCol.transform.position);
+                
+                if(i == 4){
+                    return;
+                }else{
+                    StartCoroutine(AlphaLerp(i + 1, percent));
+                }
+                
+                
+            }
+        }
+    }
+
+    // Alpha lerping to visible
+    public IEnumerator AlphaLerp(int j, float percent){
+
+        float currentTime = 0;
+
+        rend[j] = Removal.transform.GetChild(j).GetComponent<Renderer>();
+       
+        while(currentTime < 1){
+            rend[j].material.color = Color.Lerp(Color.clear, Color.red, currentTime);
+            yield return null;
+            currentTime += Time.deltaTime;
+        }
 
         
     }
+
+    public static float GetPercentageAlong(Vector3 start, Vector3 end, Vector3 hand){
+        var start2end = end - start;
+        var start2hand = hand - start;
+        return Vector3.Dot(start2hand, start2end) / start2end.sqrMagnitude;
+    }
+
+    private void initObj(){
+        removers = new GameObject[5];
+        removers[0] = GameObject.Find("Remover_1");
+        removers[1] = GameObject.Find("Remover_2");
+        removers[2] = GameObject.Find("Remover_3");
+        removers[3] = GameObject.Find("Remover_4");
+        removers[4] = GameObject.Find("RemoverFinal");
+        removerOrigin = GameObject.Find("RemoverOrigin");
+    }
+
 }

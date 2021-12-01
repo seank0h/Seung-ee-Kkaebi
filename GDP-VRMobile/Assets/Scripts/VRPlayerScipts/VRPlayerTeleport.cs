@@ -16,6 +16,11 @@ public class VRPlayerTeleport : MonoBehaviour
         //this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x,3.43F, this.gameObject.transform.position.z);
 	}
 
+    void Update() {
+        
+    }
+    
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.name =="Teleport_L")
@@ -28,5 +33,13 @@ public class VRPlayerTeleport : MonoBehaviour
 			//Debug.Log("Touched Right Teleport");
 			vrPlayerTeleport.ButtonTeleport(false); // teleport to Right
 		}
+    }
+
+    private void OnTriggerStay(Collider other) {
+        DustStormRemover.dsr.setTrigger(true, other);
+    }
+
+    private void OnTriggerExit(Collider other) {
+        DustStormRemover.dsr.disableTrigger(false);
     }
 }
