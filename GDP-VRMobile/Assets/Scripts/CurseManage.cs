@@ -9,7 +9,7 @@ public class CurseManage : MonoBehaviour
     Behaviour halo;
     SerializedObject halo2;
     public float curse_time;
-    public bool cursing;
+    public bool cursing = false;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +67,9 @@ public class CurseManage : MonoBehaviour
             else
             {
                 curse_time -= Time.deltaTime / 3;
+
+                if (curse_time <= 0)
+                    curse_time = 0;
             }
         }
     }

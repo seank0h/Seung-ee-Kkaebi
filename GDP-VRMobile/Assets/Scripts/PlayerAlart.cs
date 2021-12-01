@@ -8,7 +8,9 @@ public class PlayerAlart : MonoBehaviour
     public GameObject player;
     float stay = 0;
     float release = 0;
+    float sturn_time = 0;
     public bool sturn = false;
+    public bool sturning = false;
     float speed;
     int index;
 
@@ -49,8 +51,28 @@ public class PlayerAlart : MonoBehaviour
             this.gameObject.GetComponent<Renderer>().material.color = Color.red;
             this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
             this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+
+            vr2mobile.vm.strun_send(index);
         } else
         {
+            if (sturning)
+            {
+                sturn_time += Time.deltaTime;
+                if (sturn_time >= 0.8f)
+                {
+                    sturn_time = 0.8f;
+                    sturn = true;
+                    // Debug.Log("sturn npc ; " + gameObject.name);
+                    return;
+                }
+            }
+            else
+            {
+                sturn_time -= Time.deltaTime/3;
+                if (sturn_time <= 0)
+                    sturn_time = 0;
+            }
+
             if (distance <= 5)
             {
                 stay += Time.deltaTime;
@@ -60,6 +82,7 @@ public class PlayerAlart : MonoBehaviour
                     this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
                     this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
                     vr2mobile.vm.alert_send(index);
+                    // Debug.Log("alart npc ; " + gameObject.name);
                 }
             }
             else

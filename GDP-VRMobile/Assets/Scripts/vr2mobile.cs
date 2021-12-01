@@ -169,6 +169,7 @@ public class vr2mobile : MonoBehaviour
         // Debug.Log("index : " + index);
         n_detail[index] = '2';
         string result = new string(n_detail);
+        Debug.Log("alart_detail : " + result);
         mobileClient.cl.setNPCMat(result);
     }
 
@@ -177,6 +178,7 @@ public class vr2mobile : MonoBehaviour
         // Debug.Log("index : " + index);
         n_detail[index] = '0';
         string result = new string(n_detail);
+        Debug.Log("alart_end_detail : " + result);
         mobileClient.cl.setNPCMat(result);
     }
 

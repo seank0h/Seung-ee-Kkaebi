@@ -18,7 +18,7 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private bool isBtnDown = false;
 
     CurseManage curse;
-    float n_hold_time = 0;
+    PlayerAlart pa;
 
     // Start is called before the first frame update
     void Start()
@@ -50,11 +50,11 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.red);
             if (hit.collider.tag == "Interactive") //건물 저주
             {
-                n_hold_time = 0;
                 if (n_reset)
                 {
                     n_halo.enabled = false;
                     n_reset = false;
+                    pa.sturning = false;
                 }
                 if (p_reset)
                 {
@@ -97,49 +97,17 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     n_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
                     n_halo.enabled = true;
                     n_reset = true;
-                    //Debug.Log(hold_time);
-                    Debug.Log(vr2mobile.vm);
                     if (Input.GetKey("q") || isBtnDown)
                     {
                         Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.blue);
-                        n_hold_time += Time.deltaTime;
-                        //Debug.Log(n_hold_time);
-                        if (n_hold_time >= 0.8f)
-                        {
-                            n_hold_time = 0.8f;
-                            PlayerAlart sturned = hit.collider.gameObject.GetComponent<PlayerAlart>();
-                            sturned.sturn = true;
-
-                            if (hit.collider.gameObject.name == "NPC1")
-                            {
-                                vr2mobile.vm.strun_send(0);
-                            }
-                            else if (hit.collider.gameObject.name == "NPC2")
-                            {
-                                vr2mobile.vm.strun_send(1);
-                            }
-                            else if (hit.collider.gameObject.name == "NPC3")
-                            {
-                                vr2mobile.vm.strun_send(2);
-                            }
-                            else if (hit.collider.gameObject.name == "NPC4")
-                            {
-                                vr2mobile.vm.strun_send(3);
-                            }
-                            else if (hit.collider.gameObject.name == "NPC5")
-                            {
-                                vr2mobile.vm.strun_send(4);
-                            }
-                        }
-                        return;
+                        pa = hit.collider.gameObject.GetComponent<PlayerAlart>();
+                        pa.sturning = true;
                     }
-                    n_hold_time = 0;
                 }
                 return;
             }
             else if (hit.collider.tag == "Prop")
             {
-                n_hold_time = 0;
                 if (c_reset)
                 {
                     curse.cursing = false;
@@ -150,6 +118,7 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 {
                     n_halo.enabled = false;
                     n_reset = false;
+                    pa.sturning = false;
                 }
                 if (hit.distance <= 3.0f)
                 {
@@ -167,7 +136,6 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             }
             else
             {
-                n_hold_time = 0;
                 if (c_reset)
                 {
                     curse.cursing = false;
@@ -178,6 +146,7 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 {
                     n_halo.enabled = false;
                     n_reset = false;
+                    pa.sturning = false;
                 }
                 if (p_reset)
                 {
@@ -189,7 +158,7 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         else
         {
             curse.cursing = false;
-            n_hold_time = 0;
+            pa.sturning = false;
         }
 
     }
