@@ -6,16 +6,19 @@ public class Bat : MonoBehaviour
 {
     public int hit;
     public GameObject hitEffectToSpawn;
+    public GameObject handRotation;
     // Start is called before the first frame update
     void Start()
     {
+        handRotation = GameObject.Find("RightHandAnchor");
         hit = vrClient.cl.getCatchEvent();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // this.gameObject.transform.rotation = this.gameObject.transform.parent.rotation;
+        //gameObject.transform.eulerAngles = handRotation.transform.eulerAngles;
     }
 
     void OnCollisionEnter(Collision co){
