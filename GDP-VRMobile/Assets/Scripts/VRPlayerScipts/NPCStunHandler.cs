@@ -5,15 +5,18 @@ using UnityEngine.AI;
 
 public class NPCStunHandler : MonoBehaviour
 {
-    public List<GameObject> NPCList;
+    //public List<GameObject> NPCList;
     // Start is called before the first frame update
+    public SkinnedMeshRenderer npcRenderer;
     void Start()
     {
+
+        /*
         for (int i = 0; i < NPCList.Count; i++)
         {
             NPCList[i].gameObject.GetComponent<Renderer>().material.color = Color.black;
         }
-
+        */
 
     }
 
@@ -21,6 +24,7 @@ public class NPCStunHandler : MonoBehaviour
     void Update()
     {
         //Debug.Log("Stun Check: "+mobile2vr.mobileToVRCl.NPCStunState());
+        /*
         if (mobile2vr.mobileToVRCl.NPCStunState() == 0)
         {
             NPCList[0].gameObject.GetComponent<Renderer>().material.color = Color.red;
@@ -56,6 +60,12 @@ public class NPCStunHandler : MonoBehaviour
             NPCList[4].gameObject.GetComponent<CapsuleCollider>().enabled = false;
             mobile2vr.mobileToVRCl.npcStunState = -1;
         }
-
+        */
+    }
+    public void StunState()
+    {
+       npcRenderer.material.color = Color.red;
+       this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
+       this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
     }
 }

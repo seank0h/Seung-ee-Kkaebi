@@ -6,38 +6,36 @@ public class CurseVisualizer : MonoBehaviour
 {
     // Start is called before the first frame update
     public List<GameObject> curseableHouses;
-    Behaviour halo; 
-    Behaviour halo1;
-    Behaviour halo2;
-    Behaviour halo3;
+    public GameObject curseEffectSystem;
+   
     void Start()
     {
-        halo = (Behaviour)curseableHouses[0].gameObject.GetComponent("Halo");
-        halo1 = (Behaviour)curseableHouses[1].gameObject.GetComponent("Halo");
-        halo2 =  (Behaviour)curseableHouses[2].gameObject.GetComponent("Halo");
-        halo3 = (Behaviour)curseableHouses[3].gameObject.GetComponent("Halo");
+        
     }
     private void Update()
     {
         if(mobile2vr.mobileToVRCl.CurseDetection()!=-1)
-        TurnOnHalo();
+        InstantiateCurseEffect();
     }
-    void TurnOnHalo()
+    void InstantiateCurseEffect()
     {
         if(mobile2vr.mobileToVRCl.CurseDetection()==0)
         {
-            halo.enabled = true;
+            Instantiate(curseEffectSystem, curseableHouses[0].transform.position, Quaternion.identity);
         }
         else if (mobile2vr.mobileToVRCl.CurseDetection() == 1)
         {
-            halo1.enabled = true;
+            Instantiate(curseEffectSystem, curseableHouses[1].transform.position, Quaternion.identity);
+
         }
         else if(mobile2vr.mobileToVRCl.CurseDetection() == 2)
         {
-            halo2.enabled = true;
+            Instantiate(curseEffectSystem, curseableHouses[2].transform.position, Quaternion.identity);
+
         }
         else if(mobile2vr.mobileToVRCl.CurseDetection() == 3)
-            halo3.enabled = true;
-        
+            Instantiate(curseEffectSystem, curseableHouses[3].transform.position, Quaternion.identity);
+
+
     }
 }
