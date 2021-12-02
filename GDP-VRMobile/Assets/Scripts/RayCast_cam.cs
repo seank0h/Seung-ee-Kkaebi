@@ -282,12 +282,12 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (Input.GetKeyDown("e"))
         {
-            Debug.Log("dust on");
+            // Debug.Log("dust on");
             mobileClient.cl.setDustStrom(1);
         }
         else if (Input.GetKeyDown("r"))
         {
-            Debug.Log("dust off");
+            // Debug.Log("dust off");
             mobileClient.cl.setDustStrom(0);
         }
     }

@@ -29,7 +29,7 @@ public class Bat : MonoBehaviour
             co.gameObject.GetComponent<BasicGhostBehavior>().HitbyBat();
             Instantiate(hitEffectToSpawn, co.transform.position, Quaternion.identity);
             vrClient.cl.setCatchEvent(1);
-            Invoke("re_bat", 1f);
+            Invoke("re_bat", 5f);
         }
         if(co.gameObject.tag == "Environment"){
             Debug.Log("***BAT *** COLLISION WITH ENVIRONMENT");

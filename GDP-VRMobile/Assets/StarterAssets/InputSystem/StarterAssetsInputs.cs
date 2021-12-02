@@ -84,12 +84,12 @@ namespace StarterAssets
 		}
 		public void SwapInput(bool newSwapState)
         {
-			Debug.Log("Called SwapInput");
+			// Debug.Log("Called SwapInput");
 			swap = newSwapState;
         }
 		public void RevertInput(bool newRevertState)
 		{
-			Debug.Log("Called RevertInput");
+			// Debug.Log("Called RevertInput");
 			changeBack = newRevertState;
 		}
 #if !UNITY_IOS || !UNITY_ANDROID
