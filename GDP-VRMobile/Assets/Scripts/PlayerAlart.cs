@@ -61,6 +61,7 @@ public class PlayerAlart : MonoBehaviour
             this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
             this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
 
+            // Debug.Log("sturn npc cum : " + (index+1));
             vr2mobile.vm.strun_send(index);
         }
         else
@@ -93,6 +94,7 @@ public class PlayerAlart : MonoBehaviour
                     {
                         this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
                         this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
+                        // Debug.Log("alart npc cum : " + (index + 1));
                         vr2mobile.vm.alert_send(index);
                         // Debug.Log("alart npc ; " + gameObject.name);
                     }
@@ -108,6 +110,7 @@ public class PlayerAlart : MonoBehaviour
                     release = 0;
                     this.gameObject.GetComponent<Renderer>().material.color = Color.black;
                     this.gameObject.GetComponent<NavMeshAgent>().speed = speed;
+                    // Debug.Log("repatroll npc cum : " + (index + 1));
                     vr2mobile.vm.alert_end(index);
                 }
             }

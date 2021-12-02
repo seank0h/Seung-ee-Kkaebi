@@ -28,6 +28,9 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public bool swapToProp;
     public bool proped = false;
     float prop_time = 0f;
+    string mesh_name;
+    int mesh_num;
+    string prop_name = "";
 
     CurseManage curse = null;
     PlayerAlart pa = null;
@@ -124,6 +127,13 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 }
                 else if (hit.collider.tag == "Prop")
                 {
+                    /*
+                    if (prop_name != hit.collider.name)
+                    {
+                        p_halo.enabled = false;
+                        p_reset = false;
+                    }
+                    prop_name = hit.collider.name;*/
                     if (c_reset)
                     {
                         curse.cursing = false;
@@ -142,10 +152,41 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                         p_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
                         p_halo.enabled = true;
                         p_reset = true;
-                        //Debug.Log(hold_time);
+                        mesh_name = hit.collider.GetComponent<MeshFilter>().mesh.name;
+
                         if (Input.GetKeyDown("q") || isBtnDown)
                         {
-                            Debug.Log("prop : " + hit.collider.gameObject);
+                            if (mesh_name == "ChoppingBlock_01 Instance")
+                            {
+                                mesh_num = 1;
+                            }
+                            else if (mesh_name == "FireWoodPile_01 Instance")
+                            {
+                                mesh_num = 2;
+                            }
+                            else if (mesh_name == "WheelBarrow_01 Instance")
+                            {
+                                mesh_num = 3;
+                            }
+                            else if (mesh_name == "Trough_01 Instance")
+                            {
+                                mesh_num = 4;
+                            }
+                            else if (mesh_name == "Box_ Instance")
+                            {
+                                mesh_num = 5;
+                            }
+                            else if (mesh_name == "BoxC_ Instance")
+                            {
+                                mesh_num = 6;
+                            }
+                            else if (mesh_name == "Ghamhany_ Instance")
+                            {
+                                mesh_num = 7;
+                            }
+                            mobileClient.cl.setProp(mesh_num);
+
+                            Debug.Log("mesh_name : " + mesh_num);
                             ChangeModelAttempt(hit.collider.gameObject);
                             proped = true;
                         }
@@ -208,6 +249,7 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             {
                 // Debug.Log("model swap");
                 prop_time = 0;
+                mobileClient.cl.setProp(0);
                 ModelSwap();
                 proped = false;
             }
@@ -240,12 +282,12 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (Input.GetKeyDown("e"))
         {
-            Debug.Log("dust on");
+            // Debug.Log("dust on");
             mobileClient.cl.setDustStrom(1);
         }
         else if (Input.GetKeyDown("r"))
         {
-            Debug.Log("dust off");
+            // Debug.Log("dust off");
             mobileClient.cl.setDustStrom(0);
         }
     }

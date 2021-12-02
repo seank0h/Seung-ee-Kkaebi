@@ -88,7 +88,7 @@ public class vr2mobile : MonoBehaviour
 
         //Debug.Log(mobileClient.cl.getVRPos());
 
-        Debug.Log("dust storm : " + mobileClient.cl.getDustStrom());
+        // Debug.Log("dust storm : " + mobileClient.cl.getDustStrom());
 
         if (mobileClient.cl.getDustStrom() == 1)
         {
@@ -101,6 +101,14 @@ public class vr2mobile : MonoBehaviour
                 effectOn = true;
             }
         }
+
+        if (dustClean[0] == 1)
+        {
+            mobileClient.cl.setDustStrom(0);
+        }
+        Debug.Log("duststorm : " + mobileClient.cl.getDustStrom());
+        Debug.Log("dustclean : " + dustClean[0]);
+
         if (mobileClient.cl.getDustStrom() == 0)
         {
             if (effectOn)
@@ -124,21 +132,20 @@ public class vr2mobile : MonoBehaviour
             {
                 Debug.Log("bullet");
                 Instantiate(bullet, lHand, Quaternion.Euler(flarePos));
-                Debug.Log("flarepos" + flarePos);
             }
         }
-        
 
+        // Debug.Log("camo : " + catchMobile[0]);
         if (catchMobile[0] != catchMobile[1])
         {
-            int life = mobileClient.cl.getLife();
-            mobileClient.cl.setLife(life - 1);
-            Debug.Log(mobileClient.cl.getLife());
-            Debug.Log("first : " + playecon.MoveSpeed);
-            playecon.MoveSpeed = 10;
-            Debug.Log("second : " + playecon.MoveSpeed);
-            Invoke("speed_return", 5f);
-            Debug.Log("third : " + playecon.MoveSpeed);
+            if (catchMobile[0] == 1)
+            {
+                int life = mobileClient.cl.getLife();
+                mobileClient.cl.setLife(life - 1);
+                Debug.Log("Life : " + mobileClient.cl.getLife());
+                playecon.MoveSpeed = 10;
+                Invoke("speed_return", 5f);
+            }
         }
         
         if (vrPos[0] != vrPos[1])
@@ -156,6 +163,7 @@ public class vr2mobile : MonoBehaviour
     {
         c_detail[index] = '1';
         string result = new string(c_detail);
+        // Debug.Log(result);
         mobileClient.cl.setCurse(result);
     }
 
@@ -164,6 +172,7 @@ public class vr2mobile : MonoBehaviour
         // Debug.Log("index : " + index);
         n_detail[index] = '1';
         string result = new string(n_detail);
+        // Debug.Log(result);
         mobileClient.cl.setNPCMat(result);
     }
 
@@ -172,7 +181,7 @@ public class vr2mobile : MonoBehaviour
         // Debug.Log("index : " + index);
         n_detail[index] = '2';
         string result = new string(n_detail);
-        // Debug.Log("alart_detail : " + result);
+        // Debug.Log(result);
         mobileClient.cl.setNPCMat(result);
     }
 
@@ -181,7 +190,7 @@ public class vr2mobile : MonoBehaviour
         // Debug.Log("index : " + index);
         n_detail[index] = '0';
         string result = new string(n_detail);
-        // Debug.Log("alart_end_detail : " + result);
+        // Debug.Log(result);
         mobileClient.cl.setNPCMat(result);
     }
 

@@ -23,20 +23,22 @@ public class Bat : MonoBehaviour
 
     void OnCollisionEnter(Collision co){
         
-        if (co.gameObject.tag == "Dokkaebi"){
-             hit = vrClient.cl.getCatchEvent();
+        if (co.gameObject.tag == "Dokkaebi" && vrClient.cl.getCatchEvent() == 0)
+        {
             Debug.Log("***BAT *** COLLISION WITH DOKKAEBI");
-            if (hit == 1)
-                hit = 0;
-            else
-                hit = 1;
             co.gameObject.GetComponent<BasicGhostBehavior>().HitbyBat();
             Instantiate(hitEffectToSpawn, co.transform.position, Quaternion.identity);
-            vrClient.cl.setCatchEvent(hit);
+            vrClient.cl.setCatchEvent(1);
+            Invoke("re_bat", 5f);
         }
         if(co.gameObject.tag == "Environment"){
             Debug.Log("***BAT *** COLLISION WITH ENVIRONMENT");
         }
         
+    }
+
+    void re_bat()
+    {
+        vrClient.cl.setCatchEvent(0);
     }
 }
