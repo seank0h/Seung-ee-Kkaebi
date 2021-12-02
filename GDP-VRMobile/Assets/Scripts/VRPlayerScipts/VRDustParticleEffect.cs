@@ -49,7 +49,7 @@ public class VRDustParticleEffect : MonoBehaviour
         
             if (effectOn == false)
             {
-                Debug.Log("FALSE@@@@@@@@@@@@@@@@");
+                Debug.Log("Starting Dust Storm");
                 var dustEffectEmission = dustEffect.emission;
                 dustEffectEmission.rateOverTime = NormalEmissionRate;
                 dustEffect.Play();
@@ -75,13 +75,10 @@ public class VRDustParticleEffect : MonoBehaviour
     }
 
     public void RemoveDustStorm(){
-        Removal.transform.GetChild(0).gameObject.SetActive(true);
-        Removal.transform.GetChild(1).gameObject.SetActive(true);
-        Removal.transform.GetChild(2).gameObject.SetActive(true);
-        Removal.transform.GetChild(3).gameObject.SetActive(true);
-        Removal.transform.GetChild(4).gameObject.SetActive(true);
-        Removal.transform.GetChild(5).gameObject.SetActive(true);
-
+        for(int i = 0; i < 6; i++){
+            Removal.transform.GetChild(i).gameObject.SetActive(true);
+        }
+        
         StartCoroutine(RemoverIn());
         //StartCoroutine(AlphaIn());
 
@@ -90,12 +87,12 @@ public class VRDustParticleEffect : MonoBehaviour
     public IEnumerator RemoverIn(){
         float currentTime = 0;
 
-        rendO = Removal.transform.GetChild(0).GetComponent<Renderer>();
-        rend[0] = Removal.transform.GetChild(1).GetComponent<Renderer>();
+        rend[0] = Removal.transform.GetChild(0).GetComponent<Renderer>();
+        rend[1] = Removal.transform.GetChild(1).GetComponent<Renderer>();
 
         while (currentTime < 1){
-            rendO.material.color = Color.Lerp(Color.clear, Color.red, currentTime);
             rend[0].material.color = Color.Lerp(Color.clear, Color.red, currentTime);
+            rend[1].material.color = Color.Lerp(Color.clear, Color.red, currentTime);
             yield return null;
             currentTime += Time.deltaTime;
         }
