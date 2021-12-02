@@ -124,7 +124,6 @@ public class vr2mobile : MonoBehaviour
             {
                 Debug.Log("bullet");
                 Instantiate(bullet, lHand, Quaternion.Euler(flarePos));
-                Debug.Log("flarepos" + flarePos);
             }
         }
         
@@ -136,9 +135,7 @@ public class vr2mobile : MonoBehaviour
             Debug.Log(mobileClient.cl.getLife());
             Debug.Log("first : " + playecon.MoveSpeed);
             playecon.MoveSpeed = 10;
-            Debug.Log("second : " + playecon.MoveSpeed);
             Invoke("speed_return", 5f);
-            Debug.Log("third : " + playecon.MoveSpeed);
         }
         
         if (vrPos[0] != vrPos[1])
@@ -156,6 +153,7 @@ public class vr2mobile : MonoBehaviour
     {
         c_detail[index] = '1';
         string result = new string(c_detail);
+        Debug.Log(result);
         mobileClient.cl.setCurse(result);
     }
 
@@ -164,6 +162,7 @@ public class vr2mobile : MonoBehaviour
         // Debug.Log("index : " + index);
         n_detail[index] = '1';
         string result = new string(n_detail);
+        Debug.Log(result);
         mobileClient.cl.setNPCMat(result);
     }
 
@@ -172,7 +171,7 @@ public class vr2mobile : MonoBehaviour
         // Debug.Log("index : " + index);
         n_detail[index] = '2';
         string result = new string(n_detail);
-        // Debug.Log("alart_detail : " + result);
+        Debug.Log(result);
         mobileClient.cl.setNPCMat(result);
     }
 
@@ -181,7 +180,7 @@ public class vr2mobile : MonoBehaviour
         // Debug.Log("index : " + index);
         n_detail[index] = '0';
         string result = new string(n_detail);
-        // Debug.Log("alart_end_detail : " + result);
+        Debug.Log(result);
         mobileClient.cl.setNPCMat(result);
     }
 
