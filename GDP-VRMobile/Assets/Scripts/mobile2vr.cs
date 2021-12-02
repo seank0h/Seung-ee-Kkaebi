@@ -5,15 +5,16 @@ using UnityEngine;
 public class mobile2vr : MonoBehaviour
 {
     public static mobile2vr mobileToVRCl;
-    int life, startNPC, playermat, prop, duststorm;
+    int life, startNPC, playermat, prop;
     string[] curse = new string[2];
     string[] npcmat = new string[2];
     char[] c_detail = new char[4];
     char[] n_detail = new char[5];
+    int[] dustStorm = new int[2];
     public int npcStunState=-1;
     public bool firstStart = false;
     public List<GameObject> NPCList;
-
+    public bool dustStormState = false;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -24,11 +25,12 @@ public class mobile2vr : MonoBehaviour
     }
     void Start()
     {
+        dustStorm[0] = vrClient.cl.getDustStrom();
+        dustStorm[1] = vrClient.cl.getDustStrom();
         life = vrClient.cl.getLife();
         startNPC = vrClient.cl.getstartNPCMove();
         playermat = vrClient.cl.getPlayerMat();
         prop = vrClient.cl.getProp();
-        duststorm = vrClient.cl.getDustStrom();
         curse[0] = vrClient.cl.getCurse();
         curse[1] = vrClient.cl.getCurse();
         npcmat[0] = vrClient.cl.getNPCMat();
@@ -40,11 +42,14 @@ public class mobile2vr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        dustStorm[1] = dustStorm[0];
+        dustStorm[0] = vrClient.cl.getDustStrom();
+        // dustStorm[1] = vrClient.cl.getDustStrom();
         life = vrClient.cl.getLife();
         startNPC = vrClient.cl.getstartNPCMove();
         playermat = vrClient.cl.getPlayerMat();
         prop = vrClient.cl.getProp();
-        duststorm = vrClient.cl.getDustStrom();
+        //duststorm = vrClient.cl.getDustStrom();
         curse[1] = curse[0];
         curse[0] = vrClient.cl.getCurse();
         c_detail = curse[0].ToCharArray();
@@ -53,36 +58,20 @@ public class mobile2vr : MonoBehaviour
         n_detail = npcmat[0].ToCharArray();
 
         NPCMovementStart();
-
-        if (duststorm == 1) // ¸ð¹ÙÀÏ ÇÃ·¹ÀÌ¾î°¡ ÆøÇ³À» ÀÏÀ¸Å´
+        if (dustStorm[0] != dustStorm[1])
         {
-            // ÆøÇ³ Å´
-        }
-        else
-        {
-            // ÆøÇ³ ²û
-        }
-        /*
-        if (curse[0] != curse[1])
-        {
-            if (c_detail[0] == '1') // 1¹ø °Ç¹° ÀúÁÖµÊ
+            if (dustStorm[0] == 1) // ¸ð¹ÙÀÏ ÇÃ·¹ÀÌ¾î°¡ ÆøÇ³À» ÀÏÀ¸Å´
             {
-
+                dustStormState = true;
             }
-            else if (c_detail[1] == '1') // 2¹ø °Ç¹° ÀúÁÖµÊ
+            else
             {
-
-            }
-            else if (c_detail[2] == '1') // 2¹ø °Ç¹° ÀúÁÖµÊ
-            {
-
-            }
-            else if (c_detail[3] == '1') // 2¹ø °Ç¹° ÀúÁÖµÊ
-            {
-
+                dustStormState = false;
+                if (dustStorm[0] == 0)
+                    vrClient.cl.setDustClean(0);
             }
         }
-        */
+        
         Debug.Log("Dokkaeibi Life: " + life);
         if (npcmat[0] != npcmat[1])
         {
@@ -218,15 +207,6 @@ public class mobile2vr : MonoBehaviour
     }
     public bool DustStormInteraction()
     {
-        bool dustStormState=false;
-        if(duststorm==1)
-        {
-            dustStormState = true;
-        }
-        else
-        {
-            dustStormState = false;
-        }
         return dustStormState;
     }
     public bool NPCMovementStart()

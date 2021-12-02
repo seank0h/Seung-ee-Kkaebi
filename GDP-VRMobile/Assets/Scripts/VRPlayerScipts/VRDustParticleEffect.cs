@@ -23,7 +23,7 @@ public class VRDustParticleEffect : MonoBehaviour
             VRdpe = this;
 
         effectOn = false;
-        NormalEmissionRate = 325;
+        NormalEmissionRate = 250;
 
         removerOrigin = GameObject.Find("RemoverOrigin");
         removers = new GameObject[5];
@@ -44,9 +44,9 @@ public class VRDustParticleEffect : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if(mobile2vr.mobileToVRCl.DustStormInteraction() && mobile2vr.mobileToVRCl.dustStormState == true)
         {
-        
+            Debug.Log("Is this being called");
             if (effectOn == false)
             {
                 Debug.Log("Starting Dust Storm");
@@ -62,12 +62,14 @@ public class VRDustParticleEffect : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.L) || removers[4].activeInHierarchy == false)
         {
+            vrClient.cl.setDustClean(1);
             if (effectOn)
             {
                 Debug.Log("In Removing Dust Storm");
                 var dustEffectEmission = dustEffect.emission;
                 lowerEmissionRate--;
                 dustEffectEmission.rateOverTime = lowerEmissionRate;
+                mobile2vr.mobileToVRCl.dustStormState = false;
                 effectOn = false;
             }
         }

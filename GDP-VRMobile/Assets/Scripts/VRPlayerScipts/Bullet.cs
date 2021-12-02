@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     private bool collided = false;
     private Rigidbody rb = null;
     public GameObject visualEffectToSpawn;
+    public GameObject hitEffectToSpawn;
 
     void Start()
     {
@@ -37,6 +38,7 @@ public class Bullet : MonoBehaviour
             speed = 0f;
             Destroy(gameObject);
             Debug.Log("COLLISION WITH DOKKAEBI");
+            Instantiate(hitEffectToSpawn, co.transform.position, Quaternion.identity);
             vrClient.cl.setBulletCollision(1);
         }
     }
