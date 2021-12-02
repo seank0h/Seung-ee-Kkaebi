@@ -31,23 +31,13 @@ public class BasicGhostBehavior : MonoBehaviour
             revealTimer -= Time.deltaTime;
             ghostRenderer.material = ghostMaterialRevealed;
         }
-        if (beingSeen == false)
+        if (revealTimer <= 0)
         {
-            revealTimer -= Time.deltaTime;
-            if (revealTimer <= 0)
-            {
-                ghostRenderer.material = ghostMaterialTransparent;
-                revealTimer = 5.0f;
-            }
+            ghostRenderer.material = ghostMaterialTransparent;
+            revealTimer = 5.0f;
+            beingSeen = false;
         }
 
-        if (shouldDie)
-            Death();
-    }
-    public void Death()
-    {
-        Debug.Log("Ghost Die");
-        Destroy(gameObject);
     }
     public void BeingSeen()
     {
@@ -66,7 +56,8 @@ public class BasicGhostBehavior : MonoBehaviour
     }
     public void HitByBullet()
     {
-
+        ghostRenderer.enabled = false;
+        Invoke("ShowGhost", 5.0f);
     }
     void ShowGhost()
     {
