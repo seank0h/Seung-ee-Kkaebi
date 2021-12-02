@@ -1687,6 +1687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dustEffect: {fileID: 599240293}
+  effectOn: 0
   NormalEmissionRate: 0
 --- !u!114 &194528632
 MonoBehaviour:
@@ -46275,7 +46276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7716305068492719709, guid: 8218edfff7850484f8ff5f8e679f95ed, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7716305068492719709, guid: 8218edfff7850484f8ff5f8e679f95ed, type: 3}
       propertyPath: m_LocalPosition.x
