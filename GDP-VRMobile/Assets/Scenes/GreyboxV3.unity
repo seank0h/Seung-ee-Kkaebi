@@ -1122,6 +1122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
+  isTouching: 0
   trigger: 0
 --- !u!1 &145136596
 GameObject:
@@ -4749,7 +4750,7 @@ PrefabInstance:
     - target: {fileID: 137619227449585070, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: de896e7320b8e7f4b8499c84e1df2ab1, type: 2}
+      objectReference: {fileID: 2100000, guid: b9967ef97c088014180c92be24d1684e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
 --- !u!114 &465801717 stripped
@@ -13062,6 +13063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
+  isTouching: 0
   trigger: 0
 --- !u!1001 &1770732103
 PrefabInstance:
@@ -24272,7 +24274,7 @@ PrefabInstance:
     - target: {fileID: 137619227449585070, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: de896e7320b8e7f4b8499c84e1df2ab1, type: 2}
+      objectReference: {fileID: 2100000, guid: b9967ef97c088014180c92be24d1684e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
 --- !u!4 &2115719973 stripped
