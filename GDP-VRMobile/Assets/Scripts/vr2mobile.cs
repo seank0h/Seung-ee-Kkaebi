@@ -17,6 +17,11 @@ public class vr2mobile : MonoBehaviour
     public GameObject flare;
     public GameObject bullet;
     public GameObject player;
+    public GameObject hitEffect;
+
+    // Eye Light
+    public GameObject[] eyes = new GameObject[8];
+    Behaviour l_halo, r_halo;
     
     public ParticleSystem dustEffect;
     bool effectOn;
@@ -50,6 +55,11 @@ public class vr2mobile : MonoBehaviour
         c_detail = mobileClient.cl.getCurse().ToCharArray();
         n_detail = mobileClient.cl.getNPCMat().ToCharArray();
         playecon = player.GetComponent<ThirdPersonController>();
+
+        l_halo = (Behaviour)eyes[vrPos[0]*2].GetComponent("Halo");
+        r_halo = (Behaviour)eyes[vrPos[0]*2 + 1].GetComponent("Halo");
+        l_halo.enabled = true;
+        r_halo.enabled = true;
 
         if (vm && vm != this)
             Destroy(this);
@@ -106,8 +116,8 @@ public class vr2mobile : MonoBehaviour
         {
             mobileClient.cl.setDustStrom(0);
         }
-        Debug.Log("duststorm : " + mobileClient.cl.getDustStrom());
-        Debug.Log("dustclean : " + dustClean[0]);
+        // Debug.Log("duststorm : " + mobileClient.cl.getDustStrom());
+        // Debug.Log("dustclean : " + dustClean[0]);
 
         if (mobileClient.cl.getDustStrom() == 0)
         {
@@ -140,6 +150,7 @@ public class vr2mobile : MonoBehaviour
         {
             if (catchMobile[0] == 1)
             {
+                Instantiate(hitEffect, player.transform.position, Quaternion.identity);
                 int life = mobileClient.cl.getLife();
                 mobileClient.cl.setLife(life - 1);
                 Debug.Log("Life : " + mobileClient.cl.getLife());
@@ -150,7 +161,12 @@ public class vr2mobile : MonoBehaviour
         
         if (vrPos[0] != vrPos[1])
         {
-            // vr캐릭터 보이는 위치를 이동해야겠지
+            l_halo.enabled = false;
+            r_halo.enabled = false;
+            l_halo = (Behaviour)eyes[vrPos[0] * 2].GetComponent("Halo");
+            r_halo = (Behaviour)eyes[vrPos[0] * 2 + 1].GetComponent("Halo");
+            l_halo.enabled = true;
+            r_halo.enabled = true;
         }
     }
 

@@ -10,6 +10,8 @@ public class CurseManage : MonoBehaviour
     SerializedObject halo2;
     public float curse_time;
     public bool cursing = false;
+    public GameObject curseEffect;
+    bool first = true;
 
     // Start is called before the first frame update
     void Start()
@@ -24,9 +26,14 @@ public class CurseManage : MonoBehaviour
     void Update()
     {
         if (cursed) {
-            halo2.FindProperty("m_Color").colorValue = Color.magenta;
-            halo2.ApplyModifiedProperties();
-            halo.enabled = true;
+            //halo2.FindProperty("m_Color").colorValue = Color.magenta;
+            //halo2.ApplyModifiedProperties();
+            //halo.enabled = true;
+            if (first)
+            {
+                Instantiate(curseEffect, gameObject.transform.position, Quaternion.identity);
+                first = false;
+            }
 
             // 저주받은 건물의 번호를 서버를 통해 전송
             if (gameObject.name == "curse1")

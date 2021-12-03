@@ -10,11 +10,11 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     RaycastHit hit;
     Vector3 height = new Vector3(0, 0, 0);
     bool c_reset = false;
-    Behaviour c_halo;
+    Behaviour c_halo = null;
     bool n_reset = false;
-    Behaviour n_halo;
+    Behaviour n_halo = null;
     bool p_reset = false;
-    Behaviour p_halo;
+    Behaviour p_halo = null;
     private bool isBtnDown = false;
 
     public GameObject playerMeshEntity;
@@ -30,7 +30,6 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     float prop_time = 0f;
     string mesh_name;
     int mesh_num;
-    string prop_name = "";
 
     CurseManage curse = null;
     PlayerAlart pa = null;
@@ -128,13 +127,11 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 }
                 else if (hit.collider.tag == "Prop")
                 {
-                    /*
-                    if (prop_name != hit.collider.name)
+                    if (p_halo != null)
                     {
                         p_halo.enabled = false;
                         p_reset = false;
                     }
-                    prop_name = hit.collider.name;*/
                     if (c_reset)
                     {
                         if(curse != null)
@@ -189,7 +186,7 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                             }
                             mobileClient.cl.setProp(mesh_num);
 
-                            Debug.Log("mesh_name : " + mesh_num);
+                            // Debug.Log("mesh_name : " + mesh_num);
                             ChangeModelAttempt(hit.collider.gameObject);
                             proped = true;
                         }
