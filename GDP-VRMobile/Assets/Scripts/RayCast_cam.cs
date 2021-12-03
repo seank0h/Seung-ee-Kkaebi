@@ -73,7 +73,8 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     {
                         n_halo.enabled = false;
                         n_reset = false;
-                        pa.sturning = false;
+                        if (pa != null)
+                            pa.sturning = false;
                     }
                     if (p_reset)
                     {
@@ -136,7 +137,8 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     prop_name = hit.collider.name;*/
                     if (c_reset)
                     {
-                        curse.cursing = false;
+                        if(curse != null)
+                            curse.cursing = false;
                         c_halo.enabled = false;
                         c_reset = false;
                     }
@@ -144,7 +146,8 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     {
                         n_halo.enabled = false;
                         n_reset = false;
-                        pa.sturning = false;
+                        if (pa != null)
+                            pa.sturning = false;
                     }
                     if (hit.distance <= 3.0f)
                     {
@@ -197,7 +200,8 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 {
                     if (c_reset)
                     {
-                        curse.cursing = false;
+                        if (curse != null)
+                            curse.cursing = false;
                         c_halo.enabled = false;
                         c_reset = false;
                     }
@@ -205,7 +209,8 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     {
                         n_halo.enabled = false;
                         n_reset = false;
-                        pa.sturning = false;
+                        if (pa != null)
+                            pa.sturning = false;
                     }
                     if (p_reset)
                     {
@@ -216,15 +221,18 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             }
             else
             {
-                curse.cursing = false;
-                pa.sturning = false;
+                if (curse != null)
+                    curse.cursing = false;
+                if (pa != null)
+                    pa.sturning = false;
             }
         } else
         {
             // Debug.Log("prop true");
             if (c_reset)
             {
-                curse.cursing = false;
+                if (curse != null)
+                    curse.cursing = false;
                 c_halo.enabled = false;
                 c_reset = false;
             }
@@ -232,7 +240,8 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             {
                 n_halo.enabled = false;
                 n_reset = false;
-                pa.sturning = false;
+                if (pa != null)
+                    pa.sturning = false;
             }
             if (p_reset)
             {
