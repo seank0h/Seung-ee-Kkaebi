@@ -8,9 +8,10 @@ public class vrClient : MonoBehaviour{
     //VR -> Mobile
     private int bulletCol=0, catchMobile=0, dustClean=0, isFlare=0;  //boolean
     private int vrPos=-1;  //0~3
-    public GameObject lHand, rHand, flare;
+    public GameObject lHand, rHand, flare, bat;
     private Vector3 lPos, rPos, flarePos;  //positions (x,y,z)
     private Vector3 rHandRot;
+    private Vector3 batPos, batRot;
 
     //Mobile -> VR
     public GameObject player;
@@ -45,10 +46,14 @@ public class vrClient : MonoBehaviour{
         string flareCoord = formatCoord(flare);
         
         Vector3 handRot = rHand.GetComponent<Transform>().eulerAngles;
-        string rHandRotVal = handRot.x.ToString() + "/" + handRot.y.ToString() + "/" + handRot.z.ToString();;
-        
+        string rHandRotVal = handRot.x.ToString() + "/" + handRot.y.ToString() + "/" + handRot.z.ToString();
+
+        string batCoord = formatCoord(bat);
+        Vector3 batRot = bat.GetComponent<Transform>().eulerAngles;
+        string batRotVal = batRot.x.ToString() + "/" + batRot.y.ToString() + "/" + batRot.z.ToString();
+
         // Formatting
-        string message = lHandCoord + "/" + rHandCoord + "/" + flareCoord + "/" + bulletCol.ToString() + "/" + catchMobile.ToString() + "/" + dustClean.ToString() + "/" + isFlare.ToString() + "/" + vrPos.ToString() + "/" + rHandRotVal;
+        string message = lHandCoord + "/" + rHandCoord + "/" + flareCoord + "/" + bulletCol.ToString() + "/" + catchMobile.ToString() + "/" + dustClean.ToString() + "/" + isFlare.ToString() + "/" + vrPos.ToString() + "/" + rHandRotVal + "/" + batCoord + "/" + batRotVal;
         
         client.tcp.sendMsg(message);
     }
