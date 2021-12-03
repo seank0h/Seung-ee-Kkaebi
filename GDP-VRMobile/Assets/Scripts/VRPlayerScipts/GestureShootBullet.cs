@@ -11,6 +11,7 @@ public class GestureShootBullet : MonoBehaviour
     [Header("BulletPrefab")]
     // GameObject used as Bullet to Instantiate
     public GameObject projectilePrefab;
+    public GameObject visualEffectToSpawn;
 
     public GameObject flare_pos;
 

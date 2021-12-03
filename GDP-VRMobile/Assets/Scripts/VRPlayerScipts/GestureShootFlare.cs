@@ -57,11 +57,11 @@ public class GestureShootFlare : MonoBehaviour
     private void Shoot(){
         RaycastHit hit;
         aimLine = GetComponent<LineRenderer>();
-        aimLine.enabled = true;
+        //aimLine.enabled = true;
         if (Physics.Raycast(hand.transform.position, hand.transform.forward,out hit))
         {
-            aimLine.SetPosition(0, hand.transform.position);
-            aimLine.SetPosition(1, hit.transform.position);
+            //aimLine.SetPosition(0, hand.transform.position);
+            //aimLine.SetPosition(1, hit.transform.position);
             vrClient.cl.setIsFlare(1);
             Debug.Log("Shootflare");
             Debug.DrawRay(hand.transform.position, hand.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow); 

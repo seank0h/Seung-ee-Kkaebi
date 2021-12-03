@@ -6811,6 +6811,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: {fileID: 1020760111}
   projectilePrefab: {fileID: 119242, guid: 4bc451a9c5656db4794e16cdecbabbac, type: 3}
+  visualEffectToSpawn: {fileID: 8280487941761809738, guid: a82a56a435460904689ba23a63340648, type: 3}
   flare_pos: {fileID: 899294152}
   shootMode: 0
 --- !u!4 &837088560
@@ -42368,7 +42369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hit: 0
-  hitEffectToSpawn: {fileID: 1614648838348040, guid: 6b12f08cfea33d1429a5fb9ca7e5f9fe, type: 3}
+  hitEffectToSpawn: {fileID: 1095406355997003977, guid: 3e2f276e3eeb56e4b8bbe7cc84018882, type: 3}
   handRotation: {fileID: 0}
 --- !u!23 &3394110441474492986
 MeshRenderer:
