@@ -7,13 +7,14 @@ public class VRDustParticleEffect : MonoBehaviour
     public static VRDustParticleEffect VRdpe;
     public ParticleSystem dustEffect;
     public bool effectOn;
+    bool emissionLowered;
     float lowerEmissionRate;
     public float NormalEmissionRate;
 
     private GameObject Removal, originCol;
     private GameObject removerOrigin;
     private GameObject[] removers;
-    private Renderer rendO;
+    public Vector3[] pos;
     private Renderer[] rend;
     void Start()
     {
@@ -34,17 +35,19 @@ public class VRDustParticleEffect : MonoBehaviour
         removers[4] = GameObject.Find("RemoverFinal");
 
         rend = new Renderer[5];
-        
-        //rendO = Removal.transform.GetChild(0).GetComponent<Renderer>();
-        
-
+        pos = new Vector3[6];
+        for(int i = 0; i < pos.Length; i++){
+            pos[i] = Vector3.zero;
+        }
+      
         Removal = GameObject.Find("DustStormRemoval");
         originCol = GameObject.Find("OriginCol");
     }
 
     void Update()
     {
-        if(mobile2vr.mobileToVRCl.DustStormInteraction() && mobile2vr.mobileToVRCl.dustStormState == true)
+        //if(mobile2vr.mobileToVRCl.DustStormInteraction() && mobile2vr.mobileToVRCl.dustStormState == true)
+        if(Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("Is this being called");
             if (effectOn == false)
@@ -55,12 +58,11 @@ public class VRDustParticleEffect : MonoBehaviour
                 dustEffect.Play();
                 effectOn = true;
 
-                //DustStormRemover.dsr.RemoveDustStorm();
                 RemoveDustStorm();
-                //Invoke("RemoveDustStorm", 0.5f);
             }
         }
-        if(Input.GetKeyDown(KeyCode.L) || removers[4].activeInHierarchy == false)
+        //if(Input.GetKeyDown(KeyCode.L) || removers[4].activeInHierarchy == false)
+        if(Input.GetKeyDown(KeyCode.L))
         {
             vrClient.cl.setDustClean(1);
             if (effectOn)
@@ -73,19 +75,27 @@ public class VRDustParticleEffect : MonoBehaviour
                 effectOn = false;
             }
         }
+    }
 
+    public void EndDustStorm(){
+        //vrClient.cl.setDustClean(1);
+        effectOn = false;
     }
 
     public void RemoveDustStorm(){
         for(int i = 0; i < 6; i++){
             Removal.transform.GetChild(i).gameObject.SetActive(true);
+            initObj();
+            if(i == 0){              
+                pos[i] = removerOrigin.transform.position;
+            }else{
+                pos[i] = removers[i-1].transform.position;
+            }
         }
-        
         StartCoroutine(RemoverIn());
         //StartCoroutine(AlphaIn());
-
-
     }
+
     public IEnumerator RemoverIn(){
         float currentTime = 0;
 
@@ -98,6 +108,16 @@ public class VRDustParticleEffect : MonoBehaviour
             yield return null;
             currentTime += Time.deltaTime;
         }
+    }
+    
+    private void initObj(){
+        removers = new GameObject[5];
+        removers[0] = GameObject.Find("Remover_1");
+        removers[1] = GameObject.Find("Remover_2");
+        removers[2] = GameObject.Find("Remover_3");
+        removers[3] = GameObject.Find("Remover_4");
+        removers[4] = GameObject.Find("RemoverFinal");
+        removerOrigin = GameObject.Find("RemoverOrigin");
     }
     
     /*

@@ -557,6 +557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
+  isTouching: 0
   trigger: 0
 --- !u!1 &134299941
 GameObject:
@@ -849,6 +850,7 @@ MonoBehaviour:
   dustEffect: {fileID: 599240293}
   effectOn: 0
   NormalEmissionRate: 0
+  pos: []
 --- !u!1 &234894124
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,7 +1198,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  prop: {fileID: 0}
   sturn: 0
+  sturning: 0
 --- !u!122 &278640486
 Halo:
   m_ObjectHideFlags: 0
@@ -1667,7 +1671,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &330207914
 Transform:
   m_ObjectHideFlags: 0
@@ -3981,7 +3985,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &942943608
 Transform:
   m_ObjectHideFlags: 0
@@ -4965,7 +4969,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1226433505
 Transform:
   m_ObjectHideFlags: 0
@@ -5120,7 +5124,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 2115719973}
+  handRotation: {fileID: 0}
   bat: {fileID: 353498669}
+  currBat: {fileID: 0}
   batDuration: 0
   batCooldown: 0
 --- !u!4 &1247745696
@@ -6134,6 +6140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
+  isTouching: 0
   trigger: 0
 --- !u!1 &1759886246
 GameObject:
@@ -6366,7 +6373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1829271894
 Transform:
   m_ObjectHideFlags: 0
@@ -6684,7 +6691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1941524444
 Transform:
   m_ObjectHideFlags: 0
@@ -6872,7 +6879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2029951600
 Transform:
   m_ObjectHideFlags: 0

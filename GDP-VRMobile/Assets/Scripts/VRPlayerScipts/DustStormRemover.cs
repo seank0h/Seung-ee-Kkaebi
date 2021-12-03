@@ -11,7 +11,6 @@ public class DustStormRemover : MonoBehaviour
     private Renderer[] rend;
     public int index;
     public bool isTouching = false;
-    private Vector3[] pos;
     public bool trigger;
     private Collider collider;
 
@@ -27,14 +26,6 @@ public class DustStormRemover : MonoBehaviour
         rend = new Renderer[6];
         Removal = GameObject.Find("DustStormRemoval");
         originCol = GameObject.Find("OriginCol");
-
-        pos = new Vector3[6];
-        pos[0] = removerOrigin.transform.position;
-        pos[1] = removers[0].transform.position;
-        pos[2] = removers[1].transform.position;
-        pos[3] = removers[2].transform.position;
-        pos[4] = removers[3].transform.position;
-        pos[5] = removers[4].transform.position;
     }
 
     void Update(){
@@ -43,9 +34,9 @@ public class DustStormRemover : MonoBehaviour
         }
         // Alpha lerping to visible
         for(int i = 0; i < 5; i++){
+            originCol = GameObject.Find("OriginCol");
             if(isTouching && index == i){
-                float percent = GetPercentageAlong(pos[i], removers[i].transform.position, originCol.transform.position);
-                
+                float percent = GetPercentageAlong(VRDustParticleEffect.VRdpe.pos[i], removers[i].transform.position, originCol.transform.position);
                 if(i == 4){
                     return;
                 }else{

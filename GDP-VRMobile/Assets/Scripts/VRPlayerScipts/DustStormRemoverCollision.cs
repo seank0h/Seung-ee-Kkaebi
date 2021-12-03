@@ -8,7 +8,7 @@ public class DustStormRemoverCollision : MonoBehaviour
     private GameObject Removal;
     private GameObject removerOrigin, remover1, remover2, remover3, remover4, removerFinal;
     private Vector3 originalPos;
-
+    float[] lowerEmissionRate;
     void Start(){
         removerOrigin = GameObject.Find("RemoverOrigin");
         remover1 = GameObject.Find("Remover_1");
@@ -19,6 +19,12 @@ public class DustStormRemoverCollision : MonoBehaviour
 
         Removal = GameObject.Find("DustStormRemoval");
         originalPos = removerOrigin.transform.position;
+
+        lowerEmissionRate = new float[6];
+        lowerEmissionRate[0]=250f;
+        for(int i = 1; i<6; i++){
+            lowerEmissionRate[i] = lowerEmissionRate[i-1] - 50f;
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -26,24 +32,33 @@ public class DustStormRemoverCollision : MonoBehaviour
             remover1.GetComponent<Renderer>().material.color = Color.clear;
             remover1.SetActive(false);
             DustStormRemover.dsr.index = 1;
-
+            
+            var dustEffectEmission = VRDustParticleEffect.VRdpe.dustEffect.emission;
+            dustEffectEmission.rateOverTime = lowerEmissionRate[1];
         }
         if(other.gameObject.name == "Col2"){
             remover2.GetComponent<Renderer>().material.color = Color.clear;
             remover2.SetActive(false);
             DustStormRemover.dsr.index = 2;
 
+            var dustEffectEmission = VRDustParticleEffect.VRdpe.dustEffect.emission;
+            dustEffectEmission.rateOverTime = lowerEmissionRate[2];
         }
         if(other.gameObject.name == "Col3"){
             remover3.GetComponent<Renderer>().material.color = Color.clear;
             remover3.SetActive(false);
             DustStormRemover.dsr.index = 3;
 
+            var dustEffectEmission = VRDustParticleEffect.VRdpe.dustEffect.emission;
+            dustEffectEmission.rateOverTime = lowerEmissionRate[3];
         }
         if(other.gameObject.name == "Col4"){
             remover4.GetComponent<Renderer>().material.color = Color.clear;
             remover4.SetActive(false);
             DustStormRemover.dsr.index = 4;
+
+            var dustEffectEmission = VRDustParticleEffect.VRdpe.dustEffect.emission;
+            dustEffectEmission.rateOverTime = lowerEmissionRate[4];
 
         }
         if(other.gameObject.name == "FinalCol"){
@@ -51,11 +66,16 @@ public class DustStormRemoverCollision : MonoBehaviour
             removerFinal.GetComponent<Renderer>().material.color = Color.clear;
             removerOrigin.SetActive(false);
             removerFinal.SetActive(false);
-            
             DustStormRemover.dsr.index = 0;
+
+            var dustEffectEmission = VRDustParticleEffect.VRdpe.dustEffect.emission;
+            dustEffectEmission.rateOverTime = lowerEmissionRate[5];
+
             removerOrigin.transform.position = originalPos;
             DustStormRemover.dsr.trigger = false;
             DustStormRemover.dsr.isTouching = false;
+
+            VRDustParticleEffect.VRdpe.EndDustStorm();
         }
     }
 }
