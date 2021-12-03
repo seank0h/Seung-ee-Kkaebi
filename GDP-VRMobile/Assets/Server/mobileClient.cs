@@ -17,9 +17,10 @@ public class mobileClient : MonoBehaviour{
     //VR -> Mobile
     private int bulletCol=0, catchMobile=0, dustClean=0, isFlare=0;  //boolean
     private int vrPos=-1;  //0~3
-    public GameObject lHand, rHand, flare;
+    public GameObject lHand, rHand, flare, bat;
     private Vector3 lPos, rPos, flarePos;  //positions (x,y,z)
     private Vector3 rHandRot;
+    private Vector3 batPos, batRot;
 
 
     // Start is called before the first frame update
@@ -58,7 +59,7 @@ public class mobileClient : MonoBehaviour{
         string[][] msg = client.tcp.receiveMsg();
 
         for(int i = 0; i < msg.Length; i++){
-            if(msg[i].Length != 18)
+            if(msg[i].Length != 24)
                 continue;
 
             lPos = new Vector3(float.Parse(msg[i][1]), float.Parse(msg[i][2]), float.Parse(msg[i][3]));
@@ -75,6 +76,8 @@ public class mobileClient : MonoBehaviour{
             setVRPos(int.Parse(msg[i][14]));
 
             rHandRot = new Vector3(float.Parse(msg[i][15]), float.Parse(msg[i][16]), float.Parse(msg[i][17]));
+            batPos = new Vector3(float.Parse(msg[i][18]), float.Parse(msg[i][19]), float.Parse(msg[i][20]));
+            batRot = new Vector3(float.Parse(msg[i][21]), float.Parse(msg[i][22]), float.Parse(msg[i][23]));
         }
     }
 
@@ -95,6 +98,16 @@ public class mobileClient : MonoBehaviour{
         }
 
         return res;
+    }
+
+    public Vector3 getBatPos()
+    {
+        return batPos;
+    }
+
+    public Vector3 getBatRot()
+    {
+        return batRot;
     }
 
 

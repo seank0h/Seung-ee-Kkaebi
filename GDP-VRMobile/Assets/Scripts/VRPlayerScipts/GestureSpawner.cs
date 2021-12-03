@@ -30,7 +30,7 @@ public class GestureSpawner : MonoBehaviour
                 currBat.SetActive(false);
                 batDuration = 5.0f;
                 ifBat = false;
-                batCooldown = 5.0f;
+                batCooldown = 3.0f;
                 beginCooldown = true;
             }
             
