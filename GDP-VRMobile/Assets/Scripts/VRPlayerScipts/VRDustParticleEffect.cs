@@ -16,6 +16,9 @@ public class VRDustParticleEffect : MonoBehaviour
     private GameObject[] removers;
     public Vector3[] pos;
     private Renderer[] rend;
+    private AudioSource stormAudio;
+    private float startVolume;
+
     void Start()
     {
         if(VRdpe && VRdpe != this)
@@ -42,6 +45,9 @@ public class VRDustParticleEffect : MonoBehaviour
       
         Removal = GameObject.Find("DustStormRemoval");
         originCol = GameObject.Find("OriginCol");
+
+        stormAudio = GameObject.Find("Manager").GetComponent<AudioSource>();
+        startVolume = stormAudio.volume;
     }
 
     void Update()
@@ -57,14 +63,15 @@ public class VRDustParticleEffect : MonoBehaviour
                 dustEffectEmission.rateOverTime = NormalEmissionRate;
                 dustEffect.Play();
                 effectOn = true;
-
+                stormAudio.volume = 1f;
+                stormAudio.Play();
                 RemoveDustStorm();
             }
         }
         //if(Input.GetKeyDown(KeyCode.L) || removers[4].activeInHierarchy == false)
         if(Input.GetKeyDown(KeyCode.L))
         {
-            vrClient.cl.setDustClean(1);
+            //vrClient.cl.setDustClean(1);
             if (effectOn)
             {
                 Debug.Log("In Removing Dust Storm");
@@ -79,37 +86,11 @@ public class VRDustParticleEffect : MonoBehaviour
 
     public void EndDustStorm(){
         //vrClient.cl.setDustClean(1);
+        //stormAudio.Stop();
+        StartCoroutine(AudioFadeOut());
         effectOn = false;
     }
 
-    public void RemoveDustStorm(){
-        for(int i = 0; i < 6; i++){
-            Removal.transform.GetChild(i).gameObject.SetActive(true);
-            initObj();
-            if(i == 0){              
-                pos[i] = removerOrigin.transform.position;
-            }else{
-                pos[i] = removers[i-1].transform.position;
-            }
-        }
-        StartCoroutine(RemoverIn());
-        //StartCoroutine(AlphaIn());
-    }
-
-    public IEnumerator RemoverIn(){
-        float currentTime = 0;
-
-        rend[0] = Removal.transform.GetChild(0).GetComponent<Renderer>();
-        rend[1] = Removal.transform.GetChild(1).GetComponent<Renderer>();
-
-        while (currentTime < 1){
-            rend[0].material.color = Color.Lerp(Color.clear, Color.red, currentTime);
-            rend[1].material.color = Color.Lerp(Color.clear, Color.red, currentTime);
-            yield return null;
-            currentTime += Time.deltaTime;
-        }
-    }
-    
     private void initObj(){
         removers = new GameObject[5];
         removers[0] = GameObject.Find("Remover_1");
@@ -119,6 +100,52 @@ public class VRDustParticleEffect : MonoBehaviour
         removers[4] = GameObject.Find("RemoverFinal");
         removerOrigin = GameObject.Find("RemoverOrigin");
     }
+
+    public void RemoveDustStorm(){
+        for(int i = 0; i < 6; i++){
+            if(i < 2){
+                Removal.transform.GetChild(i).gameObject.SetActive(true);
+            }else{
+                Removal.transform.GetChild(i).gameObject.SetActive(true);
+                Removal.transform.GetChild(i).GetChild(1).gameObject.SetActive(false);
+                Removal.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
+            }
+            initObj();
+            if(i == 0){              
+                pos[i] = removerOrigin.transform.position;
+            }else{
+                pos[i] = removers[i-1].transform.position;
+            }
+        }
+        //StartCoroutine(RemoverIn());
+    }
+
+    public IEnumerator AudioFadeOut(){
+        startVolume = stormAudio.volume;
+
+        while(stormAudio.volume > 0){
+            stormAudio.volume -= startVolume * Time.deltaTime / 2;
+            yield return null;
+        }
+        stormAudio.Stop();
+        stormAudio.volume = startVolume;
+    }
+
+    /*
+    public IEnumerator RemoverIn(){
+        float currentTime = 0;
+
+        rend[0] = Removal.transform.GetChild(0).GetComponent<Renderer>();
+        rend[1] = Removal.transform.GetChild(1).GetComponent<Renderer>();
+        
+        while (currentTime < 1){
+            rend[0].material.color = Color.Lerp(Color.clear, Color.cyan, currentTime);
+            rend[1].material.color = Color.Lerp(Color.clear, Color.cyan, currentTime);
+            yield return null;
+            currentTime += Time.deltaTime;
+        }
+    }
+    */
     
     /*
     private IEnumerator AlphaIn(){

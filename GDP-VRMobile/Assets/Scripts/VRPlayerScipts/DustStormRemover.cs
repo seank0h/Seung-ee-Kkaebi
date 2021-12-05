@@ -32,6 +32,7 @@ public class DustStormRemover : MonoBehaviour
         if(trigger && VRDustParticleEffect.VRdpe.effectOn){
             touchEvent(collider);
         }
+        /*
         // Alpha lerping to visible
         for(int i = 0; i < 5; i++){
             originCol = GameObject.Find("OriginCol");
@@ -41,10 +42,11 @@ public class DustStormRemover : MonoBehaviour
                     return;
                 }else{
                     rend[i+2] = Removal.transform.GetChild(i+2).GetComponent<Renderer>();
-                    rend[i+2].material.color = Color.Lerp(Color.clear, Color.red, percent);
+                    rend[i+2].material.color = Color.Lerp(Color.clear, Color.cyan, percent);
                 }
             }
         }
+        */
     }
 
     public void setTrigger(bool status, Collider col){
