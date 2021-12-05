@@ -56,8 +56,6 @@ public class mobile2vr : MonoBehaviour
         npcmat[1] = npcmat[0];
         npcmat[0] = vrClient.cl.getNPCMat();
         n_detail = npcmat[0].ToCharArray();
-
-        NPCMovementStart();
         if (dustStorm[0] != dustStorm[1])
         {
             if (dustStorm[0] == 1) // 모바일 플레이어가 폭풍을 일으킴
@@ -208,18 +206,5 @@ public class mobile2vr : MonoBehaviour
     public bool DustStormInteraction()
     {
         return dustStormState;
-    }
-    public bool NPCMovementStart()
-    {
-        
-        if (startNPC == 1)
-        {
-            vrClient.cl.setVRPos(0);
-        }
-        else if (startNPC == 3)
-        {
-            firstStart = true;
-        }
-        return firstStart;
     }
 }

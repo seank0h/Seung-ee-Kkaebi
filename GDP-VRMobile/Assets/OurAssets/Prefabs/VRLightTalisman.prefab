@@ -7374,7 +7374,7 @@ MonoBehaviour:
   UseLightShadows: 0
   UseFastFlatDecalsForMobiles: 1
   UseCustomColor: 1
-  EffectColor: {r: 0, g: 1, b: 0.8721261, a: 1}
+  EffectColor: {r: 0.9767442, g: 1, b: 0, a: 1}
   IsVisible: 1
   FadeoutTime: 1.5
   UseCollisionDetection: 1
@@ -25104,7 +25104,7 @@ MonoBehaviour:
   ShaderColorProperty: 10
   Color:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 1, g: 0.99052674, b: 0.3820755, a: 1}
     key1: {r: 1, g: 1, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
@@ -25150,7 +25150,7 @@ MonoBehaviour:
   ShaderColorProperty: 8
   Color:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 0.99540424, g: 1, b: 0.28773582, a: 1}
     key1: {r: 1, g: 1, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
@@ -27720,7 +27720,7 @@ MonoBehaviour:
   ShaderColorProperty: 10
   Color:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 1, g: 0.99052674, b: 0.3820755, a: 1}
     key1: {r: 1, g: 1, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
@@ -27766,7 +27766,7 @@ MonoBehaviour:
   ShaderColorProperty: 8
   Color:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 0.99540424, g: 1, b: 0.28773582, a: 1}
     key1: {r: 1, g: 1, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
@@ -28687,7 +28687,7 @@ MonoBehaviour:
   ShaderColorProperty: 10
   Color:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 0.97251546, g: 1, b: 0.3537736, a: 1}
     key1: {r: 1, g: 1, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
@@ -28733,7 +28733,7 @@ MonoBehaviour:
   ShaderColorProperty: 8
   Color:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 0.97422135, g: 1, b: 0.2688679, a: 1}
     key1: {r: 1, g: 1, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}

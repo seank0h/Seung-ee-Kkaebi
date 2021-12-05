@@ -56,20 +56,28 @@ public class GestureShootFlare : MonoBehaviour
 
     private void Shoot(){
         RaycastHit hit;
-        aimLine = GetComponent<LineRenderer>();
-        //aimLine.enabled = true;
+        Vector3 handRotation;
+        handRotation = hand.rotation.eulerAngles;
+        GameObject flare = Instantiate(projectilePrefab, hand.position, Quaternion.identity);
+        flare.GetComponent<VRFlare>().positionPlaceHolder = positionPlaceHolder;
+        flare.transform.localRotation = hand.rotation;
+        Debug.Log("Shootflare");
+        vrClient.cl.setIsFlare(1);
+        Invoke("DelayMessage", 0.5f);
+        Invoke("CooldownForFlare", 5.0f);
+       
         if (Physics.Raycast(hand.transform.position, hand.transform.forward,out hit))
         {
             //aimLine.SetPosition(0, hand.transform.position);
             //aimLine.SetPosition(1, hit.transform.position);
-            vrClient.cl.setIsFlare(1);
-            Debug.Log("Shootflare");
+            
+            /*
             Debug.DrawRay(hand.transform.position, hand.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow); 
             Vector3 hitPosition = hit.point;
             positionPlaceHolder.transform.position = hitPosition;
             Instantiate(projectilePrefab, positionPlaceHolder.transform.position, transform.rotation);
-            Invoke("DelayMessage", 0.5f);
-            Invoke("CooldownForFlare", 30.0f);
+            */
+          
         }
 
         // In the End we will going to shoot a bullet

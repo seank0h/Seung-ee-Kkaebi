@@ -41,6 +41,7 @@ public class RFX4_PhysicsMotion : MonoBehaviour
     bool isInitializedForce;
     float currentSpeedOffset;
     private RFX4_EffectSettings effectSettings;
+    public GameObject vfxToSpawnOnDokkaebiHit;
 
     void OnEnable ()
     {
@@ -136,8 +137,10 @@ public class RFX4_PhysicsMotion : MonoBehaviour
         }
         if (collision.gameObject.tag == "Dokkaebi")
         {
+            Instantiate(vfxToSpawnOnDokkaebiHit, collision.transform.position, Quaternion.identity);
             Debug.Log("COLLISION WITH DOKKAEBI");
             vrClient.cl.setBulletCollision(1);
+            Invoke("ServerMessage", 0.25f);
         }
 
         if (rigid != null) Destroy(rigid);
@@ -200,5 +203,8 @@ public class RFX4_PhysicsMotion : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(t.position, t.position + t.forward * 100);
     }
-
+    void ServerMessage()
+    {
+        vrClient.cl.setBulletCollision(0);
+    }
 }
