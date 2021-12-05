@@ -18,6 +18,7 @@ public class vr2mobile : MonoBehaviour
     public GameObject bullet;
     public GameObject player;
     public GameObject hitEffect;
+    public GameObject bulletEffect;
 
     // Eye Light
     public GameObject[] eyes = new GameObject[8];
@@ -56,8 +57,8 @@ public class vr2mobile : MonoBehaviour
         n_detail = mobileClient.cl.getNPCMat().ToCharArray();
         playecon = player.GetComponent<ThirdPersonController>();
 
-        l_halo = (Behaviour)eyes[vrPos[0]*2].GetComponent("Halo");
-        r_halo = (Behaviour)eyes[vrPos[0]*2 + 1].GetComponent("Halo");
+        l_halo = (Behaviour)eyes[vrPos[0]*2].gameObject.GetComponent("Halo");
+        r_halo = (Behaviour)eyes[vrPos[0]*2 + 1].gameObject.GetComponent("Halo");
         l_halo.enabled = true;
         r_halo.enabled = true;
 
@@ -86,15 +87,15 @@ public class vr2mobile : MonoBehaviour
         c_detail = mobileClient.cl.getCurse().ToCharArray();
         n_detail = mobileClient.cl.getNPCMat().ToCharArray();
 
-        mobileClient.cl.setstartNPCMove(1);
+        //mobileClient.cl.setstartNPCMove(1);
         //Debug.Log(mobileClient.cl.getstartNPCMove());
 
-        
+        /*
         if (vrPos[0] == 0)
         {
             mobileClient.cl.setstartNPCMove(3);
             //Debug.Log("스타트가 3인가? : " + mobileClient.cl.getstartNPCMove());
-        }
+        }*/
 
         //Debug.Log(mobileClient.cl.getVRPos());
 
@@ -158,21 +159,21 @@ public class vr2mobile : MonoBehaviour
                 Invoke("speed_return", 5f);
             }
         }
+        Debug.Log("vrPos : " + vrPos[0]);
         
-        if (vrPos[0] != vrPos[1])
-        {
-            l_halo.enabled = false;
-            r_halo.enabled = false;
-            l_halo = (Behaviour)eyes[vrPos[0] * 2].GetComponent("Halo");
-            r_halo = (Behaviour)eyes[vrPos[0] * 2 + 1].GetComponent("Halo");
-            l_halo.enabled = true;
-            r_halo.enabled = true;
-        }
-    }
+        l_halo.enabled = false;
+        r_halo.enabled = false;
+        l_halo = (Behaviour)eyes[vrPos[0] * 2].gameObject.GetComponent("Halo");
+        r_halo = (Behaviour)eyes[vrPos[0] * 2 + 1].gameObject.GetComponent("Halo");
+        l_halo.enabled = true;
+        r_halo.enabled = true;
+        
 
-    public bool go()
-    {
-        return mobileClient.cl.getstartNPCMove() == 3;
+        Debug.Log(bulletCol[0]);
+        if(bulletCol[0] != bulletCol[1] && bulletCol[0] == 1)
+        {
+            Instantiate(bulletEffect, player.transform.position, Quaternion.identity);
+        }
     }
 
     public void curse_send(int index)

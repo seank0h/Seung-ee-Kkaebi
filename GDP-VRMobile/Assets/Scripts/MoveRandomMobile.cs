@@ -28,7 +28,7 @@ public class MoveRandomMobile : MonoBehaviour
         // (mobile2vr.mobileToVRCl.NPCMovementStart()) || vr2mobile.vm.go()
         //Debug.Log("ºÎ½Â : " + mobile2vr.mobileToVRCl.NPCMovementStart());
         //Debug.Log("¼®ÁØ : " + vr2mobile.vm.go());
-        if (firstStart && vr2mobile.vm.go())
+        if (firstStart)
         {
             GetNewPath();
             firstStart = false;
