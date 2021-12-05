@@ -7,7 +7,6 @@ public class CurseManage : MonoBehaviour
 {
     public bool cursed = false;
     Behaviour halo;
-    SerializedObject halo2;
     public float curse_time;
     public bool cursing = false;
     public GameObject curseEffect;
@@ -17,18 +16,12 @@ public class CurseManage : MonoBehaviour
     void Start()
     {
         halo = (Behaviour)this.gameObject.GetComponent("Halo");
-        halo2 = new SerializedObject(this.gameObject.GetComponent("Halo"));
-        halo2.FindProperty("m_Color").colorValue = Color.white;
-        halo2.ApplyModifiedProperties();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (cursed) {
-            //halo2.FindProperty("m_Color").colorValue = Color.magenta;
-            //halo2.ApplyModifiedProperties();
-            //halo.enabled = true;
             if (first)
             {
                 Instantiate(curseEffect, gameObject.transform.position, Quaternion.identity);
@@ -56,9 +49,6 @@ public class CurseManage : MonoBehaviour
         }
         else
         {
-            halo2.FindProperty("m_Color").colorValue = Color.white;
-            halo2.ApplyModifiedProperties();
-
             if (cursing)
             {
                 curse_time += Time.deltaTime;
