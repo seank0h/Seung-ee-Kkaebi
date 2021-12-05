@@ -21,7 +21,10 @@ public class GameStateManager : MonoBehaviour
     void Update()
     {
         
-
+        if(mobile2vr.mobileToVRCl.GameOver())
+        {
+            Debug.Log("Game Over");
+        }
 
     }
 }

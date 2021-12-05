@@ -137,6 +137,7 @@ public class RFX4_PhysicsMotion : MonoBehaviour
         }
         if (collision.gameObject.tag == "Dokkaebi")
         {
+            this.gameObject.GetComponent<AudioPlayer>().PlayHitAudio();
             Instantiate(vfxToSpawnOnDokkaebiHit, collision.transform.position, Quaternion.identity);
             Debug.Log("COLLISION WITH DOKKAEBI");
             vrClient.cl.setBulletCollision(1);
