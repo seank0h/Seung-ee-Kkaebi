@@ -23,8 +23,8 @@ public class NPCStunHandler : MonoBehaviour
     }
     public void StunState()
     {
-        float fillAmount = gaugeBallMaterial.material.GetFloat("_CuttOff") - 0.25f;
-        gaugeBallMaterial.material.SetFloat("_CutOff", fillAmount);
+        float fillAmount = gaugeBallMaterial.material.GetFloat("_Cutoff") - 0.05f;
+        gaugeBallMaterial.material.SetFloat("_Cutoff", fillAmount);
         npcRenderer.material.color = Color.red;
        this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
        this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
