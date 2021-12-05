@@ -5,11 +5,12 @@ using UnityEngine;
 public class flare : MonoBehaviour
 {
     float timer = 10.0f;
+    private AudioSource flareAudio;
  
     // Start is called before the first frame update
     void Start()
     {
-        
+        flareAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -34,6 +35,7 @@ public class flare : MonoBehaviour
             Debug.Log("come in");
             // RayCast_cam.rc.change_blue();
             mobileClient.cl.setPlayerMat(1);
+            flareAudio.Play();
         }
     }
     private void OnTriggerExit(Collider other)

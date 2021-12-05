@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using StarterAssets;
+using UnityEngine.UI;
 
 public class vr2mobile : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class vr2mobile : MonoBehaviour
     int[] isFlare = new int[2];
     int[] vrPos = new int[2]; // 0~3
     int[] playermat = new int[2];
-    int batEnable;
+    int batEnable, min, sec;
+    float time;
+
     Vector3 lHand, rHand, flarePos;
     public GameObject flare;
     public GameObject bullet;
@@ -21,6 +24,7 @@ public class vr2mobile : MonoBehaviour
     public GameObject hitEffect;
     public GameObject bulletEffect;
     public GameObject bat;
+    public Text time_text;
 
     public SkinnedMeshRenderer Drenderer;
     public Material ghostMaterialTransparent;
@@ -30,7 +34,7 @@ public class vr2mobile : MonoBehaviour
 
     // Eye Light
     public GameObject[] eyes = new GameObject[8];
-    Behaviour l_halo, r_halo;
+    Behaviour l_halo = null, r_halo = null;
     
     public ParticleSystem dustEffect;
     bool effectOn;
@@ -41,6 +45,8 @@ public class vr2mobile : MonoBehaviour
     char[] n_detail = new char[5];
     ThirdPersonController playecon;
 
+
+    private AudioSource slowAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +63,12 @@ public class vr2mobile : MonoBehaviour
         vrPos[1] = mobileClient.cl.getVRPos();
         playermat[0] = mobileClient.cl.getPlayerMat();
         playermat[1] = mobileClient.cl.getPlayerMat();
+        mobileClient.cl.setstartNPCMove(1);
+        time = mobileClient.cl.getTime();
+
+        min = (int)(time / 60);
+        sec = (int)(time % 60);
+        time_text.text = min.ToString("D2") + " : " + sec.ToString("D2");
 
         effectOn = false;
         NormalEmissionRate = 50;
@@ -72,6 +84,8 @@ public class vr2mobile : MonoBehaviour
         r_halo.enabled = true;
 
         batEnable = mobileClient.cl.getBatEnabled();
+
+        slowAudio = GetComponent<AudioSource>();
 
         if (vm && vm != this)
             Destroy(this);
@@ -100,6 +114,9 @@ public class vr2mobile : MonoBehaviour
         batEnable = mobileClient.cl.getBatEnabled();
         playermat[1] = playermat[0];
         playermat[0] = mobileClient.cl.getPlayerMat();
+        time = mobileClient.cl.getTime();
+        min = (int)(time / 60);
+        sec = (int)(time % 60);
 
         if (playermat[1] != playermat[0])
         {
@@ -181,14 +198,15 @@ public class vr2mobile : MonoBehaviour
             }
         }
         //Debug.Log("vrPos : " + vrPos[0]);
-        
-        l_halo.enabled = false;
-        r_halo.enabled = false;
-        l_halo = (Behaviour)eyes[vrPos[0] * 2].gameObject.GetComponent("Halo");
-        r_halo = (Behaviour)eyes[vrPos[0] * 2 + 1].gameObject.GetComponent("Halo");
-        l_halo.enabled = true;
-        r_halo.enabled = true;
-        
+        if (l_halo != null)
+        {
+            l_halo.enabled = false;
+            r_halo.enabled = false;
+            l_halo = (Behaviour)eyes[vrPos[0] * 2].gameObject.GetComponent("Halo");
+            r_halo = (Behaviour)eyes[vrPos[0] * 2 + 1].gameObject.GetComponent("Halo");
+            l_halo.enabled = true;
+            r_halo.enabled = true;
+        }
 
         //Debug.Log(bulletCol[0]);
         if(bulletCol[0] != bulletCol[1] && bulletCol[0] == 1)
@@ -206,6 +224,7 @@ public class vr2mobile : MonoBehaviour
                 playecon.MoveSpeed = 10;
                 Invoke("speed_return", 5f);
             }
+            slowAudio.Play();
         }
         Debug.Log("life : " + mobileClient.cl.getLife());
         Debug.Log("playermat : " + mobileClient.cl.getPlayerMat());

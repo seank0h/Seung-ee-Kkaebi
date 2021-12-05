@@ -2,25 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class PlayerAlart : MonoBehaviour
 {
     public GameObject player;
     public GameObject prop;
     public SkinnedMeshRenderer npcRenderer;
+    public Slider curse_slide;
     float stay = 0;
     float release = 0;
     public float sturn_time = 0;
     public bool sturn = false;
     public bool sturning = false;
+    bool first = true;
+    bool alart_first = true;
     float speed;
     int index;
     RayCast_cam pp;
     bool proped;
 
+    public AudioClip alertSound, sturnSound;
+    private AudioSource NPCaudio;
+
     // Start is called before the first frame update
     void Start()
     {
+        NPCaudio = GetComponent<AudioSource>();
         npcRenderer.material.color = Color.black;
         speed = this.gameObject.GetComponent<NavMeshAgent>().speed;
         if (gameObject.name == "NPC1")
@@ -58,12 +66,20 @@ public class PlayerAlart : MonoBehaviour
 
         if (sturn)
         {
-            npcRenderer.material.color = Color.red;
-            this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
-            this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            if (first)
+            {
+                NPCaudio.clip = sturnSound;
+                NPCaudio.Play();
+                npcRenderer.material.color = Color.red;
+                this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
+                this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
 
-            // Debug.Log("sturn npc cum : " + (index+1));
-            vr2mobile.vm.strun_send(index);
+                // Debug.Log("sturn npc cum : " + (index+1));
+                curse_slide.value += 5;
+                vr2mobile.vm.strun_send(index);
+                first = false;
+            }
+            
         }
         else
         {
@@ -93,11 +109,18 @@ public class PlayerAlart : MonoBehaviour
                     release = 0;
                     if (stay >= 2f)
                     {
-                        npcRenderer.material.color = Color.blue;
-                        this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
-                        // Debug.Log("alart npc cum : " + (index + 1));
-                        vr2mobile.vm.alert_send(index);
-                        // Debug.Log("alart npc ; " + gameObject.name);
+                        //NPCaudio.clip = alertSound;
+                        //NPCaudio.Play();
+                        Debug.Log("sound");
+                        if (alart_first)
+                        {
+                            npcRenderer.material.color = Color.blue;
+                            this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
+                            // Debug.Log("alart npc cum : " + (index + 1));
+                            mobileClient.cl.setPlayerMat(1);
+                            vr2mobile.vm.alert_send(index);
+                            // Debug.Log("alart npc ; " + gameObject.name);
+                        }
                     }
                 }
                 else
@@ -107,11 +130,13 @@ public class PlayerAlart : MonoBehaviour
                     {
                         return;
                     }
+                    
                     stay = 0;
                     release = 0;
                     npcRenderer.material.color = Color.black;
                     this.gameObject.GetComponent<NavMeshAgent>().speed = speed;
                     //Debug.Log("repatroll npc cum : " + (index + 1));
+                    mobileClient.cl.setPlayerMat(0);
                     vr2mobile.vm.alert_end(index);
                 }
             }

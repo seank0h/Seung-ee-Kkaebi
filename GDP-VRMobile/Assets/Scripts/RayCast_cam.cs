@@ -42,6 +42,9 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public Material ghostMaterialTransparent;
     public Material ghostMaterialRevealed;
 
+    public AudioClip hideOnProp, cancelHideOnProp;
+    private AudioSource propAudio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +52,8 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         playerCollider = playerMeshEntity.GetComponent<CapsuleCollider>();
         playerPropMesh = playerPropMeshEntity.GetComponent<MeshFilter>();
         playerPropRenderer = playerPropMeshEntity.GetComponent<Renderer>();
+
+        propAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -87,6 +92,9 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 {
                     if (slider.gameObject.activeSelf)
                         slider.gameObject.SetActive(false);
+                    if (curse != null)
+                        curse.cursing = false;
+
                     if (n_reset)
                     {
                         n_halo.enabled = false;
@@ -98,6 +106,12 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     {
                         p_halo.enabled = false;
                         p_reset = false;
+                    }
+
+                    if (c_halo != null)
+                    {
+                        c_halo.enabled = false;
+                        c_reset = false;
                     }
 
                     if (hit.distance <= 3.0f)
@@ -122,6 +136,10 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 {
                     if (slider.gameObject.activeSelf)
                         slider.gameObject.SetActive(false);
+
+                    if (pa != null)
+                        pa.sturning = false;
+
                     if (n_halo != null)
                     {
                         n_halo.enabled = false;
@@ -186,9 +204,12 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                         p_halo.enabled = true;
                         p_reset = true;
                         mesh_name = hit.collider.GetComponent<MeshFilter>().mesh.name;
-
+                        
+                        // prop ½ÃÀÛ
                         if ((Input.GetKeyDown("q") || isBtnDown) && !prop_cool)
                         {
+                            propAudio.clip = hideOnProp;
+                            propAudio.Play();
                             if (mesh_name == "ChoppingBlock_01 Instance")
                             {
                                 mesh_num = 1;
@@ -292,6 +313,8 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
             if (prop_time>=10 || (Input.GetKeyDown("q") || isBtnDown))
             {
+                propAudio.clip = cancelHideOnProp;
+                propAudio.Play();
                 RadialProgress_Mobile.rp.startProgress();
                 // Debug.Log("model swap");
                 prop_time = 0;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class CurseManage : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class CurseManage : MonoBehaviour
     public float curse_time;
     public bool cursing = false;
     public GameObject curseEffect;
+    public Slider curse_slide;
     bool first = true;
 
     // Start is called before the first frame update
@@ -25,6 +27,7 @@ public class CurseManage : MonoBehaviour
             if (first)
             {
                 Instantiate(curseEffect, gameObject.transform.position, Quaternion.identity);
+                curse_slide.value += 25;
                 first = false;
             }
 
