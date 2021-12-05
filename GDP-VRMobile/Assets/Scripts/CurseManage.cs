@@ -55,15 +55,15 @@ public class CurseManage : MonoBehaviour
 
                 // Debug.Log("hold time : " + curse_time);
 
-                if(curse_time >= 3.0f)
+                if(curse_time >= 10.0f)
                 {
-                    curse_time = 3.0f;
+                    curse_time = 10.0f;
                     cursed = true;
                 }
             }
             else
             {
-                curse_time -= Time.deltaTime / 3;
+                curse_time -= Time.deltaTime / 5;
 
                 if (curse_time <= 0)
                     curse_time = 0;

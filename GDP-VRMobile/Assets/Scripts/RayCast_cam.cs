@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 
 public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
@@ -19,6 +20,7 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public GameObject playerMeshEntity;
     public GameObject playerPropMeshEntity;
+    public Slider slider;
     private MeshFilter playerPropMesh;
     private Renderer playerPropRenderer;
     private Collider playerCollider;
@@ -30,9 +32,15 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     float prop_time = 0f;
     string mesh_name;
     int mesh_num;
+    bool prop_cool = false;
+    bool dust_cool = false;
 
     CurseManage curse = null;
     PlayerAlart pa = null;
+
+    public SkinnedMeshRenderer Drenderer;
+    public Material ghostMaterialTransparent;
+    public Material ghostMaterialRevealed;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +54,14 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("o"))
+        {
+            mobileClient.cl.setPlayerMat(1);
+        }
+        if (Input.GetKeyDown("p"))
+        {
+            mobileClient.cl.setPlayerMat(0);
+        }
         Dance();
         dust();
     }
@@ -62,12 +78,15 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void Dance()
     {
+        prop_cool = RadialProgress_Mobile.rp.isProgress();
         if (!proped) {
             if (Physics.Raycast(gameObject.transform.position + height, gameObject.transform.forward, out hit, 1000))
             {
                 Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.red);
                 if (hit.collider.tag == "Interactive") //건물 저주
                 {
+                    if (slider.gameObject.activeSelf)
+                        slider.gameObject.SetActive(false);
                     if (n_reset)
                     {
                         n_halo.enabled = false;
@@ -84,20 +103,30 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     if (hit.distance <= 3.0f)
                     {
                         Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
+                        curse = hit.collider.gameObject.GetComponent<CurseManage>();
+                        slider.gameObject.SetActive(true);
+                        slider.value = curse.curse_time / 10 * 100;
                         c_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
                         c_halo.enabled = true;
                         c_reset = true;
                         if (Input.GetKey("q") || isBtnDown)
                         {
                             Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.blue);
-                            curse = hit.collider.gameObject.GetComponent<CurseManage>();
                             curse.cursing = true;
+
                         }
                     }
                     return;
                 }
                 else if (hit.collider.tag == "NPC") // npc 스턴
                 {
+                    if (slider.gameObject.activeSelf)
+                        slider.gameObject.SetActive(false);
+                    if (n_halo != null)
+                    {
+                        n_halo.enabled = false;
+                        n_reset = false;
+                    }
                     if (c_reset)
                     {
                         curse.cursing = false;
@@ -113,13 +142,15 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     if (hit.distance <= 3.0f)
                     {
                         Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
+                        pa = hit.collider.gameObject.GetComponent<PlayerAlart>();
+                        slider.gameObject.SetActive(true);
+                        slider.value = pa.sturn_time / 0.8f * 100;
                         n_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
                         n_halo.enabled = true;
                         n_reset = true;
                         if (Input.GetKey("q") || isBtnDown)
                         {
                             Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.blue);
-                            pa = hit.collider.gameObject.GetComponent<PlayerAlart>();
                             pa.sturning = true;
                         }
                     }
@@ -127,8 +158,10 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 }
                 else if (hit.collider.tag == "Prop")
                 {
+                    if (slider.gameObject.activeSelf)
+                        slider.gameObject.SetActive(false);
                     if (p_halo != null)
-                    {
+                    {          
                         p_halo.enabled = false;
                         p_reset = false;
                     }
@@ -154,7 +187,7 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                         p_reset = true;
                         mesh_name = hit.collider.GetComponent<MeshFilter>().mesh.name;
 
-                        if (Input.GetKeyDown("q") || isBtnDown)
+                        if ((Input.GetKeyDown("q") || isBtnDown) && !prop_cool)
                         {
                             if (mesh_name == "ChoppingBlock_01 Instance")
                             {
@@ -195,6 +228,8 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 }
                 else
                 {
+                    if (slider.gameObject.activeSelf)
+                        slider.gameObject.SetActive(false);
                     if (c_reset)
                     {
                         if (curse != null)
@@ -218,6 +253,8 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             }
             else
             {
+                if (slider.gameObject.activeSelf)
+                    slider.gameObject.SetActive(false);
                 if (curse != null)
                     curse.cursing = false;
                 if (pa != null)
@@ -225,6 +262,8 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             }
         } else
         {
+            if (slider.gameObject.activeSelf)
+                slider.gameObject.SetActive(false);
             // Debug.Log("prop true");
             if (c_reset)
             {
@@ -253,6 +292,7 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
             if (prop_time>=10 || (Input.GetKeyDown("q") || isBtnDown))
             {
+                RadialProgress_Mobile.rp.startProgress();
                 // Debug.Log("model swap");
                 prop_time = 0;
                 mobileClient.cl.setProp(0);
@@ -286,7 +326,9 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void dust()
     {
-        if (Input.GetKeyDown("e"))
+        dust_cool = RadialProgress_dust.rp.isProgress();
+
+        if (Input.GetKeyDown("e") && !dust_cool)
         {
             // Debug.Log("dust on");
             mobileClient.cl.setDustStrom(1);

@@ -12,6 +12,7 @@ public class vr2mobile : MonoBehaviour
     int[] dustClean = new int[2];
     int[] isFlare = new int[2];
     int[] vrPos = new int[2]; // 0~3
+    int[] playermat = new int[2];
     int batEnable;
     Vector3 lHand, rHand, flarePos;
     public GameObject flare;
@@ -20,6 +21,12 @@ public class vr2mobile : MonoBehaviour
     public GameObject hitEffect;
     public GameObject bulletEffect;
     public GameObject bat;
+
+    public SkinnedMeshRenderer Drenderer;
+    public Material ghostMaterialTransparent;
+    public Material ghostMaterialRevealed;
+
+    int bulletCnt = 0;
 
     // Eye Light
     public GameObject[] eyes = new GameObject[8];
@@ -48,6 +55,8 @@ public class vr2mobile : MonoBehaviour
         isFlare[1] = mobileClient.cl.getIsFlare();
         vrPos[0] = mobileClient.cl.getVRPos();
         vrPos[1] = mobileClient.cl.getVRPos();
+        playermat[0] = mobileClient.cl.getPlayerMat();
+        playermat[1] = mobileClient.cl.getPlayerMat();
 
         effectOn = false;
         NormalEmissionRate = 50;
@@ -89,6 +98,20 @@ public class vr2mobile : MonoBehaviour
         c_detail = mobileClient.cl.getCurse().ToCharArray();
         n_detail = mobileClient.cl.getNPCMat().ToCharArray();
         batEnable = mobileClient.cl.getBatEnabled();
+        playermat[1] = playermat[0];
+        playermat[0] = mobileClient.cl.getPlayerMat();
+
+        if (playermat[1] != playermat[0])
+        {
+            if (playermat[0] == 0)
+            {
+                Drenderer.material = ghostMaterialTransparent;
+            }
+            else
+            {
+                Drenderer.material = ghostMaterialRevealed;
+            }
+        }
 
         if (batEnable == 0)
         {
@@ -125,6 +148,7 @@ public class vr2mobile : MonoBehaviour
                 lowerEmissionRate--;
                 dustEffectEmission.rateOverTime = lowerEmissionRate;
                 effectOn = false;
+                RadialProgress_dust.rp.startProgress();
             }
         }
 
@@ -156,7 +180,7 @@ public class vr2mobile : MonoBehaviour
                 Invoke("speed_return", 5f);
             }
         }
-        Debug.Log("vrPos : " + vrPos[0]);
+        //Debug.Log("vrPos : " + vrPos[0]);
         
         l_halo.enabled = false;
         r_halo.enabled = false;
@@ -166,18 +190,32 @@ public class vr2mobile : MonoBehaviour
         r_halo.enabled = true;
         
 
-        Debug.Log(bulletCol[0]);
+        //Debug.Log(bulletCol[0]);
         if(bulletCol[0] != bulletCol[1] && bulletCol[0] == 1)
         {
+            bulletCnt++;
+            Debug.Log("bulletCnt : " + bulletCnt);
+            playecon.MoveSpeed -= 0.4f;
             Instantiate(bulletEffect, player.transform.position, Quaternion.identity);
+            if (playecon.MoveSpeed < 1.0f)
+            {
+                bulletCnt = 0;
+                int life = mobileClient.cl.getLife();
+                mobileClient.cl.setLife(life - 1);
+                Debug.Log("Life : " + mobileClient.cl.getLife());
+                playecon.MoveSpeed = 10;
+                Invoke("speed_return", 5f);
+            }
         }
+        Debug.Log("life : " + mobileClient.cl.getLife());
+        Debug.Log("playermat : " + mobileClient.cl.getPlayerMat());
     }
 
     public void curse_send(int index)
     {
         c_detail[index] = '1';
         string result = new string(c_detail);
-        // Debug.Log(result);
+        Debug.Log("c_detail : " + result);
         mobileClient.cl.setCurse(result);
     }
 
@@ -210,6 +248,6 @@ public class vr2mobile : MonoBehaviour
 
     void speed_return()
     {
-        playecon.MoveSpeed = 2;
+        playecon.MoveSpeed = 3;
     }
 }
