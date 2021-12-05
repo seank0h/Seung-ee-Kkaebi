@@ -12,12 +12,21 @@ public class vr2mobile : MonoBehaviour
     int[] dustClean = new int[2];
     int[] isFlare = new int[2];
     int[] vrPos = new int[2]; // 0~3
-    int startNPC;
+    int[] playermat = new int[2];
+    int batEnable;
     Vector3 lHand, rHand, flarePos;
     public GameObject flare;
     public GameObject bullet;
     public GameObject player;
     public GameObject hitEffect;
+    public GameObject bulletEffect;
+    public GameObject bat;
+
+    public SkinnedMeshRenderer Drenderer;
+    public Material ghostMaterialTransparent;
+    public Material ghostMaterialRevealed;
+
+    int bulletCnt = 0;
 
     // Eye Light
     public GameObject[] eyes = new GameObject[8];
@@ -46,7 +55,8 @@ public class vr2mobile : MonoBehaviour
         isFlare[1] = mobileClient.cl.getIsFlare();
         vrPos[0] = mobileClient.cl.getVRPos();
         vrPos[1] = mobileClient.cl.getVRPos();
-        startNPC = mobileClient.cl.getstartNPCMove();
+        playermat[0] = mobileClient.cl.getPlayerMat();
+        playermat[1] = mobileClient.cl.getPlayerMat();
 
         effectOn = false;
         NormalEmissionRate = 50;
@@ -56,10 +66,12 @@ public class vr2mobile : MonoBehaviour
         n_detail = mobileClient.cl.getNPCMat().ToCharArray();
         playecon = player.GetComponent<ThirdPersonController>();
 
-        l_halo = (Behaviour)eyes[vrPos[0]*2].GetComponent("Halo");
-        r_halo = (Behaviour)eyes[vrPos[0]*2 + 1].GetComponent("Halo");
+        l_halo = (Behaviour)eyes[vrPos[0]*2].gameObject.GetComponent("Halo");
+        r_halo = (Behaviour)eyes[vrPos[0]*2 + 1].gameObject.GetComponent("Halo");
         l_halo.enabled = true;
         r_halo.enabled = true;
+
+        batEnable = mobileClient.cl.getBatEnabled();
 
         if (vm && vm != this)
             Destroy(this);
@@ -85,20 +97,29 @@ public class vr2mobile : MonoBehaviour
         flarePos = mobileClient.cl.getFlare();
         c_detail = mobileClient.cl.getCurse().ToCharArray();
         n_detail = mobileClient.cl.getNPCMat().ToCharArray();
+        batEnable = mobileClient.cl.getBatEnabled();
+        playermat[1] = playermat[0];
+        playermat[0] = mobileClient.cl.getPlayerMat();
 
-        mobileClient.cl.setstartNPCMove(1);
-        //Debug.Log(mobileClient.cl.getstartNPCMove());
-
-        
-        if (vrPos[0] == 0)
+        if (playermat[1] != playermat[0])
         {
-            mobileClient.cl.setstartNPCMove(3);
-            //Debug.Log("스타트가 3인가? : " + mobileClient.cl.getstartNPCMove());
+            if (playermat[0] == 0)
+            {
+                Drenderer.material = ghostMaterialTransparent;
+            }
+            else
+            {
+                Drenderer.material = ghostMaterialRevealed;
+            }
         }
 
-        //Debug.Log(mobileClient.cl.getVRPos());
-
-        // Debug.Log("dust storm : " + mobileClient.cl.getDustStrom());
+        if (batEnable == 0)
+        {
+            bat.SetActive(false);
+        } else
+        {
+            bat.SetActive(true);
+        }
 
         if (mobileClient.cl.getDustStrom() == 1)
         {
@@ -127,6 +148,7 @@ public class vr2mobile : MonoBehaviour
                 lowerEmissionRate--;
                 dustEffectEmission.rateOverTime = lowerEmissionRate;
                 effectOn = false;
+                RadialProgress_dust.rp.startProgress();
             }
         }
 
@@ -158,28 +180,42 @@ public class vr2mobile : MonoBehaviour
                 Invoke("speed_return", 5f);
             }
         }
+        //Debug.Log("vrPos : " + vrPos[0]);
         
-        if (vrPos[0] != vrPos[1])
-        {
-            l_halo.enabled = false;
-            r_halo.enabled = false;
-            l_halo = (Behaviour)eyes[vrPos[0] * 2].GetComponent("Halo");
-            r_halo = (Behaviour)eyes[vrPos[0] * 2 + 1].GetComponent("Halo");
-            l_halo.enabled = true;
-            r_halo.enabled = true;
-        }
-    }
+        l_halo.enabled = false;
+        r_halo.enabled = false;
+        l_halo = (Behaviour)eyes[vrPos[0] * 2].gameObject.GetComponent("Halo");
+        r_halo = (Behaviour)eyes[vrPos[0] * 2 + 1].gameObject.GetComponent("Halo");
+        l_halo.enabled = true;
+        r_halo.enabled = true;
+        
 
-    public bool go()
-    {
-        return mobileClient.cl.getstartNPCMove() == 3;
+        //Debug.Log(bulletCol[0]);
+        if(bulletCol[0] != bulletCol[1] && bulletCol[0] == 1)
+        {
+            bulletCnt++;
+            Debug.Log("bulletCnt : " + bulletCnt);
+            playecon.MoveSpeed -= 0.4f;
+            Instantiate(bulletEffect, player.transform.position, Quaternion.identity);
+            if (playecon.MoveSpeed < 1.0f)
+            {
+                bulletCnt = 0;
+                int life = mobileClient.cl.getLife();
+                mobileClient.cl.setLife(life - 1);
+                Debug.Log("Life : " + mobileClient.cl.getLife());
+                playecon.MoveSpeed = 10;
+                Invoke("speed_return", 5f);
+            }
+        }
+        Debug.Log("life : " + mobileClient.cl.getLife());
+        Debug.Log("playermat : " + mobileClient.cl.getPlayerMat());
     }
 
     public void curse_send(int index)
     {
         c_detail[index] = '1';
         string result = new string(c_detail);
-        // Debug.Log(result);
+        Debug.Log("c_detail : " + result);
         mobileClient.cl.setCurse(result);
     }
 
@@ -212,6 +248,6 @@ public class vr2mobile : MonoBehaviour
 
     void speed_return()
     {
-        playecon.MoveSpeed = 2;
+        playecon.MoveSpeed = 3;
     }
 }

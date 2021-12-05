@@ -56,13 +56,14 @@ public class GestureShootBullet : MonoBehaviour
     }
 
     private void Shoot(){
+        BulletRadialProgress.rp.start = true;
         // In the End we will going to shoot a bullet
         vrClient.cl.setIsFlare(2);
         Vector3 handRotation;
         handRotation = hand.rotation.eulerAngles;
         flare_pos.transform.position = handRotation;
         GameObject bullet = Instantiate(projectilePrefab, hand.position, Quaternion.identity);
-        Invoke("DelayMessage", 0.5f);
+        Invoke("DelayMessage", 0.25f);
         bullet.transform.localRotation = hand.rotation;
     }
 

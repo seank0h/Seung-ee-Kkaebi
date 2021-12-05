@@ -56,6 +56,7 @@ public class TeleportToggle : MonoBehaviour
                 currIndex = teleportIndex;
             }
 		}
+        vrClient.cl.setVRPos(teleportIndex);
 		StartCoroutine(FadeInOut());
 	}
 

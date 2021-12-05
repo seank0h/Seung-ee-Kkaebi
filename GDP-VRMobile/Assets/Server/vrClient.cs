@@ -7,11 +7,13 @@ public class vrClient : MonoBehaviour{
 
     //VR -> Mobile
     private int bulletCol=0, catchMobile=0, dustClean=0, isFlare=0;  //boolean
-    private int vrPos=-1;  //0~3
+    private int vrPos=0;  //0~3
     public GameObject lHand, rHand, flare, bat;
     private Vector3 lPos, rPos, flarePos;  //positions (x,y,z)
     private Vector3 rHandRot;
     private Vector3 batPos, batRot;
+    private int batEnabled;
+    private float time;
 
     //Mobile -> VR
     public GameObject player;
@@ -52,8 +54,14 @@ public class vrClient : MonoBehaviour{
         Vector3 batRot = bat.GetComponent<Transform>().eulerAngles;
         string batRotVal = batRot.x.ToString() + "/" + batRot.y.ToString() + "/" + batRot.z.ToString();
 
+        if (bat.activeSelf){
+            batEnabled = 1;
+        }else{
+            batEnabled = 0;
+        }
+
         // Formatting
-        string message = lHandCoord + "/" + rHandCoord + "/" + flareCoord + "/" + bulletCol.ToString() + "/" + catchMobile.ToString() + "/" + dustClean.ToString() + "/" + isFlare.ToString() + "/" + vrPos.ToString() + "/" + rHandRotVal + "/" + batCoord + "/" + batRotVal;
+        string message = lHandCoord + "/" + rHandCoord + "/" + flareCoord + "/" + bulletCol.ToString() + "/" + catchMobile.ToString() + "/" + dustClean.ToString() + "/" + isFlare.ToString() + "/" + vrPos.ToString() + "/" + rHandRotVal + "/" + batCoord + "/" + batRotVal + "/" + batEnabled.ToString() + "/" + time.ToString();
         
         client.tcp.sendMsg(message);
     }
@@ -89,6 +97,15 @@ public class vrClient : MonoBehaviour{
         }
     }
 
+    public float getTime()
+    {
+        return time;
+    }
+
+    public void setTime(float time)
+    {
+        this.time = time;
+    }
 
     public string getNPCMat(){
         return NPCMat;
@@ -146,6 +163,16 @@ public class vrClient : MonoBehaviour{
         this.playerMat = mat;
     }
 
+
+    public int getBatEnabled()
+    {
+        return batEnabled;
+    }
+
+    public void setBatEnabled(int status)
+    {
+        batEnabled = status;
+    }
 
 
 

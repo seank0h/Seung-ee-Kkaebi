@@ -17,7 +17,7 @@ public class NPCAlertHandler : MonoBehaviour
     public void AlertState()
     {
         dokkaebiBehavior.beingSeen = true;
-        Invoke("StopBeingSeen", 5f);
+        Invoke("StopBeingSeen", 2f);
         npcRenderer.material.color = Color.blue;
     }
     
