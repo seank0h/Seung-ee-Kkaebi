@@ -56,6 +56,7 @@ public class GestureShootBullet : MonoBehaviour
     }
 
     private void Shoot(){
+        BulletRadialProgress.rp.start = true;
         // In the End we will going to shoot a bullet
         vrClient.cl.setIsFlare(2);
         Vector3 handRotation;

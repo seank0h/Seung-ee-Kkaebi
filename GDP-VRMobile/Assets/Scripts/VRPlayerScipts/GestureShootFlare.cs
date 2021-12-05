@@ -60,7 +60,7 @@ public class GestureShootFlare : MonoBehaviour
 
     private void Shoot()
     {
-        RaycastHit hit;
+        //VRFlareCooldownUI.rp.start = true;
         Vector3 handRotation;
         handRotation = hand.rotation.eulerAngles;
         GameObject flare = Instantiate(projectilePrefab, hand.position, Quaternion.identity);
@@ -69,7 +69,8 @@ public class GestureShootFlare : MonoBehaviour
         Debug.Log("Shootflare");
         vrClient.cl.setIsFlare(1);
         Invoke("DelayMessage", 0.5f);
-        Invoke("CooldownForFlare", 5.0f);
+        RadialProgress.rp.start = true;
+        Invoke("CooldownForFlare", 15.0f);
     }
     // Method to put in the Event when the gesture are not recognized
     private void DelayMessage()

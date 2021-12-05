@@ -24992,7 +24992,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4122084914545308}
   - component: {fileID: 114731434624371152}
-  - component: {fileID: 299166499956176956}
   - component: {fileID: 3003354813412892504}
   m_Layer: 0
   m_Name: VRFlareEffect
@@ -25050,19 +25049,6 @@ MonoBehaviour:
   Speed: 10
   AirDrag: 0.1
   UseGravity: 1
---- !u!135 &299166499956176956
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1967491460922094}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 3.382577
-  m_Center: {x: 0.026423454, y: 0.71610117, z: 0}
 --- !u!114 &3003354813412892504
 MonoBehaviour:
   m_ObjectHideFlags: 0

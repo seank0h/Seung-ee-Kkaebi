@@ -17,12 +17,10 @@ public class VRFlare : MonoBehaviour
 
     private void CollisionEnter(object sender, RFX4_PhysicsMotion.RFX4_CollisionInfo e)
     {
-        Debug.Log(e.HitPoint); //a collision coordinates in world space
-     
+        
         positionPlaceHolder.transform.position = e.HitPoint;
         Instantiate(vrFlare, positionPlaceHolder.transform.position, Quaternion.identity);
-        Debug.Log(e.HitGameObject.name); //a collided gameobject
-        Debug.Log(e.HitCollider.name); //a collided collider :)
+
     }
 
 }

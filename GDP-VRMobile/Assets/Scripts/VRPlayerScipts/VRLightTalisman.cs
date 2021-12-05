@@ -20,21 +20,4 @@ public class VRLightTalisman : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other);
-        if(other.gameObject.tag=="Dokkaebi")
-        {
-            Debug.Log("Seeing Dokkaebi");
-            other.gameObject.GetComponent<BasicGhostBehavior>().BeingSeen();
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Dokkaebi")
-        {
-            Debug.Log("Not Seeing Dokkaebi");
-            other.gameObject.GetComponent<BasicGhostBehavior>().NotSeen();
-        }
-    }
 }

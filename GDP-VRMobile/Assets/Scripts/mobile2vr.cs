@@ -5,16 +5,18 @@ using UnityEngine;
 public class mobile2vr : MonoBehaviour
 {
     public static mobile2vr mobileToVRCl;
-    int life, startNPC, playermat, prop;
+    int life, startNPC, prop;
     string[] curse = new string[2];
     string[] npcmat = new string[2];
     char[] c_detail = new char[4];
     char[] n_detail = new char[5];
     int[] dustStorm = new int[2];
+    int[] playermat = new int[2];
     public int npcStunState=-1;
     public bool firstStart = false;
     public List<GameObject> NPCList;
     public bool dustStormState = false;
+    public bool changePlayerMat = false;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -29,7 +31,8 @@ public class mobile2vr : MonoBehaviour
         dustStorm[1] = vrClient.cl.getDustStrom();
         life = vrClient.cl.getLife();
         startNPC = vrClient.cl.getstartNPCMove();
-        playermat = vrClient.cl.getPlayerMat();
+        playermat[0] = vrClient.cl.getPlayerMat();
+        playermat[1] = vrClient.cl.getPlayerMat();
         prop = vrClient.cl.getProp();
         curse[0] = vrClient.cl.getCurse();
         curse[1] = vrClient.cl.getCurse();
@@ -47,7 +50,8 @@ public class mobile2vr : MonoBehaviour
         // dustStorm[1] = vrClient.cl.getDustStrom();
         life = vrClient.cl.getLife();
         startNPC = vrClient.cl.getstartNPCMove();
-        playermat = vrClient.cl.getPlayerMat();
+        playermat[1] = playermat[0];
+        playermat[0] = vrClient.cl.getPlayerMat();
         prop = vrClient.cl.getProp();
         //duststorm = vrClient.cl.getDustStrom();
         curse[1] = curse[0];
@@ -56,6 +60,19 @@ public class mobile2vr : MonoBehaviour
         npcmat[1] = npcmat[0];
         npcmat[0] = vrClient.cl.getNPCMat();
         n_detail = npcmat[0].ToCharArray();
+
+        if (playermat[1] != playermat[0])
+        {
+            if (playermat[0] == 0)
+            {
+                changePlayerMat = false;
+            }
+            else
+            {
+                changePlayerMat = true;
+            }
+        }
+
         if (dustStorm[0] != dustStorm[1])
         {
             if (dustStorm[0] == 1) // ¸ð¹ÙÀÏ ÇÃ·¹ÀÌ¾î°¡ ÆøÇ³À» ÀÏÀ¸Å´
@@ -184,6 +201,7 @@ public class mobile2vr : MonoBehaviour
         int houseToCurse= -1;
         if (curse[0] != curse[1])
         {
+            Debug.Log("c_detail: " + c_detail[0] + c_detail[1] + c_detail[2] + c_detail[3]);
             if (c_detail[0] == '1') // 1¹ø °Ç¹° ÀúÁÖµÊ
             {
                 houseToCurse = 0;
@@ -206,5 +224,10 @@ public class mobile2vr : MonoBehaviour
     public bool DustStormInteraction()
     {
         return dustStormState;
+    }
+    public bool GhostBeingSeen()
+    {
+       
+        return changePlayerMat;
     }
 }

@@ -14563,7 +14563,7 @@ MonoBehaviour:
   CollisionEffectDestroyAfter: 5
   DeactivateObjectsAfterCollision: []
   HUE: -1
-  vfxToSpawnOnDokkaebiHit: {fileID: 0}
+  vfxToSpawnOnDokkaebiHit: {fileID: 135984}
 --- !u!1 &191498
 GameObject:
   m_ObjectHideFlags: 0

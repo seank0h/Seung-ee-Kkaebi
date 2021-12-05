@@ -26,16 +26,14 @@ public class BasicGhostBehavior : MonoBehaviour
     void Update()
     {
 
-        if (beingSeen)
+        if (mobile2vr.mobileToVRCl.GhostBeingSeen())
         {
-            revealTimer -= Time.deltaTime;
+           
             ghostRenderer.material = ghostMaterialRevealed;
         }
-        if (revealTimer <= 0)
+       else
         {
             ghostRenderer.material = ghostMaterialTransparent;
-            revealTimer = 5.0f;
-            beingSeen = false;
         }
 
     }

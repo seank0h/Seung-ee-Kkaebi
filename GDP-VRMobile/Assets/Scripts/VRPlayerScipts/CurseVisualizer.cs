@@ -7,38 +7,69 @@ public class CurseVisualizer : MonoBehaviour
     // Start is called before the first frame update
     public List<GameObject> curseableHouses;
     public GameObject curseEffectSystem;
-    GameStateManager gameManager;
+    public GameObject particleSystemForVillageStatus;
+    public GameObject Trail_One;
+    public GameObject Trail_Two;
+    public GameObject Trail_Three;
+    public GameObject Trail_Four;
+    public GameObject particleLights;
    
     void Start()
     {
-        gameManager = this.GetComponent<GameStateManager>();
+
     }
     private void Update()
     {
-        if(mobile2vr.mobileToVRCl.CurseDetection()!=-1)
+      
+        if (mobile2vr.mobileToVRCl.CurseDetection()!=-1)
         InstantiateCurseEffect();
+
     }
     void InstantiateCurseEffect()
     {
-        if(mobile2vr.mobileToVRCl.CurseDetection()==0)
+        if (mobile2vr.mobileToVRCl.CurseDetection() == 0)
         {
+
             Instantiate(curseEffectSystem, curseableHouses[0].transform.position, Quaternion.identity);
-            gameManager.IncrementProgress(0.25f);
+            if (particleSystemForVillageStatus.activeInHierarchy != true)
+            {
+                particleSystemForVillageStatus.SetActive(true);
+                particleLights.SetActive(true);
+            }
+            Trail_One.SetActive(true);
         }
         else if (mobile2vr.mobileToVRCl.CurseDetection() == 1)
         {
+
             Instantiate(curseEffectSystem, curseableHouses[1].transform.position, Quaternion.identity);
-            gameManager.IncrementProgress(0.25f);
+            if (particleSystemForVillageStatus.activeInHierarchy != true)
+            {
+                particleSystemForVillageStatus.SetActive(true);
+                particleLights.SetActive(true);
+            }
+            Trail_Two.SetActive(true);
         }
-        else if(mobile2vr.mobileToVRCl.CurseDetection() == 2)
+        else if (mobile2vr.mobileToVRCl.CurseDetection() == 2)
         {
+            
             Instantiate(curseEffectSystem, curseableHouses[2].transform.position, Quaternion.identity);
-            gameManager.IncrementProgress(0.25f);
+            if (particleSystemForVillageStatus.activeInHierarchy != true)
+            {
+                particleSystemForVillageStatus.SetActive(true);
+                particleLights.SetActive(true);
+            }
+            Trail_Three.SetActive(true);
         }
-        else if(mobile2vr.mobileToVRCl.CurseDetection() == 3)
+        else if (mobile2vr.mobileToVRCl.CurseDetection() == 3)
+        {
+
             Instantiate(curseEffectSystem, curseableHouses[3].transform.position, Quaternion.identity);
-            gameManager.IncrementProgress(0.25f);
-
-
+            if (particleSystemForVillageStatus.activeInHierarchy != true)
+            {
+                particleSystemForVillageStatus.SetActive(true);
+                particleLights.SetActive(true);
+            }
+            Trail_Four.SetActive(true);
+        }
     }
 }
