@@ -12,6 +12,7 @@ public class vrClient : MonoBehaviour{
     private Vector3 lPos, rPos, flarePos;  //positions (x,y,z)
     private Vector3 rHandRot;
     private Vector3 batPos, batRot;
+    private int batEnabled;
 
     //Mobile -> VR
     public GameObject player;
@@ -52,8 +53,14 @@ public class vrClient : MonoBehaviour{
         Vector3 batRot = bat.GetComponent<Transform>().eulerAngles;
         string batRotVal = batRot.x.ToString() + "/" + batRot.y.ToString() + "/" + batRot.z.ToString();
 
+        if (bat.activeSelf){
+            batEnabled = 1;
+        }else{
+            batEnabled = 0;
+        }
+
         // Formatting
-        string message = lHandCoord + "/" + rHandCoord + "/" + flareCoord + "/" + bulletCol.ToString() + "/" + catchMobile.ToString() + "/" + dustClean.ToString() + "/" + isFlare.ToString() + "/" + vrPos.ToString() + "/" + rHandRotVal + "/" + batCoord + "/" + batRotVal;
+        string message = lHandCoord + "/" + rHandCoord + "/" + flareCoord + "/" + bulletCol.ToString() + "/" + catchMobile.ToString() + "/" + dustClean.ToString() + "/" + isFlare.ToString() + "/" + vrPos.ToString() + "/" + rHandRotVal + "/" + batCoord + "/" + batRotVal + "/" + batEnabled.ToString();
         
         client.tcp.sendMsg(message);
     }
@@ -88,7 +95,6 @@ public class vrClient : MonoBehaviour{
             NPCs[i].GetComponent<Transform>().eulerAngles = new Vector3(float.Parse(msg[fIdx+3]), float.Parse(msg[fIdx+4]), float.Parse(msg[fIdx+5]));
         }
     }
-
 
     public string getNPCMat(){
         return NPCMat;
@@ -146,6 +152,16 @@ public class vrClient : MonoBehaviour{
         this.playerMat = mat;
     }
 
+
+    public int getBatEnabled()
+    {
+        return batEnabled;
+    }
+
+    public void setBatEnabled(int status)
+    {
+        batEnabled = status;
+    }
 
 
 
