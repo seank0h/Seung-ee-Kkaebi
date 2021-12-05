@@ -7,11 +7,13 @@ public class Bat : MonoBehaviour
     public int hit;
     public GameObject hitEffectToSpawn;
     public GameObject handRotation;
+    private AudioSource hitAudio;
     // Start is called before the first frame update
     void Start()
     {
         handRotation = GameObject.Find("RightHandAnchor");
         hit = vrClient.cl.getCatchEvent();
+        hitAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class Bat : MonoBehaviour
             Debug.Log("***BAT *** COLLISION WITH DOKKAEBI");
             co.gameObject.GetComponent<BasicGhostBehavior>().HitbyBat();
             Instantiate(hitEffectToSpawn, co.transform.position, Quaternion.identity);
+            hitAudio.Play();
             vrClient.cl.setCatchEvent(1);
             Invoke("re_bat", 5f);
         }

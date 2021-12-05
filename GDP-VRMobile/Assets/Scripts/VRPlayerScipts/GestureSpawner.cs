@@ -19,6 +19,13 @@ public class GestureSpawner : MonoBehaviour
     bool ifBat;
     bool beginCooldown;
 
+    private AudioSource batSpawnAudio;
+
+    private void Start()
+    {
+        batSpawnAudio = GetComponent<AudioSource>();
+    }
+
     private void Update()
     {
         if(ifBat)
@@ -42,7 +49,8 @@ public class GestureSpawner : MonoBehaviour
     }
     public void OnActivate(){
         Debug.Log("BAT is activated!!!");
-        
+        batSpawnAudio.Play();
+
         /*
         if(currBat==null)
         {

@@ -13,10 +13,12 @@ public class CurseVisualizer : MonoBehaviour
     public GameObject Trail_Three;
     public GameObject Trail_Four;
     public GameObject particleLights;
-   
+
+    public GameObject gaugeBall;
+    private Renderer gaugeBallMaterial;
     void Start()
     {
-
+        gaugeBallMaterial = gaugeBall.GetComponent<Renderer>();
     }
     private void Update()
     {
@@ -35,7 +37,10 @@ public class CurseVisualizer : MonoBehaviour
             {
                 particleSystemForVillageStatus.SetActive(true);
                 particleLights.SetActive(true);
+             
             }
+            float fillAmount = gaugeBallMaterial.material.GetFloat("_Cutoff") - 0.25f;
+            gaugeBallMaterial.material.SetFloat("_Cutoff", fillAmount);
             Trail_One.SetActive(true);
         }
         else if (mobile2vr.mobileToVRCl.CurseDetection() == 1)
@@ -47,6 +52,8 @@ public class CurseVisualizer : MonoBehaviour
                 particleSystemForVillageStatus.SetActive(true);
                 particleLights.SetActive(true);
             }
+            float fillAmount = gaugeBallMaterial.material.GetFloat("_Cutoff") - 0.25f;
+            gaugeBallMaterial.material.SetFloat("_Cutoff", fillAmount);
             Trail_Two.SetActive(true);
         }
         else if (mobile2vr.mobileToVRCl.CurseDetection() == 2)
@@ -58,6 +65,8 @@ public class CurseVisualizer : MonoBehaviour
                 particleSystemForVillageStatus.SetActive(true);
                 particleLights.SetActive(true);
             }
+            float fillAmount = gaugeBallMaterial.material.GetFloat("_Cutoff") - 0.25f;
+            gaugeBallMaterial.material.SetFloat("_Cutoff", fillAmount);
             Trail_Three.SetActive(true);
         }
         else if (mobile2vr.mobileToVRCl.CurseDetection() == 3)
@@ -69,6 +78,8 @@ public class CurseVisualizer : MonoBehaviour
                 particleSystemForVillageStatus.SetActive(true);
                 particleLights.SetActive(true);
             }
+            float fillAmount = gaugeBallMaterial.material.GetFloat("_Cutoff") - 0.25f;
+            gaugeBallMaterial.material.SetFloat("_Cutoff", fillAmount);
             Trail_Four.SetActive(true);
         }
     }
