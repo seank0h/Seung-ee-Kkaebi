@@ -12,13 +12,14 @@ public class vr2mobile : MonoBehaviour
     int[] dustClean = new int[2];
     int[] isFlare = new int[2];
     int[] vrPos = new int[2]; // 0~3
-    int startNPC;
+    int batEnable;
     Vector3 lHand, rHand, flarePos;
     public GameObject flare;
     public GameObject bullet;
     public GameObject player;
     public GameObject hitEffect;
     public GameObject bulletEffect;
+    public GameObject bat;
 
     // Eye Light
     public GameObject[] eyes = new GameObject[8];
@@ -47,7 +48,6 @@ public class vr2mobile : MonoBehaviour
         isFlare[1] = mobileClient.cl.getIsFlare();
         vrPos[0] = mobileClient.cl.getVRPos();
         vrPos[1] = mobileClient.cl.getVRPos();
-        startNPC = mobileClient.cl.getstartNPCMove();
 
         effectOn = false;
         NormalEmissionRate = 50;
@@ -61,6 +61,8 @@ public class vr2mobile : MonoBehaviour
         r_halo = (Behaviour)eyes[vrPos[0]*2 + 1].gameObject.GetComponent("Halo");
         l_halo.enabled = true;
         r_halo.enabled = true;
+
+        batEnable = mobileClient.cl.getBatEnabled();
 
         if (vm && vm != this)
             Destroy(this);
@@ -86,20 +88,15 @@ public class vr2mobile : MonoBehaviour
         flarePos = mobileClient.cl.getFlare();
         c_detail = mobileClient.cl.getCurse().ToCharArray();
         n_detail = mobileClient.cl.getNPCMat().ToCharArray();
+        batEnable = mobileClient.cl.getBatEnabled();
 
-        //mobileClient.cl.setstartNPCMove(1);
-        //Debug.Log(mobileClient.cl.getstartNPCMove());
-
-        /*
-        if (vrPos[0] == 0)
+        if (batEnable == 0)
         {
-            mobileClient.cl.setstartNPCMove(3);
-            //Debug.Log("스타트가 3인가? : " + mobileClient.cl.getstartNPCMove());
-        }*/
-
-        //Debug.Log(mobileClient.cl.getVRPos());
-
-        // Debug.Log("dust storm : " + mobileClient.cl.getDustStrom());
+            bat.SetActive(false);
+        } else
+        {
+            bat.SetActive(true);
+        }
 
         if (mobileClient.cl.getDustStrom() == 1)
         {
