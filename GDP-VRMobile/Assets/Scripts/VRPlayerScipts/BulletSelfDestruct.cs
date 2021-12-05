@@ -7,7 +7,7 @@ public class BulletSelfDestruct : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("DestroySelf", 4.0f);
+        Invoke("DestroySelf", 7.0f);
     }
 
     // Update is called once per frame

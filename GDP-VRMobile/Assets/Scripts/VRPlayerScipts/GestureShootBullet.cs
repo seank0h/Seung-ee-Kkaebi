@@ -62,7 +62,7 @@ public class GestureShootBullet : MonoBehaviour
         handRotation = hand.rotation.eulerAngles;
         flare_pos.transform.position = handRotation;
         GameObject bullet = Instantiate(projectilePrefab, hand.position, Quaternion.identity);
-        Invoke("DelayMessage", 0.5f);
+        Invoke("DelayMessage", 0.25f);
         bullet.transform.localRotation = hand.rotation;
     }
 

@@ -25,7 +25,7 @@ public class MoveRandomly : MonoBehaviour
     void Update()
     {
         // (mobile2vr.mobileToVRCl.NPCMovementStart()) || vr2mobile.vm.go()
-        if (firstStart && mobile2vr.mobileToVRCl.NPCMovementStart())
+        if (firstStart)
         {
             GetNewPath();
             firstStart = false;

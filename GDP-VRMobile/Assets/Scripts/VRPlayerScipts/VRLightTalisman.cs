@@ -6,11 +6,11 @@ public class VRLightTalisman : MonoBehaviour
 {
     Renderer ghostRenderer;
 
-    float timer = 5.0f;
+    float timer = 10.0f;
     private void Start()
     {
         
-        timer = 5.0f;
+        timer = 10.0f;
     }
     private void FixedUpdate()
     {

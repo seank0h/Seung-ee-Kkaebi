@@ -15,6 +15,7 @@ TagManager:
   - NPC
   - Dokkaebi
   - Flare
+  - DokkaebiBulletCollider
   layers:
   - Default
   - TransparentFX
