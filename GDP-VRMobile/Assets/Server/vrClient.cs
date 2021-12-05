@@ -13,6 +13,7 @@ public class vrClient : MonoBehaviour{
     private Vector3 rHandRot;
     private Vector3 batPos, batRot;
     private int batEnabled;
+    private float time;
 
     //Mobile -> VR
     public GameObject player;
@@ -60,7 +61,7 @@ public class vrClient : MonoBehaviour{
         }
 
         // Formatting
-        string message = lHandCoord + "/" + rHandCoord + "/" + flareCoord + "/" + bulletCol.ToString() + "/" + catchMobile.ToString() + "/" + dustClean.ToString() + "/" + isFlare.ToString() + "/" + vrPos.ToString() + "/" + rHandRotVal + "/" + batCoord + "/" + batRotVal + "/" + batEnabled.ToString();
+        string message = lHandCoord + "/" + rHandCoord + "/" + flareCoord + "/" + bulletCol.ToString() + "/" + catchMobile.ToString() + "/" + dustClean.ToString() + "/" + isFlare.ToString() + "/" + vrPos.ToString() + "/" + rHandRotVal + "/" + batCoord + "/" + batRotVal + "/" + batEnabled.ToString() + "/" + time.ToString();
         
         client.tcp.sendMsg(message);
     }
@@ -94,6 +95,16 @@ public class vrClient : MonoBehaviour{
             NPCs[i].GetComponent<Transform>().position = new Vector3(float.Parse(msg[fIdx+0]), float.Parse(msg[fIdx+1]), float.Parse(msg[fIdx+2]));
             NPCs[i].GetComponent<Transform>().eulerAngles = new Vector3(float.Parse(msg[fIdx+3]), float.Parse(msg[fIdx+4]), float.Parse(msg[fIdx+5]));
         }
+    }
+
+    public float getTime()
+    {
+        return time;
+    }
+
+    public void setTime(float time)
+    {
+        this.time = time;
     }
 
     public string getNPCMat(){

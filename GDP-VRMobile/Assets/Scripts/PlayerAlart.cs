@@ -10,7 +10,7 @@ public class PlayerAlart : MonoBehaviour
     public SkinnedMeshRenderer npcRenderer;
     float stay = 0;
     float release = 0;
-    float sturn_time = 0;
+    public float sturn_time = 0;
     public bool sturn = false;
     public bool sturning = false;
     float speed;
@@ -111,7 +111,7 @@ public class PlayerAlart : MonoBehaviour
                     release = 0;
                     npcRenderer.material.color = Color.black;
                     this.gameObject.GetComponent<NavMeshAgent>().speed = speed;
-                    Debug.Log("repatroll npc cum : " + (index + 1));
+                    //Debug.Log("repatroll npc cum : " + (index + 1));
                     vr2mobile.vm.alert_end(index);
                 }
             }

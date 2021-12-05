@@ -22,6 +22,7 @@ public class mobileClient : MonoBehaviour{
     private Vector3 rHandRot;
     private Vector3 batPos, batRot;
     private int batEnabled;
+    private float time;
 
 
     // Start is called before the first frame update
@@ -60,7 +61,7 @@ public class mobileClient : MonoBehaviour{
         string[][] msg = client.tcp.receiveMsg();
 
         for(int i = 0; i < msg.Length; i++){
-            if(msg[i].Length != 25)
+            if(msg[i].Length != 26)
                 continue;
 
             lPos = new Vector3(float.Parse(msg[i][1]), float.Parse(msg[i][2]), float.Parse(msg[i][3]));
@@ -81,6 +82,7 @@ public class mobileClient : MonoBehaviour{
             batRot = new Vector3(float.Parse(msg[i][21]), float.Parse(msg[i][22]), float.Parse(msg[i][23]));
 
             batEnabled = int.Parse(msg[i][24]);
+            time = float.Parse(msg[i][25]);
         }
     }
 
@@ -101,6 +103,16 @@ public class mobileClient : MonoBehaviour{
         }
 
         return res;
+    }
+
+    public float getTime()
+    {
+        return time;
+    }
+
+    public void setTime(float time)
+    {
+        this.time = time;
     }
 
     public int getBatEnabled()
