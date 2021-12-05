@@ -6424,6 +6424,7 @@ MonoBehaviour:
   Trail_Three: {fileID: 2044265626}
   Trail_Four: {fileID: 530287589}
   particleLights: {fileID: 2044274060}
+  gaugeBall: {fileID: 1128454216}
 --- !u!114 &194528634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7489,6 +7490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcRenderer: {fileID: 203460160}
+  gaugeBall: {fileID: 1128454216}
 --- !u!195 &272543766
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7729,6 +7731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcRenderer: {fileID: 1941282634}
+  gaugeBall: {fileID: 1128454216}
 --- !u!136 &278640480
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13706,6 +13709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcRenderer: {fileID: 768462360}
+  gaugeBall: {fileID: 1128454216}
 --- !u!195 &437693637
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -37881,7 +37885,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b3a7eb5343c5c4ce58aa6263a1004a62, type: 2}
+  - {fileID: 2100000, guid: 73120a6c9863b214381ee9ed3191ddf1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -59460,6 +59464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcRenderer: {fileID: 1495954767}
+  gaugeBall: {fileID: 1128454216}
 --- !u!195 &1432230127
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -75641,6 +75646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcRenderer: {fileID: 163571227}
+  gaugeBall: {fileID: 1128454216}
 --- !u!195 &1612254427
 NavMeshAgent:
   m_ObjectHideFlags: 0
