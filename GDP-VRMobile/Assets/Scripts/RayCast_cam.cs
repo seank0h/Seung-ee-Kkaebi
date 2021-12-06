@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class RayCast_cam : MonoBehaviour
 {
     RaycastHit hit;
     Vector3 height = new Vector3(0, 0, 0);
@@ -71,15 +71,6 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         dust();
     }
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        isBtnDown = true;
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        isBtnDown = false;
-    }
 
     public void Dance()
     {
@@ -330,7 +321,7 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         GameObject gameObjectHit;
         playerPropMesh.gameObject.SetActive(true);
-        Debug.Log("Raycast hit Prop");
+        //Debug.Log("Raycast hit Prop");
         gameObjectHit = prop;
         playerPropMesh.mesh = gameObjectHit.GetComponent<MeshFilter>().mesh;
         Renderer hitPropMat = gameObjectHit.GetComponent<Renderer>();
@@ -361,6 +352,11 @@ public class RayCast_cam : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             // Debug.Log("dust off");
             mobileClient.cl.setDustStrom(0);
         }
+    }
+
+    public void btndown(bool b)
+    {
+        isBtnDown = b;
     }
 }
     

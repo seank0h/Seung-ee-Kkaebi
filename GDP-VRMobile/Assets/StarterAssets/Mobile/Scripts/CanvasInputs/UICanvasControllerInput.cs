@@ -7,6 +7,7 @@ namespace StarterAssets
 
         [Header("Output")]
         public StarterAssetsInputs starterAssetsInputs;
+        public RayCast_cam RaycastInput;
 
         public void VirtualMoveInput(Vector2 virtualMoveDirection)
         {
@@ -28,6 +29,10 @@ namespace StarterAssets
             starterAssetsInputs.SprintInput(virtualSprintState);
         }
         
+        public void VirtualInterationInput(bool virtualInteractionState)
+        {
+            RaycastInput.btndown(virtualInteractionState);
+        }
     }
 
 }
