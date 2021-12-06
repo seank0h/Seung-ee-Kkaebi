@@ -47,10 +47,9 @@ public class GestureShootFlare : MonoBehaviour
                 break;
 
             case ShootMode.Single:
-                if (!hasShoot)
+                if (!hasShoot && VRDustParticleEffect.VRdpe.effectOn == false)
                 {
                     hasShoot = true;
-                    Debug.Log("Shooting in Single");
 
                     Shoot();
                 }

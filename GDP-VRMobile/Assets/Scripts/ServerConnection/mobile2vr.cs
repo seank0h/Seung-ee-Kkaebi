@@ -5,7 +5,7 @@ using UnityEngine;
 public class mobile2vr : MonoBehaviour
 {
     public static mobile2vr mobileToVRCl;
-    int life, startNPC, prop;
+    public int life, startNPC, prop;
     string[] curse = new string[2];
     string[] npcmat = new string[2];
     char[] c_detail = new char[4];
@@ -19,7 +19,11 @@ public class mobile2vr : MonoBehaviour
     public bool changePlayerMat = false;
     float time;
     public bool gameOver;
-
+    bool firstStunOne=false;
+    bool firstStunTwo = false;
+    bool firstStunThree = false;
+    bool firstStunFour = false;
+    bool firstStunFive = false;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -111,15 +115,13 @@ public class mobile2vr : MonoBehaviour
         {
             if (n_detail[0] != '0') // 1번 npc
             {
-                Debug.Log("1nd NPC COnnection");
-                if (n_detail[0] == '1') // 기절
+                if (n_detail[0] == '1' && firstStunOne==false) // 기절
                 {
-                    Debug.Log("1st NPC Stun");
                     NPCList[0].GetComponent<NPCStunHandler>().StunState();
+                    firstStunOne = true;
                 }
                 if (n_detail[0] == '2') // 경고(파란색)
                 {
-                    Debug.Log("1st NPC Alert");
                     NPCList[0].GetComponent<NPCAlertHandler>().AlertState();
                 }
             }
@@ -130,15 +132,13 @@ public class mobile2vr : MonoBehaviour
 
             if (n_detail[1] != '0') // 2번 npc
             {
-                Debug.Log("2nd NPC COnnection");
-                if (n_detail[1] == '1') // 기절
+                if (n_detail[1] == '1'&& firstStunTwo==false) // 기절
                 {
-                    Debug.Log("2st NPC Stun");
                     NPCList[1].GetComponent<NPCStunHandler>().StunState();
+                    firstStunTwo = true;
                 }
                 if (n_detail[1] == '2') // 경고(파란색)
                 {
-                    Debug.Log("2st NPC Alert");
                     NPCList[1].GetComponent<NPCAlertHandler>().AlertState();
                 }
             }
@@ -149,15 +149,15 @@ public class mobile2vr : MonoBehaviour
 
             if (n_detail[2] != '0') // 3번 npc
             {
-                Debug.Log("3nd NPC COnnection");
-                if (n_detail[2] == '1') // 기절
+
+                if (n_detail[2] == '1'&&firstStunThree == false) // 기절
                  {
-                    Debug.Log("3st NPC Stun");
+                    firstStunThree = true;
                     NPCList[0].GetComponent<NPCStunHandler>().StunState();
                 }
                 if (n_detail[2] == '2') // 경고(파란색)
                 {
-                    Debug.Log("3d NPC Alert");
+               
                     NPCList[2].GetComponent<NPCAlertHandler>().AlertState();
                 }
             }
@@ -168,15 +168,15 @@ public class mobile2vr : MonoBehaviour
 
             if (n_detail[3] != '0') // 4번 npc
             {
-                Debug.Log("4nd NPC COnnection");
-                if (n_detail[3] == '1') // 기절
+
+                if (n_detail[3] == '1' && firstStunFour == false) // 기절
                 {
-                    Debug.Log("4st NPC Stun");
+                    firstStunFour = true;
                     NPCList[0].GetComponent<NPCStunHandler>().StunState();
                 }
                 if (n_detail[3] == '2') // 경고(파란색)
                 {
-                    Debug.Log("4d NPC Alert");
+               
                     NPCList[3].GetComponent<NPCAlertHandler>().AlertState();
                 }
             }
@@ -187,15 +187,15 @@ public class mobile2vr : MonoBehaviour
 
             if (n_detail[4] != '0') // 5번 npc
             {
-                Debug.Log("5nd NPC COnnection");
-                if (n_detail[4] == '1') // 기절
+              
+                if (n_detail[4] == '1'&& firstStunFive==false) // 기절
                 {
-                    Debug.Log("5st NPC Stun");
+                    firstStunFive = true;
                     NPCList[4].GetComponent<NPCStunHandler>().StunState();
                 }
                 if (n_detail[4] == '2') // 경고(파란색)
                 {
-                    Debug.Log("5st NPC Alert");
+                   
                     NPCList[4].GetComponent<NPCAlertHandler>().AlertState();
                 }
             }
@@ -220,7 +220,7 @@ public class mobile2vr : MonoBehaviour
         int houseToCurse= -1;
         if (curse[0] != curse[1])
         {
-            Debug.Log("c_detail: " + c_detail[0] + c_detail[1] + c_detail[2] + c_detail[3]);
+            
             if (c_detail[0] == '1') // 1번 건물 저주됨
             {
                 houseToCurse = 0;

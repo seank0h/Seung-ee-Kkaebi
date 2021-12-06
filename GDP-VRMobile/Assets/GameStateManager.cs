@@ -7,14 +7,19 @@ public class GameStateManager : MonoBehaviour
 {
     public float curseProgress;
     public int dokkaebiLives;
-    public float gameTime;
     public bool winLose;
     public bool playing;
+
+    public Text gameStateText;
+    public GameObject gameConditionCanvas;
+    public GameObject timeBallEntity;
+    timeBall timeBall;
     // Start is called before the first frame update
     void Start()
     {
         playing = true;
-        timeBall.tb.startGame();
+        timeBall = timeBallEntity.GetComponent<timeBall>();
+        timeBall.startGame();
     }
 
     // Update is called once per frame
@@ -23,7 +28,19 @@ public class GameStateManager : MonoBehaviour
         
         if(mobile2vr.mobileToVRCl.GameOver())
         {
-            Debug.Log("Game Over");
+            gameStateText.text = "You Win Congratulations";
+            gameConditionCanvas.SetActive(true);
+        }
+        if(timeBall.isGameEnd() || mobile2vr.mobileToVRCl.life<=0)
+        {
+            gameStateText.text = "You Win Congratulations";
+            gameConditionCanvas.SetActive(true);
+            
+        }
+        if(gameObject.GetComponent<CurseVisualizer>().villagePranked)
+        {
+            gameStateText.text = "You Lose Boohoo";
+            gameConditionCanvas.SetActive(true);
         }
 
     }

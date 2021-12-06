@@ -52,8 +52,8 @@ public class VRDustParticleEffect : MonoBehaviour
 
     void Update()
     {
-        //if(mobile2vr.mobileToVRCl.DustStormInteraction() && mobile2vr.mobileToVRCl.dustStormState == true)
-        if(Input.GetKeyDown(KeyCode.P))
+        //if()
+        if(mobile2vr.mobileToVRCl.DustStormInteraction() && mobile2vr.mobileToVRCl.dustStormState == true)
         {
             Debug.Log("Is this being called");
             if (effectOn == false)
@@ -68,26 +68,12 @@ public class VRDustParticleEffect : MonoBehaviour
                 RemoveDustStorm();
             }
         }
-        //if(Input.GetKeyDown(KeyCode.L) || removers[4].activeInHierarchy == false)
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            //vrClient.cl.setDustClean(1);
-            if (effectOn)
-            {
-                Debug.Log("In Removing Dust Storm");
-                var dustEffectEmission = dustEffect.emission;
-                lowerEmissionRate--;
-                dustEffectEmission.rateOverTime = lowerEmissionRate;
-                mobile2vr.mobileToVRCl.dustStormState = false;
-                effectOn = false;
-            }
-        }
     }
 
     public void EndDustStorm(){
-        //vrClient.cl.setDustClean(1);
-        //stormAudio.Stop();
+        mobile2vr.mobileToVRCl.dustStormState = false;
         StartCoroutine(AudioFadeOut());
+        vrClient.cl.setDustClean(1);
         effectOn = false;
     }
 

@@ -16,6 +16,7 @@ public class CurseVisualizer : MonoBehaviour
 
     public GameObject gaugeBall;
     private Renderer gaugeBallMaterial;
+    public bool villagePranked;
     void Start()
     {
         gaugeBallMaterial = gaugeBall.GetComponent<Renderer>();
@@ -25,7 +26,10 @@ public class CurseVisualizer : MonoBehaviour
       
         if (mobile2vr.mobileToVRCl.CurseDetection()!=-1)
         InstantiateCurseEffect();
-
+        if(gaugeBallMaterial.material.GetFloat("_Cutoff")==0)
+        {
+            villagePranked = true;
+        }
     }
     void InstantiateCurseEffect()
     {

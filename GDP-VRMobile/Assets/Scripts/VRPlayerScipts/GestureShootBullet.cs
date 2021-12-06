@@ -38,7 +38,7 @@ public class GestureShootBullet : MonoBehaviour
         {
             case ShootMode.Auto:
                 Debug.Log("Shooting in Auto");
-                if (Time.time >= timeToFire){
+                if (Time.time >= timeToFire && VRDustParticleEffect.VRdpe.effectOn==false){
                     timeToFire = Time.time + 1.0f / 1.0f;
                     Shoot();
                 }

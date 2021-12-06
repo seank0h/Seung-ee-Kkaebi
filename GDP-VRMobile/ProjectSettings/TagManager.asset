@@ -16,6 +16,9 @@ TagManager:
   - Dokkaebi
   - Flare
   - DokkaebiBulletCollider
+  - Bat
+  - HandTrigger
+  - HandTriggerLeft
   layers:
   - Default
   - TransparentFX

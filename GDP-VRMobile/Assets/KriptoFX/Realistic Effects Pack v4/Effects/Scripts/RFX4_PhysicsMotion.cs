@@ -42,9 +42,14 @@ public class RFX4_PhysicsMotion : MonoBehaviour
     float currentSpeedOffset;
     private RFX4_EffectSettings effectSettings;
     public GameObject vfxToSpawnOnDokkaebiHit;
-
+    GameObject batEntity;
+    GameObject handLeft;
+    GameObject handRight;
     void OnEnable ()
     {
+        batEntity = GameObject.Find("Bat");
+        handLeft = GameObject.Find("HandTriggerLeft");
+        handRight = GameObject.Find("HandTrigger");
         effectSettings = GetComponentInParent<RFX4_EffectSettings>();
         foreach (var obj in DeactivateObjectsAfterCollision)
         {
@@ -87,6 +92,12 @@ public class RFX4_PhysicsMotion : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        if(collision.gameObject.tag=="Bat")
+        {
+            Debug.Log("ignored bat collision");
+            Physics.IgnoreCollision(batEntity.GetComponent<Collider>(), collid);
+        }
+
         if (isCollided && !effectSettings.UseCollisionDetection) return;
         foreach (ContactPoint contact in collision.contacts)
         {
@@ -135,6 +146,7 @@ public class RFX4_PhysicsMotion : MonoBehaviour
                 else obj.SetActive(false);
             }
         }
+        
         if (collision.gameObject.tag == "Dokkaebi")
         {
             this.gameObject.GetComponent<AudioPlayer>().PlayHitAudio();

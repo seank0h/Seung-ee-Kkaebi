@@ -7,8 +7,10 @@ public class TeleportToggle : MonoBehaviour
 {    
     public GameObject characterController;
 	public GameObject[] teleportPositions;
+    public GameObject[] jangseungModel;
 	public int teleportIndex;
 	public int currIndex;
+    public int prevIndex;
     public Image fadeScreen;
     public bool teleportLock;
 
@@ -26,9 +28,10 @@ public class TeleportToggle : MonoBehaviour
 		characterController = this.gameObject;
 		teleportIndex = 0;
 		currIndex = 0;
-
+        prevIndex = 0;
         trigger_L = GameObject.Find("Teleport_L");
         trigger_R = GameObject.Find("Teleport_R");
+        jangseungModel[currIndex].SetActive(false);
 	}
 
     public void ButtonTeleport(bool direction)
@@ -40,26 +43,40 @@ public class TeleportToggle : MonoBehaviour
 		if (direction == true && teleportLock == false){
             trigger_L.GetComponent<MeshRenderer>().material = holdMat;
 			if (currIndex == 3){
+                prevIndex = 3;
 				teleportIndex = 0;
                 currIndex = teleportIndex;
-			}else{
+                jangseungModel[prevIndex].SetActive(true);
+                jangseungModel[currIndex].SetActive(false);
+            }
+            else{
                 teleportIndex++;
                 currIndex = teleportIndex;
+                prevIndex = currIndex - 1;
+                jangseungModel[prevIndex].SetActive(true);
+                jangseungModel[currIndex].SetActive(false);
             }	
 		}if (direction == false && teleportLock == false){
             trigger_R.GetComponent<MeshRenderer>().material = holdMat;
 			if (currIndex == 0){
 				teleportIndex = teleportPositions.Length - 1;
                 currIndex = teleportIndex;
-			}else{
+                prevIndex = 0;
+                jangseungModel[prevIndex].SetActive(true);
+                jangseungModel[currIndex].SetActive(false);
+            }
+            else{
                 teleportIndex--;
                 currIndex = teleportIndex;
+                prevIndex = currIndex + 1;
+                jangseungModel[prevIndex].SetActive(true);
+                jangseungModel[currIndex].SetActive(false);
             }
-		}
+        }
         vrClient.cl.setVRPos(teleportIndex);
 		StartCoroutine(FadeInOut());
 	}
-
+   
     private IEnumerator FadeInOut(){
         // Make sure teleport can't be called again
         teleportLock = true;

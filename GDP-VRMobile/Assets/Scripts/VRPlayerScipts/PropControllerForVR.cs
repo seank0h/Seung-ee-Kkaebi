@@ -69,7 +69,6 @@ public class PropControllerForVR : MonoBehaviour
     void Update()
     {
         GetPropChange();
-        Debug.Log("Player Prop Renderer Material: " + playerPropRenderer.material);
         
     }
     void GetPropChange()

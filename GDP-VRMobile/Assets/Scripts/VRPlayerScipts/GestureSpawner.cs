@@ -16,7 +16,7 @@ public class GestureSpawner : MonoBehaviour
 
     public float batDuration;
     public float batCooldown = 0;
-    bool ifBat;
+    bool ifBat=false;
     bool beginCooldown;
 
     private AudioSource batSpawnAudio;
@@ -35,7 +35,7 @@ public class GestureSpawner : MonoBehaviour
             if(batDuration<=0)
             {
                 currBat.SetActive(false);
-                batDuration = 5.0f;
+                batDuration = 10.0f;
                 ifBat = false;
                 batCooldown = 3.0f;
                 beginCooldown = true;
@@ -45,32 +45,25 @@ public class GestureSpawner : MonoBehaviour
         if(beginCooldown)
         {
             batCooldown -= Time.deltaTime;
+            if (batCooldown <= 0)
+            {
+                beginCooldown = false;
+            }
         }
+      
     }
     public void OnActivate(){
-        Debug.Log("BAT is activated!!!");
-        batSpawnAudio.Play();
-
-        /*
-        if(currBat==null)
-        {
-            Vector3 positionCalibration = new Vector3(hand.position.x + 3, hand.position.y, hand.position.z + 3);
-            Vector3 rotationCalibration = new Vector3(30f, 0, 0);
-            currBat = Instantiate(bat, positionCalibration, Quaternion.identity);
-            currBat.transform.parent = hand.transform.parent;
-            currBat.transform.eulerAngles = handRotation.transform.eulerAngles;
-            //currBat.transform.eulerAngles = rotationCalibration; 
-        }
-        */
-        if (batCooldown<=0)
+        //Move to bat code and play on awake so its only once
+        if (batCooldown <= 0&&VRDustParticleEffect.VRdpe.effectOn == false)
         {
             ifBat = true;
             currBat.SetActive(true);
+            batSpawnAudio.Play();
+            batCooldown = 3.0f;
         }
        
     }
     public void Inactivate(){
-        Debug.Log("BAT is inactivated***");
         //bat.SetActive(false);
     }
 }

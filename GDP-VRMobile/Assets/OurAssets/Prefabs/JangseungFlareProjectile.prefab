@@ -14473,7 +14473,6 @@ GameObject:
   m_Component:
   - component: {fileID: 418778}
   - component: {fileID: 114153433710859902}
-  - component: {fileID: 6456639550480735628}
   m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
@@ -14532,38 +14531,7 @@ MonoBehaviour:
   DeactivateObjectsAfterCollision: []
   HUE: -1
   vfxToSpawnOnDokkaebiHit: {fileID: 8280487941761809738, guid: a82a56a435460904689ba23a63340648, type: 3}
---- !u!114 &6456639550480735628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9320f3afef659b64cb7316ce3c0bfbab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UseCollisionDetect: 1
-  MaxDistnace: -1
-  Mass: 1
-  Speed: 10
-  RandomSpeedOffset: 0
-  AirDrag: 0.1
-  UseGravity: 1
-  ForceMode: 1
-  AddRealtimeForce: {x: 0, y: 0, z: 0}
-  MinSpeed: 0
-  ColliderRadius: 0.05
-  FreezeRotation: 0
-  UseTargetPositionAfterCollision: 0
-  EffectOnCollision: {fileID: 0}
-  CollisionEffectInWorldSpace: 1
-  LookAtNormal: 1
-  CollisionEffectDestroyAfter: 5
-  DeactivateObjectsAfterCollision: []
-  HUE: -1
-  vfxToSpawnOnDokkaebiHit: {fileID: 135984}
+  batEntity: {fileID: 0}
 --- !u!1 &191498
 GameObject:
   m_ObjectHideFlags: 0

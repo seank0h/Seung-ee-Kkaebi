@@ -23,6 +23,7 @@ public class NPCStunHandler : MonoBehaviour
     }
     public void StunState()
     {
+        Debug.Log("StunState");
         float fillAmount = gaugeBallMaterial.material.GetFloat("_Cutoff") - 0.05f;
         gaugeBallMaterial.material.SetFloat("_Cutoff", fillAmount);
         npcRenderer.material.color = Color.red;

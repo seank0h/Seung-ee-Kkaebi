@@ -93,7 +93,7 @@ public class RFX4_EffectSettings : MonoBehaviour
 
     public void ChangeParticleColor()
     {
-        Debug.Log("ColorChanged");
+        
         var hue = RFX4_ColorHelper.ColorToHSV(EffectColor).H;
         RFX4_ColorHelper.ChangeObjectColorByHUE(gameObject, hue);
 
