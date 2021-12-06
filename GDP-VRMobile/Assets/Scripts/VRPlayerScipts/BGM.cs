@@ -13,7 +13,7 @@ public class BGM : MonoBehaviour
         //bgm.clip = idle;
         bgm = GetComponent<AudioSource>();
         startVolume = bgm.volume;
-        Debug.Log("Start Volume : " + startVolume);
+        //Debug.Log("Start Volume : " + startVolume);
         //bgm.Play();
     }
 

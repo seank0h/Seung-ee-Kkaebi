@@ -117,6 +117,7 @@ public class vr2mobile : MonoBehaviour
         time = mobileClient.cl.getTime();
         min = (int)(time / 60);
         sec = (int)(time % 60);
+        time_text.text = min.ToString("D2") + " : " + sec.ToString("D2");
 
         if (playermat[1] != playermat[0])
         {
@@ -227,7 +228,7 @@ public class vr2mobile : MonoBehaviour
             slowAudio.Play();
         }
         Debug.Log("life : " + mobileClient.cl.getLife());
-        Debug.Log("playermat : " + mobileClient.cl.getPlayerMat());
+        //Debug.Log("playermat : " + mobileClient.cl.getPlayerMat());
     }
 
     public void curse_send(int index)
@@ -240,6 +241,7 @@ public class vr2mobile : MonoBehaviour
 
     public void strun_send(int index)
     {
+       
         // Debug.Log("index : " + index);
         n_detail[index] = '1';
         string result = new string(n_detail);
@@ -249,7 +251,8 @@ public class vr2mobile : MonoBehaviour
 
     public void alert_send(int index)
     {
-        // Debug.Log("index : " + index);
+        
+        //Debug.Log("alart sound");
         n_detail[index] = '2';
         string result = new string(n_detail);
         // Debug.Log(result);

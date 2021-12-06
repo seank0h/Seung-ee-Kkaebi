@@ -78,6 +78,7 @@ public class PlayerAlart : MonoBehaviour
                 curse_slide.value += 5;
                 vr2mobile.vm.strun_send(index);
                 first = false;
+                Invoke("turn_back", 2f);
             }
             
         }
@@ -109,17 +110,19 @@ public class PlayerAlart : MonoBehaviour
                     release = 0;
                     if (stay >= 2f)
                     {
-                        //NPCaudio.clip = alertSound;
-                        //NPCaudio.Play();
-                        Debug.Log("sound");
+                        
                         if (alart_first)
                         {
+                            NPCaudio.clip = alertSound;
+                            NPCaudio.Play();
+                            //Debug.Log("sound");
                             npcRenderer.material.color = Color.blue;
                             this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
                             // Debug.Log("alart npc cum : " + (index + 1));
                             mobileClient.cl.setPlayerMat(1);
                             vr2mobile.vm.alert_send(index);
                             // Debug.Log("alart npc ; " + gameObject.name);
+                            alart_first = false;
                         }
                     }
                 }
@@ -137,9 +140,16 @@ public class PlayerAlart : MonoBehaviour
                     this.gameObject.GetComponent<NavMeshAgent>().speed = speed;
                     //Debug.Log("repatroll npc cum : " + (index + 1));
                     mobileClient.cl.setPlayerMat(0);
+                    alart_first = true;
                     vr2mobile.vm.alert_end(index);
                 }
             }
         }
+    }
+
+    void turn_back()
+    {
+        if (mobileClient.cl.getPlayerMat() == 1)
+            mobileClient.cl.setPlayerMat(0);
     }
 }
