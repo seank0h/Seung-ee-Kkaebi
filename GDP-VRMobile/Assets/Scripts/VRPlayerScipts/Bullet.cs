@@ -7,7 +7,6 @@ public class Bullet : MonoBehaviour
     public float speed = 100f;
     public float fireRate = 1f;
     public float timeBeforeDestroyed = 5f;
-    private bool collided = false;
     private Rigidbody rb = null;
     public GameObject visualEffectToSpawn;
     public GameObject hitEffectToSpawn;

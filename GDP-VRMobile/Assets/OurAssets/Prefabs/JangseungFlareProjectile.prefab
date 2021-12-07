@@ -14531,7 +14531,6 @@ MonoBehaviour:
   DeactivateObjectsAfterCollision: []
   HUE: -1
   vfxToSpawnOnDokkaebiHit: {fileID: 8280487941761809738, guid: a82a56a435460904689ba23a63340648, type: 3}
-  batEntity: {fileID: 0}
 --- !u!1 &191498
 GameObject:
   m_ObjectHideFlags: 0
