@@ -17,6 +17,7 @@ public class CurseVisualizer : MonoBehaviour
     public GameObject gaugeBall;
     private Renderer gaugeBallMaterial;
     public bool villagePranked;
+    public bool villageHalfPranked;
     void Start()
     {
         gaugeBallMaterial = gaugeBall.GetComponent<Renderer>();
@@ -29,6 +30,10 @@ public class CurseVisualizer : MonoBehaviour
         if(gaugeBallMaterial.material.GetFloat("_Cutoff")==0)
         {
             villagePranked = true;
+        }
+        if(gaugeBallMaterial.material.GetFloat("_Cutoff")<=0)
+        {
+            villageHalfPranked = true;
         }
     }
     void InstantiateCurseEffect()
