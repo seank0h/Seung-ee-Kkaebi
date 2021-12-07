@@ -119,6 +119,8 @@ public class vr2mobile : MonoBehaviour
         sec = (int)(time % 60);
         time_text.text = min.ToString("D2") + " : " + sec.ToString("D2");
 
+        // Debug.Log("flarepos : " + flarePos);
+
         if (playermat[1] != playermat[0])
         {
             if (playermat[0] == 0)
@@ -216,7 +218,7 @@ public class vr2mobile : MonoBehaviour
             Debug.Log("bulletCnt : " + bulletCnt);
             playecon.MoveSpeed -= 0.4f;
             Instantiate(bulletEffect, player.transform.position, Quaternion.identity);
-            if (playecon.MoveSpeed < 1.0f)
+            if (playecon.MoveSpeed < 3.1f)
             {
                 bulletCnt = 0;
                 int life = mobileClient.cl.getLife();
@@ -227,15 +229,15 @@ public class vr2mobile : MonoBehaviour
             }
             slowAudio.Play();
         }
-        Debug.Log("life : " + mobileClient.cl.getLife());
-        //Debug.Log("playermat : " + mobileClient.cl.getPlayerMat());
+        // Debug.Log("life : " + mobileClient.cl.getLife());
+        // Debug.Log("playermat : " + mobileClient.cl.getPlayerMat());
     }
 
     public void curse_send(int index)
     {
         c_detail[index] = '1';
         string result = new string(c_detail);
-        Debug.Log("c_detail : " + result);
+        // Debug.Log("c_detail : " + result);
         mobileClient.cl.setCurse(result);
     }
 
@@ -270,6 +272,6 @@ public class vr2mobile : MonoBehaviour
 
     void speed_return()
     {
-        playecon.MoveSpeed = 3;
+        playecon.MoveSpeed = 5;
     }
 }

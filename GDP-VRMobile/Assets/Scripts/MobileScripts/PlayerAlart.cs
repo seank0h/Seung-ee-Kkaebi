@@ -21,6 +21,7 @@ public class PlayerAlart : MonoBehaviour
     int index;
     RayCast_cam pp;
     bool proped;
+    bool escaped = false;
 
     public AudioClip alertSound, sturnSound;
     private AudioSource NPCaudio;
@@ -62,7 +63,7 @@ public class PlayerAlart : MonoBehaviour
         float distance = Vector3.Distance(player.transform.position, transform.position);
         proped = pp.proped;
 
-        // Debug.Log(proped);
+        // Debug.Log("player mat : " + mobileClient.cl.getPlayerMat());
 
         if (sturn)
         {
@@ -106,42 +107,44 @@ public class PlayerAlart : MonoBehaviour
             {
                 if (distance <= 5)
                 {
+                    // Debug.Log("°¡±î¿ò");
                     stay += Time.deltaTime;
                     release = 0;
                     if (stay >= 2f)
                     {
-                        
+                        stay = 2f;
                         if (alart_first)
                         {
+                            mobileClient.cl.setPlayerMat(1);
                             NPCaudio.clip = alertSound;
                             NPCaudio.Play();
                             //Debug.Log("sound");
                             npcRenderer.material.color = Color.blue;
                             this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
                             // Debug.Log("alart npc cum : " + (index + 1));
-                            mobileClient.cl.setPlayerMat(1);
                             vr2mobile.vm.alert_send(index);
                             // Debug.Log("alart npc ; " + gameObject.name);
                             alart_first = false;
+                            escaped = true;
                         }
                     }
                 }
-                else
+                else if (distance > 5 && escaped)
                 {
                     release += Time.deltaTime;
-                    if (release <= 2)
+                    if (release >= 2)
                     {
-                        return;
+                        escaped = false;
+                        // Debug.Log("masaka");
+                        stay = 0;
+                        release = 0;
+                        npcRenderer.material.color = Color.black;
+                        this.gameObject.GetComponent<NavMeshAgent>().speed = speed;
+                        //Debug.Log("repatroll npc cum : " + (index + 1));
+                        mobileClient.cl.setPlayerMat(0);
+                        alart_first = true;
+                        vr2mobile.vm.alert_end(index);
                     }
-                    
-                    stay = 0;
-                    release = 0;
-                    npcRenderer.material.color = Color.black;
-                    this.gameObject.GetComponent<NavMeshAgent>().speed = speed;
-                    //Debug.Log("repatroll npc cum : " + (index + 1));
-                    mobileClient.cl.setPlayerMat(0);
-                    alart_first = true;
-                    vr2mobile.vm.alert_end(index);
                 }
             }
         }
