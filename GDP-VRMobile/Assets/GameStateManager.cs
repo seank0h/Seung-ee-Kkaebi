@@ -31,14 +31,16 @@ public class GameStateManager : MonoBehaviour
             gameStateText.text = "You Win Congratulations";
             gameConditionCanvas.SetActive(true);
         }
-        if(timeBall.isGameEnd() || mobile2vr.mobileToVRCl.life<=0)
+        if(timeBall.isGameEnd() || vrClient.cl.getLife()<=0)
         {
+            Debug.Log("Wtf game end");
             gameStateText.text = "You Win Congratulations";
             gameConditionCanvas.SetActive(true);
             
         }
         if(gameObject.GetComponent<CurseVisualizer>().villagePranked)
         {
+            Debug.Log("Wtf game end village pranked");
             gameStateText.text = "You Lose Boohoo";
             gameConditionCanvas.SetActive(true);
         }
