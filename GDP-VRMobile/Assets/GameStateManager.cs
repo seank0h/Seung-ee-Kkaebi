@@ -31,14 +31,14 @@ public class GameStateManager : MonoBehaviour
         
         if(mobile2vr.mobileToVRCl.GameOver())
         {
-            gameStateText.text = "You Win Congratulations";
+            gameStateText.text = "You Win";
             gameConditionCanvas.SetActive(true);
         }
         
         if(timeBall.isGameEnd() || vrClient.cl.getLife()<=0)
         {
            
-            gameStateText.text = "You Win Congratulations";
+            gameStateText.text = "You Win";
             gameConditionCanvas.SetActive(true);
             
         }
