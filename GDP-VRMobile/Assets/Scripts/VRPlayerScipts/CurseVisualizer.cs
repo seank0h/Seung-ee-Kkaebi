@@ -23,25 +23,33 @@ public class CurseVisualizer : MonoBehaviour
     public bool curseFour = false;
 
     public GameObject gaugeBall;
+    LiquidVolumeFX.LiquidVolume gaugeBallLiquidVolume;
     private Renderer gaugeBallMaterial;
     public bool villagePranked;
     public bool villageHalfPranked;
+    public float fillSpeed=0.03f;
+    float fillamount;
     void Start()
     {
         gaugeBallMaterial = gaugeBall.GetComponent<Renderer>();
+        gaugeBallLiquidVolume = gaugeBall.GetComponent<LiquidVolumeFX.LiquidVolume>();
     }
     private void Update()
     {
       
         if (mobile2vr.mobileToVRCl.CurseDetection()!=-1)
         InstantiateCurseEffect();
-        if(gaugeBallMaterial.material.GetFloat("_Cutoff")==0)
+        if(gaugeBallLiquidVolume.level==1)
         {
             villagePranked = true;
         }
-        if(gaugeBallMaterial.material.GetFloat("_Cutoff")<=0)
+        if(gaugeBallLiquidVolume.level >=0.5f)
         {
             villageHalfPranked = true;
+        }
+        if (gaugeBallLiquidVolume.level < fillamount)
+        {
+            gaugeBallLiquidVolume.level += fillSpeed;
         }
     }
     void InstantiateCurseEffect()
@@ -59,9 +67,11 @@ public class CurseVisualizer : MonoBehaviour
             if(curseOne==false)
             {
                  Instantiate(curseEffectSystem, curseableHouses[0].transform.position, Quaternion.identity);
-            float fillAmount = gaugeBallMaterial.material.GetFloat("_Cutoff") - 0.25f;
-            gaugeBallMaterial.material.SetFloat("_Cutoff", fillAmount);
-            Trail_One.SetActive(true);
+               
+               
+                fillamount = gaugeBallLiquidVolume.level += 0.25f;
+
+                Trail_One.SetActive(true);
             curseOne = true;
             }
             
@@ -78,9 +88,8 @@ public class CurseVisualizer : MonoBehaviour
             if(curseTwo==false)
             {
                  Instantiate(curseEffectSystem, curseableHouses[1].transform.position, Quaternion.identity);
-            float fillAmount = gaugeBallMaterial.material.GetFloat("_Cutoff") - 0.25f;
-            gaugeBallMaterial.material.SetFloat("_Cutoff", fillAmount);
-            Trail_Two.SetActive(true);
+                fillamount = gaugeBallLiquidVolume.level += 0.25f;
+                Trail_Two.SetActive(true);
             curseTwo = true;
 
             }
@@ -99,9 +108,8 @@ public class CurseVisualizer : MonoBehaviour
             if(curseThree==false)
             {
                       Instantiate(curseEffectSystem, curseableHouses[2].transform.position, Quaternion.identity);
-            float fillAmount = gaugeBallMaterial.material.GetFloat("_Cutoff") - 0.25f;
-            gaugeBallMaterial.material.SetFloat("_Cutoff", fillAmount);
-            Trail_Three.SetActive(true);
+                fillamount = gaugeBallLiquidVolume.level += 0.25f;
+                Trail_Three.SetActive(true);
             curseThree = true;
             }
             
@@ -118,9 +126,8 @@ public class CurseVisualizer : MonoBehaviour
             if(curseFour==false)
             {
                 Instantiate(curseEffectSystem, curseableHouses[3].transform.position, Quaternion.identity);
-            float fillAmount = gaugeBallMaterial.material.GetFloat("_Cutoff") - 0.25f;
-            gaugeBallMaterial.material.SetFloat("_Cutoff", fillAmount);
-            Trail_Four.SetActive(true);
+                fillamount = gaugeBallLiquidVolume.level += 0.25f;
+                Trail_Four.SetActive(true);
             curseFour = true;
             }
            

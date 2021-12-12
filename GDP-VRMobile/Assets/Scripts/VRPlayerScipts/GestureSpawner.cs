@@ -67,7 +67,7 @@ public class GestureSpawner : MonoBehaviour
        
     }
     public void Inactivate(){
-        bat.SetActive(false);
+        currBat.SetActive(false);
         ifBat = false;
         batCooldown = 3.0f;
         beginCooldown = true;
