@@ -28,7 +28,7 @@ public class VRDustParticleEffect : MonoBehaviour
             VRdpe = this;
 
         effectOn = false;
-        NormalEmissionRate = 250;
+        NormalEmissionRate = 300;
 
         removerOrigin = GameObject.Find("RemoverOrigin");
         removers = new GameObject[5];
