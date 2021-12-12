@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class Raycast : MonoBehaviour
 {
     RaycastHit hit;
-    Vector3 height = new Vector3(0, 0, 0);
+    Vector3 height = new Vector3(0, 0.5f, 0);
     bool c_reset = false;
     Behaviour c_halo = null;
     bool n_reset = false;
@@ -17,18 +17,24 @@ public class Raycast : MonoBehaviour
     bool p_reset = false;
     Behaviour p_halo = null;
     private bool isBtnDown = false;
+    private bool isDust = false;
+    private bool is_cursing = false;
+
+    // public GameObject[] curse = new GameObject[4];
 
     public GameObject playerMeshEntity;
     public GameObject playerPropMeshEntity;
     public Slider slider;
     private MeshFilter playerPropMesh;
     private Renderer playerPropRenderer;
+    private Collider playerCollider;
     private SkinnedMeshRenderer playerMesh;
     public GameObject cameraRoot;
     public bool changeBack;
     public bool swapToProp;
     public bool proped = false;
     float prop_time = 0f;
+    float prop_back_cool = 0f;
     string mesh_name;
     int mesh_num;
     bool prop_cool = false;
@@ -37,6 +43,10 @@ public class Raycast : MonoBehaviour
     CurseManage curse = null;
     PlayerAlart pa = null;
 
+    //public SkinnedMeshRenderer Drenderer;
+    //public Material ghostMaterialTransparent;
+    //public Material ghostMaterialRevealed;
+
     public AudioClip hideOnProp, cancelHideOnProp;
     private AudioSource propAudio;
 
@@ -44,6 +54,7 @@ public class Raycast : MonoBehaviour
     void Start()
     {
         playerMesh = playerMeshEntity.GetComponent<SkinnedMeshRenderer>();
+        playerCollider = playerMeshEntity.GetComponent<CapsuleCollider>();
         playerPropMesh = playerPropMeshEntity.GetComponent<MeshFilter>();
         playerPropRenderer = playerPropMeshEntity.GetComponent<Renderer>();
 
@@ -53,14 +64,6 @@ public class Raycast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("o"))
-        {
-            mobileClient.cl.setPlayerMat(1);
-        }
-        if (Input.GetKeyDown("p"))
-        {
-            mobileClient.cl.setPlayerMat(0);
-        }
         Dance();
         dust();
     }
@@ -100,7 +103,7 @@ public class Raycast : MonoBehaviour
                         c_reset = false;
                     }
 
-                    if (hit.distance <= 3.0f)
+                    if (hit.distance <= 5.0f)
                     {
                         Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
                         curse = hit.collider.gameObject.GetComponent<CurseManage>();
@@ -294,20 +297,26 @@ public class Raycast : MonoBehaviour
             }
 
             prop_time += Time.deltaTime;
-
+            prop_back_cool += Time.deltaTime;
             // curse.cursing = false;
             // pa.sturning = false;
 
             if (prop_time >= 10 || (Input.GetKeyDown("q") || isBtnDown))
             {
-                propAudio.clip = cancelHideOnProp;
-                propAudio.Play();
-                RadialProgress_Mobile.rp.startProgress();
-                // Debug.Log("model swap");
-                prop_time = 0;
-                mobileClient.cl.setProp(0);
-                ModelSwap();
-                proped = false;
+
+                if (prop_back_cool >= 3f)
+                {
+                    prop_back_cool = 0f;
+                    propAudio.clip = cancelHideOnProp;
+                    propAudio.Play();
+                    RadialProgress_Mobile.rp.startProgress();
+                    // Debug.Log("model swap");
+                    prop_time = 0;
+                    mobileClient.cl.setProp(0);
+                    ModelSwap();
+                    proped = false;
+                }
+
             }
         }
 
@@ -338,7 +347,7 @@ public class Raycast : MonoBehaviour
     {
         dust_cool = RadialProgress_dust.rp.isProgress();
 
-        if (Input.GetKeyDown("e") && !dust_cool)
+        if ((Input.GetKeyDown("e") || isDust) && !dust_cool)
         {
             // Debug.Log("dust on");
             mobileClient.cl.setDustStrom(1);
@@ -353,5 +362,21 @@ public class Raycast : MonoBehaviour
     public void btndown(bool b)
     {
         isBtnDown = b;
+    }
+
+    public void dust(bool b)
+    {
+        isDust = b;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Interactive")
+            is_cursing = true;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Interactive")
+            is_cursing = false;
     }
 }
