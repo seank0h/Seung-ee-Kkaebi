@@ -27,15 +27,22 @@ public class VRPlayerTeleport : MonoBehaviour
     {
         if(other.gameObject.name =="Teleport_L")
         {
-			//Debug.Log("Touched Left Teleport");
-			vrPlayerTeleport.ButtonTeleport(true); // teleport to Left
-            teleportAudio.Play();
+            if (VRDustParticleEffect.VRdpe.effectOn){
+                return;
+            }else{
+                vrPlayerTeleport.ButtonTeleport(true); // teleport to Left
+                teleportAudio.Play();
+            }
         }
+
 		if(other.gameObject.name =="Teleport_R")
         {
-			//Debug.Log("Touched Right Teleport");
-			vrPlayerTeleport.ButtonTeleport(false); // teleport to Right
-            teleportAudio.Play();
+            if (VRDustParticleEffect.VRdpe.effectOn){
+                return;
+            }else{
+                vrPlayerTeleport.ButtonTeleport(true); // teleport to Left
+                teleportAudio.Play();
+            }
 		}
     }
 

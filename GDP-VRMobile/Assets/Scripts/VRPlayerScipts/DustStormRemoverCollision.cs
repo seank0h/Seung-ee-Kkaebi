@@ -59,7 +59,7 @@ public class DustStormRemoverCollision : MonoBehaviour
             DustStormRemover.dsr.index = 0;
             var dustEffectEmission = VRDustParticleEffect.VRdpe.dustEffect.emission;
             dustEffectEmission.rateOverTime = lowerEmissionRate[3];
-
+            //Debug.Log("Remover Origin Transform Positon: " + VRDustParticleEffect.VRdpe.originalPos);
             removerOrigin.transform.position = VRDustParticleEffect.VRdpe.originalPos;
             DustStormRemover.dsr.trigger = false;
             DustStormRemover.dsr.isTouching = false;

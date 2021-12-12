@@ -86,6 +86,7 @@ public class VRDustParticleEffect : MonoBehaviour
     }
 
     public void RemoveDustStorm(){
+        initObj();
         for(int i = 0; i < 4; i++){
             if(i == 0){
                 Removal.transform.GetChild(i).gameObject.SetActive(true);
