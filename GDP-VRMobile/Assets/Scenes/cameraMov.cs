@@ -13,13 +13,20 @@ public class cameraMov : MonoBehaviour {
     space : Moves camera on X and Z axis only.  So camera doesn't gain any height*/
     
      
-    float mainSpeed = 10.0f; //regular speed
+    float mainSpeed = 7.0f; //regular speed
     float shiftAdd = 50.0f; //multiplied by how long shift is held.  Basically running
     float maxShift = 100.0f; //Maximum speed when holdin gshift
-    float camSens = 0.25f; //How sensitive it with mouse
+    float camSens = 0.1f; //How sensitive it with mouse
     private Vector3 lastMouse = new Vector3(255, 255, 255); //kind of in the middle of the screen, rather than at the top (play)
     private float totalRun= 1.0f;
-     
+
+    void Start()
+    {
+        Display.displays[0].Activate();
+        Display.displays[1].Activate();
+    }
+
+
     void Update () {
         lastMouse = Input.mousePosition - lastMouse ;
         lastMouse = new Vector3(-lastMouse.y * camSens, lastMouse.x * camSens, 0 );

@@ -46,32 +46,51 @@ public class TeleportToggle : MonoBehaviour
                 prevIndex = 3;
 				teleportIndex = 0;
                 currIndex = teleportIndex;
-                jangseungModel[currIndex].SetActive(false);
+                Invoke("JSFadeOut", 0.5f);
+
+                //jangseungModel[currIndex].SetActive(false);
             }
             else{
                 teleportIndex++;
                 currIndex = teleportIndex;
                 prevIndex = currIndex - 1;
-                jangseungModel[currIndex].SetActive(false);
-            }	
-		}if (direction == false && teleportLock == false){
+                Invoke("JSFadeOut", 0.5f);
+
+                //jangseungModel[currIndex].SetActive(false);
+            }
+        }
+        if (direction == false && teleportLock == false){
             trigger_R.GetComponent<MeshRenderer>().material = holdMat;
 			if (currIndex == 0){
 				teleportIndex = teleportPositions.Length - 1;
                 currIndex = teleportIndex;
                 prevIndex = 0;
-                jangseungModel[currIndex].SetActive(false);
+                Invoke("JSFadeOut", 0.5f);
+
+                //jangseungModel[currIndex].SetActive(false);
             }
-            else{
+            else
+            {
                 teleportIndex--;
                 currIndex = teleportIndex;
                 prevIndex = currIndex + 1;
-                
-                jangseungModel[currIndex].SetActive(false);
+                Invoke("JSFadeOut", 0.5f);
+
+                //jangseungModel[currIndex].SetActive(false);
             }
         }
         vrClient.cl.setVRPos(teleportIndex);
 		StartCoroutine(FadeInOut());
+        Invoke("JSFadeIn", 0.5f);
+        //jangseungModel[prevIndex].SetActive(true);
+    }
+
+    private void JSFadeOut()
+    {
+        jangseungModel[currIndex].SetActive(false);
+    }
+    private void JSFadeIn()
+    {
         jangseungModel[prevIndex].SetActive(true);
     }
     private IEnumerator FadeInOut(){

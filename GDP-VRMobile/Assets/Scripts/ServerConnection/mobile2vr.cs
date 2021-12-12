@@ -17,8 +17,8 @@ public class mobile2vr : MonoBehaviour
     public List<GameObject> NPCList;
     public bool dustStormState = false;
     public bool changePlayerMat = false;
-    float time;
     public bool gameOver;
+    public bool gameFirst;
     bool firstStunOne=false;
     bool firstStunTwo = false;
     bool firstStunThree = false;
@@ -49,8 +49,7 @@ public class mobile2vr : MonoBehaviour
         npcmat[1] = vrClient.cl.getNPCMat();
         c_detail = curse[0].ToCharArray();
         n_detail = npcmat[0].ToCharArray();
-        vrClient.cl.setTime(300f);
-        time = vrClient.cl.getTime();
+
     }
 
     // Update is called once per frame
@@ -72,16 +71,13 @@ public class mobile2vr : MonoBehaviour
         npcmat[0] = vrClient.cl.getNPCMat();
         n_detail = npcmat[0].ToCharArray();
         
-        time = vrClient.cl.getTime();
-        if (vrClient.cl.getstartNPCMove() == 1)
+        if(startNPC==66)
         {
-            vrClient.cl.setTime(time - Time.deltaTime);
-            if (time <= 0)
-            {
-                gameOver = true;
-                vrClient.cl.setTime(0);
-            }
-                
+            gameOver = true;
+        }
+        if(startNPC==99)
+        {
+            gameOver = false;
         }
 
         if (playermat[1] != playermat[0])

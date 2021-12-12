@@ -8,9 +8,11 @@ public class NPCStunHandler : MonoBehaviour
     //public List<GameObject> NPCList;
     // Start is called before the first frame update
     public SkinnedMeshRenderer npcRenderer;
+    public GameObject animatorEntity;
+    public NPCAnimationCallVR animatorNPC;
     void Start()
     {
-       
+        animatorNPC = animatorEntity.GetComponent<NPCAnimationCallVR>();
         
     }
 
@@ -25,5 +27,6 @@ public class NPCStunHandler : MonoBehaviour
         npcRenderer.material.color = Color.red;
        this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
        this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        animatorNPC.CallStandAnimation();
     }
 }

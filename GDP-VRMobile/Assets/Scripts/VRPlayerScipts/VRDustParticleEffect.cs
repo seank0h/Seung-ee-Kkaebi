@@ -52,8 +52,8 @@ public class VRDustParticleEffect : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
-        //if(mobile2vr.mobileToVRCl.DustStormInteraction() && mobile2vr.mobileToVRCl.dustStormState == true)
+        
+        if(mobile2vr.mobileToVRCl.DustStormInteraction() && mobile2vr.mobileToVRCl.dustStormState == true)
         {
             Debug.Log("Is this being called");
             if (effectOn == false)

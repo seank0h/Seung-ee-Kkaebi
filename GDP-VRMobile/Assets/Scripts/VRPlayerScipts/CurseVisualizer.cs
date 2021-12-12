@@ -37,7 +37,7 @@ public class CurseVisualizer : MonoBehaviour
     private void Update()
     {
       
-        if (mobile2vr.mobileToVRCl.CurseDetection()!=-1)
+        //if (mobile2vr.mobileToVRCl.CurseDetection()!=-1)
         InstantiateCurseEffect();
         if(gaugeBallLiquidVolume.level==1)
         {
@@ -54,7 +54,7 @@ public class CurseVisualizer : MonoBehaviour
     }
     void InstantiateCurseEffect()
     {
-        if (mobile2vr.mobileToVRCl.CurseDetection() == 0)
+        if (mobile2vr.mobileToVRCl.CurseDetection() == 0 || Input.GetKey(KeyCode.P))
         {
 
            
@@ -76,7 +76,7 @@ public class CurseVisualizer : MonoBehaviour
             }
             
         }
-        else if (mobile2vr.mobileToVRCl.CurseDetection() == 1)
+        else if (mobile2vr.mobileToVRCl.CurseDetection() == 1 || Input.GetKey(KeyCode.P))
         {
 
            
@@ -96,7 +96,7 @@ public class CurseVisualizer : MonoBehaviour
             
             
         }
-        else if (mobile2vr.mobileToVRCl.CurseDetection() == 2)
+        else if (mobile2vr.mobileToVRCl.CurseDetection() == 2 || Input.GetKey(KeyCode.P))
         {
             
       
@@ -114,7 +114,7 @@ public class CurseVisualizer : MonoBehaviour
             }
             
         }
-        else if (mobile2vr.mobileToVRCl.CurseDetection() == 3)
+        else if (mobile2vr.mobileToVRCl.CurseDetection() == 3 || Input.GetKey(KeyCode.P))
         {
 
             

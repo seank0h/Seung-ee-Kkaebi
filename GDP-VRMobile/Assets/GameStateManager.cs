@@ -14,15 +14,12 @@ public class GameStateManager : MonoBehaviour
 
     public Text gameStateText;
     public GameObject gameConditionCanvas;
-    public GameObject timeBallEntity;
-    timeBall timeBall;
+
     // Start is called before the first frame update
     void Start()
     {
         playing = true;
-        timeBall = timeBallEntity.GetComponent<timeBall>();
         bgmManager = BGMManagerEntity.GetComponent<BGM>();
-        timeBall.startGame();
     }
 
     // Update is called once per frame
@@ -34,24 +31,14 @@ public class GameStateManager : MonoBehaviour
             gameStateText.text = "You Win";
             gameConditionCanvas.SetActive(true);
         }
-        
-        if(timeBall.isGameEnd() || vrClient.cl.getLife()<=0)
+        /*
+        if(mobile2vr.mobileToVRCl.GameOver()==false)
         {
            
-            gameStateText.text = "You Win";
+            gameStateText.text = "You Lose";
             gameConditionCanvas.SetActive(true);
             
         }
-        if(gameObject.GetComponent<CurseVisualizer>().villagePranked)
-        {
-      
-            gameStateText.text = "You Lose Boohoo";
-            gameConditionCanvas.SetActive(true);
-        }
-
-        if(gameObject.GetComponent<CurseVisualizer>().villageHalfPranked)
-        {
-            //bgmManager.InEmergencyBGM();
-        }
+        */
     }
 }

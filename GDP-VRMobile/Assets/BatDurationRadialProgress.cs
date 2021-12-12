@@ -19,7 +19,7 @@ public class BatDurationRadialProgress : MonoBehaviour
     {
         BatDurationRadialProgress.rp = this;
 
-        speed = 10;
+        speed = 14;
         LoadingBar.fillAmount = 100;
         currentValue = 100;
     }

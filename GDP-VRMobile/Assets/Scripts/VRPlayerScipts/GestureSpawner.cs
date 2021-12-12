@@ -35,10 +35,12 @@ public class GestureSpawner : MonoBehaviour
             if(batDuration<=0)
             {
                 currBat.SetActive(false);
+                BatDurationRadialProgress.rp.LoadingBar.gameObject.SetActive(false);
                 batDuration = 7.0f;
                 ifBat = false;
                 batCooldown = 3.0f;
                 beginCooldown = true;
+                
             }
             
         }
@@ -67,7 +69,8 @@ public class GestureSpawner : MonoBehaviour
         if (batCooldown <= 0&&VRDustParticleEffect.VRdpe.effectOn == false && ifBat==false)
         {
             BatDurationRadialProgress.rp.start = true;
-            ifBat = true;
+            BatDurationRadialProgress.rp.LoadingBar.gameObject.SetActive(true);
+           ifBat = true;
             currBat.SetActive(true);
             batSpawnAudio.Play();
             batCooldown = 3.0f;
@@ -75,6 +78,8 @@ public class GestureSpawner : MonoBehaviour
        
     }
     public void Inactivate(){
+
+        BatDurationRadialProgress.rp.LoadingBar.gameObject.SetActive(false);
         currBat.SetActive(false);
         ifBat = false;
         batCooldown = 3.0f;
