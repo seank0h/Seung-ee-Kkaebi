@@ -35,13 +35,16 @@ public class GestureSpawner : MonoBehaviour
             if(batDuration<=0)
             {
                 currBat.SetActive(false);
-                batDuration = 10.0f;
+                batDuration = 7.0f;
                 ifBat = false;
                 batCooldown = 3.0f;
                 beginCooldown = true;
             }
             
         }
+        if (mobile2vr.mobileToVRCl.dustStormState == true && ifBat)
+            Inactivate();
+
         if(beginCooldown)
         {
             batCooldown -= Time.deltaTime;
@@ -64,6 +67,9 @@ public class GestureSpawner : MonoBehaviour
        
     }
     public void Inactivate(){
-        //bat.SetActive(false);
+        bat.SetActive(false);
+        ifBat = false;
+        batCooldown = 3.0f;
+        beginCooldown = true;
     }
 }
