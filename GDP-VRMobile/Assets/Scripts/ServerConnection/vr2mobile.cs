@@ -182,6 +182,7 @@ public class vr2mobile : MonoBehaviour
                 int life = mobileClient.cl.getLife();
                 healthbar.GetComponent<progressLiquid>().decreaseLevel(bat_damage);
                 Raycast.rc.prop();
+                slowAudio.Play();
                 playecon.MoveSpeed = 10;
                 Invoke("speed_return", 5f);
             }
