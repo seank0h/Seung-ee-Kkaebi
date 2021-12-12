@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-public class RayCast_cam : MonoBehaviour
+public class Raycast : MonoBehaviour
 {
     RaycastHit hit;
     Vector3 height = new Vector3(0, 0, 0);
@@ -23,7 +23,6 @@ public class RayCast_cam : MonoBehaviour
     public Slider slider;
     private MeshFilter playerPropMesh;
     private Renderer playerPropRenderer;
-    private Collider playerCollider;
     private SkinnedMeshRenderer playerMesh;
     public GameObject cameraRoot;
     public bool changeBack;
@@ -38,10 +37,6 @@ public class RayCast_cam : MonoBehaviour
     CurseManage curse = null;
     PlayerAlart pa = null;
 
-    //public SkinnedMeshRenderer Drenderer;
-    //public Material ghostMaterialTransparent;
-    //public Material ghostMaterialRevealed;
-
     public AudioClip hideOnProp, cancelHideOnProp;
     private AudioSource propAudio;
 
@@ -49,7 +44,6 @@ public class RayCast_cam : MonoBehaviour
     void Start()
     {
         playerMesh = playerMeshEntity.GetComponent<SkinnedMeshRenderer>();
-        playerCollider = playerMeshEntity.GetComponent<CapsuleCollider>();
         playerPropMesh = playerPropMeshEntity.GetComponent<MeshFilter>();
         playerPropRenderer = playerPropMeshEntity.GetComponent<Renderer>();
 
@@ -75,7 +69,8 @@ public class RayCast_cam : MonoBehaviour
     public void Dance()
     {
         prop_cool = RadialProgress_Mobile.rp.isProgress();
-        if (!proped) {
+        if (!proped)
+        {
             if (Physics.Raycast(gameObject.transform.position + height, gameObject.transform.forward, out hit, 1000))
             {
                 Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.red);
@@ -170,13 +165,13 @@ public class RayCast_cam : MonoBehaviour
                     if (slider.gameObject.activeSelf)
                         slider.gameObject.SetActive(false);
                     if (p_halo != null)
-                    {          
+                    {
                         p_halo.enabled = false;
                         p_reset = false;
                     }
                     if (c_reset)
                     {
-                        if(curse != null)
+                        if (curse != null)
                             curse.cursing = false;
                         c_halo.enabled = false;
                         c_reset = false;
@@ -195,7 +190,7 @@ public class RayCast_cam : MonoBehaviour
                         p_halo.enabled = true;
                         p_reset = true;
                         mesh_name = hit.collider.GetComponent<MeshFilter>().mesh.name;
-                        
+
                         // prop ½ÃÀÛ
                         if ((Input.GetKeyDown("q") || isBtnDown) && !prop_cool)
                         {
@@ -272,7 +267,8 @@ public class RayCast_cam : MonoBehaviour
                 if (pa != null)
                     pa.sturning = false;
             }
-        } else
+        }
+        else
         {
             if (slider.gameObject.activeSelf)
                 slider.gameObject.SetActive(false);
@@ -302,7 +298,7 @@ public class RayCast_cam : MonoBehaviour
             // curse.cursing = false;
             // pa.sturning = false;
 
-            if (prop_time>=10 || (Input.GetKeyDown("q") || isBtnDown))
+            if (prop_time >= 10 || (Input.GetKeyDown("q") || isBtnDown))
             {
                 propAudio.clip = cancelHideOnProp;
                 propAudio.Play();
@@ -359,4 +355,3 @@ public class RayCast_cam : MonoBehaviour
         isBtnDown = b;
     }
 }
-    
