@@ -119,36 +119,4 @@ public class VRDustParticleEffect : MonoBehaviour
         stormAudio.Stop();
         stormAudio.volume = startVolume;
     }
-
-    /*
-    public IEnumerator RemoverIn(){
-        float currentTime = 0;
-
-        rend[0] = Removal.transform.GetChild(0).GetComponent<Renderer>();
-        rend[1] = Removal.transform.GetChild(1).GetComponent<Renderer>();
-        
-        while (currentTime < 1){
-            rend[0].material.color = Color.Lerp(Color.clear, Color.cyan, currentTime);
-            rend[1].material.color = Color.Lerp(Color.clear, Color.cyan, currentTime);
-            yield return null;
-            currentTime += Time.deltaTime;
-        }
-    }
-    */
-    
-    /*
-    private IEnumerator AlphaIn(){
-        Renderer rendO = Removal.transform.GetChild(0).GetComponent<Renderer>();
-        float duration = 1;
-        float elapsedTime = 0;
-        float startValue = rendO.material.color.a;
-        float endValue = 255;
-        while(elapsedTime < duration){
-            elapsedTime += Time.deltaTime;
-            float newAlpha = Mathf.Lerp(startValue, endValue, elapsedTime / duration);
-            rendO.material.color = new Color(rendO.material.color.r, rendO.material.color.g, rendO.material.color.b, newAlpha);
-            yield return null;
-        }
-    }
-    */
 }

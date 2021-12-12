@@ -42,9 +42,9 @@ public class RayCast_cam : MonoBehaviour
     CurseManage curse = null;
     PlayerAlart pa = null;
 
-    public SkinnedMeshRenderer Drenderer;
-    public Material ghostMaterialTransparent;
-    public Material ghostMaterialRevealed;
+    //public SkinnedMeshRenderer Drenderer;
+    //public Material ghostMaterialTransparent;
+    //public Material ghostMaterialRevealed;
 
     public AudioClip hideOnProp, cancelHideOnProp;
     private AudioSource propAudio;
