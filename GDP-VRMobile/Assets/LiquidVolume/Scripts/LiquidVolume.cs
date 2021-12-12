@@ -59,7 +59,7 @@ namespace LiquidVolumeFX {
 
         [SerializeField]
         [Range(0, 1)]
-        float _level = 0.5f;
+        public float _level = 0.5f;
 
         public float level {
             get { return _level; }
