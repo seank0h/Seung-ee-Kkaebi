@@ -46,14 +46,12 @@ public class TeleportToggle : MonoBehaviour
                 prevIndex = 3;
 				teleportIndex = 0;
                 currIndex = teleportIndex;
-                jangseungModel[prevIndex].SetActive(true);
                 jangseungModel[currIndex].SetActive(false);
             }
             else{
                 teleportIndex++;
                 currIndex = teleportIndex;
                 prevIndex = currIndex - 1;
-                jangseungModel[prevIndex].SetActive(true);
                 jangseungModel[currIndex].SetActive(false);
             }	
 		}if (direction == false && teleportLock == false){
@@ -62,21 +60,20 @@ public class TeleportToggle : MonoBehaviour
 				teleportIndex = teleportPositions.Length - 1;
                 currIndex = teleportIndex;
                 prevIndex = 0;
-                jangseungModel[prevIndex].SetActive(true);
                 jangseungModel[currIndex].SetActive(false);
             }
             else{
                 teleportIndex--;
                 currIndex = teleportIndex;
                 prevIndex = currIndex + 1;
-                jangseungModel[prevIndex].SetActive(true);
+                
                 jangseungModel[currIndex].SetActive(false);
             }
         }
         vrClient.cl.setVRPos(teleportIndex);
 		StartCoroutine(FadeInOut());
-	}
-   
+        jangseungModel[prevIndex].SetActive(true);
+    }
     private IEnumerator FadeInOut(){
         // Make sure teleport can't be called again
         teleportLock = true;
