@@ -66,6 +66,7 @@ public class GestureSpawner : MonoBehaviour
         //Move to bat code and play on awake so its only once
         if (batCooldown <= 0&&VRDustParticleEffect.VRdpe.effectOn == false && ifBat==false)
         {
+            BatDurationRadialProgress.rp.start = true;
             ifBat = true;
             currBat.SetActive(true);
             batSpawnAudio.Play();

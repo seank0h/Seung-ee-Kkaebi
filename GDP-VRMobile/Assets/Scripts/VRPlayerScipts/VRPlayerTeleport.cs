@@ -40,7 +40,7 @@ public class VRPlayerTeleport : MonoBehaviour
             if (VRDustParticleEffect.VRdpe.effectOn){
                 return;
             }else{
-                vrPlayerTeleport.ButtonTeleport(true); // teleport to Left
+                vrPlayerTeleport.ButtonTeleport(false); // teleport to Left
                 teleportAudio.Play();
             }
 		}
