@@ -18,7 +18,7 @@ public class GestureSpawner : MonoBehaviour
     public float batCooldown = 0;
     bool ifBat=false;
     bool beginCooldown;
-
+    bool showCooldown;
     private AudioSource batSpawnAudio;
 
     private void Start()
@@ -48,16 +48,23 @@ public class GestureSpawner : MonoBehaviour
         if(beginCooldown)
         {
             batCooldown -= Time.deltaTime;
+            if (showCooldown==false)
+            {
+                BatRadialProgress.rp.start = true;
+                showCooldown = true;
+            }
+           
             if (batCooldown <= 0)
             {
                 beginCooldown = false;
+                showCooldown = false;
             }
         }
       
     }
     public void OnActivate(){
         //Move to bat code and play on awake so its only once
-        if (batCooldown <= 0&&VRDustParticleEffect.VRdpe.effectOn == false)
+        if (batCooldown <= 0&&VRDustParticleEffect.VRdpe.effectOn == false && ifBat==false)
         {
             ifBat = true;
             currBat.SetActive(true);
