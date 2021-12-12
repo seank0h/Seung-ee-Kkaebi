@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class Raycast : MonoBehaviour
 {
+    public static Raycast rc;
+
     RaycastHit hit;
     Vector3 height = new Vector3(0, 0.2f, 0);
     bool n_reset = false;
@@ -19,6 +21,7 @@ public class Raycast : MonoBehaviour
     private bool is_cursing = false;
     private GameObject curse_house = null;
     Color trans_white = new Color(1f, 1f, 1f, 0.3f);
+    bool bat_hit = false;
 
     // public GameObject[] curse = new GameObject[4];
 
@@ -47,6 +50,11 @@ public class Raycast : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (rc && rc != this)
+            Destroy(this);
+        else
+            rc = this;
+
         playerMesh = playerMeshEntity.GetComponent<SkinnedMeshRenderer>();
         playerPropMesh = playerPropMeshEntity.GetComponent<MeshFilter>();
         playerPropRenderer = playerPropMeshEntity.GetComponent<Renderer>();
@@ -65,8 +73,9 @@ public class Raycast : MonoBehaviour
         {
             mobileClient.cl.setPlayerMat(0);
         }
+
         Dance();
-        dust();
+        dust_storm();
     }
 
 
@@ -277,19 +286,21 @@ public class Raycast : MonoBehaviour
         changeBack = false;
     }
 
-    public void dust()
+    public void dust_storm()
     {
         dust_cool = RadialProgress_dust.rp.isProgress();
 
-        if (Input.GetKeyDown("e") && !dust_cool)
+        if ((Input.GetKeyDown("e") || Accelerometer.acc.isShaked()) && !dust_cool)
         {
             // Debug.Log("dust on");
             mobileClient.cl.setDustStrom(1);
+            Debug.Log(mobileClient.cl.getDustStrom());
         }
         else if (Input.GetKeyDown("r"))
         {
             // Debug.Log("dust off");
             mobileClient.cl.setDustStrom(0);
+            Debug.Log(mobileClient.cl.getDustStrom());
         }
     }
 
@@ -303,41 +314,63 @@ public class Raycast : MonoBehaviour
         isDust = b;
     }
 
+    public void prop()
+    {
+        bat_hit = true;
+    }
+
+    public void not_prop()
+    {
+        bat_hit = false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("triggerEnter");
-        curse_house = other.gameObject;
-        if (other.gameObject.tag == "Interactive")
+        if (!bat_hit)
         {
-            is_cursing = true;
-            if (slider.gameObject.activeSelf)
-                slider.gameObject.SetActive(false);
-            if (curse != null)
-                curse.cursing = false;
-
-            if (n_reset)
+            //Debug.Log("triggerEnter");
+            curse_house = other.gameObject;
+            if (other.gameObject.tag == "Interactive")
             {
-                n_halo.enabled = false;
-                n_reset = false;
-                if (pa != null)
-                    pa.sturning = false;
-            }
-            if (p_reset)
-            {
-                p_halo.enabled = false;
-                p_reset = false;
-            }
+                is_cursing = true;
+                if (slider.gameObject.activeSelf)
+                    slider.gameObject.SetActive(false);
+                if (curse != null)
+                    curse.cursing = false;
 
-            //other.gameObject.GetComponent<Renderer>().material.SetColor("_Color", trans_white);
-            curse = curse_house.GetComponent<CurseManage>();
-            slider.gameObject.SetActive(true);
-            curse.cursing = true;
+                if (n_reset)
+                {
+                    n_halo.enabled = false;
+                    n_reset = false;
+                    if (pa != null)
+                        pa.sturning = false;
+                }
+                if (p_reset)
+                {
+                    p_halo.enabled = false;
+                    p_reset = false;
+                }
+
+                //other.gameObject.GetComponent<Renderer>().material.SetColor("_Color", trans_white);
+                curse = curse_house.GetComponent<CurseManage>();
+                slider.gameObject.SetActive(true);
+            }
         }
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Interactive")
+        if (!bat_hit)
         {
+            if (other.gameObject.tag == "Interactive")
+            {
+
+                curse.cursing = true;
+                slider.value = curse.curse_time / 15 * 100;
+            }
+        }
+        else
+        {
+            curse.cursing = false;
             slider.value = curse.curse_time / 15 * 100;
         }
     }

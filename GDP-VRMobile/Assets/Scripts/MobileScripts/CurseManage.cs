@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class CurseManage : MonoBehaviour
 {
     public bool cursed = false;
+    public GameObject curseStatus;
     Behaviour halo;
     public float curse_time;
     public bool cursing = false;
     public GameObject curseEffect;
-    public Slider curse_slide;
     bool first = true;
 
     // Start is called before the first frame update
@@ -26,8 +26,11 @@ public class CurseManage : MonoBehaviour
         if (cursed) {
             if (first)
             {
+                Vibration.Vibrate(1000);
                 Instantiate(curseEffect, gameObject.transform.position, Quaternion.identity);
-                curse_slide.value += 25;
+
+                curseStatus.GetComponent<progressLiquid>().increaseLevel(25);
+
                 first = false;
             }
 

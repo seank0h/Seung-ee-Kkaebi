@@ -19,6 +19,7 @@ TagManager:
   - Bat
   - HandTrigger
   - HandTriggerLeft
+  - block
   layers:
   - Default
   - TransparentFX

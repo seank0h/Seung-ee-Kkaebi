@@ -55,7 +55,7 @@ public class MoveRandomMobile : MonoBehaviour
     {
         if (gameObject.transform.position.x == newPatrolPos.x && gameObject.transform.position.z == newPatrolPos.z)
         {
-            //Debug.Log("GotToNewPosition");
+            Debug.Log("GotToNewPosition");
             return true;
         }
         else

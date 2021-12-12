@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class PlayerAlart : MonoBehaviour
 {
     public GameObject player;
-    public GameObject prop;
     public SkinnedMeshRenderer npcRenderer;
     public Slider curse_slide;
     float stay = 0;
@@ -19,7 +18,7 @@ public class PlayerAlart : MonoBehaviour
     bool alart_first = true;
     float speed;
     int index;
-    RayCast_cam pp;
+    Raycast rc;
     bool proped;
     bool escaped = false;
 
@@ -53,15 +52,15 @@ public class PlayerAlart : MonoBehaviour
             index = 4;
         }
 
-        pp = prop.GetComponent<RayCast_cam>();
-        proped = pp.proped;
+        rc = player.GetComponent<Raycast>();
+        proped = rc.proped;
     }
 
     // Update is called once per frame
     void Update()
     {
         float distance = Vector3.Distance(player.transform.position, transform.position);
-        proped = pp.proped;
+        proped = rc.proped;
 
         // Debug.Log("player mat : " + mobileClient.cl.getPlayerMat());
 
@@ -69,6 +68,7 @@ public class PlayerAlart : MonoBehaviour
         {
             if (first)
             {
+                Vibration.Vibrate(300);
                 NPCaudio.clip = sturnSound;
                 NPCaudio.Play();
                 npcRenderer.material.color = Color.red;
@@ -122,7 +122,9 @@ public class PlayerAlart : MonoBehaviour
                             npcRenderer.material.color = Color.blue;
                             this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
                             // Debug.Log("alart npc cum : " + (index + 1));
+                            Debug.Log("NPC idx : " + index);
                             vr2mobile.vm.alert_send(index);
+                            Vibration.Vibrate(1200);
                             // Debug.Log("alart npc ; " + gameObject.name);
                             alart_first = false;
                             escaped = true;
