@@ -28,18 +28,16 @@ public class VRDustParticleEffect : MonoBehaviour
             VRdpe = this;
 
         effectOn = false;
-        NormalEmissionRate = 250;
+        NormalEmissionRate = 300;
 
         removerOrigin = GameObject.Find("RemoverOrigin");
         removers = new GameObject[5];
         removers[0] = GameObject.Find("Remover_1");
         removers[1] = GameObject.Find("Remover_2");
-        removers[2] = GameObject.Find("Remover_3");
-        removers[3] = GameObject.Find("Remover_4");
-        removers[4] = GameObject.Find("RemoverFinal");
+        removers[2] = GameObject.Find("RemoverFinal");
 
-        rend = new Renderer[5];
-        pos = new Vector3[6];
+        rend = new Renderer[3];
+        pos = new Vector3[4];
         for(int i = 0; i < pos.Length; i++){
             pos[i] = Vector3.zero;
         }
@@ -54,8 +52,8 @@ public class VRDustParticleEffect : MonoBehaviour
 
     void Update()
     {
-        //if(Input.GetKeyDown(KeyCode.P))
-        if(mobile2vr.mobileToVRCl.DustStormInteraction() && mobile2vr.mobileToVRCl.dustStormState == true)
+        if(Input.GetKeyDown(KeyCode.P))
+        //if(mobile2vr.mobileToVRCl.DustStormInteraction() && mobile2vr.mobileToVRCl.dustStormState == true)
         {
             Debug.Log("Is this being called");
             if (effectOn == false)
@@ -83,15 +81,14 @@ public class VRDustParticleEffect : MonoBehaviour
         removers = new GameObject[5];
         removers[0] = GameObject.Find("Remover_1");
         removers[1] = GameObject.Find("Remover_2");
-        removers[2] = GameObject.Find("Remover_3");
-        removers[3] = GameObject.Find("Remover_4");
-        removers[4] = GameObject.Find("RemoverFinal");
+        removers[2] = GameObject.Find("RemoverFinal");
         removerOrigin = GameObject.Find("RemoverOrigin");
     }
 
     public void RemoveDustStorm(){
-        for(int i = 0; i < 6; i++){
-            if(i < 2){
+        initObj();
+        for(int i = 0; i < 4; i++){
+            if(i == 0){
                 Removal.transform.GetChild(i).gameObject.SetActive(true);
             }else{
                 Removal.transform.GetChild(i).gameObject.SetActive(true);
