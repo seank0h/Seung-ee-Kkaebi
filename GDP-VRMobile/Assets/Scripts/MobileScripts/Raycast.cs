@@ -32,10 +32,11 @@ public class Raycast : MonoBehaviour
     private Renderer playerPropRenderer;
     private SkinnedMeshRenderer playerMesh;
     public GameObject cameraRoot;
+    public GameObject final, curse_bar;
     public bool changeBack;
     public bool swapToProp;
     public bool proped = false;
-    float prop_back_cool = 0f;
+    float prop_back_cool = 0f, distance, curse_gauge, curse_time = 0;
     string mesh_name;
     int mesh_num;
     bool prop_cool = false;
@@ -60,6 +61,9 @@ public class Raycast : MonoBehaviour
         playerPropRenderer = playerPropMeshEntity.GetComponent<Renderer>();
 
         propAudio = GetComponent<AudioSource>();
+
+        distance = Vector3.Distance(gameObject.transform.position, final.transform.position);
+        curse_gauge = curse_bar.GetComponent<progressLiquid>().getLevel();
     }
 
     // Update is called once per frame
@@ -81,20 +85,37 @@ public class Raycast : MonoBehaviour
 
     public void Dance()
     {
+        distance = Vector3.Distance(gameObject.transform.position, final.transform.position);
+        curse_gauge = curse_bar.GetComponent<progressLiquid>().getLevel();
         prop_cool = RadialProgress_Mobile.rp.isProgress();
         if (!proped)
         {
             if (Physics.Raycast(gameObject.transform.position + height, gameObject.transform.forward, out hit, 1000))
             {
                 Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.red);
-                if (is_cursing) //�ǹ� ����
+                if (distance <= 3)
                 {
+                    if (slider.gameObject.activeSelf)
+                        slider.gameObject.SetActive(false);
+                    slider.gameObject.SetActive(true);
+                    curse_time += Time.deltaTime;
+                    slider.value = ((curse_time + curse_gauge)*100)/105;
+                    if (curse_time + curse_gauge >= 105)
+                    {
+                        curse_bar.GetComponent<progressLiquid>().setLevel(105);
+                    }
+
+                }
+                else if (is_cursing) //�ǹ� ����
+                {
+                    curse_time = 0;
                     return;
                 }
                 else if (hit.collider.tag == "NPC") // npc ����
                 {
                     if (slider.gameObject.activeSelf)
                         slider.gameObject.SetActive(false);
+                    curse_time = 0;
 
                     if (pa != null)
                         pa.sturning = false;
@@ -132,6 +153,7 @@ public class Raycast : MonoBehaviour
                 {
                     if (slider.gameObject.activeSelf)
                         slider.gameObject.SetActive(false);
+                    curse_time = 0;
                     if (p_halo != null)
                     {
                         p_halo.enabled = false;
@@ -199,6 +221,7 @@ public class Raycast : MonoBehaviour
                 {
                     if (slider.gameObject.activeSelf)
                         slider.gameObject.SetActive(false);
+                    curse_time = 0;
 
                     if (n_reset)
                     {

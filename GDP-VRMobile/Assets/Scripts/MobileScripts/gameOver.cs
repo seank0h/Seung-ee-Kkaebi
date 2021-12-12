@@ -32,7 +32,7 @@ public class gameOver : MonoBehaviour
             end_text.text = "YOU LOSE";
             panel.SetActive(true);
         }
-        if (curse >= 105)
+        if (curse >= 103)
         {
             //win
             mobileClient.cl.setstartNPCMove(99);
