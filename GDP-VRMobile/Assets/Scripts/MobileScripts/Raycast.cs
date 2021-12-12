@@ -393,8 +393,12 @@ public class Raycast : MonoBehaviour
         }
         else
         {
-            curse.cursing = false;
-            slider.value = curse.curse_time / 15 * 100;
+            if (other.gameObject.tag == "Interactive")
+            {
+
+                curse.cursing = true;
+                slider.value = curse.curse_time / 15 * 100;
+            }
         }
     }
     private void OnTriggerExit(Collider other)
