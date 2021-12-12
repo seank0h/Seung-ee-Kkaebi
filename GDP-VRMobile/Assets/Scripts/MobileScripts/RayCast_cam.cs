@@ -17,6 +17,9 @@ public class RayCast_cam : MonoBehaviour
     bool p_reset = false;
     Behaviour p_halo = null;
     private bool isBtnDown = false;
+    private bool isDust = false;
+
+    // public GameObject[] curse = new GameObject[4];
 
     public GameObject playerMeshEntity;
     public GameObject playerPropMeshEntity;
@@ -30,6 +33,7 @@ public class RayCast_cam : MonoBehaviour
     public bool swapToProp;
     public bool proped = false;
     float prop_time = 0f;
+    float prop_back_cool = 0f;
     string mesh_name;
     int mesh_num;
     bool prop_cool = false;
@@ -59,14 +63,6 @@ public class RayCast_cam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("o"))
-        {
-            mobileClient.cl.setPlayerMat(1);
-        }
-        if (Input.GetKeyDown("p"))
-        {
-            mobileClient.cl.setPlayerMat(0);
-        }
         Dance();
         dust();
     }
@@ -105,7 +101,7 @@ public class RayCast_cam : MonoBehaviour
                         c_reset = false;
                     }
 
-                    if (hit.distance <= 3.0f)
+                    if (hit.distance <= 5.0f)
                     {
                         Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
                         curse = hit.collider.gameObject.GetComponent<CurseManage>();
@@ -298,20 +294,26 @@ public class RayCast_cam : MonoBehaviour
             }
 
             prop_time += Time.deltaTime;
-
+            prop_back_cool += Time.deltaTime;
             // curse.cursing = false;
             // pa.sturning = false;
 
             if (prop_time>=10 || (Input.GetKeyDown("q") || isBtnDown))
             {
-                propAudio.clip = cancelHideOnProp;
-                propAudio.Play();
-                RadialProgress_Mobile.rp.startProgress();
-                // Debug.Log("model swap");
-                prop_time = 0;
-                mobileClient.cl.setProp(0);
-                ModelSwap();
-                proped = false;
+                
+                if (prop_back_cool >= 3f)
+                {
+                    prop_back_cool = 0f;
+                    propAudio.clip = cancelHideOnProp;
+                    propAudio.Play();
+                    RadialProgress_Mobile.rp.startProgress();
+                    // Debug.Log("model swap");
+                    prop_time = 0;
+                    mobileClient.cl.setProp(0);
+                    ModelSwap();
+                    proped = false;
+                }
+                
             }
         }
 
@@ -342,7 +344,7 @@ public class RayCast_cam : MonoBehaviour
     {
         dust_cool = RadialProgress_dust.rp.isProgress();
 
-        if (Input.GetKeyDown("e") && !dust_cool)
+        if ((Input.GetKeyDown("e") || isDust) && !dust_cool)
         {
             // Debug.Log("dust on");
             mobileClient.cl.setDustStrom(1);
@@ -357,6 +359,11 @@ public class RayCast_cam : MonoBehaviour
     public void btndown(bool b)
     {
         isBtnDown = b;
+    }
+
+    public void dust(bool b)
+    {
+        isDust = b;
     }
 }
     

@@ -22,14 +22,16 @@ public class BGM : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.J)){
             StartCoroutine(AudioFadeOutInIdle());
         }
-        if(Input.GetKeyDown(KeyCode.H)){
-            StartCoroutine(AudioFadeOutInDanger());
-        }
-        if(Input.GetKeyDown(KeyCode.G)){
-            StartCoroutine(AudioFadeOutInEmergency());
-        }
     }
-
+    
+    public void InDangerBGM()
+    {
+        StartCoroutine(AudioFadeOutInDanger());
+    }
+    public void InEmergencyBGM()
+    {
+        StartCoroutine(AudioFadeOutInEmergency());
+    }
     public IEnumerator AudioFadeOutInIdle(){
         startVolume = bgm.volume;
         Debug.Log("Start Volume : " + startVolume);

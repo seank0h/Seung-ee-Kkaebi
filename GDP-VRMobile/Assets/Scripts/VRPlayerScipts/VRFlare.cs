@@ -8,6 +8,7 @@ public class VRFlare : MonoBehaviour
     public GameObject positionPlaceHolder;
     void Start()
     {
+       
         var physicsMotion = GetComponentInChildren<RFX4_PhysicsMotion>(true);
         if (physicsMotion != null) physicsMotion.CollisionEnter += CollisionEnter;
 
@@ -20,7 +21,12 @@ public class VRFlare : MonoBehaviour
         
         positionPlaceHolder.transform.position = e.HitPoint;
         Instantiate(vrFlare, positionPlaceHolder.transform.position, Quaternion.identity);
+        vrClient.cl.setIsFlare(1);
+        Invoke("DelayMessage", 0.5f);
 
     }
-
+    private void DelayMessage()
+    {
+        vrClient.cl.setIsFlare(0);
+    }
 }

@@ -7,21 +7,18 @@ public class DustStormRemoverCollision : MonoBehaviour
     public static DustStormRemoverCollision dsrc;
     private GameObject Removal;
     private GameObject removerOrigin, remover1, remover2, remover3, remover4, removerFinal;
-    private Vector3 originalPos;
     float[] lowerEmissionRate;
     private AudioSource colAudio;
     public AudioClip pass, success;
 
     void Start(){
+        Removal = GameObject.Find("DustStormRemoval");
         removerOrigin = GameObject.Find("RemoverOrigin");
         remover1 = GameObject.Find("Remover_1");
         remover2 = GameObject.Find("Remover_2");
         remover3 = GameObject.Find("Remover_3");
         remover4 = GameObject.Find("Remover_4");
         removerFinal = GameObject.Find("RemoverFinal");
-
-        Removal = GameObject.Find("DustStormRemoval");
-        originalPos = removerOrigin.transform.position;
 
         colAudio = Removal.GetComponent<AudioSource>();
 
@@ -86,7 +83,7 @@ public class DustStormRemoverCollision : MonoBehaviour
             var dustEffectEmission = VRDustParticleEffect.VRdpe.dustEffect.emission;
             dustEffectEmission.rateOverTime = lowerEmissionRate[5];
 
-            removerOrigin.transform.position = originalPos;
+            removerOrigin.transform.position = VRDustParticleEffect.VRdpe.originalPos;
             DustStormRemover.dsr.trigger = false;
             DustStormRemover.dsr.isTouching = false;
 

@@ -9,6 +9,8 @@ public class GameStateManager : MonoBehaviour
     public int dokkaebiLives;
     public bool winLose;
     public bool playing;
+    public GameObject BGMManagerEntity;
+    BGM bgmManager;
 
     public Text gameStateText;
     public GameObject gameConditionCanvas;
@@ -19,6 +21,7 @@ public class GameStateManager : MonoBehaviour
     {
         playing = true;
         timeBall = timeBallEntity.GetComponent<timeBall>();
+        bgmManager = BGMManagerEntity.GetComponent<BGM>();
         timeBall.startGame();
     }
 
@@ -28,20 +31,27 @@ public class GameStateManager : MonoBehaviour
         
         if(mobile2vr.mobileToVRCl.GameOver())
         {
-            gameStateText.text = "You Win Congratulations";
+            gameStateText.text = "You Win";
             gameConditionCanvas.SetActive(true);
         }
-        if(timeBall.isGameEnd() || mobile2vr.mobileToVRCl.life<=0)
+        
+        if(timeBall.isGameEnd() || vrClient.cl.getLife()<=0)
         {
-            gameStateText.text = "You Win Congratulations";
+           
+            gameStateText.text = "You Win";
             gameConditionCanvas.SetActive(true);
             
         }
         if(gameObject.GetComponent<CurseVisualizer>().villagePranked)
         {
+      
             gameStateText.text = "You Lose Boohoo";
             gameConditionCanvas.SetActive(true);
         }
 
+        if(gameObject.GetComponent<CurseVisualizer>().villageHalfPranked)
+        {
+            //bgmManager.InEmergencyBGM();
+        }
     }
 }

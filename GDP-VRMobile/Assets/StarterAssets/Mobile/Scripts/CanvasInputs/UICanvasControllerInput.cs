@@ -33,6 +33,10 @@ namespace StarterAssets
         {
             RaycastInput.btndown(virtualInteractionState);
         }
+        public void VirtualDustInput(bool virtualDustState)
+        {
+            RaycastInput.dust(virtualDustState);
+        }
     }
 
 }

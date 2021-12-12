@@ -10,14 +10,14 @@ public class NPCAnimationCall : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         startPos = this.gameObject.transform.parent.position;
+         animator.Play("Korean_Male_Walk");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(this.gameObject.transform.parent.position!= startPos)
-        {
-            animator.Play("Korean_Male_Walk");
-        }
+        
+           
+        
     }
 }

@@ -13,7 +13,7 @@ public class BasicGhostBehavior : MonoBehaviour
     public Material ghostMaterialRevealed;
     public float yPositionCalibration;
     public GameObject dokkaebiArmature;
-
+    int prevLife;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,17 +25,20 @@ public class BasicGhostBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        prevLife = mobile2vr.mobileToVRCl.life;
         if (mobile2vr.mobileToVRCl.GhostBeingSeen())
         {
            
-            ghostRenderer.material = ghostMaterialRevealed;
+            ghostRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
         }
        else
         {
-            ghostRenderer.material = ghostMaterialTransparent;
+            ghostRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
         }
-
+        if(vrClient.cl.getLife()!= prevLife)
+        {
+            LostLife();
+        }
     }
     public void BeingSeen()
     {
@@ -52,7 +55,7 @@ public class BasicGhostBehavior : MonoBehaviour
         ghostRenderer.enabled = false;
         Invoke("ShowGhost", 5.0f);
     }
-    public void HitByBullet()
+    public void LostLife()
     {
         ghostRenderer.enabled = false;
         Invoke("ShowGhost", 5.0f);

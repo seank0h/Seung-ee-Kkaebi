@@ -15,6 +15,7 @@ public class VRDustParticleEffect : MonoBehaviour
     private GameObject removerOrigin;
     private GameObject[] removers;
     public Vector3[] pos;
+    public Vector3 originalPos;
     private Renderer[] rend;
     private AudioSource stormAudio;
     private float startVolume;
@@ -42,6 +43,7 @@ public class VRDustParticleEffect : MonoBehaviour
         for(int i = 0; i < pos.Length; i++){
             pos[i] = Vector3.zero;
         }
+        originalPos = Vector3.zero;
       
         Removal = GameObject.Find("DustStormRemoval");
         originCol = GameObject.Find("OriginCol");
@@ -52,7 +54,7 @@ public class VRDustParticleEffect : MonoBehaviour
 
     void Update()
     {
-        //if()
+        //if(Input.GetKeyDown(KeyCode.P))
         if(mobile2vr.mobileToVRCl.DustStormInteraction() && mobile2vr.mobileToVRCl.dustStormState == true)
         {
             Debug.Log("Is this being called");
@@ -99,6 +101,7 @@ public class VRDustParticleEffect : MonoBehaviour
             initObj();
             if(i == 0){              
                 pos[i] = removerOrigin.transform.position;
+                originalPos = pos[i];
             }else{
                 pos[i] = removers[i-1].transform.position;
             }

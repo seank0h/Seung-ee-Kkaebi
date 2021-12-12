@@ -66,16 +66,13 @@ public class GestureShootFlare : MonoBehaviour
         flare.GetComponent<VRFlare>().positionPlaceHolder = positionPlaceHolder;
         flare.transform.localRotation = hand.rotation;
         Debug.Log("Shootflare");
-        vrClient.cl.setIsFlare(1);
-        Invoke("DelayMessage", 0.5f);
+       
+      
         RadialProgress.rp.start = true;
         Invoke("CooldownForFlare", 15.0f);
     }
     // Method to put in the Event when the gesture are not recognized
-    private void DelayMessage()
-    {
-        vrClient.cl.setIsFlare(0);
-    }
+
     public void CooldownForFlare()
     {
         hasShoot = false;
