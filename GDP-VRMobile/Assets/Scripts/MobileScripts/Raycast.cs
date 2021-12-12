@@ -27,7 +27,6 @@ public class Raycast : MonoBehaviour
     public Slider slider;
     private MeshFilter playerPropMesh;
     private Renderer playerPropRenderer;
-    private Collider playerCollider;
     private SkinnedMeshRenderer playerMesh;
     public GameObject cameraRoot;
     public bool changeBack;
@@ -42,10 +41,6 @@ public class Raycast : MonoBehaviour
     CurseManage curse = null;
     PlayerAlart pa = null;
 
-    //public SkinnedMeshRenderer Drenderer;
-    //public Material ghostMaterialTransparent;
-    //public Material ghostMaterialRevealed;
-
     public AudioClip hideOnProp, cancelHideOnProp;
     private AudioSource propAudio;
 
@@ -53,7 +48,6 @@ public class Raycast : MonoBehaviour
     void Start()
     {
         playerMesh = playerMeshEntity.GetComponent<SkinnedMeshRenderer>();
-        playerCollider = playerMeshEntity.GetComponent<CapsuleCollider>();
         playerPropMesh = playerPropMeshEntity.GetComponent<MeshFilter>();
         playerPropRenderer = playerPropMeshEntity.GetComponent<Renderer>();
 
@@ -63,6 +57,14 @@ public class Raycast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("o"))
+        {
+            mobileClient.cl.setPlayerMat(1);
+        }
+        if (Input.GetKeyDown("p"))
+        {
+            mobileClient.cl.setPlayerMat(0);
+        }
         Dance();
         dust();
     }
@@ -76,11 +78,11 @@ public class Raycast : MonoBehaviour
             if (Physics.Raycast(gameObject.transform.position + height, gameObject.transform.forward, out hit, 1000))
             {
                 Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.red);
-                if (is_cursing) //°Ç¹° ÀúÁÖ
+                if (is_cursing) //ï¿½Ç¹ï¿½ ï¿½ï¿½ï¿½ï¿½
                 {
                     return;
                 }
-                else if (hit.collider.tag == "NPC") // npc ½ºÅÏ
+                else if (hit.collider.tag == "NPC") // npc ï¿½ï¿½ï¿½ï¿½
                 {
                     if (slider.gameObject.activeSelf)
                         slider.gameObject.SetActive(false);
@@ -142,7 +144,7 @@ public class Raycast : MonoBehaviour
                         p_reset = true;
                         mesh_name = hit.collider.GetComponent<MeshFilter>().mesh.name;
 
-                        // prop ½ÃÀÛ
+                        // prop ï¿½ï¿½ï¿½ï¿½
                         if ((Input.GetKeyDown("q") || isBtnDown) && !prop_cool)
                         {
                             propAudio.clip = hideOnProp;
@@ -279,7 +281,7 @@ public class Raycast : MonoBehaviour
     {
         dust_cool = RadialProgress_dust.rp.isProgress();
 
-        if ((Input.GetKeyDown("e") || isDust) && !dust_cool)
+        if (Input.GetKeyDown("e") && !dust_cool)
         {
             // Debug.Log("dust on");
             mobileClient.cl.setDustStrom(1);

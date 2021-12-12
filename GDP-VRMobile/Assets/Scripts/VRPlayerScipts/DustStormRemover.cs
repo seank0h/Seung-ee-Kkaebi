@@ -23,7 +23,7 @@ public class DustStormRemover : MonoBehaviour
         index =0;
         initObj();
 
-        rend = new Renderer[6];
+        rend = new Renderer[4];
         Removal = GameObject.Find("DustStormRemoval");
         originCol = GameObject.Find("OriginCol");
     }
@@ -59,11 +59,14 @@ public class DustStormRemover : MonoBehaviour
     }
 
     private void touchEvent(Collider other) {       
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < 3; i++) {
             if(other.gameObject.name == "RemoverOrigin" && index == i){
                 initObj();
                 Debug.Log("INDEX : " + index);
-
+                if (index == 0){
+                    removers[0].transform.GetChild(1).gameObject.SetActive(true);
+                    removers[0].transform.GetChild(2).gameObject.SetActive(true);
+                }
                 removerOrigin.transform.position = Vector3.Lerp(removerOrigin.transform.position, removers[i].transform.position, Time.deltaTime * 2);
                 isTouching = true;
             }
@@ -77,12 +80,10 @@ public class DustStormRemover : MonoBehaviour
     }
 
     private void initObj(){
-        removers = new GameObject[5];
+        removers = new GameObject[3];
         removers[0] = GameObject.Find("Remover_1");
         removers[1] = GameObject.Find("Remover_2");
-        removers[2] = GameObject.Find("Remover_3");
-        removers[3] = GameObject.Find("Remover_4");
-        removers[4] = GameObject.Find("RemoverFinal");
+        removers[2] = GameObject.Find("RemoverFinal");
         removerOrigin = GameObject.Find("RemoverOrigin");
     }
 
