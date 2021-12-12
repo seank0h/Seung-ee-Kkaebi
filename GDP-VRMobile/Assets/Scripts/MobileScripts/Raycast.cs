@@ -9,14 +9,18 @@ using UnityEngine.UI;
 public class Raycast : MonoBehaviour
 {
     RaycastHit hit;
-    Vector3 height = new Vector3(0, 0, 0);
-    bool c_reset = false;
-    Behaviour c_halo = null;
+    Vector3 height = new Vector3(0, 0.2f, 0);
     bool n_reset = false;
     Behaviour n_halo = null;
     bool p_reset = false;
     Behaviour p_halo = null;
     private bool isBtnDown = false;
+    private bool isDust = false;
+    private bool is_cursing = false;
+    private GameObject curse_house = null;
+    Color trans_white = new Color(1f, 1f, 1f, 0.3f);
+
+    // public GameObject[] curse = new GameObject[4];
 
     public GameObject playerMeshEntity;
     public GameObject playerPropMeshEntity;
@@ -28,7 +32,7 @@ public class Raycast : MonoBehaviour
     public bool changeBack;
     public bool swapToProp;
     public bool proped = false;
-    float prop_time = 0f;
+    float prop_back_cool = 0f;
     string mesh_name;
     int mesh_num;
     bool prop_cool = false;
@@ -74,51 +78,11 @@ public class Raycast : MonoBehaviour
             if (Physics.Raycast(gameObject.transform.position + height, gameObject.transform.forward, out hit, 1000))
             {
                 Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.red);
-                if (hit.collider.tag == "Interactive") //°Ç¹° ÀúÁÖ
+                if (is_cursing) //ï¿½Ç¹ï¿½ ï¿½ï¿½ï¿½ï¿½
                 {
-                    if (slider.gameObject.activeSelf)
-                        slider.gameObject.SetActive(false);
-                    if (curse != null)
-                        curse.cursing = false;
-
-                    if (n_reset)
-                    {
-                        n_halo.enabled = false;
-                        n_reset = false;
-                        if (pa != null)
-                            pa.sturning = false;
-                    }
-                    if (p_reset)
-                    {
-                        p_halo.enabled = false;
-                        p_reset = false;
-                    }
-
-                    if (c_halo != null)
-                    {
-                        c_halo.enabled = false;
-                        c_reset = false;
-                    }
-
-                    if (hit.distance <= 3.0f)
-                    {
-                        Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
-                        curse = hit.collider.gameObject.GetComponent<CurseManage>();
-                        slider.gameObject.SetActive(true);
-                        slider.value = curse.curse_time / 10 * 100;
-                        c_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
-                        c_halo.enabled = true;
-                        c_reset = true;
-                        if (Input.GetKey("q") || isBtnDown)
-                        {
-                            Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.blue);
-                            curse.cursing = true;
-
-                        }
-                    }
                     return;
                 }
-                else if (hit.collider.tag == "NPC") // npc ½ºÅÏ
+                else if (hit.collider.tag == "NPC") // npc ï¿½ï¿½ï¿½ï¿½
                 {
                     if (slider.gameObject.activeSelf)
                         slider.gameObject.SetActive(false);
@@ -131,12 +95,7 @@ public class Raycast : MonoBehaviour
                         n_halo.enabled = false;
                         n_reset = false;
                     }
-                    if (c_reset)
-                    {
-                        curse.cursing = false;
-                        c_halo.enabled = false;
-                        c_reset = false;
-                    }
+
                     if (p_reset)
                     {
                         p_halo.enabled = false;
@@ -169,13 +128,7 @@ public class Raycast : MonoBehaviour
                         p_halo.enabled = false;
                         p_reset = false;
                     }
-                    if (c_reset)
-                    {
-                        if (curse != null)
-                            curse.cursing = false;
-                        c_halo.enabled = false;
-                        c_reset = false;
-                    }
+
                     if (n_reset)
                     {
                         n_halo.enabled = false;
@@ -191,7 +144,7 @@ public class Raycast : MonoBehaviour
                         p_reset = true;
                         mesh_name = hit.collider.GetComponent<MeshFilter>().mesh.name;
 
-                        // prop ½ÃÀÛ
+                        // prop ï¿½ï¿½ï¿½ï¿½
                         if ((Input.GetKeyDown("q") || isBtnDown) && !prop_cool)
                         {
                             propAudio.clip = hideOnProp;
@@ -237,13 +190,7 @@ public class Raycast : MonoBehaviour
                 {
                     if (slider.gameObject.activeSelf)
                         slider.gameObject.SetActive(false);
-                    if (c_reset)
-                    {
-                        if (curse != null)
-                            curse.cursing = false;
-                        c_halo.enabled = false;
-                        c_reset = false;
-                    }
+
                     if (n_reset)
                     {
                         n_halo.enabled = false;
@@ -273,13 +220,7 @@ public class Raycast : MonoBehaviour
             if (slider.gameObject.activeSelf)
                 slider.gameObject.SetActive(false);
             // Debug.Log("prop true");
-            if (c_reset)
-            {
-                if (curse != null)
-                    curse.cursing = false;
-                c_halo.enabled = false;
-                c_reset = false;
-            }
+
             if (n_reset)
             {
                 n_halo.enabled = false;
@@ -293,21 +234,23 @@ public class Raycast : MonoBehaviour
                 p_reset = false;
             }
 
-            prop_time += Time.deltaTime;
+            prop_back_cool += Time.deltaTime;
 
-            // curse.cursing = false;
-            // pa.sturning = false;
-
-            if (prop_time >= 10 || (Input.GetKeyDown("q") || isBtnDown))
+            if (Input.GetKeyDown("q") || isBtnDown)
             {
-                propAudio.clip = cancelHideOnProp;
-                propAudio.Play();
-                RadialProgress_Mobile.rp.startProgress();
-                // Debug.Log("model swap");
-                prop_time = 0;
-                mobileClient.cl.setProp(0);
-                ModelSwap();
-                proped = false;
+
+                if (prop_back_cool >= 3f)
+                {
+                    prop_back_cool = 0f;
+                    propAudio.clip = cancelHideOnProp;
+                    propAudio.Play();
+                    RadialProgress_Mobile.rp.startProgress();
+                    // Debug.Log("model swap");
+                    mobileClient.cl.setProp(0);
+                    ModelSwap();
+                    proped = false;
+                }
+
             }
         }
 
@@ -353,5 +296,60 @@ public class Raycast : MonoBehaviour
     public void btndown(bool b)
     {
         isBtnDown = b;
+    }
+
+    public void dust(bool b)
+    {
+        isDust = b;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("triggerEnter");
+        curse_house = other.gameObject;
+        if (other.gameObject.tag == "Interactive")
+        {
+            is_cursing = true;
+            if (slider.gameObject.activeSelf)
+                slider.gameObject.SetActive(false);
+            if (curse != null)
+                curse.cursing = false;
+
+            if (n_reset)
+            {
+                n_halo.enabled = false;
+                n_reset = false;
+                if (pa != null)
+                    pa.sturning = false;
+            }
+            if (p_reset)
+            {
+                p_halo.enabled = false;
+                p_reset = false;
+            }
+
+            //other.gameObject.GetComponent<Renderer>().material.SetColor("_Color", trans_white);
+            curse = curse_house.GetComponent<CurseManage>();
+            slider.gameObject.SetActive(true);
+            curse.cursing = true;
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Interactive")
+        {
+            slider.value = curse.curse_time / 15 * 100;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Interactive")
+        {
+            curse.cursing = false;
+            //other.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.clear);
+            is_cursing = false;
+            curse_house = null;
+            curse = null;
+        }
     }
 }
