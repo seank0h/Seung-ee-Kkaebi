@@ -18,7 +18,8 @@ public class mobile2vr : MonoBehaviour
     public bool dustStormState = false;
     public bool changePlayerMat = false;
     public bool gameOver;
-    public bool gameFirst;
+    public bool gameWin;
+    public bool gameLose;
     bool firstStunOne=false;
     bool firstStunTwo = false;
     bool firstStunThree = false;
@@ -73,11 +74,11 @@ public class mobile2vr : MonoBehaviour
         
         if(startNPC==66)
         {
-            gameOver = true;
+            gameWin = true;
         }
         if(startNPC==99)
         {
-            gameOver = false;
+            gameLose = true;
         }
 
         if (playermat[1] != playermat[0])
@@ -245,8 +246,12 @@ public class mobile2vr : MonoBehaviour
        
         return changePlayerMat;
     }
-    public bool GameOver()
+    public bool GameWin()
     {
-        return gameOver;
+        return gameWin;
+    }
+    public bool GameLose()
+    {
+        return gameLose;
     }
 }

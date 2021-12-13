@@ -13,7 +13,7 @@ public class CurseVisualizer : MonoBehaviour
     public GameObject Trail_Three;
     public GameObject Trail_Four;
     public GameObject particleLights;
-
+    public GameObject treeParticleSystem;
     public bool curseOne = false;
     
     public bool curseTwo = false;
@@ -42,6 +42,7 @@ public class CurseVisualizer : MonoBehaviour
         if(gaugeBallLiquidVolume.level==1)
         {
             villagePranked = true;
+            treeParticleSystem.SetActive(true);
         }
         if(gaugeBallLiquidVolume.level >=0.5f)
         {
@@ -54,6 +55,10 @@ public class CurseVisualizer : MonoBehaviour
     }
     void InstantiateCurseEffect()
     {
+        //if(mobile2vr.mobiletoVRCl.startNPC==0)
+        //if(mobile2vr.mobiletoVRCl.startNPC==1)
+        //if(mobile2vr.mobiletoVRCl.startNPC==2)
+        //if(mobile2vr.mobiletoVRCl.startNPC==3)
         if (mobile2vr.mobileToVRCl.CurseDetection() == 0 || Input.GetKey(KeyCode.P))
         {
 
