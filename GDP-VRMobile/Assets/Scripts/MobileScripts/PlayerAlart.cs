@@ -86,6 +86,8 @@ public class PlayerAlart : MonoBehaviour
                 npcRenderer.material.color = Color.red;
                 this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
                 this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+                player.GetComponent<Raycast>().sturnable = false;
+                player.GetComponent<Raycast>().npc = null;
 
                 // Debug.Log("sturn npc cum : " + (index+1));
                 curse_slide.value += 5;
@@ -177,16 +179,16 @@ public class PlayerAlart : MonoBehaviour
         //Debug.Log("go sturn!");
         if (other.gameObject.tag == "NPC_sturn")
         {
-            if (!player.GetComponent<Raycast>().sturnable)
+            if (sturn)
+            {
+                player.GetComponent<Raycast>().sturnable = false;
+                player.GetComponent<Raycast>().npc = null;
+            }
+            else if (!player.GetComponent<Raycast>().sturnable)
             {
                 player.GetComponent<Raycast>().sturnable = true;
                 player.GetComponent<Raycast>().npc = this.gameObject;
             }
-        }
-        if (sturn)
-        {
-            player.GetComponent<Raycast>().sturnable = false;
-            player.GetComponent<Raycast>().npc = null;
         }
 
     }
@@ -195,15 +197,15 @@ public class PlayerAlart : MonoBehaviour
     {
         if (other.gameObject.tag == "NPC_sturn")
         {
-            if (!player.GetComponent<Raycast>().sturnable)
-            {
-                player.GetComponent<Raycast>().sturnable = true;
-                player.GetComponent<Raycast>().npc = this.gameObject;
-            }
             if (sturn)
             {
                 player.GetComponent<Raycast>().sturnable = false;
                 player.GetComponent<Raycast>().npc = null;
+            }
+            if (!player.GetComponent<Raycast>().sturnable)
+            {
+                player.GetComponent<Raycast>().sturnable = true;
+                player.GetComponent<Raycast>().npc = this.gameObject;
             }
         }
     }
@@ -211,11 +213,6 @@ public class PlayerAlart : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "NPC_sturn")
-        {
-            player.GetComponent<Raycast>().sturnable = false;
-            player.GetComponent<Raycast>().npc = null;
-        }
-        if (sturn)
         {
             player.GetComponent<Raycast>().sturnable = false;
             player.GetComponent<Raycast>().npc = null;

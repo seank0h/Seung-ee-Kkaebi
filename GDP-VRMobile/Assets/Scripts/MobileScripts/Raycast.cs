@@ -85,6 +85,7 @@ public class Raycast : MonoBehaviour
 
         Dance();
         dust_storm();
+        Debug.Log("sturnable : " + sturnable);
     }
 
 
@@ -102,6 +103,19 @@ public class Raycast : MonoBehaviour
                 {
                     if (slider.gameObject.activeSelf)
                         slider.gameObject.SetActive(false);
+                    if (p_halo != null)
+                    {
+                        p_halo.enabled = false;
+                        p_reset = false;
+                    }
+
+                    if (n_reset)
+                    {
+                        n_halo.enabled = false;
+                        n_reset = false;
+                        if (pa != null)
+                            pa.sturning = false;
+                    }
                     slider.gameObject.SetActive(true);
                     curse_time += Time.deltaTime;
                     slider.value = ((curse_time + curse_gauge)*100)/105;
