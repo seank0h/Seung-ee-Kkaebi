@@ -28,8 +28,8 @@ public class GameStateManager : MonoBehaviour
         
         if(mobile2vr.mobileToVRCl.GameWin())
         {
-            gameStateText.text = "You Win";
-            gameConditionCanvas.SetActive(true);
+            //gameStateText.text = "You Win";
+            //gameConditionCanvas.SetActive(true);
         }
         
         if(mobile2vr.mobileToVRCl.GameLose())
