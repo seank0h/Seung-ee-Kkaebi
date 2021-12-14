@@ -69,6 +69,8 @@ public class Raycast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (curse_gauge >= 99)
+            tree_animation.SetActive(true);
         //Debug.Log("sturnable : " + sturnable);
         if (npc != null)
             //Debug.Log("sturnable npc : " + npc.name);
@@ -100,8 +102,6 @@ public class Raycast : MonoBehaviour
                 {
                     if (slider.gameObject.activeSelf)
                         slider.gameObject.SetActive(false);
-                    if (curse_gauge >= 99)
-                        tree_animation.SetActive(true);
                     slider.gameObject.SetActive(true);
                     curse_time += Time.deltaTime;
                     slider.value = ((curse_time + curse_gauge)*100)/105;
