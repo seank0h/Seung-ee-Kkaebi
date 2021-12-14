@@ -22,12 +22,10 @@ public class Raycast : MonoBehaviour
     private GameObject curse_house = null;
     Color trans_white = new Color(1f, 1f, 1f, 0.3f);
     bool bat_hit = false;
-
-    // public GameObject[] curse = new GameObject[4];
-
     public GameObject playerMeshEntity;
     public GameObject playerPropMeshEntity;
     public Slider slider;
+    public GameObject tree_animation;
     private MeshFilter playerPropMesh;
     private Renderer playerPropRenderer;
     private SkinnedMeshRenderer playerMesh;
@@ -41,6 +39,8 @@ public class Raycast : MonoBehaviour
     int mesh_num;
     bool prop_cool = false;
     bool dust_cool = false;
+    public bool sturnable = false;
+    public GameObject npc = null;
 
     CurseManage curse = null;
     PlayerAlart pa = null;
@@ -69,6 +69,9 @@ public class Raycast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("sturnable : " + sturnable);
+        if (npc != null)
+            //Debug.Log("sturnable npc : " + npc.name);
         if (Input.GetKeyDown("o"))
         {
             mobileClient.cl.setPlayerMat(1);
@@ -97,6 +100,8 @@ public class Raycast : MonoBehaviour
                 {
                     if (slider.gameObject.activeSelf)
                         slider.gameObject.SetActive(false);
+                    if (curse_gauge >= 99)
+                        tree_animation.SetActive(true);
                     slider.gameObject.SetActive(true);
                     curse_time += Time.deltaTime;
                     slider.value = ((curse_time + curse_gauge)*100)/105;
@@ -111,7 +116,39 @@ public class Raycast : MonoBehaviour
                     curse_time = 0;
                     return;
                 }
-                else if (hit.collider.tag == "NPC") // npc ����
+                else if (sturnable) // npc ����
+                {
+                    if (slider.gameObject.activeSelf)
+                        slider.gameObject.SetActive(false);
+                    curse_time = 0;
+
+                    if (pa != null)
+                        pa.sturning = false;
+
+                    if (n_halo != null)
+                    {
+                        n_halo.enabled = false;
+                        n_reset = false;
+                    }
+
+                    if (p_reset)
+                    {
+                        p_halo.enabled = false;
+                        p_reset = false;
+                    }
+
+                    pa = npc.GetComponent<PlayerAlart>();
+                    slider.gameObject.SetActive(true);
+                    slider.value = pa.sturn_time / 0.8f * 100;
+                    n_halo = (Behaviour)npc.GetComponent("Halo");
+                    n_halo.enabled = true;
+                    n_reset = true;
+                    if (Input.GetKey("q") || isBtnDown)
+                    {
+                        pa.sturning = true;
+                    }
+                }
+                /*else if (hit.collider.tag == "NPC") // npc ����
                 {
                     if (slider.gameObject.activeSelf)
                         slider.gameObject.SetActive(false);
@@ -148,7 +185,7 @@ public class Raycast : MonoBehaviour
                         }
                     }
                     return;
-                }
+                }*/
                 else if (hit.collider.tag == "Prop")
                 {
                     if (slider.gameObject.activeSelf)

@@ -21,6 +21,7 @@ TagManager:
   - HandTriggerLeft
   - block
   - Final
+  - NPC_sturn
   layers:
   - Default
   - TransparentFX

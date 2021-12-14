@@ -21,6 +21,8 @@ public class PlayerAlart : MonoBehaviour
     Raycast rc;
     bool proped;
     bool escaped = false;
+    bool sturnable;
+    GameObject npc;
 
     public AudioClip alertSound, sturnSound;
     private AudioSource NPCaudio;
@@ -54,6 +56,9 @@ public class PlayerAlart : MonoBehaviour
 
         rc = player.GetComponent<Raycast>();
         proped = rc.proped;
+        sturnable = player.GetComponent<Raycast>().sturnable;
+        npc = player.GetComponent<Raycast>().npc;
+
     }
 
     // Update is called once per frame
@@ -61,6 +66,8 @@ public class PlayerAlart : MonoBehaviour
     {
         float distance = Vector3.Distance(player.transform.position, transform.position);
         proped = rc.proped;
+        sturnable = player.GetComponent<Raycast>().sturnable;
+        npc = player.GetComponent<Raycast>().npc;
 
         // Debug.Log("player mat : " + mobileClient.cl.getPlayerMat());
 
@@ -122,7 +129,7 @@ public class PlayerAlart : MonoBehaviour
                             npcRenderer.material.color = Color.blue;
                             this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
                             // Debug.Log("alart npc cum : " + (index + 1));
-                            Debug.Log("NPC idx : " + index);
+                            //Debug.Log("NPC idx : " + index);
                             vr2mobile.vm.alert_send(index);
                             Vibration.Vibrate(1200);
                             // Debug.Log("alart npc ; " + gameObject.name);
@@ -156,5 +163,55 @@ public class PlayerAlart : MonoBehaviour
     {
         if (mobileClient.cl.getPlayerMat() == 1)
             mobileClient.cl.setPlayerMat(0);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //Debug.Log("go sturn!");
+        if (other.gameObject.tag == "NPC_sturn")
+        {
+            if (!player.GetComponent<Raycast>().sturnable)
+            {
+                player.GetComponent<Raycast>().sturnable = true;
+                player.GetComponent<Raycast>().npc = this.gameObject;
+            }
+        }
+        if (sturn)
+        {
+            player.GetComponent<Raycast>().sturnable = false;
+            player.GetComponent<Raycast>().npc = null;
+        }
+
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "NPC_sturn")
+        {
+            if (!player.GetComponent<Raycast>().sturnable)
+            {
+                player.GetComponent<Raycast>().sturnable = true;
+                player.GetComponent<Raycast>().npc = this.gameObject;
+            }
+            if (sturn)
+            {
+                player.GetComponent<Raycast>().sturnable = false;
+                player.GetComponent<Raycast>().npc = null;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "NPC_sturn")
+        {
+            player.GetComponent<Raycast>().sturnable = false;
+            player.GetComponent<Raycast>().npc = null;
+        }
+        if (sturn)
+        {
+            player.GetComponent<Raycast>().sturnable = false;
+            player.GetComponent<Raycast>().npc = null;
+        }
     }
 }

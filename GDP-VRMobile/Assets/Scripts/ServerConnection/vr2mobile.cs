@@ -61,12 +61,10 @@ public class vr2mobile : MonoBehaviour
         vrPos[1] = mobileClient.cl.getVRPos();
         playermat[0] = mobileClient.cl.getPlayerMat();
         playermat[1] = mobileClient.cl.getPlayerMat();
-        mobileClient.cl.setstartNPCMove(1);
 
         effectOn = false;
         NormalEmissionRate = 50;
-
-        mobileClient.cl.setstartNPCMove(1);
+        
         c_detail = mobileClient.cl.getCurse().ToCharArray();
         n_detail = mobileClient.cl.getNPCMat().ToCharArray();
         playecon = player.GetComponent<ThirdPersonController>();

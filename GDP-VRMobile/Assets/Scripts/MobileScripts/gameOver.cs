@@ -31,6 +31,7 @@ public class gameOver : MonoBehaviour
             mobileClient.cl.setstartNPCMove(66);
             end_text.text = "YOU LOSE";
             panel.SetActive(true);
+            Vibration.Vibrate(1000);
         }
         if (curse >= 103)
         {
@@ -38,6 +39,7 @@ public class gameOver : MonoBehaviour
             mobileClient.cl.setstartNPCMove(99);
             end_text.text = "YOU WIN";
             panel.SetActive(true);
+            Vibration.Vibrate(1000);
         }
     }
 }

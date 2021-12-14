@@ -19,7 +19,7 @@ public class vrClient : MonoBehaviour{
     public GameObject player;
     private Vector3 playerPos;
     private Vector3 playerRot;
-    private int playerMat=0, prop=0, life=2, dustStorm=0, startNPCMove=0;
+    private int playerMat=0, prop=0, life=2, dustStorm=0, startNPCMove=-1;
     private string curse="0000", NPCMat="00000";
     public GameObject[] NPCs = new GameObject[5];
     

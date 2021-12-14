@@ -31,27 +31,31 @@ public class CurseManage : MonoBehaviour
 
                 curseStatus.GetComponent<progressLiquid>().increaseLevel(25);
 
+                // 저주받은 건물의 번호를 서버를 통해 전송
+                if (gameObject.name == "curse1")
+                {
+                    vr2mobile.vm.curse_send(0);
+                    mobileClient.cl.setstartNPCMove(0);
+                }
+                else if (gameObject.name == "curse2")
+                {
+                    vr2mobile.vm.curse_send(1);
+                    mobileClient.cl.setstartNPCMove(1);
+                }
+                else if (gameObject.name == "curse3")
+                {
+                    vr2mobile.vm.curse_send(2);
+                    mobileClient.cl.setstartNPCMove(2);
+                }
+                else if (gameObject.name == "curse4")
+                {
+                    vr2mobile.vm.curse_send(3);
+                    mobileClient.cl.setstartNPCMove(3);
+                }
+
                 first = false;
             }
 
-            // 저주받은 건물의 번호를 서버를 통해 전송
-            if (gameObject.name == "curse1")
-            {
-                vr2mobile.vm.curse_send(0);
-            }
-            else if (gameObject.name == "curse2")
-            {
-                vr2mobile.vm.curse_send(1);
-            }
-            else if (gameObject.name == "curse3")
-            {
-                vr2mobile.vm.curse_send(2);
-            }
-            else if (gameObject.name == "curse4")
-            {
-                vr2mobile.vm.curse_send(3);
-            }
-            // Debug.Log("curse house : " + gameObject.name);
         }
         else
         {
