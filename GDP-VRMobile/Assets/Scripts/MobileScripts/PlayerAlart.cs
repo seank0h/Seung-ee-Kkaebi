@@ -9,6 +9,9 @@ public class PlayerAlart : MonoBehaviour
     public GameObject player;
     public SkinnedMeshRenderer npcRenderer;
     public Slider curse_slide;
+    public GameObject animotor;
+    private NPCAnimationCallVR animatorNPC;
+
     float stay = 0;
     float release = 0;
     public float sturn_time = 0;
@@ -30,6 +33,7 @@ public class PlayerAlart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animatorNPC = animotor.GetComponent<NPCAnimationCallVR>();
         NPCaudio = GetComponent<AudioSource>();
         npcRenderer.material.color = Color.black;
         speed = this.gameObject.GetComponent<NavMeshAgent>().speed;
@@ -75,6 +79,7 @@ public class PlayerAlart : MonoBehaviour
         {
             if (first)
             {
+                animatorNPC.CallStandAnimation();
                 Vibration.Vibrate(300);
                 NPCaudio.clip = sturnSound;
                 NPCaudio.Play();
@@ -122,6 +127,7 @@ public class PlayerAlart : MonoBehaviour
                         stay = 2f;
                         if (alart_first)
                         {
+                            animatorNPC.CallStandAnimation();
                             mobileClient.cl.setPlayerMat(1);
                             NPCaudio.clip = alertSound;
                             NPCaudio.Play();
@@ -143,6 +149,7 @@ public class PlayerAlart : MonoBehaviour
                     release += Time.deltaTime;
                     if (release >= 2)
                     {
+                        animatorNPC.CallWalkAnimation();
                         escaped = false;
                         // Debug.Log("masaka");
                         stay = 0;
