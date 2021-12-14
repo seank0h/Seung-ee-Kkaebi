@@ -7,7 +7,7 @@ namespace StarterAssets
 
         [Header("Output")]
         public StarterAssetsInputs starterAssetsInputs;
-        public RayCast_cam RaycastInput;
+        public Raycast RaycastInput;
 
         public void VirtualMoveInput(Vector2 virtualMoveDirection)
         {
