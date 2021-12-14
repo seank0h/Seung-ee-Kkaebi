@@ -202,7 +202,6 @@ public class mobile2vr : MonoBehaviour
             }
 
         }
-        
     }
     public int GetPropState()
     {
