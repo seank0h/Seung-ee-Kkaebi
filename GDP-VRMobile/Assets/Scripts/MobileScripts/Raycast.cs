@@ -366,6 +366,7 @@ public class Raycast : MonoBehaviour
 
         if ((Input.GetKeyDown("e") || Accelerometer.acc.isShaked()) && !dust_cool)
         {
+            Vibration.Vibrate(300);
             // Debug.Log("dust on");
             mobileClient.cl.setDustStrom(1);
             Debug.Log(mobileClient.cl.getDustStrom());

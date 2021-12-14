@@ -10,6 +10,7 @@ public class gameOver : MonoBehaviour
     public GameObject cursebar;
     public Text end_text;
     float health, curse;
+    bool first = true;
 
     // Start is called before the first frame update
     void Start()
@@ -28,18 +29,26 @@ public class gameOver : MonoBehaviour
         if (health <= 0)
         {
             //defeat
-            mobileClient.cl.setstartNPCMove(66);
-            end_text.text = "YOU LOSE";
-            panel.SetActive(true);
-            Vibration.Vibrate(1000);
+            if (first)
+            {
+                mobileClient.cl.setstartNPCMove(66);
+                end_text.text = "YOU LOSE";
+                panel.SetActive(true);
+                Vibration.Vibrate(3000);
+                first = false;
+            }
         }
         if (curse >= 103)
         {
             //win
-            mobileClient.cl.setstartNPCMove(99);
-            end_text.text = "YOU WIN";
-            panel.SetActive(true);
-            Vibration.Vibrate(1000);
+            if (first)
+            {
+                mobileClient.cl.setstartNPCMove(99);
+                end_text.text = "YOU WIN";
+                panel.SetActive(true);
+                Vibration.Vibrate(3000);
+                first = false;
+            }
         }
     }
 }
