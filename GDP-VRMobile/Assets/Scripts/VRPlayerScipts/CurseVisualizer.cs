@@ -55,11 +55,7 @@ public class CurseVisualizer : MonoBehaviour
     }
     void InstantiateCurseEffect()
     {
-        //if(mobile2vr.mobiletoVRCl.startNPC==0)
-        //if(mobile2vr.mobiletoVRCl.startNPC==1)
-        //if(mobile2vr.mobiletoVRCl.startNPC==2)
-        //if(mobile2vr.mobiletoVRCl.startNPC==3)
-        if (mobile2vr.mobileToVRCl.CurseDetection() == 0 || Input.GetKey(KeyCode.P))
+        if (mobile2vr.mobileToVRCl.startNPC == 0)
         {
 
            
@@ -81,7 +77,7 @@ public class CurseVisualizer : MonoBehaviour
             }
             
         }
-        else if (mobile2vr.mobileToVRCl.CurseDetection() == 1 || Input.GetKey(KeyCode.P))
+        else if (mobile2vr.mobileToVRCl.startNPC == 1)
         {
 
            
@@ -101,7 +97,7 @@ public class CurseVisualizer : MonoBehaviour
             
             
         }
-        else if (mobile2vr.mobileToVRCl.CurseDetection() == 2 || Input.GetKey(KeyCode.P))
+        else if (mobile2vr.mobileToVRCl.startNPC == 2)
         {
             
       
@@ -119,7 +115,7 @@ public class CurseVisualizer : MonoBehaviour
             }
             
         }
-        else if (mobile2vr.mobileToVRCl.CurseDetection() == 3 || Input.GetKey(KeyCode.P))
+        else if (mobile2vr.mobileToVRCl.startNPC == 3)
         {
 
             
@@ -133,7 +129,7 @@ public class CurseVisualizer : MonoBehaviour
                 Instantiate(curseEffectSystem, curseableHouses[3].transform.position, Quaternion.identity);
                 fillamount = gaugeBallLiquidVolume.level += 0.25f;
                 Trail_Four.SetActive(true);
-            curseFour = true;
+                curseFour = true;
             }
            
         }

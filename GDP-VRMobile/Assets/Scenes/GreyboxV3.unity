@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.03992391, g: 0.578173, b: 0.59339464, a: 1}
+  m_IndirectSpecularColor: {r: 0.04028312, g: 0.5779855, b: 0.5935314, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5798,7 +5798,7 @@ MonoBehaviour:
   Trail_Three: {fileID: 2044265626}
   Trail_Four: {fileID: 530287589}
   particleLights: {fileID: 2044274060}
-  treeParticleSystem: {fileID: 0}
+  treeParticleSystem: {fileID: 437169279}
   curseOne: 0
   curseTwo: 0
   curseThree: 0
@@ -11923,6 +11923,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6462398284005530969, guid: b7b807b567a0616438f5d668c74b93b7, type: 3}
   m_PrefabInstance: {fileID: 419564342}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &437169279 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1614648838348040, guid: 0214a4308dc48404c8961ec0ef76a86b, type: 3}
+  m_PrefabInstance: {fileID: 1791843439}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &437693633
 GameObject:
@@ -29044,7 +29049,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1509604299}
+  - {fileID: 1385004121}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29160,7 +29165,7 @@ MonoBehaviour:
   _reflectionTexture: {fileID: 0}
   _physicsMass: 1
   _physicsAngularDamp: 0.02
-  liqMat: {fileID: 1509604299}
+  liqMat: {fileID: 1385004121}
 --- !u!1 &1135477980 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4700952504948552721, guid: fc36ce7471c55f341a419e152ea35f9b, type: 3}
@@ -44481,6 +44486,90 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383563401}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!21 &1385004121
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LiquidVolumeDefault(Clone)
+  m_Shader: {fileID: 4800000, guid: be9d7fbb2c1ef43308f35fb0a12bbb88, type: 3}
+  m_ShaderKeywords: LIQUID_VOLUME_NON_AABB LIQUID_VOLUME_SPHERE
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3001
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 11700000, guid: 41974beaaddc547889b39d0022cb1d07, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex2D:
+        m_Texture: {fileID: 2800000, guid: 2e25f51e1f31e4da8bdac5d08b0f578f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Alpha: 1
+    - _AlphaCombined: 1
+    - _BasePos: -1
+    - _CullMode: 2
+    - _DeepAtten: 2
+    - _DoubleSidedBias: 0.001
+    - _FlaskBlurIntensity: 0.75
+    - _FlaskThickness: 0.05
+    - _FoamBottom: 1
+    - _FoamDensity: 0.5
+    - _FoamMaxPos: 16.505001
+    - _FoamRaySteps: 7
+    - _FoamTurbulence: 1
+    - _FoamWeight: 10
+    - _Glossiness: 0.767
+    - _GlossinessInt: 0.5
+    - _Level: 1
+    - _LevelPos: 16.02
+    - _LiquidRaySteps: 10
+    - _LowerLimit: -0.75
+    - _Metallic: 0
+    - _Muddy: 1
+    - _Radius: 0.5
+    - _SmokeAtten: 2
+    - _SmokeRaySteps: 5
+    - _SmokeSpeed: 5
+    - _Sparkling: 1
+    - _SparklingIntensity: 25
+    - _SparklingThreshold: 0.8
+    - _Topology: 0
+    - _Turbulence: 1
+    - _Turbulence2: 1
+    - _TurbulenceSpeed: 1
+    - _UpperLimit: 0.75
+    - _ZTestMode: 4
+    m_Colors:
+    - _Bounds: {r: 1, g: 1, b: 1, a: 1}
+    - _Center: {r: 33.33, g: 18.93, b: 37.9, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color1: {r: 0.4245283, g: 0, b: 0.23733765, a: 0.1}
+    - _Color2: {r: 0.2924528, g: 0.062077258, b: 0.20391636, a: 0.3}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _FlaskColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FlaskThickness: {r: 0.97, g: 0.97, b: 0.97, a: 0}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 0.65}
+    - _GlossinessInt: {r: 49, g: 1, b: 0, a: 0}
+    - _Scale: {r: 0.10309278, g: 0.08247423, b: 0.41237113, a: 2.0618558}
+    - _Size: {r: 8.6602545, g: 5, b: 5, a: 2.4250002}
+    - _SmokeColor: {r: 0.7, g: 0.7, b: 0.7, a: 0.25}
+    - _Turbulence: {r: 0.5, g: 0.2, b: 12.566371, a: 0}
+    - _ViewDir: {r: 0, g: 0, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &1397951653
 GameObject:
   m_ObjectHideFlags: 0
@@ -49802,90 +49891,6 @@ SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 8676588510495181841, guid: fc36ce7471c55f341a419e152ea35f9b, type: 3}
   m_PrefabInstance: {fileID: 1495954765}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1509604299
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: LiquidVolumeDefault(Clone)
-  m_Shader: {fileID: 4800000, guid: be9d7fbb2c1ef43308f35fb0a12bbb88, type: 3}
-  m_ShaderKeywords: LIQUID_VOLUME_NON_AABB LIQUID_VOLUME_SPHERE
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3001
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NoiseTex:
-        m_Texture: {fileID: 11700000, guid: 41974beaaddc547889b39d0022cb1d07, type: 2}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NoiseTex2D:
-        m_Texture: {fileID: 2800000, guid: 2e25f51e1f31e4da8bdac5d08b0f578f, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _Alpha: 1
-    - _AlphaCombined: 1
-    - _BasePos: -1
-    - _CullMode: 2
-    - _DeepAtten: 2
-    - _DoubleSidedBias: 0.001
-    - _FlaskBlurIntensity: 0.75
-    - _FlaskThickness: 0.05
-    - _FoamBottom: 1
-    - _FoamDensity: 0.5
-    - _FoamMaxPos: 16.505001
-    - _FoamRaySteps: 7
-    - _FoamTurbulence: 1
-    - _FoamWeight: 10
-    - _Glossiness: 0.767
-    - _GlossinessInt: 0.5
-    - _Level: 1
-    - _LevelPos: 16.02
-    - _LiquidRaySteps: 10
-    - _LowerLimit: -0.75
-    - _Metallic: 0
-    - _Muddy: 1
-    - _Radius: 0.5
-    - _SmokeAtten: 2
-    - _SmokeRaySteps: 5
-    - _SmokeSpeed: 5
-    - _Sparkling: 1
-    - _SparklingIntensity: 25
-    - _SparklingThreshold: 0.8
-    - _Topology: 0
-    - _Turbulence: 1
-    - _Turbulence2: 1
-    - _TurbulenceSpeed: 1
-    - _UpperLimit: 0.75
-    - _ZTestMode: 4
-    m_Colors:
-    - _Bounds: {r: 1, g: 1, b: 1, a: 1}
-    - _Center: {r: 33.33, g: 18.93, b: 37.9, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1: {r: 0.4245283, g: 0, b: 0.23733765, a: 0.1}
-    - _Color2: {r: 0.2924528, g: 0.062077258, b: 0.20391636, a: 0.3}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _FlaskColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FlaskThickness: {r: 0.97, g: 0.97, b: 0.97, a: 0}
-    - _FoamColor: {r: 1, g: 1, b: 1, a: 0.65}
-    - _GlossinessInt: {r: 49, g: 1, b: 0, a: 0}
-    - _Scale: {r: 0.10309278, g: 0.08247423, b: 0.41237113, a: 2.0618558}
-    - _Size: {r: 8.6602545, g: 5, b: 5, a: 2.4250002}
-    - _SmokeColor: {r: 0.7, g: 0.7, b: 0.7, a: 0.25}
-    - _Turbulence: {r: 0.5, g: 0.2, b: 12.566371, a: 0}
-    - _ViewDir: {r: 0, g: 0, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1523416788
 GameObject:
   m_ObjectHideFlags: 0
@@ -56504,6 +56509,18 @@ PrefabInstance:
     - target: {fileID: 4403731156159114, guid: 0214a4308dc48404c8961ec0ef76a86b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114520069157533192, guid: 0214a4308dc48404c8961ec0ef76a86b, type: 3}
+      propertyPath: EffectColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114520069157533192, guid: 0214a4308dc48404c8961ec0ef76a86b, type: 3}
+      propertyPath: EffectColor.g
+      value: 0.85065925
+      objectReference: {fileID: 0}
+    - target: {fileID: 114520069157533192, guid: 0214a4308dc48404c8961ec0ef76a86b, type: 3}
+      propertyPath: EffectColor.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0214a4308dc48404c8961ec0ef76a86b, type: 3}
