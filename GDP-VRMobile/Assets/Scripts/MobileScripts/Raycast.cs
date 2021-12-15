@@ -85,7 +85,7 @@ public class Raycast : MonoBehaviour
 
         Dance();
         dust_storm();
-        Debug.Log("sturnable : " + sturnable);
+        //Debug.Log("sturnable : " + sturnable);
     }
 
 
