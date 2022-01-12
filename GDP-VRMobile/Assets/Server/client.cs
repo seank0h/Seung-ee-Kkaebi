@@ -14,6 +14,11 @@ public class client : MonoBehaviour{
     public static client tcp;
     private String msg = "";
 
+    private string ip = "124.51.10.155"; 
+    private int port = 9000;
+    private bool setStart = false, serverStatus = false;
+    private string[] serialList = new string [15];
+
 	private TcpClient socketConnection; 	
 	private Thread clientReceiveThread; 	
 	#endregion  	
@@ -25,8 +30,31 @@ public class client : MonoBehaviour{
         else
             tcp = this;
 
-		ConnectToTcpServer();    
+        for(int i=0; i < serialList.Length; i++){
+            serialList[i] = "SIGGRAPH" + i.ToString().Format("{0:00}", i);
+        }
+
+		//ConnectToTcpServer();    
 	}
+
+    void Update(){
+        if(setStart){
+            ConnectToTcpServer();  //오류나면 메시지 출력 후 게임 강제 종료?? (예외처리) @@
+            setStart = false;
+            serverStatus = true;
+        }
+    }
+
+    public void setPortNumber(string serialNum, int port){
+        int idx = serialList.IndexOf(serialNum);
+        this.port = port + idx;
+        setStart = true;
+    }
+
+    public bool getServerStatus(){
+        //vr->mobile, mobile->vr c# script에서 이 조건 검사후 update 수행하도록! @@
+        return serverStatus;
+    }
 
 	public void reconnectServer(){
 		ConnectToTcpServer();
@@ -84,7 +112,7 @@ public class client : MonoBehaviour{
 
 	private void ListenForData() { 		
 		try { 			
-			socketConnection = new TcpClient("143.248.2.25", 9000);  			
+			socketConnection = new TcpClient(ip, port);  			
 			Byte[] bytes = new Byte[1024];             
 			while (true) { 				
 				// Get a stream object for reading 				
