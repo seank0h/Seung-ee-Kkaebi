@@ -6,22 +6,26 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
+    [Header("Common Main Menu Object")]
     public GameObject clientObject;
     client clientEntity;
     public string serialNumber;
-    public GameObject mobilePanel;
+    public Text serialNumberTextUser;
 
     //VR Main Menu Objects
+    [Header("VR Main Menu Objects")]
     public GameObject playTag;
     public GameObject exitTag;
     public GameObject instructionTag;
     public GameObject enterGameTag;
     public GameObject incrementTag;
     public GameObject decrementTag;
-
-  
     public Text serialNumberText;
-    public Text serialNumberTextUser;
+
+    [Header("Mobile Menu Objects")]
+    public GameObject instructionPanel;
+    public GameObject mobilePanel;
+    public bool instructionPanelStatus;
     int serialNumberInt;
   
     // Start is called before the first frame update
@@ -33,13 +37,17 @@ public class MainMenuController : MonoBehaviour
     }
     void Start()
     {
-        
+        instructionPanelStatus = false;
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+    public void OpenSerialInputPanelMobile()
+    {
+        mobilePanel.SetActive(true);
     }
     public void LoadGameMobile()
     {
@@ -58,9 +66,25 @@ public class MainMenuController : MonoBehaviour
     }
     public void InputSerialNumber()
     {
-        serialNumberTextUser.text = serialNumberInt.ToString();
+        serialNumberTextUser.text = string.Format("{0:00}", serialNumberInt);
         serialNumber = serialNumberTextUser.text;
+        Debug.Log(serialNumberTextUser.text);
        
+    }
+    public void InputSerialNumberMobile()
+    {
+        serialNumber = serialNumberTextUser.text;
+    }
+    public void InstructionPanelActivation()
+    {
+        if (instructionPanelStatus==false)
+        {
+            instructionPanelStatus = true;
+        }
+        else
+            instructionPanelStatus = false;
+
+        instructionPanel.SetActive(instructionPanelStatus);
     }
     public void ActiveMobileSerialNumberInput()
     {
@@ -68,7 +92,8 @@ public class MainMenuController : MonoBehaviour
     }
     public void  LoadGameVR()
     {
-        clientEntity.setPortNumber(serialNumber);
+        clientEntity.setPortNumber("SIGGRAPH"+serialNumber);
+        Debug.Log("SIGGRAPH" + serialNumber);
         SceneManager.LoadScene("GreyboxV3");
     }
     public void QuitGame()

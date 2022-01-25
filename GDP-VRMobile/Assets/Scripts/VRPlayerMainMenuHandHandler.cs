@@ -33,11 +33,12 @@ public class VRPlayerMainMenuHandHandler : MonoBehaviour
             Debug.Log("Touching ExitTag");
             menuController.QuitGame();
         }
-        if (other.name == "InstructionTag")
+        if (other.name == "InstructionsTag")
         {
             if (instructionPanelActiveState)
             {
                 instructionPanel.SetActive(false);
+                instructionPanelActiveState = false;
             }
             if (instructionPanelActiveState == false)
             {
