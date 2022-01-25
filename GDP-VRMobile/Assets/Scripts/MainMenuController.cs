@@ -5,7 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
+    public GameObject clientObject;
+    client clientEntity;
+    public string serialNumber;
+    public GameObject mobilePanel;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        DontDestroyOnLoad(clientObject);
+        clientEntity = clientObject.GetComponent<client>();
+    }
     void Start()
     {
 
@@ -18,11 +27,25 @@ public class MainMenuController : MonoBehaviour
     }
     public void LoadGameMobile()
     {
+        clientEntity.setPortNumber(serialNumber);
         SceneManager.LoadScene("Greybox_mobile");
     }
-    public void LoadGameVR()
+    public void SetUpGameVR()
     {
-        SceneManager.LoadScene("GreyboxV3");
+       
+    }
+    public void IncreaseSerialNumber()
+    {
+
+    }
+    public void ActiveMobileSerialNumberInput()
+    {
+        mobilePanel.SetActive(true);
+    }
+    public void  LoadGameVR()
+    {
+        clientEntity.setPortNumber(serialNumber);
+        SceneManager.LoadScene("GreyboxV3-2");
     }
     public void QuitGame()
     {
@@ -35,7 +58,7 @@ public class MainMenuController : MonoBehaviour
         if(other.name=="PlayTag")
         {
             Debug.Log("Touching PlayTag");
-            LoadGameVR();
+            SetUpGameVR();
         }
         if(other.name=="ExitTag")
         {
