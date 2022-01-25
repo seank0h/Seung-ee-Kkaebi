@@ -5114,7 +5114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c81792d6f65094fa4f8a7c24946bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clientObject: {fileID: 1733336681}
   serialNumber: 
   serialNumberTextUser: {fileID: 1286259138}
   playTag: {fileID: 1354712497}

@@ -39,11 +39,8 @@ public class mobileClient : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
-        if (client.tcp.getServerStatus())
-        {
-            sendMessage();
-            decodeMsg();
-        }
+        sendMessage();
+        decodeMsg();
     }
 
     public void sendMessage(){

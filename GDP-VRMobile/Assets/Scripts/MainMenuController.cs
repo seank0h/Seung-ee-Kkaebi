@@ -68,7 +68,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void InputSerialNumber()
     {
-        serialNumberTextUser.text = string.Format("{0:00}", serialNumberInt);
+        serialNumberTextUser.text = "SIGGRAPH"+string.Format("{0:00}", serialNumberInt);
         serialNumber = serialNumberTextUser.text;
         Debug.Log(serialNumberTextUser.text);
        
