@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
@@ -9,15 +10,30 @@ public class MainMenuController : MonoBehaviour
     client clientEntity;
     public string serialNumber;
     public GameObject mobilePanel;
+
+    //VR Main Menu Objects
+    public GameObject playTag;
+    public GameObject exitTag;
+    public GameObject instructionTag;
+    public GameObject enterGameTag;
+    public GameObject incrementTag;
+    public GameObject decrementTag;
+
+  
+    public Text serialNumberText;
+    public Text serialNumberTextUser;
+    int serialNumberInt;
+  
     // Start is called before the first frame update
     private void Awake()
     {
         DontDestroyOnLoad(clientObject);
         clientEntity = clientObject.GetComponent<client>();
+
     }
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -32,11 +48,19 @@ public class MainMenuController : MonoBehaviour
     }
     public void SetUpGameVR()
     {
-       
+        playTag.SetActive(false);
+        exitTag.SetActive(false);
+        instructionTag.SetActive(false);
+        serialNumberText.gameObject.SetActive(true);
+        incrementTag.SetActive(true);
+        decrementTag.SetActive(true);
+        enterGameTag.SetActive(true);
     }
-    public void IncreaseSerialNumber()
+    public void InputSerialNumber()
     {
-
+        serialNumberTextUser.text = serialNumberInt.ToString();
+        serialNumber = serialNumberTextUser.text;
+       
     }
     public void ActiveMobileSerialNumberInput()
     {
@@ -45,25 +69,33 @@ public class MainMenuController : MonoBehaviour
     public void  LoadGameVR()
     {
         clientEntity.setPortNumber(serialNumber);
-        SceneManager.LoadScene("GreyboxV3-2");
+        SceneManager.LoadScene("GreyboxV3");
     }
     public void QuitGame()
     {
         Application.Quit();
     }
-
-    private void OnTriggerEnter(Collider other)
+    public void ChangeSerialNumber(bool increment)
     {
-        Debug.Log("Collision Triggering");
-        if(other.name=="PlayTag")
+        Debug.Log("incrementing number");
+        if(increment)
         {
-            Debug.Log("Touching PlayTag");
-            SetUpGameVR();
+            if(serialNumberInt!=15)
+            {
+                serialNumberInt += 1;
+            }
+           
         }
-        if(other.name=="ExitTag")
+        else
         {
-            Debug.Log("Touching ExitTag");
-            QuitGame();
+            if(serialNumberInt !=0)
+            {
+                serialNumberInt -= 1;
+            }
+          
         }
+        InputSerialNumber();
     }
+    //Only for VR
+   
 }
