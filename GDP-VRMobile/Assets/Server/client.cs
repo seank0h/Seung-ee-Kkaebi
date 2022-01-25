@@ -45,14 +45,13 @@ public class client : MonoBehaviour{
         }
     }
 
-    public void setPortNumber(string serialNum){  // port = 9000 fix!
+    public void setPortNumber(string serialNum){  // port = 9000 fix! @@
         int idx = System.Array.IndexOf(serialList, serialNum);
         this.port = this.port + idx;
         setStart = true;
     }
 
     public bool getServerStatus(){
-        //vr->mobile, mobile->vr c# script에서 이 조건 검사후 update 수행하도록! @@
         return serverStatus;
     }
 
