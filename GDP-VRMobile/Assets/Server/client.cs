@@ -31,7 +31,7 @@ public class client : MonoBehaviour{
             tcp = this;
 
         for(int i=0; i < serialList.Length; i++){
-            serialList[i] = "SIGGRAPH" + i.ToString().Format("{0:00}", i);
+            serialList[i] = "SIGGRAPH" + string.Format("{0:00}", i);
         }
 
 		//ConnectToTcpServer();    
@@ -45,9 +45,9 @@ public class client : MonoBehaviour{
         }
     }
 
-    public void setPortNumber(string serialNum, int port){
-        int idx = serialList.IndexOf(serialNum);
-        this.port = port + idx;
+    public void setPortNumber(string serialNum){  // port = 9000 fix!
+        int idx = System.Array.IndexOf(serialList, serialNum);
+        this.port = this.port + idx;
         setStart = true;
     }
 
@@ -180,6 +180,7 @@ public class client : MonoBehaviour{
 		socketConnection = null;
 	}
 
+	
 	void OnApplicationQuit(){
 		SendMessage("END GAME");
 		closeConn();
