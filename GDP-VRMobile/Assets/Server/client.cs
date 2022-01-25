@@ -14,9 +14,8 @@ public class client : MonoBehaviour{
     public static client tcp;
     private String msg = "";
 
-    private string ip = "124.51.10.155"; 
+	private string ip = "124.51.10.155";
     private int port = 9000;
-    private bool setStart = false, serverStatus = false;
     private string[] serialList = new string [15];
 
 	private TcpClient socketConnection; 	
@@ -34,25 +33,13 @@ public class client : MonoBehaviour{
             serialList[i] = "SIGGRAPH" + string.Format("{0:00}", i);
         }
 
-		//ConnectToTcpServer();    
+        setPortNumber(MainMenuController.mc.serialNumber);  //@@ here!! 외부에서 포트번호 넣어주기!!   MainMenuController.mc.getSerial()
+		ConnectToTcpServer();    
 	}
-
-    void Update(){
-        if(setStart){
-            ConnectToTcpServer();  //오류나면 메시지 출력 후 게임 강제 종료?? (예외처리) @@
-            setStart = false;
-            serverStatus = true;
-        }
-    }
 
     public void setPortNumber(string serialNum){  // port = 9000 fix! @@
         int idx = System.Array.IndexOf(serialList, serialNum);
         this.port = this.port + idx;
-        setStart = true;
-    }
-
-    public bool getServerStatus(){
-        return serverStatus;
     }
 
 	public void reconnectServer(){

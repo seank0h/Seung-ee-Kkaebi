@@ -7,11 +7,9 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
     [Header("Common Main Menu Object")]
-    public GameObject clientObject;
-    client clientEntity;
     public string serialNumber;
     public Text serialNumberTextUser;
-
+    public static MainMenuController mc;
     //VR Main Menu Objects
     [Header("VR Main Menu Objects")]
     public GameObject playTag;
@@ -31,8 +29,12 @@ public class MainMenuController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        DontDestroyOnLoad(clientObject);
-        clientEntity = clientObject.GetComponent<client>();
+        if (mc && mc != this)
+            Destroy(this);
+        else
+            mc = this;
+        DontDestroyOnLoad(this.gameObject);
+       
 
     }
     void Start()
@@ -51,7 +53,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void LoadGameMobile()
     {
-        clientEntity.setPortNumber(serialNumber);
+       
         SceneManager.LoadScene("Greybox_mobile");
     }
     public void SetUpGameVR()
@@ -92,7 +94,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void  LoadGameVR()
     {
-        clientEntity.setPortNumber("SIGGRAPH"+serialNumber);
+        //clientEntity.setPortNumber("SIGGRAPH"+serialNumber);
         Debug.Log("SIGGRAPH" + serialNumber);
         SceneManager.LoadScene("GreyboxV3");
     }
