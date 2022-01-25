@@ -1,14 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
+    [Header("Common Main Menu Object")]
+    public GameObject clientObject;
+    client clientEntity;
+    public string serialNumber;
+    public Text serialNumberTextUser;
+
+    //VR Main Menu Objects
+    [Header("VR Main Menu Objects")]
+    public GameObject playTag;
+    public GameObject exitTag;
+    public GameObject instructionTag;
+    public GameObject enterGameTag;
+    public GameObject incrementTag;
+    public GameObject decrementTag;
+    public Text serialNumberText;
+
+    [Header("Mobile Menu Objects")]
+    public GameObject instructionPanel;
+    public GameObject mobilePanel;
+    public bool instructionPanelStatus;
+    int serialNumberInt;
+  
     // Start is called before the first frame update
+    private void Awake()
+    {
+        DontDestroyOnLoad(clientObject);
+        clientEntity = clientObject.GetComponent<client>();
+
+    }
     void Start()
     {
-
+        instructionPanelStatus = false;
     }
 
     // Update is called once per frame
@@ -16,31 +45,82 @@ public class MainMenuController : MonoBehaviour
     {
 
     }
+    public void OpenSerialInputPanelMobile()
+    {
+        mobilePanel.SetActive(true);
+    }
     public void LoadGameMobile()
     {
+        clientEntity.setPortNumber(serialNumber);
         SceneManager.LoadScene("Greybox_mobile");
     }
-    public void LoadGameVR()
+    public void SetUpGameVR()
     {
+        playTag.SetActive(false);
+        exitTag.SetActive(false);
+        instructionTag.SetActive(false);
+        serialNumberText.gameObject.SetActive(true);
+        incrementTag.SetActive(true);
+        decrementTag.SetActive(true);
+        enterGameTag.SetActive(true);
+    }
+    public void InputSerialNumber()
+    {
+        serialNumberTextUser.text = string.Format("{0:00}", serialNumberInt);
+        serialNumber = serialNumberTextUser.text;
+        Debug.Log(serialNumberTextUser.text);
+       
+    }
+    public void InputSerialNumberMobile()
+    {
+        serialNumber = serialNumberTextUser.text;
+    }
+    public void InstructionPanelActivation()
+    {
+        if (instructionPanelStatus==false)
+        {
+            instructionPanelStatus = true;
+        }
+        else
+            instructionPanelStatus = false;
+
+        instructionPanel.SetActive(instructionPanelStatus);
+    }
+    public void ActiveMobileSerialNumberInput()
+    {
+        mobilePanel.SetActive(true);
+    }
+    public void  LoadGameVR()
+    {
+        clientEntity.setPortNumber("SIGGRAPH"+serialNumber);
+        Debug.Log("SIGGRAPH" + serialNumber);
         SceneManager.LoadScene("GreyboxV3");
     }
     public void QuitGame()
     {
         Application.Quit();
     }
-
-    private void OnTriggerEnter(Collider other)
+    public void ChangeSerialNumber(bool increment)
     {
-        Debug.Log("Collision Triggering");
-        if(other.name=="PlayTag")
+        Debug.Log("incrementing number");
+        if(increment)
         {
-            Debug.Log("Touching PlayTag");
-            LoadGameVR();
+            if(serialNumberInt!=15)
+            {
+                serialNumberInt += 1;
+            }
+           
         }
-        if(other.name=="ExitTag")
+        else
         {
-            Debug.Log("Touching ExitTag");
-            QuitGame();
+            if(serialNumberInt !=0)
+            {
+                serialNumberInt -= 1;
+            }
+          
         }
+        InputSerialNumber();
     }
+    //Only for VR
+   
 }
