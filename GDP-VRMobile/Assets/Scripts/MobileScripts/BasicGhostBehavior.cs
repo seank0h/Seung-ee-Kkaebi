@@ -13,6 +13,7 @@ public class BasicGhostBehavior : MonoBehaviour
     public Material ghostMaterialRevealed;
     public float yPositionCalibration;
     public GameObject dokkaebiArmature;
+    //public GameObject dokkaebiAura;
     int prevLife;
     // Start is called before the first frame update
     void Start()
@@ -30,10 +31,12 @@ public class BasicGhostBehavior : MonoBehaviour
         {
            
             ghostRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            //dokkaebiAura.SetActive(true);
         }
        else
         {
             ghostRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+            //dokkaebiAura.SetActive(false);
         }
         if(vrClient.cl.getLife()!= prevLife)
         {
