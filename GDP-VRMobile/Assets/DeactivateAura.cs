@@ -6,6 +6,7 @@ public class DeactivateAura : MonoBehaviour
 {
     float timeForAura;
     bool auraOn;
+    public GameObject dokkaebiAura;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +18,13 @@ public class DeactivateAura : MonoBehaviour
     {
         if (mobile2vr.mobileToVRCl.GhostBeingSeen())
         {
-            this.gameObject.SetActive(true);
+            dokkaebiAura.SetActive(true);
             auraOn = true;
          
         }
         if(timeForAura<=0)
         {
-            this.gameObject.SetActive(false);
+            dokkaebiAura.SetActive(false);
             auraOn = false;
         }
         Timer(auraOn);
