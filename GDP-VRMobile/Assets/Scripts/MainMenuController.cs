@@ -34,7 +34,8 @@ public class MainMenuController : MonoBehaviour
         else
             mc = this;
         DontDestroyOnLoad(this.gameObject);
-       
+
+        serialNumber = "SIGGRAPH00";
 
     }
     void Start()

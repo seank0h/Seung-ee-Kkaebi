@@ -150,7 +150,7 @@ public class mobile2vr : MonoBehaviour
                 if (n_detail[2] == '1'&&firstStunThree == false) // 기절
                  {
                     firstStunThree = true;
-                    NPCList[0].GetComponent<NPCStunHandler>().StunState();
+                    NPCList[2].GetComponent<NPCStunHandler>().StunState();
                 }
                 if (n_detail[2] == '2') // 경고(파란색)
                 {
@@ -169,7 +169,7 @@ public class mobile2vr : MonoBehaviour
                 if (n_detail[3] == '1' && firstStunFour == false) // 기절
                 {
                     firstStunFour = true;
-                    NPCList[0].GetComponent<NPCStunHandler>().StunState();
+                    NPCList[3].GetComponent<NPCStunHandler>().StunState();
                 }
                 if (n_detail[3] == '2') // 경고(파란색)
                 {

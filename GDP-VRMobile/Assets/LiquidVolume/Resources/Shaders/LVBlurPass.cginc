@@ -53,8 +53,8 @@
 			float4 uv4 = i.uvgrab;
 			uv4.xy = offset * 3.0 * uv4.z + uv4.xy;	// x3.0 reduces downsampling unaccuracy
 			uv4 = UNITY_PROJ_COORD(uv4);
-			float z = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, uv4.xy/uv4.ww));
-			offset *= z>i.z;	// object is in front of our transparent flask - discard distortion offset
+			//float z = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, uv4.xy/uv4.ww));
+			//offset *= z>i.z;	// object is in front of our transparent flask - discard distortion offset
 			#endif
 
 			i.uvgrab.xy = offset * i.uvgrab.z + i.uvgrab.xy;

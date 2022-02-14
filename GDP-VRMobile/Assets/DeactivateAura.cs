@@ -19,8 +19,8 @@ public class DeactivateAura : MonoBehaviour
         if (mobile2vr.mobileToVRCl.GhostBeingSeen())
         {
             dokkaebiAura.SetActive(true);
+            Debug.Log("Aura Should be active");
             auraOn = true;
-         
         }
         if(timeForAura<=0)
         {
@@ -28,6 +28,7 @@ public class DeactivateAura : MonoBehaviour
             auraOn = false;
         }
         Timer(auraOn);
+        Debug.Log("Aura On: " + auraOn);
     }
     void Timer(bool timerOn)
     {

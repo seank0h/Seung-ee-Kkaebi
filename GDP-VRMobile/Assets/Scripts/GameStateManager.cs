@@ -12,7 +12,11 @@ public class GameStateManager : MonoBehaviour
     public GameObject BGMManagerEntity;
     BGM bgmManager;
 
-    public Text gameStateText;
+    public GameObject gaugeBall;
+    MeshRenderer gaugeBallRenderer;
+
+    public GameObject gameWin;
+    public GameObject gameLose;
     public GameObject gameConditionCanvas;
 
     // Start is called before the first frame update
@@ -20,6 +24,7 @@ public class GameStateManager : MonoBehaviour
     {
         playing = true;
         bgmManager = BGMManagerEntity.GetComponent<BGM>();
+        gaugeBallRenderer = gaugeBall.GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
@@ -28,16 +33,18 @@ public class GameStateManager : MonoBehaviour
         
         if(mobile2vr.mobileToVRCl.GameWin())
         {
-            gameStateText.text = "You Win";
+            gaugeBallRenderer.enabled = false;
             gameConditionCanvas.SetActive(true);
+            gameWin.SetActive(true);
         }
         
         if(mobile2vr.mobileToVRCl.GameLose())
         {
-           
-            gameStateText.text = "You Lose";
+
+            gaugeBallRenderer.enabled = false;
             gameConditionCanvas.SetActive(true);
-            
+            gameLose.SetActive(true);
+
         }
         
     }

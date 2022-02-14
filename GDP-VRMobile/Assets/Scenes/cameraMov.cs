@@ -13,7 +13,7 @@ public class cameraMov : MonoBehaviour {
     space : Moves camera on X and Z axis only.  So camera doesn't gain any height*/
     
      
-    float mainSpeed = 7.0f; //regular speed
+    float mainSpeed = 6.0f; //regular speed
     float shiftAdd = 50.0f; //multiplied by how long shift is held.  Basically running
     float maxShift = 100.0f; //Maximum speed when holdin gshift
     float camSens = 0.1f; //How sensitive it with mouse
