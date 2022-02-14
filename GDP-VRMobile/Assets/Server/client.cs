@@ -33,8 +33,8 @@ public class client : MonoBehaviour{
             serialList[i] = "SIGGRAPH" + string.Format("{0:00}", i);
         }
 		//MainMenuController.mc.serialNumber = "SIGGRAPH00";
-        setPortNumber(MainMenuController.mc.serialNumber);  //@@ here!! 외부에서 포트번호 넣어주기!!   MainMenuController.mc.getSerial()
-		//setPortNumber("SIGGRAPH00");
+        //setPortNumber(MainMenuController.mc.serialNumber);  //@@ here!! 외부에서 포트번호 넣어주기!!   MainMenuController.mc.getSerial()
+		setPortNumber("SIGGRAPH00");
 		ConnectToTcpServer();    
 	}
 
