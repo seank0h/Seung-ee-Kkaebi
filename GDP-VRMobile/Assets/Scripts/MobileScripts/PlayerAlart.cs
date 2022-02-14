@@ -92,6 +92,7 @@ public class PlayerAlart : MonoBehaviour
                 // Debug.Log("sturn npc cum : " + (index+1));
                 curse_slide.value += 5;
                 vr2mobile.vm.strun_send(index);
+                Debug.Log("stun NPC num : " + index);
                 first = false;
                 Invoke("turn_back", 2f);
             }

@@ -13,7 +13,9 @@ public class progressLiquid : MonoBehaviour{
     [Range(0, 100)]
     public float startVal;
 
-    private float level;   // % 비율로
+    [SerializeField]
+    [Range(0, 100)]
+    public float level;   // % 비율로
     private float prevLevel = -1;
 
     // Start is called before the first frame update
