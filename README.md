@@ -11,11 +11,12 @@ To join the same session as another reviwer, both reviewers must input the same 
 ie Reviwers X & Y both want to play with one another they both input SIGGRAPH00 
 <h2>Playing the Demo of our Game:<br>
   <h4>Mobile Player</h4><br>
-Put your phone on developer mode and then upload our Seungee&Kkaebi apk file onto your phone.<br>
-Then start the application, enter the SIGGRAPH serial number assigned to you and then enter your session with the other tester!<br>
+1.Put your phone on developer mode and then upload our Seungee&Kkaebi apk file onto your phone.<br>
+2.Start the application, enter the SIGGRAPH serial number assigned to you and then enter your session with the other tester!<br>
   <h4> VR Player</h4><br>
-    *The VR player has no need for controllers and every input and control is done through hand tracking*
-Connect your Oculus Quest II to your PC and then turn on Oculus Link <br>
-After unzipping the Unity Project open the project with Unity 2020.3.19f1 and double click the Scenes folder.<br>
-Inside the scenes folder is a Unity scene called MainMenuVR. Open the scene and press the play button in the Unity Editor.<br>
-Use your hands to input the same SIGGRAPH serial number with the reviwer you want to play with 
+    *The VR player has no need for controllers and every input and control is done through hand tracking*<br>
+1.Unzip the project folder and open the Unity project with Unity 2020.3.191fi and double click the Scenes Folder.<br>
+2.Inside the scenes folder is a Unity scene called MainMenuVR, double click to open up the scene in Unity<br>
+3.Connect your Oculus Quest II to your PC and then turn on Oculus Link <br>
+4.Back to Unity, and on the MainMenuVR scene and press the play button in the Unity Editor.<br>
+5.Use your hands navigate the VR menu, and then input the same SIGGRAPH serial number with the reviwer you want to play with 
