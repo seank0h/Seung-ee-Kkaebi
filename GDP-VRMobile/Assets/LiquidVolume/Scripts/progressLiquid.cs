@@ -26,7 +26,7 @@ public class progressLiquid : MonoBehaviour{
     // Update is called once per frame
     void Update(){
         if(prevLevel != level){
-            Debug.Log(level);
+            // Debug.Log(level);
             prevLevel = level;
             updateGauge(level);
         }
