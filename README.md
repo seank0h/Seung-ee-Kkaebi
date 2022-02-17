@@ -2,18 +2,19 @@
 
 Welcome to our Alpha Version of Seungee-Kkaebi, a cross platform VR-Mobile hide and seek game, based on Korean folklore!
 
+Game Website: https://www.seungeenkkaebi.me/
 
 ## Requirements to play our game
 
-*Oculus Quest II<br>
+Oculus Quest 2
 
-*<br>Oculus application on the PC<br>
+Oculus application on the PC
 
-*Android Mobile Phone<br>
+Android Mobile Phone
 
-*Unity 2020.3.19f1<br>
+Unity 2020.3.19f1
 
-*Finally someone to play with!<br>
+Finally someone to play with!
 
 To join the same session as another reviwer, both reviewers must input the same SIGGRAPH serial number. 
 ie Reviwers X & Y both want to play with one another they both input SIGGRAPH00 
