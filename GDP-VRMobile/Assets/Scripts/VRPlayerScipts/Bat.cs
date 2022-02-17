@@ -27,15 +27,12 @@ public class Bat : MonoBehaviour
         
         if (co.gameObject.tag == "Dokkaebi" && vrClient.cl.getCatchEvent() == 0)
         {
-            Debug.Log("***BAT *** COLLISION WITH DOKKAEBI");
+           
             co.gameObject.GetComponent<BasicGhostBehavior>().HitbyBat();
             Instantiate(hitEffectToSpawn, co.transform.position, Quaternion.identity);
             hitAudio.Play();
             vrClient.cl.setCatchEvent(1);
             Invoke("re_bat", 5f);
-        }
-        if(co.gameObject.tag == "Environment"){
-            Debug.Log("***BAT *** COLLISION WITH ENVIRONMENT");
         }
         
     }

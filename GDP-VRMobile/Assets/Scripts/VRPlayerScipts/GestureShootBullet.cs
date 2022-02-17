@@ -37,7 +37,7 @@ public class GestureShootBullet : MonoBehaviour
         switch (shootMode)
         {
             case ShootMode.Auto:
-                Debug.Log("Shooting in Auto");
+
                 if (Time.time >= timeToFire && VRDustParticleEffect.VRdpe.effectOn==false){
                     timeToFire = Time.time + 1.0f / 1.0f;
                     Shoot();
@@ -47,7 +47,7 @@ public class GestureShootBullet : MonoBehaviour
             case ShootMode.Single:
                 if (!hasShoot){
                     hasShoot = true;
-                    Debug.Log("Shooting in Single");
+ 
                     timeToFire = Time.time + 1.0f / projectilePrefab.GetComponent<Bullet>().fireRate;
                     Shoot();
                 }
@@ -70,7 +70,7 @@ public class GestureShootBullet : MonoBehaviour
     // Method to put in the Event when the gesture are not recognized
     public void StopShoot(){
         hasShoot = false;
-        Debug.Log("Stop Shooting");
+
     }
     private void DelayMessage()
     {

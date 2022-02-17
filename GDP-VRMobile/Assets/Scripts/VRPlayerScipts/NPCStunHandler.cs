@@ -23,7 +23,6 @@ public class NPCStunHandler : MonoBehaviour
     }
     public void StunState()
     {
-        Debug.Log("StunState");
         npcRenderer.material.color = Color.red;
        this.gameObject.GetComponent<NavMeshAgent>().speed = 0;
        this.gameObject.GetComponent<CapsuleCollider>().enabled = false;

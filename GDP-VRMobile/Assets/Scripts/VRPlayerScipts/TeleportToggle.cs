@@ -121,7 +121,6 @@ public class TeleportToggle : MonoBehaviour
 		//destPosition.y += character.transform.position.y * 0.5f;
 		Quaternion destRotation = teleportPositions[teleportIndex].transform.rotation;// destTransform.rotation;
 		
-        Debug.Log("TELEPORT TO : " + teleportPositions[teleportIndex]);
         character.transform.position = destPosition;
 		character.transform.rotation = destRotation;
         

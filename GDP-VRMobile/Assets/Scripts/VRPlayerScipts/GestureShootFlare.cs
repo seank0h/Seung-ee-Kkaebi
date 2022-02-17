@@ -65,7 +65,7 @@ public class GestureShootFlare : MonoBehaviour
         GameObject flare = Instantiate(projectilePrefab, hand.position, Quaternion.identity);
         flare.GetComponent<VRFlare>().positionPlaceHolder = positionPlaceHolder;
         flare.transform.localRotation = hand.rotation;
-        Debug.Log("Shootflare");
+
        
       
         RadialProgress.rp.start = true;

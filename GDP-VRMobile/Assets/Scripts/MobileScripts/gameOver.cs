@@ -14,14 +14,14 @@ public class gameOver : MonoBehaviour
     public Button status;
     float health, curse;
     bool first = true;
-    ThirdPersonController playecon;
+    //ThirdPersonController playecon;
 
     // Start is called before the first frame update
     void Start()
     {
         health = healthbar.GetComponent<progressLiquid>().getLevel();
         curse = cursebar.GetComponent<progressLiquid>().getLevel();
-        playecon = player.GetComponent<ThirdPersonController>();
+        //playecon = player.GetComponent<ThirdPersonController>();
 
     }
 
@@ -36,7 +36,7 @@ public class gameOver : MonoBehaviour
             //defeat
             if (first)
             {
-                playecon.MoveSpeed = 0;
+                //playecon.MoveSpeed = 0;
                 status.gameObject.SetActive(false);
                 mobileClient.cl.setstartNPCMove(66);
                 panel.SetActive(true);

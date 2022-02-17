@@ -41,7 +41,7 @@ public class vr2mobile : MonoBehaviour
 
     char[] c_detail = new char[4];
     char[] n_detail = new char[5];
-    ThirdPersonController playecon;
+    //ThirdPersonController playecon;
 
 
     private AudioSource slowAudio;
@@ -67,7 +67,7 @@ public class vr2mobile : MonoBehaviour
         
         c_detail = mobileClient.cl.getCurse().ToCharArray();
         n_detail = mobileClient.cl.getNPCMat().ToCharArray();
-        playecon = player.GetComponent<ThirdPersonController>();
+        //playecon = player.GetComponent<ThirdPersonController>();
 
         batEnable = mobileClient.cl.getBatEnabled();
         Jangseung[vrPos[0]].SetActive(true);
@@ -102,7 +102,6 @@ public class vr2mobile : MonoBehaviour
         playermat[1] = playermat[0];
         playermat[0] = mobileClient.cl.getPlayerMat();
 
-        // Debug.Log("flarepos : " + flarePos);
 
         if (playermat[1] != playermat[0])
         {
@@ -140,8 +139,6 @@ public class vr2mobile : MonoBehaviour
         {
             mobileClient.cl.setDustStrom(0);
         }
-        // Debug.Log("duststorm : " + mobileClient.cl.getDustStrom());
-        // Debug.Log("dustclean : " + dustClean[0]);
 
         if (mobileClient.cl.getDustStrom() == 0)
         {
@@ -170,7 +167,6 @@ public class vr2mobile : MonoBehaviour
             }
         }
 
-        // Debug.Log("camo : " + catchMobile[0]);
         if (catchMobile[0] != catchMobile[1])
         {
             if (catchMobile[0] == 1)
@@ -181,7 +177,7 @@ public class vr2mobile : MonoBehaviour
                 healthbar.GetComponent<progressLiquid>().decreaseLevel(bat_damage);
                 Raycast.rc.prop();
                 slowAudio.Play();
-                playecon.MoveSpeed = 10;
+                //playecon.MoveSpeed = 10;
                 Invoke("speed_return", 5f);
             }
         }
@@ -191,12 +187,14 @@ public class vr2mobile : MonoBehaviour
         {
             healthbar.GetComponent<progressLiquid>().decreaseLevel(bullet_damage);
             Vibration.Vibrate(300);
-            playecon.MoveSpeed -= 0.4f;
+            //playecon.MoveSpeed -= 0.4f;
             Instantiate(bulletEffect, player.transform.position, Quaternion.identity);
+            /*
             if (playecon.MoveSpeed < 3.1f)
             {
                 playecon.MoveSpeed = 3.1f;
             }
+            */
             slowAudio.Play();
         }
 
@@ -205,50 +203,42 @@ public class vr2mobile : MonoBehaviour
             Jangseung[vrPos[1]].SetActive(false);
             Jangseung[vrPos[0]].SetActive(true);
         }
-        // Debug.Log("life : " + mobileClient.cl.getLife());
-        // Debug.Log("playermat : " + mobileClient.cl.getPlayerMat());
+
     }
 
     public void curse_send(int index)
     {
         c_detail[index] = '1';
         string result = new string(c_detail);
-        // Debug.Log("c_detail : " + result);
         mobileClient.cl.setCurse(result);
     }
 
     public void strun_send(int index)
     {
        
-        // Debug.Log("index : " + index);
         n_detail[index] = '1';
         string result = new string(n_detail);
-        // Debug.Log(result);
         mobileClient.cl.setNPCMat(result);
     }
 
     public void alert_send(int index)
     {
         
-        //Debug.Log("alart sound");
         n_detail[index] = '2';
         string result = new string(n_detail);
-        // Debug.Log(result);
         mobileClient.cl.setNPCMat(result);
     }
 
     public void alert_end(int index)
     {
-        // Debug.Log("index : " + index);
         n_detail[index] = '0';
         string result = new string(n_detail);
-        // Debug.Log(result);
         mobileClient.cl.setNPCMat(result);
     }
 
     void speed_return()
     {
         Raycast.rc.not_prop();
-        playecon.MoveSpeed = 5;
+        //playecon.MoveSpeed = 5;
     }
 }

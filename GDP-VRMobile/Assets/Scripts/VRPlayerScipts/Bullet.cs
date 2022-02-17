@@ -31,10 +31,7 @@ public class Bullet : MonoBehaviour
             speed = 0f;
             vrClient.cl.setBulletCollision(1);
             Instantiate(hitEffectToSpawn, co.transform.position, Quaternion.identity);
-            Invoke("ServerMessage", 0.25f);
-            Debug.Log("COLLISION WITH DOKKAEBI");
-            
-           
+            Invoke("ServerMessage", 0.25f);          
         }
     }
     void ServerMessage()

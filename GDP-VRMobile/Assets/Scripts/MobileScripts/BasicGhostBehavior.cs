@@ -45,7 +45,6 @@ public class BasicGhostBehavior : MonoBehaviour
     }
     public void BeingSeen()
     {
-        Debug.Log("Being Seen Called");
         beingSeen = true;
     }
     public void NotSeen()

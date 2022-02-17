@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class GameStateManager : MonoBehaviour
 {
     public float curseProgress;
@@ -36,6 +36,7 @@ public class GameStateManager : MonoBehaviour
             gaugeBallRenderer.enabled = false;
             gameConditionCanvas.SetActive(true);
             gameWin.SetActive(true);
+            Invoke("ReturnToMainMenu", 4.0f);
         }
         
         if(mobile2vr.mobileToVRCl.GameLose())
@@ -44,8 +45,13 @@ public class GameStateManager : MonoBehaviour
             gaugeBallRenderer.enabled = false;
             gameConditionCanvas.SetActive(true);
             gameLose.SetActive(true);
-
+            Invoke("ReturnToMainMenu", 4.0f);
         }
         
+    }
+
+    void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenuVR");
     }
 }

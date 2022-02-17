@@ -94,13 +94,13 @@ public class GestureDetector : MonoBehaviour{
                 // after that i will invoke what put in the Event if is present
                 currentGesture.onRecognized?.Invoke();
 
-                Debug.Log("New Gesture Found : " + currentGesture.name);
+                //Debug.Log("New Gesture Found : " + currentGesture.name);
             }
             // if the gesture we done is no more recognized
             else{
                 // and we just activated the boolean from earlier
                 if (done){
-                    Debug.Log("Not Recognized");
+                    //Debug.Log("Not Recognized");
                     // we set to false the boolean again, so this will not loop
                     done = false;
 
