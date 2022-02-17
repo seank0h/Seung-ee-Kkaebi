@@ -6,11 +6,13 @@ Game Website: https://www.seungeenkkaebi.me/ (You can see game demo and instruct
 
 ## Requirements
 
+- ([Game Installation Files](https://github.com/seank0h/Seung-ee-Kkaebi/releases/tag/AlphaVersion))
+
 - Oculus Quest 2
 
 - Oculus application on the PC
 
-- Android Mobile Phone
+- Android Mobile Phone ()
 
 - Unity (version 2020.3.19f1)
 
@@ -25,18 +27,18 @@ To join the same session as another player, both player must input the same seri
   
 1. Upload Seungee & Kkaebi APK on your Android phone and install.
   
-2. Start the application, enter the SIGGRAPH serial number assigned to you and then enter your session with the other tester!
+2. Start the application, enter the serial number assigned to you and then enter your session with the other player!
   
 
 ### VR Player
   
-The VR player has no need for controllers and every input and control is done through hand tracking.
+*The VR player has no need for controllers and every input and control is done through hand tracking.*
   
 1. Unzip the project folder and open the Unity project with Unity 2020.3.191fi and double click the Scenes Folder.
   
 2. Inside the scenes folder is a Unity scene called MainMenuVR, double click to open up the scene in Unity.
   
-3. Connect your Oculus Quest II to your PC and then turn on Oculus Link.
+3. Connect your Oculus Quest 2 to your PC and then turn on Oculus Link.
   
 4. Back to Unity, and on the MainMenuVR scene and press the play button in the Unity Editor.
   
