@@ -12,7 +12,7 @@ Game Website: https://www.seungeenkkaebi.me/ (You can see game demo and instruct
 
 - Oculus application on the PC
 
-- Android Mobile Phone ()
+- Android Mobile Phone (Mimimum asdf@)
 
 - Unity (version 2020.3.19f1)
 
@@ -34,7 +34,7 @@ To join the same session as another player, both player must input the same seri
   
 *The VR player has no need for controllers and every input and control is done through hand tracking.*
   
-1. Unzip the project folder and open the Unity project with Unity 2020.3.191fi and double click the Scenes Folder.
+1. Unzip the project folder and open the Unity project with Unity 2020.3.191f1 and double click the Scenes Folder.
   
 2. Inside the scenes folder is a Unity scene called MainMenuVR, double click to open up the scene in Unity.
   
@@ -43,5 +43,4 @@ To join the same session as another player, both player must input the same seri
 4. Back to Unity, and on the MainMenuVR scene and press the play button in the Unity Editor.
   
 5. Use your hands navigate the VR menu, and then input the same SIGGRAPH serial number with the reviwer you want to play with. 
-  
   
