@@ -6,7 +6,7 @@ Game Website: https://www.seungeenkkaebi.me/ (You can see game demo and instruct
 
 ## Requirements
 
-- ([Game Installation Files](https://github.com/seank0h/Seung-ee-Kkaebi/releases/tag/AlphaVersion))
+- [Game Installation Files](https://github.com/seank0h/Seung-ee-Kkaebi/releases/tag/AlphaVersion)
 
 - Oculus Quest 2
 
