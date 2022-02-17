@@ -21,7 +21,7 @@ public class Raycast : MonoBehaviour
     private bool is_cursing = false;
     private GameObject curse_house = null;
     Color trans_white = new Color(1f, 1f, 1f, 0.3f);
-    bool bat_hit = false;
+    public bool bat_hit = false;
     public GameObject playerMeshEntity;
     public GameObject playerPropMeshEntity;
     public Slider slider;
@@ -218,7 +218,7 @@ public class Raycast : MonoBehaviour
                         if (pa != null)
                             pa.sturning = false;
                     }
-                    if (hit.distance <= 3.0f)
+                    if (hit.distance <= 5.0f)
                     {
                         Debug.DrawRay(gameObject.transform.position + height, gameObject.transform.forward * 1000, Color.yellow);
                         p_halo = (Behaviour)hit.transform.gameObject.GetComponent("Halo");
@@ -401,15 +401,50 @@ public class Raycast : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!bat_hit)
-        {
+        //if (!bat_hit)
+        //{
             //Debug.Log("triggerEnter");
+            
+        if (other.gameObject.tag == "Interactive")
+        {
             curse_house = other.gameObject;
+            is_cursing = true;
+            if (slider.gameObject.activeSelf)
+                slider.gameObject.SetActive(false);
+            slider.gameObject.SetActive(true);
+
+            if (curse != null)
+                curse.cursing = false;
+
+            if (n_reset)
+            {
+                n_halo.enabled = false;
+                n_reset = false;
+                if (pa != null)
+                    pa.sturning = false;
+            }
+            if (p_reset)
+            {
+                p_halo.enabled = false;
+                p_reset = false;
+            }
+
+            //other.gameObject.GetComponent<Renderer>().material.SetColor("_Color", trans_white);
+            curse = curse_house.GetComponent<CurseManage>();
+            
+            
+        }
+        //}
+        /*else
+        {
             if (other.gameObject.tag == "Interactive")
             {
-                is_cursing = true;
+                curse_house = other.gameObject;
                 if (slider.gameObject.activeSelf)
                     slider.gameObject.SetActive(false);
+                slider.gameObject.SetActive(true);
+
+                is_cursing = true;
                 if (curse != null)
                     curse.cursing = false;
 
@@ -428,9 +463,8 @@ public class Raycast : MonoBehaviour
 
                 //other.gameObject.GetComponent<Renderer>().material.SetColor("_Color", trans_white);
                 curse = curse_house.GetComponent<CurseManage>();
-                slider.gameObject.SetActive(true);
             }
-        }
+        }*/
     }
     private void OnTriggerStay(Collider other)
     {
@@ -438,17 +472,23 @@ public class Raycast : MonoBehaviour
         {
             if (other.gameObject.tag == "Interactive")
             {
-
+                is_cursing = true;
+                if (slider.gameObject.activeSelf)
+                    slider.gameObject.SetActive(false);
                 curse.cursing = true;
                 slider.value = curse.curse_time / 15 * 100;
+                if (slider.gameObject.activeSelf == false)
+                {
+                    slider.gameObject.SetActive(true);
+                }
             }
         }
         else
         {
             if (other.gameObject.tag == "Interactive")
             {
-
-                curse.cursing = true;
+                //is_cursing = false;
+                curse.cursing = false;
                 slider.value = curse.curse_time / 15 * 100;
             }
         }

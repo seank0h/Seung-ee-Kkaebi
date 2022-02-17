@@ -73,7 +73,7 @@ public class CurseManage : MonoBehaviour
             }
             else
             {
-                curse_time -= Time.deltaTime / 5;
+                curse_time -= Time.deltaTime;
 
                 if (curse_time <= 0)
                     curse_time = 0;
