@@ -1,6 +1,6 @@
-# Seungee-Kkaebi
+# Seungee & Kkaebi
 
-Welcome to our Alpha Version of Seungee-Kkaebi, a cross platform VR-Mobile hide and seek game, based on Korean folklore!
+Welcome to our Alpha Version of Seungee & Kkaebi, a cross platform VR-Mobile hide and seek game, based on Korean folklore!
 
 Game Website: https://www.seungeenkkaebi.me/ (You can see game demo and instructions for each platform here)
 
@@ -12,13 +12,13 @@ Game Website: https://www.seungeenkkaebi.me/ (You can see game demo and instruct
 
 - Oculus application on the PC
 
-- Android Mobile Phone (Mimimum asdf@)
+- Android Mobile Phone or Tablet
 
 - Unity (version 2020.3.19f1)
 
 - Finally someone to play with!
 
-To join the same session as another player, both player must input the same serial number. (i.e., Player X & Y both want to play with one another they both input SIGGRAPH00!)
+To join the same session as another player, both player must input the same serial number. (i.e., Player X & Y both want to play with one another they both input SIGGRAPH00!, Currently SIGGRAPH00 to SIGGRAPH15 is available.) 
 
 
 ## Playing the Demo of our Game
@@ -38,9 +38,17 @@ To join the same session as another player, both player must input the same seri
   
 2. Inside the scenes folder is a Unity scene called MainMenuVR, double click to open up the scene in Unity.
   
-3. Connect your Oculus Quest 2 to your PC and then turn on Oculus Link.
+3. Connect your Oculus Quest 2 to your PC and then turn on Oculus Link. (You need to set hand-tracking available in Quest 2 settings)
   
-4. Back to Unity, and on the MainMenuVR scene and press the play button in the Unity Editor.
+4. Back to Unity, turn on the MainMenuVR scene and then press the play button in the Unity Editor.
   
-5. Use your hands navigate the VR menu, and then input the same SIGGRAPH serial number with the reviwer you want to play with. 
+5. Use your hands navigate the VR menu, and then input the same SIGGRAPH serial number with the reviwer you want to play with.
+
+6. Enjoy!
+
+
+
+### Handling with Errors
+
+
   
