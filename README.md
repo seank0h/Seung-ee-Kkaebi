@@ -49,12 +49,12 @@ To join the same session as another player, both player must input the same seri
 
 ### Handling with Errors
 
-- 시선의 높이가 다를때 : Oculus 바닥 높이 설정을 다시 해주야합니다. 적합한 위치는 teleport toggle이 머리 높이에 와야합니다.
+- When the height of the VR gaze is different from real height : You need to set the Oculus floor height again. The appropriate location should be the teleport toggle at the head height.
 
-- 손이 안나오거나 오류가 있을 때 : Normally restarting the VR game will solve the problem. However, sometimes restarting the oculus is @!
+- Trouble with Oculus hand-tracking system : Normally restarting the VR game in Unity will solve the problem. If this doesn't work, you need to restart the Oculus Quest 2.
 
-- VR 시점에서 NPC가 보이지 않을 때 : Restart Game in both platform. Please check the connection with Internet. stable
+- If you don't see NPCs moving in VR scene : Restart the Game in both platform. Please check the internet connection and use stable Wi-Fi.
 
-- If you restart game 한쪽에서, 그러면 다른 쪽도 꼭 재실행을 해주어야 합니다.
+If you restart the game from one side, others have to restart the game too. Please aware of this when you play our demo. If there is an question, feel free to ask! Thank you!
 
 
