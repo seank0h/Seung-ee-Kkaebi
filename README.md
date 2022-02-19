@@ -21,7 +21,7 @@ Game Website: https://www.seungeenkkaebi.me/ (You can see game demo and instruct
 To join the same session as another player, both player must input the same serial number. (i.e., Player X & Y both want to play with one another they both input SIGGRAPH00!, Currently SIGGRAPH00 to SIGGRAPH15 is available.) 
 
 
-## Playing the Demo of our Game
+## Game Installation Instruction
   
 ### Mobile Player
   
@@ -45,7 +45,6 @@ To join the same session as another player, both player must input the same seri
 5. Use your hands navigate the VR menu, and then input the same SIGGRAPH serial number with the reviwer you want to play with.
 
 6. Enjoy!
-
 
 
 ### Handling with Errors
