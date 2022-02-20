@@ -12,7 +12,7 @@ Game Website: https://www.seungeenkkaebi.me/ (You can see game demo and instruct
 
 - Oculus application on the PC
 
-- Android Mobile Phone or Tablet (Table is more stable in current version)
+- Android Mobile Phone or Tablet (Tested on S21, S6 Tab; Table is more stable in current version)
 
 - Unity (version 2020.3.19f1)
 
