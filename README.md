@@ -42,7 +42,7 @@ To join the same session as another player, both player must input the same seri
   
 4. Back to Unity, turn on the MainMenuVR scene and then press the play button in the Unity Editor.
   
-5. Use your hands navigate the VR menu, and then input the same SIGGRAPH serial number with the reviwer you want to play with.
+5. Use your hands navigate the VR menu, and then input the same serial number (CHIPLAY00 ~ 06) with the reviwer you want to play with. (Since we are using our own game server, it might have some delay depending on your Wi-Fi quality.)
 
 6. Enjoy!
 
