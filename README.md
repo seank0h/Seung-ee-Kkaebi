@@ -2,7 +2,7 @@
 
 Welcome to our Alpha Version of Seungee & Kkaebi, a cross platform VR-Mobile hide and seek game, based on Korean folklore!
 
-Game Website: https://www.seungeenkkaebi.me/ (You can see game demo and instructions for each platform here)
+Game Website: http://www.seungeenkkaebi.me/ (You can see game demo and instructions for each platform here)
 
 ## Requirements
 
