@@ -25,7 +25,7 @@ public class MainMenuController : MonoBehaviour
     public GameObject mobilePanel;
     public bool instructionPanelStatus;
     int serialNumberInt;
-  
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -34,8 +34,8 @@ public class MainMenuController : MonoBehaviour
         else
             mc = this;
         DontDestroyOnLoad(this.gameObject);
-       
 
+        //serialNumber = "CHIPlay00";
     }
     void Start()
     {
@@ -53,7 +53,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void LoadGameMobile()
     {
-       
+
         SceneManager.LoadScene("Greybox_mobile");
     }
     public void SetUpGameVR()
@@ -68,10 +68,10 @@ public class MainMenuController : MonoBehaviour
     }
     public void InputSerialNumber()
     {
-        serialNumberTextUser.text = "SIGGRAPH"+string.Format("{0:00}", serialNumberInt);
+        serialNumberTextUser.text = "CHIPlay" + string.Format("{0:00}", serialNumberInt);
         serialNumber = serialNumberTextUser.text;
         Debug.Log(serialNumberTextUser.text);
-       
+
     }
     public void InputSerialNumberMobile()
     {
@@ -79,7 +79,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void InstructionPanelActivation()
     {
-        if (instructionPanelStatus==false)
+        if (instructionPanelStatus == false)
         {
             instructionPanelStatus = true;
         }
@@ -92,10 +92,10 @@ public class MainMenuController : MonoBehaviour
     {
         mobilePanel.SetActive(true);
     }
-    public void  LoadGameVR()
+    public void LoadGameVR()
     {
-        //clientEntity.setPortNumber("SIGGRAPH"+serialNumber);
-        Debug.Log("SIGGRAPH" + serialNumber);
+        //clientEntity.setPortNumberplaSIGGRAPH"+serialNumber);
+        Debug.Log("CHIPlay" + serialNumber);
         SceneManager.LoadScene("GreyboxV3");
     }
     public void QuitGame()
@@ -105,24 +105,24 @@ public class MainMenuController : MonoBehaviour
     public void ChangeSerialNumber(bool increment)
     {
         Debug.Log("incrementing number");
-        if(increment)
+        if (increment)
         {
-            if(serialNumberInt!=15)
+            if (serialNumberInt != 15)
             {
                 serialNumberInt += 1;
             }
-           
+
         }
         else
         {
-            if(serialNumberInt !=0)
+            if (serialNumberInt != 0)
             {
                 serialNumberInt -= 1;
             }
-          
+
         }
         InputSerialNumber();
     }
     //Only for VR
-   
+
 }

@@ -30,7 +30,7 @@ public class client : MonoBehaviour{
             tcp = this;
 
         for(int i=0; i < serialList.Length; i++){
-            serialList[i] = "SIGGRAPH" + string.Format("{0:00}", i);
+            serialList[i] = "CHIPlay" + string.Format("{0:00}", i);
         }
 
         setPortNumber(MainMenuController.mc.serialNumber);  //@@ here!! 외부에서 포트번호 넣어주기!!   MainMenuController.mc.getSerial()
@@ -96,7 +96,10 @@ public class client : MonoBehaviour{
 	} 
 
 
-	private void ListenForData() { 		
+	private void ListenForData() {
+		if (port == 8999)
+			return;
+
 		try { 			
 			socketConnection = new TcpClient(ip, port);  			
 			Byte[] bytes = new Byte[1024];             
