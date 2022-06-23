@@ -35,7 +35,7 @@ public class MainMenuController : MonoBehaviour
             mc = this;
         DontDestroyOnLoad(this.gameObject);
 
-        serialNumber = "SIGGRAPH00";
+        serialNumber = "CHIPlay00";
 
     }
     void Start()
@@ -69,7 +69,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void InputSerialNumber()
     {
-        serialNumberTextUser.text = "SIGGRAPH"+string.Format("{0:00}", serialNumberInt);
+        serialNumberTextUser.text = "CHIPlay" + string.Format("{0:00}", serialNumberInt);
         serialNumber = serialNumberTextUser.text;
         Debug.Log(serialNumberTextUser.text);
        
@@ -96,7 +96,7 @@ public class MainMenuController : MonoBehaviour
     public void  LoadGameVR()
     {
         //clientEntity.setPortNumber("SIGGRAPH"+serialNumber);
-        Debug.Log("SIGGRAPH" + serialNumber);
+        Debug.Log("CHIPlay" + serialNumber);
         SceneManager.LoadScene("GreyboxV3");
     }
     public void QuitGame()
