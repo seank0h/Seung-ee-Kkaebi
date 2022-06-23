@@ -31667,7 +31667,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SIGGRAPH00
+  m_Text: 'CHIPlay00
+
+'
 --- !u!222 &1641709831
 CanvasRenderer:
   m_ObjectHideFlags: 0
