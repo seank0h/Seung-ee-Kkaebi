@@ -18,7 +18,7 @@ Game Website: http://www.seungeenkkaebi.me/ (You can see game demo and instructi
 
 - Finally someone to play with!
 
-To join the same session as another player, both player must input the same serial number. (i.e., Player X & Y both want to play with one another they both input CHIPlay00, Currently CHIPlay00 to CHIPlay15 is available.) 
+To join the same session as another player, both player must input the same serial number. (i.e., Player X & Y both want to play with one another they both input CHIPlay00, Currently CHIPlay00 to CHIPlay06 is available.) 
 
 
 ## Game Installation Instruction
