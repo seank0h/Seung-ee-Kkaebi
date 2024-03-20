@@ -4,6 +4,8 @@ Welcome to our Alpha Version of Seungee & Kkaebi, a cross platform VR-Mobile hid
 
 Game Website: http://www.seungeenkkaebi.me/ (You can see game demo and instructions for each platform here)
 
+[![alt text]()](https://www.youtube.com/watch?v=LWdWkVZNUkc)
+
 ## Requirements
 
 - [Game Installation Files](https://github.com/seank0h/Seung-ee-Kkaebi/releases/tag/AlphaVersion)
